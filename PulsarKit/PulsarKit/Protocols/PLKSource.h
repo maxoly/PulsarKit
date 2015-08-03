@@ -48,19 +48,29 @@ typedef NS_ENUM (NSInteger, PLKDirection)
 typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
 {
     /**
-     *  Scoll.
+     *  None
      */
-    PLKSourceScrollOptionNone               = 1 <<  0,
+    PLKSourceScrollOptionNone = 1 << 0,
 
     /**
-    *  Scroll
+    *  Top
     */
-    PLKSourceScrollOptionInfiniteOnTop      = 1 <<  1,
+    PLKSourceScrollOptionInfiniteOnTop = 1 << 1,
 
     /**
-    *  Scroll.
+    *  Bottom
     */
-    PLKSourceScrollOptionInfiniteOnBottom   = 1 <<  2
+    PLKSourceScrollOptionInfiniteOnBottom = 1 << 2,
+    
+    /**
+    * Left
+    */
+    PLKSourceScrollOptionInfiniteOnLeft = 1 << 3,
+    
+    /**
+    *  Right
+    */
+    PLKSourceScrollOptionInfiniteOnRight = 1 << 4
 };
 
 /**

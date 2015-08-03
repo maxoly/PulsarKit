@@ -71,6 +71,7 @@
 #pragma mark - PLKSource
 
 - (PLKCellDescriptor *)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor {
+    NSParameterAssert(cellDescriptor);
     self.descriptors[NSStringFromClass(cellDescriptor.model)] = cellDescriptor;
     return cellDescriptor;
 }
@@ -175,6 +176,8 @@
 #pragma mark - Helpers
 
 - (PLKCellDescriptor *)descriptorAtIndexPath:(NSIndexPath *)indexPath {
+    NSParameterAssert(indexPath);
+    
     PLKSection *section = self.sections[indexPath.section];
     PLKItem *item = section[indexPath.row];
 
@@ -207,13 +210,23 @@
     if (self.sections.itemsCount == 0) {
         return;
     }
-
+    
     if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnTop) == PLKSourceScrollOptionInfiniteOnTop &&
         scrollView.contentOffset.y == 0) {
         [self loadDataWithDirection:PLKDirectionTop];
     }
 
     if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnBottom) == PLKSourceScrollOptionInfiniteOnBottom &&
+        scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height)) {
+        [self loadDataWithDirection:PLKDirectionBottom];
+    }
+    
+    if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnLeft) == PLKSourceScrollOptionInfiniteOnLeft &&
+        scrollView.contentOffset.y == 0) {
+        [self loadDataWithDirection:PLKDirectionTop];
+    }
+    
+    if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnRight) == PLKSourceScrollOptionInfiniteOnRight &&
         scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height)) {
         [self loadDataWithDirection:PLKDirectionBottom];
     }
