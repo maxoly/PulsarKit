@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5613BD681A85117A009B09AE /* PulsarKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5613BD671A85117A009B09AE /* PulsarKit.h */; };
+		5613BD8E1A851F2C009B09AE /* PLKTableSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD8D1A851F2C009B09AE /* PLKTableSourceViewController.m */; };
+		5613BD921A852451009B09AE /* UIView+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD911A852451009B09AE /* UIView+PulsarKit.m */; };
+		5613BD951A85290E009B09AE /* NSObject+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD941A85290E009B09AE /* NSObject+PulsarKit.m */; };
+		566771271B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771261B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m */; };
+		5667712D1B205A2A00B2DE72 /* PLKAutolayoutSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5667712C1B205A2A00B2DE72 /* PLKAutolayoutSize.m */; };
+		566771311B205E8A00B2DE72 /* PLKFixedSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771301B205E8A00B2DE72 /* PLKFixedSize.m */; };
+		566771351B205F5600B2DE72 /* PLKTableCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771341B205F5600B2DE72 /* PLKTableCellBuilder.m */; };
+		566771381B2078EC00B2DE72 /* PLKSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771371B2078EC00B2DE72 /* PLKSections.m */; };
+		5667713B1B2083DC00B2DE72 /* PLKItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5667713A1B2083DC00B2DE72 /* PLKItem.m */; };
+		5667713F1B20870200B2DE72 /* PLKCellDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5667713E1B20870200B2DE72 /* PLKCellDescriptor.m */; };
+		566771421B208C6C00B2DE72 /* PLKTableCellDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771411B208C6C00B2DE72 /* PLKTableCellDescriptor.m */; };
+		566771431B208EF700B2DE72 /* PLKCellDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5667713D1B20870200B2DE72 /* PLKCellDescriptor.h */; };
+		566771441B208EF700B2DE72 /* PLKTableCellDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 566771401B208C6C00B2DE72 /* PLKTableCellDescriptor.h */; };
+		566771451B208EF700B2DE72 /* PLKTableCellBuilder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 566771331B205F5600B2DE72 /* PLKTableCellBuilder.h */; };
+		566771461B20938800B2DE72 /* PLKItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 566771391B2083DC00B2DE72 /* PLKItem.h */; };
+		566771471B20938800B2DE72 /* PLKSection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5694B4B01ACDEC6400D801DC /* PLKSection.h */; };
+		566771481B20938800B2DE72 /* PLKSections.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 566771361B2078EC00B2DE72 /* PLKSections.h */; };
+		566771491B20938800B2DE72 /* PLKCellBuilder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5667712E1B205B3000B2DE72 /* PLKCellBuilder.h */; };
+		5667714A1B20938800B2DE72 /* PLKSizeStrategy.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 566771281B2059CD00B2DE72 /* PLKSizeStrategy.h */; };
+		5667714B1B20938800B2DE72 /* PLKAutolayoutSize.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5667712B1B205A2A00B2DE72 /* PLKAutolayoutSize.h */; };
+		5667714C1B20938800B2DE72 /* PLKFixedSize.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5667712F1B205E8A00B2DE72 /* PLKFixedSize.h */; };
+		5694B4B21ACDEC6400D801DC /* PLKSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694B4B11ACDEC6400D801DC /* PLKSection.m */; };
+		5694B4B51ACDF10E00D801DC /* NSArray+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694B4B41ACDF10E00D801DC /* NSArray+PulsarKit.m */; };
+		56E591D11AA7BEBB005493F9 /* PLKBaseSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD841A8515E0009B09AE /* PLKBaseSource.m */; };
+		56E591D31AA7BEBB005493F9 /* PLKTableSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD881A8518FF009B09AE /* PLKTableSource.m */; };
+		56E591D41AA7BF45005493F9 /* PLKBaseSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5613BD831A8515E0009B09AE /* PLKBaseSource.h */; };
+		56E591D51AA7BF45005493F9 /* PLKTableSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5613BD871A8518FF009B09AE /* PLKTableSource.h */; };
+		56E591D71AA7BF45005493F9 /* PLKProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5613BD821A851295009B09AE /* PLKProvider.h */; };
+		56E591D81AA7BF45005493F9 /* PLKSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5613BD811A85121E009B09AE /* PLKSource.h */; };
+		56E591D91AA7BF45005493F9 /* PLKCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5613BD8A1A851D72009B09AE /* PLKCell.h */; };
+		56E591DA1AA7BF45005493F9 /* PLKSectionView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5613BD991A852CD1009B09AE /* PLKSectionView.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5613BD621A85117A009B09AE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				566771461B20938800B2DE72 /* PLKItem.h in CopyFiles */,
+				566771471B20938800B2DE72 /* PLKSection.h in CopyFiles */,
+				566771481B20938800B2DE72 /* PLKSections.h in CopyFiles */,
+				566771491B20938800B2DE72 /* PLKCellBuilder.h in CopyFiles */,
+				5667714A1B20938800B2DE72 /* PLKSizeStrategy.h in CopyFiles */,
+				5667714B1B20938800B2DE72 /* PLKAutolayoutSize.h in CopyFiles */,
+				5667714C1B20938800B2DE72 /* PLKFixedSize.h in CopyFiles */,
+				566771431B208EF700B2DE72 /* PLKCellDescriptor.h in CopyFiles */,
+				566771441B208EF700B2DE72 /* PLKTableCellDescriptor.h in CopyFiles */,
+				566771451B208EF700B2DE72 /* PLKTableCellBuilder.h in CopyFiles */,
+				56E591D41AA7BF45005493F9 /* PLKBaseSource.h in CopyFiles */,
+				56E591D51AA7BF45005493F9 /* PLKTableSource.h in CopyFiles */,
+				56E591D71AA7BF45005493F9 /* PLKProvider.h in CopyFiles */,
+				56E591D81AA7BF45005493F9 /* PLKSource.h in CopyFiles */,
+				56E591D91AA7BF45005493F9 /* PLKCell.h in CopyFiles */,
+				56E591DA1AA7BF45005493F9 /* PLKSectionView.h in CopyFiles */,
+				5613BD681A85117A009B09AE /* PulsarKit.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5613BD641A85117A009B09AE /* libPulsarKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPulsarKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5613BD671A85117A009B09AE /* PulsarKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PulsarKit.h; sourceTree = "<group>"; };
+		5613BD811A85121E009B09AE /* PLKSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSource.h; sourceTree = "<group>"; };
+		5613BD821A851295009B09AE /* PLKProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKProvider.h; sourceTree = "<group>"; };
+		5613BD831A8515E0009B09AE /* PLKBaseSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKBaseSource.h; sourceTree = "<group>"; };
+		5613BD841A8515E0009B09AE /* PLKBaseSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKBaseSource.m; sourceTree = "<group>"; };
+		5613BD871A8518FF009B09AE /* PLKTableSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKTableSource.h; sourceTree = "<group>"; };
+		5613BD881A8518FF009B09AE /* PLKTableSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKTableSource.m; sourceTree = "<group>"; };
+		5613BD8A1A851D72009B09AE /* PLKCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCell.h; sourceTree = "<group>"; };
+		5613BD8C1A851F2C009B09AE /* PLKTableSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKTableSourceViewController.h; sourceTree = "<group>"; };
+		5613BD8D1A851F2C009B09AE /* PLKTableSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKTableSourceViewController.m; sourceTree = "<group>"; };
+		5613BD901A852451009B09AE /* UIView+PulsarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PulsarKit.h"; sourceTree = "<group>"; };
+		5613BD911A852451009B09AE /* UIView+PulsarKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PulsarKit.m"; sourceTree = "<group>"; };
+		5613BD931A85290E009B09AE /* NSObject+PulsarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PulsarKit.h"; sourceTree = "<group>"; };
+		5613BD941A85290E009B09AE /* NSObject+PulsarKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PulsarKit.m"; sourceTree = "<group>"; };
+		5613BD991A852CD1009B09AE /* PLKSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSectionView.h; sourceTree = "<group>"; };
+		566771251B1F11C700B2DE72 /* UITableViewCell+PulsarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+PulsarKit.h"; sourceTree = "<group>"; };
+		566771261B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+PulsarKit.m"; sourceTree = "<group>"; };
+		566771281B2059CD00B2DE72 /* PLKSizeStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSizeStrategy.h; sourceTree = "<group>"; };
+		5667712B1B205A2A00B2DE72 /* PLKAutolayoutSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKAutolayoutSize.h; sourceTree = "<group>"; };
+		5667712C1B205A2A00B2DE72 /* PLKAutolayoutSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKAutolayoutSize.m; sourceTree = "<group>"; };
+		5667712E1B205B3000B2DE72 /* PLKCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCellBuilder.h; sourceTree = "<group>"; };
+		5667712F1B205E8A00B2DE72 /* PLKFixedSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKFixedSize.h; sourceTree = "<group>"; };
+		566771301B205E8A00B2DE72 /* PLKFixedSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKFixedSize.m; sourceTree = "<group>"; };
+		566771331B205F5600B2DE72 /* PLKTableCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKTableCellBuilder.h; sourceTree = "<group>"; };
+		566771341B205F5600B2DE72 /* PLKTableCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKTableCellBuilder.m; sourceTree = "<group>"; };
+		566771361B2078EC00B2DE72 /* PLKSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSections.h; sourceTree = "<group>"; };
+		566771371B2078EC00B2DE72 /* PLKSections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKSections.m; sourceTree = "<group>"; };
+		566771391B2083DC00B2DE72 /* PLKItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKItem.h; sourceTree = "<group>"; };
+		5667713A1B2083DC00B2DE72 /* PLKItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKItem.m; sourceTree = "<group>"; };
+		5667713D1B20870200B2DE72 /* PLKCellDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCellDescriptor.h; sourceTree = "<group>"; };
+		5667713E1B20870200B2DE72 /* PLKCellDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKCellDescriptor.m; sourceTree = "<group>"; };
+		566771401B208C6C00B2DE72 /* PLKTableCellDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKTableCellDescriptor.h; sourceTree = "<group>"; };
+		566771411B208C6C00B2DE72 /* PLKTableCellDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKTableCellDescriptor.m; sourceTree = "<group>"; };
+		5694B4B01ACDEC6400D801DC /* PLKSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSection.h; sourceTree = "<group>"; };
+		5694B4B11ACDEC6400D801DC /* PLKSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKSection.m; sourceTree = "<group>"; };
+		5694B4B31ACDF10E00D801DC /* NSArray+PulsarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PulsarKit.h"; sourceTree = "<group>"; };
+		5694B4B41ACDF10E00D801DC /* NSArray+PulsarKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PulsarKit.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5613BD611A85117A009B09AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5613BD5B1A85117A009B09AE = {
+			isa = PBXGroup;
+			children = (
+				5613BD661A85117A009B09AE /* PulsarKit */,
+				5613BD651A85117A009B09AE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5613BD651A85117A009B09AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5613BD641A85117A009B09AE /* libPulsarKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5613BD661A85117A009B09AE /* PulsarKit */ = {
+			isa = PBXGroup;
+			children = (
+				5667713C1B2086E500B2DE72 /* Descriptors */,
+				566771321B205F2E00B2DE72 /* Builders */,
+				5613BD8F1A85242C009B09AE /* Categories */,
+				5613BD7E1A85118C009B09AE /* Classes */,
+				5613BD8B1A851EFE009B09AE /* Controllers */,
+				5613BD7F1A85119B009B09AE /* Protocols */,
+				5613BD671A85117A009B09AE /* PulsarKit.h */,
+				5667712A1B2059F300B2DE72 /* Strategies */,
+			);
+			path = PulsarKit;
+			sourceTree = "<group>";
+		};
+		5613BD7E1A85118C009B09AE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5613BD831A8515E0009B09AE /* PLKBaseSource.h */,
+				5613BD841A8515E0009B09AE /* PLKBaseSource.m */,
+				566771391B2083DC00B2DE72 /* PLKItem.h */,
+				5667713A1B2083DC00B2DE72 /* PLKItem.m */,
+				5694B4B01ACDEC6400D801DC /* PLKSection.h */,
+				5694B4B11ACDEC6400D801DC /* PLKSection.m */,
+				566771361B2078EC00B2DE72 /* PLKSections.h */,
+				566771371B2078EC00B2DE72 /* PLKSections.m */,
+				5613BD871A8518FF009B09AE /* PLKTableSource.h */,
+				5613BD881A8518FF009B09AE /* PLKTableSource.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5613BD7F1A85119B009B09AE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5613BD8A1A851D72009B09AE /* PLKCell.h */,
+				5667712E1B205B3000B2DE72 /* PLKCellBuilder.h */,
+				5613BD821A851295009B09AE /* PLKProvider.h */,
+				5613BD991A852CD1009B09AE /* PLKSectionView.h */,
+				566771281B2059CD00B2DE72 /* PLKSizeStrategy.h */,
+				5613BD811A85121E009B09AE /* PLKSource.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5613BD8B1A851EFE009B09AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5613BD8C1A851F2C009B09AE /* PLKTableSourceViewController.h */,
+				5613BD8D1A851F2C009B09AE /* PLKTableSourceViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5613BD8F1A85242C009B09AE /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5613BD901A852451009B09AE /* UIView+PulsarKit.h */,
+				5613BD911A852451009B09AE /* UIView+PulsarKit.m */,
+				5613BD931A85290E009B09AE /* NSObject+PulsarKit.h */,
+				5613BD941A85290E009B09AE /* NSObject+PulsarKit.m */,
+				5694B4B31ACDF10E00D801DC /* NSArray+PulsarKit.h */,
+				5694B4B41ACDF10E00D801DC /* NSArray+PulsarKit.m */,
+				566771251B1F11C700B2DE72 /* UITableViewCell+PulsarKit.h */,
+				566771261B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		5667712A1B2059F300B2DE72 /* Strategies */ = {
+			isa = PBXGroup;
+			children = (
+				5667712B1B205A2A00B2DE72 /* PLKAutolayoutSize.h */,
+				5667712C1B205A2A00B2DE72 /* PLKAutolayoutSize.m */,
+				5667712F1B205E8A00B2DE72 /* PLKFixedSize.h */,
+				566771301B205E8A00B2DE72 /* PLKFixedSize.m */,
+			);
+			path = Strategies;
+			sourceTree = "<group>";
+		};
+		566771321B205F2E00B2DE72 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				566771331B205F5600B2DE72 /* PLKTableCellBuilder.h */,
+				566771341B205F5600B2DE72 /* PLKTableCellBuilder.m */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		5667713C1B2086E500B2DE72 /* Descriptors */ = {
+			isa = PBXGroup;
+			children = (
+				5667713D1B20870200B2DE72 /* PLKCellDescriptor.h */,
+				5667713E1B20870200B2DE72 /* PLKCellDescriptor.m */,
+				566771401B208C6C00B2DE72 /* PLKTableCellDescriptor.h */,
+				566771411B208C6C00B2DE72 /* PLKTableCellDescriptor.m */,
+			);
+			path = Descriptors;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5613BD631A85117A009B09AE /* PulsarKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5613BD781A85117A009B09AE /* Build configuration list for PBXNativeTarget "PulsarKit" */;
+			buildPhases = (
+				5613BD601A85117A009B09AE /* Sources */,
+				5613BD611A85117A009B09AE /* Frameworks */,
+				5613BD621A85117A009B09AE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PulsarKit;
+			productName = PulsarKit;
+			productReference = 5613BD641A85117A009B09AE /* libPulsarKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5613BD5C1A85117A009B09AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Nacoon;
+				TargetAttributes = {
+					5613BD631A85117A009B09AE = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 5613BD5F1A85117A009B09AE /* Build configuration list for PBXProject "PulsarKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5613BD5B1A85117A009B09AE;
+			productRefGroup = 5613BD651A85117A009B09AE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5613BD631A85117A009B09AE /* PulsarKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5613BD601A85117A009B09AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5667712D1B205A2A00B2DE72 /* PLKAutolayoutSize.m in Sources */,
+				56E591D31AA7BEBB005493F9 /* PLKTableSource.m in Sources */,
+				5667713F1B20870200B2DE72 /* PLKCellDescriptor.m in Sources */,
+				566771351B205F5600B2DE72 /* PLKTableCellBuilder.m in Sources */,
+				566771381B2078EC00B2DE72 /* PLKSections.m in Sources */,
+				566771271B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m in Sources */,
+				5694B4B51ACDF10E00D801DC /* NSArray+PulsarKit.m in Sources */,
+				5694B4B21ACDEC6400D801DC /* PLKSection.m in Sources */,
+				5613BD921A852451009B09AE /* UIView+PulsarKit.m in Sources */,
+				5667713B1B2083DC00B2DE72 /* PLKItem.m in Sources */,
+				56E591D11AA7BEBB005493F9 /* PLKBaseSource.m in Sources */,
+				566771311B205E8A00B2DE72 /* PLKFixedSize.m in Sources */,
+				5613BD8E1A851F2C009B09AE /* PLKTableSourceViewController.m in Sources */,
+				5613BD951A85290E009B09AE /* NSObject+PulsarKit.m in Sources */,
+				566771421B208C6C00B2DE72 /* PLKTableCellDescriptor.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5613BD761A85117A009B09AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5613BD771A85117A009B09AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5613BD791A85117A009B09AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5613BD7A1A85117A009B09AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5613BD5F1A85117A009B09AE /* Build configuration list for PBXProject "PulsarKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5613BD761A85117A009B09AE /* Debug */,
+				5613BD771A85117A009B09AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5613BD781A85117A009B09AE /* Build configuration list for PBXNativeTarget "PulsarKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5613BD791A85117A009B09AE /* Debug */,
+				5613BD7A1A85117A009B09AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5613BD5C1A85117A009B09AE /* Project object */;
+}
