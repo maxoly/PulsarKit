@@ -9,5 +9,5 @@ install:
 - brew upgrade xctool
 
 script:
- - pod lib lint --allow-warnings
+ - pod lib lint
  - xctool -workspace PulsarKit.xcworkspace -scheme 'PulsarKitExample' -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO build
