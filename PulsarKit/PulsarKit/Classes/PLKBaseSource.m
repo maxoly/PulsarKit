@@ -222,12 +222,12 @@
     }
     
     if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnLeft) == PLKSourceScrollOptionInfiniteOnLeft &&
-        scrollView.contentOffset.y == 0) {
+        scrollView.contentOffset.x == 0) {
         [self loadDataWithDirection:PLKDirectionTop];
     }
     
     if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnRight) == PLKSourceScrollOptionInfiniteOnRight &&
-        scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height)) {
+        scrollView.contentOffset.x == (scrollView.contentSize.width - scrollView.frame.size.width)) {
         [self loadDataWithDirection:PLKDirectionBottom];
     }
 }
