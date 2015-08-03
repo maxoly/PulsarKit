@@ -1,26 +1,26 @@
 //
-//  PLKTableCellBuilder.m
+//  PLKTableViewCellBuilder.m
 //  PulsarKit
 //
 //  Created by Massimo Oliviero on 04/06/15.
 //  Copyright (c) 2015 Nacoon. All rights reserved.
 //
 
-#import "PLKTableCellBuilder.h"
+#import "PLKTableViewCellBuilder.h"
 
 #import "PLKCell.h"
 #import "UIView+PulsarKit.h"
 #import "NSObject+PulsarKit.h"
 
 
-@interface PLKTableCellBuilder ()
+@interface PLKTableViewCellBuilder ()
 
 @property (nonatomic, readwrite, strong) NSCache *cellCache;
 
 @end
 
 
-@implementation PLKTableCellBuilder
+@implementation PLKTableViewCellBuilder
 
 - (NSCache *)cellCache {
     if (!_cellCache) {
@@ -48,7 +48,7 @@
 }
 
 + (instancetype)builderWithCellClass:(Class)cellClass {
-    PLKTableCellBuilder *builder = [[self alloc] init];
+    PLKTableViewCellBuilder *builder = [[self alloc] init];
     builder.cellClass = cellClass;
     return builder;
 }

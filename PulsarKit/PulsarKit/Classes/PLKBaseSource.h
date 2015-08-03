@@ -38,19 +38,31 @@
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 
-// inits
-- (instancetype)init __unavailable;
+/**
+ *   Unavailable init.
+ *
+ *  @return Nothing :)
+ */
+- (instancetype)init NS_UNAVAILABLE;
+
+/**
+ *  Initialize source with a generic container.
+ *
+ *  @param container The generic container.
+ *
+ *  @return A new instance of source.
+ */
 - (instancetype)initWithContainer:(UIScrollView *)container;
 
-// loading
-- (void)loadData __attribute__((objc_requires_super));
+/**
+ *  Loads data into container.
+ */
+- (void)loadData NS_REQUIRES_SUPER;
 
-- (void)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor;
-
-// override
+/**
+ *  Configures the container. Override this method to perform additional initialization on a specific container.
+ */
 - (void)configureContainer;
-
-
 
 // Cell methods
 - (id<PLKCellBuilder>)builderAtIndexPath:(NSIndexPath *)indexPath;

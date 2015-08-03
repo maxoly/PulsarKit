@@ -27,7 +27,7 @@
     self.source = [[PLKTableSource alloc] initWithTableView:self.tableView];
     self.source.provider = self;
     self.source.scrollOptions = PLKSourceScrollOptionInfiniteOnBottom | PLKSourceScrollOptionInfiniteOnTop;
-    [self.source registerCellDescriptor:[PLKCellDescriptor tableCellDescriptorWithCellClass:[UITableViewCell class] forModel:[PKEUser class]]];
+    [self.source registerCellDescriptorForCellClass:[UITableViewCell class] modelClass:[PKEUser class] sizeStrategy:[PLKAutolayoutSize autolayoutSize]];
     [self.source loadData];
 }
 

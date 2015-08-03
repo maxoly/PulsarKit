@@ -13,11 +13,13 @@
 @import Foundation;
 
 @class PLKSections;
+@class PLKCellDescriptor;
 
 /**
  *  Protocols.
  */
 @protocol PLKProvider;
+@protocol PLKSizeStrategy;
 
 /**
  *  Did select row block.
@@ -106,16 +108,22 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
 - (void)loadData;
 - (void)update;
 
-@end
-
-
-
-/*
-   [PLKConfigurator configuratorWithBuilder:[PLKTableViewCellBuilder builderWithCellClass:[UITableViewCell class]]
-                                    model:[PLKUser class]
-                            sizeStrategy:[PLKAutolayoutStrategy strategy]];
-
-
-   - (UITableViewCell<PLKCell> *)cellAtIndexPath:(NSIndexPath *)indexPath forEntity:(id)entity inContainer:(UIScrollView *)container;
-
+/**
+ *  Registers a new cell descriptor.
+ *
+ *  @param cellDescriptor An instance of PLKCellDescriptor.
  */
+- (PLKCellDescriptor *)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor;
+
+/**
+ *  Register a new cell description to the source.
+ *
+ *  @param cellClass The cell class.
+ *  @param model     The model class.
+ *  @param strategy  The cell size strategy.
+ *
+ *  @return A new instance of PLKCellDescriptor.
+ */
+- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy;
+
+@end

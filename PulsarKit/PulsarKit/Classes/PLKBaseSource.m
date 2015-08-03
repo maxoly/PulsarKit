@@ -67,8 +67,13 @@
 
 #pragma mark - Descriptors
 
-- (void)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor {
+- (PLKCellDescriptor *)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor {
     self.descriptors[NSStringFromClass(cellDescriptor.model)] = cellDescriptor;
+    return cellDescriptor;
+}
+
+- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerCellDescriptorForCellClass:modelClass:stategy: method" userInfo:nil];
 }
 
 #pragma mark - Loading

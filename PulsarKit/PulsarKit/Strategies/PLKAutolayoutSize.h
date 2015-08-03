@@ -10,4 +10,9 @@
 
 @interface PLKAutolayoutSize : NSObject <PLKSizeStrategy>
 
+@property (nonatomic, readwrite, assign, getter=isCacheEnabled) BOOL cacheEnabled;
+
++ (instancetype)autolayoutSize;
++ (instancetype)autolayoutSizeAndCacheEnabled:(BOOL)cacheEnabled;
+
 @end

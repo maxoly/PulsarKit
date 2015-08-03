@@ -19,6 +19,7 @@
 #import "PLKCellBuilder.h"
 #import "PLKSizeStrategy.h"
 #import "PLKCellDescriptor.h"
+#import "PLKCollectionViewCellBuilder.h"
 
 
 
@@ -69,6 +70,14 @@
 
 - (void)update {
     [self.collectionView reloadData];
+}
+
+#pragma mark - Descriptor
+
+- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
+    id<PLKCellBuilder> builder = [PLKCollectionViewCellBuilder builderWithCellClass:cellClass];
+    PLKCellDescriptor *descriptor = [PLKCellDescriptor cellDescriptorWithModel:model builder:builder strategy:strategy];
+    return [self registerCellDescriptor:descriptor];
 }
 
 #pragma mark - UICollecitonViewDataSource

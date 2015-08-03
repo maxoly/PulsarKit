@@ -16,6 +16,7 @@
 #import "NSObject+PulsarKit.h"
 #import "UIView+PulsarKit.h"
 
+#import "PLKTableViewCellBuilder.h"
 #import "PLKCellBuilder.h"
 #import "PLKSizeStrategy.h"
 #import "PLKCellDescriptor.h"
@@ -76,6 +77,14 @@
 
 - (void)update {
     [self.tableView reloadData];
+}
+
+#pragma mark - Descriptor
+
+- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
+    id<PLKCellBuilder> builder = [PLKTableViewCellBuilder builderWithCellClass:cellClass];
+    PLKCellDescriptor *descriptor = [PLKCellDescriptor cellDescriptorWithModel:model builder:builder strategy:strategy];
+    return [self registerCellDescriptor:descriptor];
 }
 
 #pragma mark - UITableViewDataSource

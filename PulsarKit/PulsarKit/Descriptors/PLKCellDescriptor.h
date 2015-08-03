@@ -21,9 +21,5 @@ UIKIT_EXTERN CGFloat const PLKDefaultCellSize;
 @property (nonatomic, readwrite, strong) id<PLKSizeStrategy> strategy;
 
 + (instancetype)cellDescriptorWithModel:(Class)model builder:(id<PLKCellBuilder>)builder strategy:(id<PLKSizeStrategy>)strategy;
-+ (instancetype)collectionCellDescriptorWithCellClass:(Class)cellClass forModel:(Class)model;
-+ (instancetype)collectionCellDescriptorWithDynamicCellClass:(Class)cellClass forModel:(Class)model;
-+ (instancetype)tableCellDescriptorWithCellClass:(Class)cellClass forModel:(Class)model;
-+ (instancetype)tableCellDescriptorWithDynamicCellClass:(Class)cellClass forModel:(Class)model;
 
 @end

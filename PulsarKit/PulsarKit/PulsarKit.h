@@ -16,9 +16,20 @@
 #import "PLKItem.h"
 #import "PLKSection.h"
 #import "PLKSections.h"
+#import "PLKCellDescriptor.h"
+
+// Sources
 #import "PLKTableSource.h"
-#import "PLKTableCellBuilder.h"
+#import "PLKCollectionSource.h"
+
+// Strategies
+#import "PLKFixedSize.h"
+#import "PLKAutolayoutSize.h"
+
+// Builder
+#import "PLKTableViewCellBuilder.h"
 #import "PLKCollectionViewCellBuilder.h"
 
-// Descriptors
-#import "PLKCellDescriptor.h"
+// Controllers
+#import "PLKTableSourceViewController.h"
+#import "PLKCollectionSourceViewController.h"

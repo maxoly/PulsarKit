@@ -1,5 +1,5 @@
 //
-//  PLKTableCellBuilder.h
+//  PLKTableViewCellBuilder.h
 //  PulsarKit
 //
 //  Created by Massimo Oliviero on 04/06/15.
@@ -8,7 +8,7 @@
 
 #import "PLKCellBuilder.h"
 
-@interface PLKTableCellBuilder : NSObject <PLKCellBuilder>
+@interface PLKTableViewCellBuilder : NSObject <PLKCellBuilder>
 
 @property (nonatomic, readwrite, assign) Class cellClass;
 
