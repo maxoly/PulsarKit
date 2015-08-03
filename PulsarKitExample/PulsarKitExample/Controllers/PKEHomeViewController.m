@@ -24,10 +24,10 @@
 {
     [super viewDidLoad];
     
-    self.source = [[PLKTableSource alloc] initWithTable:self.tableView];
+    self.source = [[PLKTableSource alloc] initWithTableView:self.tableView];
     self.source.provider = self;
     self.source.scrollOptions = PLKSourceScrollOptionInfiniteOnBottom | PLKSourceScrollOptionInfiniteOnTop;
-    [self.source registerCellDescriptor:[PLKTableCellDescriptor cellDescriptorWithCellClass:[UITableViewCell class] forModel:[PKEUser class]]];
+    [self.source registerCellDescriptor:[PLKCellDescriptor tableCellDescriptorWithCellClass:[UITableViewCell class] forModel:[PKEUser class]]];
     [self.source loadData];
 }
 

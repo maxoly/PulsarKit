@@ -33,7 +33,7 @@
 
 #pragma mark - Inits
 
-- (instancetype)initWithTable:(UITableView *)tableView {
+- (instancetype)initWithTableView:(UITableView *)tableView {
     self = [super initWithContainer:tableView];
     if (self) {
         _tableView = tableView;
@@ -41,15 +41,6 @@
         _tableView.dataSource = self;
         _tableView.scrollsToTop = YES;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-
-        // Self-sizing table view cells in iOS 8 require that the rowHeight property of the
-        // table view be set to the constant UITableViewAutomaticDimension
-//        _tableView.rowHeight = UITableViewAutomaticDimension;
-
-        // Self-sizing table view cells in iOS 8 are enabled when the estimatedRowHeight property of the table view is set to a non-zero value.
-        // Setting the estimated row height prevents the table view from calling tableView:heightForRowAtIndexPath: for every row in the table on first load;
-        // it will only be called as cells are about to scroll onscreen. This is a major performance optimization.
-//        _tableView.estimatedRowHeight = 44.0; // set this to whatever your "average" cell height is; it doesn't need to be very accurate
     }
 
     return self;
@@ -100,7 +91,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id entity = [self entityAtIndexPath:indexPath];
     id<PLKCellBuilder> builder = [self builderAtIndexPath:indexPath];
-    return [builder cellForEntity:entity inContainer:self.tableView atIndexPath:indexPath];
+    return [builder cellForEntity:entity inContainer:tableView atIndexPath:indexPath];
 }
 
 #pragma mark - UITableViewDelegate
@@ -119,7 +110,7 @@
     id<PLKSizeStrategy> strategy = [self strategyAtIndexPath:indexPath];
     id<PLKCellBuilder> builder = [self builderAtIndexPath:indexPath];
 
-    CGSize size = [strategy sizeForEntity:entity inContainer:self.tableView atIndexPath:indexPath builder:builder];
+    CGSize size = [strategy sizeForEntity:entity inContainer:tableView atIndexPath:indexPath builder:builder];
     return size.height;
 }
 

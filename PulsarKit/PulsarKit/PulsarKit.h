@@ -17,6 +17,8 @@
 #import "PLKSection.h"
 #import "PLKSections.h"
 #import "PLKTableSource.h"
+#import "PLKTableCellBuilder.h"
+#import "PLKCollectionViewCellBuilder.h"
 
 // Descriptors
-#import "PLKTableCellDescriptor.h"
+#import "PLKCellDescriptor.h"

@@ -18,9 +18,7 @@
 		566771381B2078EC00B2DE72 /* PLKSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771371B2078EC00B2DE72 /* PLKSections.m */; };
 		5667713B1B2083DC00B2DE72 /* PLKItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5667713A1B2083DC00B2DE72 /* PLKItem.m */; };
 		5667713F1B20870200B2DE72 /* PLKCellDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5667713E1B20870200B2DE72 /* PLKCellDescriptor.m */; };
-		566771421B208C6C00B2DE72 /* PLKTableCellDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771411B208C6C00B2DE72 /* PLKTableCellDescriptor.m */; };
 		566771431B208EF700B2DE72 /* PLKCellDescriptor.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5667713D1B20870200B2DE72 /* PLKCellDescriptor.h */; };
-		566771441B208EF700B2DE72 /* PLKTableCellDescriptor.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 566771401B208C6C00B2DE72 /* PLKTableCellDescriptor.h */; };
 		566771451B208EF700B2DE72 /* PLKTableCellBuilder.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 566771331B205F5600B2DE72 /* PLKTableCellBuilder.h */; };
 		566771461B20938800B2DE72 /* PLKItem.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 566771391B2083DC00B2DE72 /* PLKItem.h */; };
 		566771471B20938800B2DE72 /* PLKSection.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5694B4B01ACDEC6400D801DC /* PLKSection.h */; };
@@ -29,6 +27,9 @@
 		5667714A1B20938800B2DE72 /* PLKSizeStrategy.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 566771281B2059CD00B2DE72 /* PLKSizeStrategy.h */; };
 		5667714B1B20938800B2DE72 /* PLKAutolayoutSize.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5667712B1B205A2A00B2DE72 /* PLKAutolayoutSize.h */; };
 		5667714C1B20938800B2DE72 /* PLKFixedSize.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5667712F1B205E8A00B2DE72 /* PLKFixedSize.h */; };
+		567E3EE41B6F7A150007B617 /* PLKCollectionViewCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 567E3EE31B6F7A150007B617 /* PLKCollectionViewCellBuilder.m */; };
+		567E3EE81B6F7E6F0007B617 /* PLKCollectionViewCellBuilder.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 567E3EE21B6F7A150007B617 /* PLKCollectionViewCellBuilder.h */; };
+		567E3EEB1B6F7EED0007B617 /* PLKCollectionSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 567E3EEA1B6F7EED0007B617 /* PLKCollectionSource.m */; };
 		5694B4B21ACDEC6400D801DC /* PLKSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694B4B11ACDEC6400D801DC /* PLKSection.m */; };
 		5694B4B51ACDF10E00D801DC /* NSArray+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694B4B41ACDF10E00D801DC /* NSArray+PulsarKit.m */; };
 		56E591D11AA7BEBB005493F9 /* PLKBaseSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD841A8515E0009B09AE /* PLKBaseSource.m */; };
@@ -48,6 +49,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				567E3EE81B6F7E6F0007B617 /* PLKCollectionViewCellBuilder.h in Copy Files */,
 				566771461B20938800B2DE72 /* PLKItem.h in Copy Files */,
 				566771471B20938800B2DE72 /* PLKSection.h in Copy Files */,
 				566771481B20938800B2DE72 /* PLKSections.h in Copy Files */,
@@ -56,7 +58,6 @@
 				5667714B1B20938800B2DE72 /* PLKAutolayoutSize.h in Copy Files */,
 				5667714C1B20938800B2DE72 /* PLKFixedSize.h in Copy Files */,
 				566771431B208EF700B2DE72 /* PLKCellDescriptor.h in Copy Files */,
-				566771441B208EF700B2DE72 /* PLKTableCellDescriptor.h in Copy Files */,
 				566771451B208EF700B2DE72 /* PLKTableCellBuilder.h in Copy Files */,
 				56E591D41AA7BF45005493F9 /* PLKBaseSource.h in Copy Files */,
 				56E591D51AA7BF45005493F9 /* PLKTableSource.h in Copy Files */,
@@ -104,8 +105,10 @@
 		5667713A1B2083DC00B2DE72 /* PLKItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKItem.m; sourceTree = "<group>"; };
 		5667713D1B20870200B2DE72 /* PLKCellDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCellDescriptor.h; sourceTree = "<group>"; };
 		5667713E1B20870200B2DE72 /* PLKCellDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKCellDescriptor.m; sourceTree = "<group>"; };
-		566771401B208C6C00B2DE72 /* PLKTableCellDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKTableCellDescriptor.h; sourceTree = "<group>"; };
-		566771411B208C6C00B2DE72 /* PLKTableCellDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKTableCellDescriptor.m; sourceTree = "<group>"; };
+		567E3EE21B6F7A150007B617 /* PLKCollectionViewCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCollectionViewCellBuilder.h; sourceTree = "<group>"; };
+		567E3EE31B6F7A150007B617 /* PLKCollectionViewCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKCollectionViewCellBuilder.m; sourceTree = "<group>"; };
+		567E3EE91B6F7EED0007B617 /* PLKCollectionSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCollectionSource.h; sourceTree = "<group>"; };
+		567E3EEA1B6F7EED0007B617 /* PLKCollectionSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKCollectionSource.m; sourceTree = "<group>"; };
 		5694B4B01ACDEC6400D801DC /* PLKSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSection.h; sourceTree = "<group>"; };
 		5694B4B11ACDEC6400D801DC /* PLKSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKSection.m; sourceTree = "<group>"; };
 		5694B4B31ACDF10E00D801DC /* NSArray+PulsarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PulsarKit.h"; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				566771371B2078EC00B2DE72 /* PLKSections.m */,
 				5613BD871A8518FF009B09AE /* PLKTableSource.h */,
 				5613BD881A8518FF009B09AE /* PLKTableSource.m */,
+				567E3EE91B6F7EED0007B617 /* PLKCollectionSource.h */,
+				567E3EEA1B6F7EED0007B617 /* PLKCollectionSource.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -224,6 +229,8 @@
 			children = (
 				566771331B205F5600B2DE72 /* PLKTableCellBuilder.h */,
 				566771341B205F5600B2DE72 /* PLKTableCellBuilder.m */,
+				567E3EE21B6F7A150007B617 /* PLKCollectionViewCellBuilder.h */,
+				567E3EE31B6F7A150007B617 /* PLKCollectionViewCellBuilder.m */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -233,8 +240,6 @@
 			children = (
 				5667713D1B20870200B2DE72 /* PLKCellDescriptor.h */,
 				5667713E1B20870200B2DE72 /* PLKCellDescriptor.m */,
-				566771401B208C6C00B2DE72 /* PLKTableCellDescriptor.h */,
-				566771411B208C6C00B2DE72 /* PLKTableCellDescriptor.m */,
 			);
 			path = Descriptors;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 		5613BD5C1A85117A009B09AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = PLK;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Nacoon;
 				TargetAttributes = {
@@ -299,6 +305,7 @@
 				56E591D31AA7BEBB005493F9 /* PLKTableSource.m in Sources */,
 				5667713F1B20870200B2DE72 /* PLKCellDescriptor.m in Sources */,
 				566771351B205F5600B2DE72 /* PLKTableCellBuilder.m in Sources */,
+				567E3EEB1B6F7EED0007B617 /* PLKCollectionSource.m in Sources */,
 				566771381B2078EC00B2DE72 /* PLKSections.m in Sources */,
 				566771271B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m in Sources */,
 				5694B4B51ACDF10E00D801DC /* NSArray+PulsarKit.m in Sources */,
@@ -309,7 +316,7 @@
 				566771311B205E8A00B2DE72 /* PLKFixedSize.m in Sources */,
 				5613BD8E1A851F2C009B09AE /* PLKTableSourceViewController.m in Sources */,
 				5613BD951A85290E009B09AE /* NSObject+PulsarKit.m in Sources */,
-				566771421B208C6C00B2DE72 /* PLKTableCellDescriptor.m in Sources */,
+				567E3EE41B6F7A150007B617 /* PLKCollectionViewCellBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

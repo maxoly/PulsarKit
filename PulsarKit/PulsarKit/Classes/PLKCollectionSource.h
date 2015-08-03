@@ -1,8 +1,8 @@
 //
-//  PLKTableSource.h
+//  PLKCollectionSource.h
 //  PulsarKit
 //
-//  Created by Massimo Oliviero on 06/02/15.
+//  Created by Massimo Oliviero on 03/08/15.
 //  Copyright (c) 2015 Nacoon. All rights reserved.
 //
 
@@ -11,14 +11,14 @@
 
 
 /**
- *  Defines a table source.
+ *  Define a collection source
  */
-@interface PLKTableSource : PLKBaseSource <UITableViewDataSource, UITableViewDelegate>
+@interface PLKCollectionSource : PLKBaseSource <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 /**
  *  The Table View.
  */
-@property (nonatomic, readonly, strong) UITableView *tableView;
+@property (nonatomic, readonly, strong) UICollectionView *collectionView;
 
 /**
  *  Unavailable init.
@@ -36,6 +36,6 @@
  *
  *  @return An instance of PLKTableSource.
  */
-- (instancetype)initWithTableView:(UITableView *)tableView;
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView;
 
 @end
