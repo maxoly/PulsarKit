@@ -87,8 +87,8 @@
 
 - (void)loadData {
     if (self.isFirstTime) {
-        [self configureDescriptors];
         [self configureContainer];
+        [self configureDescriptors];
     }
     [self loadDataWithDirection:PLKDirectionNone];
     self.firstTime = NO;
@@ -101,6 +101,10 @@
 }
 
 - (void)configureDescriptors {
+    if (self.descriptors.count == 0) {
+         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must register at leat one descriptor" userInfo:nil];
+    }
+    
     for (id key in self.descriptors.allKeys) {
         PLKCellDescriptor *descriptor = self.descriptors[key];
         

@@ -34,7 +34,6 @@
 @property (nonatomic, readonly, strong) UIScrollView *container;
 @property (nonatomic, readonly, strong) PLKSections *sections;
 @property (nonatomic, readwrite, strong) NSMutableDictionary *descriptors;
-@property (nonatomic, readwrite, strong) NSObject<PLKProvider> *provider;
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 @property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;
