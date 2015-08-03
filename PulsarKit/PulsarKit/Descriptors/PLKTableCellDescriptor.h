@@ -11,5 +11,6 @@
 @interface PLKTableCellDescriptor : PLKCellDescriptor
 
 + (instancetype)cellDescriptorWithCellClass:(Class)cellClass forModel:(Class)model;
++ (instancetype)cellDescriptorWithCellClass:(Class)cellClass forModel:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy;
 
 @end

@@ -20,4 +20,10 @@
                                 strategy:[PLKFixedSize fixedSize:CGSizeMake(0, 44.0f)]];
 }
 
++ (instancetype)cellDescriptorWithCellClass:(Class)cellClass forModel:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
+    return [self cellDescriptorWithModel:model
+                                 builder:[PLKTableCellBuilder builderWithCellClass:cellClass]
+                                strategy:strategy];
+}
+
 @end

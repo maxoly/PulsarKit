@@ -7,8 +7,10 @@
 //
 
 // Protocols
+#import "PLKCell.h"
 #import "PLKSource.h"
 #import "PLKProvider.h"
+#import "PLKSizeStrategy.h"
 
 // Classes
 #import "PLKItem.h"
