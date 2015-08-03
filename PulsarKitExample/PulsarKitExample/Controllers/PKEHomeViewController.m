@@ -31,7 +31,7 @@
     [self.source loadData];
 }
 
-- (void)source:(id<PLKSource>)source itemsForDirection:(PLKDirection)direction completion:(PLKProviderCompletionBlock)completion
+- (void)source:(id<PLKSource>)source itemsForDirection:(PLKDirection)direction
 {
     if (direction == PLKDirectionNone)
     {
@@ -42,8 +42,6 @@
         }
     
         [source.sections addEntities:users];
-    
-        completion();
     }
     
     if (direction == PLKDirectionTop)
@@ -55,8 +53,6 @@
         }
         
         [source.sections addEntitiesOnTop:users];
-        
-        completion();
     }
     
     if (direction == PLKDirectionBottom)
@@ -68,9 +64,9 @@
         }
         
         [source.sections addEntities:users];
-        
-        completion();
     }
+    
+    [source update];
 }
 
 @end

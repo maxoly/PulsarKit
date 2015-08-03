@@ -104,6 +104,7 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
  *  Load data into the container.
  */
 - (void)loadData;
+- (void)update;
 
 @end
 

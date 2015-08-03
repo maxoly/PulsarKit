@@ -49,7 +49,6 @@
 
 // override
 - (void)configureContainer;
-- (void)update;
 
 
 

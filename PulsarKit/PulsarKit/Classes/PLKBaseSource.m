@@ -80,12 +80,7 @@
 
 - (void)loadDataWithDirection:(PLKDirection)direction {
     if (self.provider) {
-        __weak typeof(self) weakSelf = self;
-
-        [self.provider source:self itemsForDirection:direction completion:^
-        {
-            [weakSelf update];
-        }];
+        [self.provider source:self itemsForDirection:direction];
     }
 }
 

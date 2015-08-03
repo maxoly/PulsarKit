@@ -27,8 +27,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'PulsarKit/PulsarKit/**/*'
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.header_mappings_dir = 'PulsarKit/PulsarKit'
+  s.public_header_files = "PulsarKit/PulsarKit/Public/*.h"
   s.frameworks = 'UIKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+
 end

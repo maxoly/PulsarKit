@@ -20,6 +20,6 @@ typedef void (^PLKProviderCompletionBlock)();
  */
 @protocol PLKProvider <NSObject>
 
-- (void)source:(id<PLKSource>)source itemsForDirection:(PLKDirection)direction completion:(PLKProviderCompletionBlock)completion;
+- (void)source:(id<PLKSource>)source itemsForDirection:(PLKDirection)direction;
 
 @end
