@@ -12,7 +12,7 @@
 
 #import "PKEUser.h"
 
-@interface PKEHomeViewController () <PLKProvider>
+@interface PKEHomeViewController ()
 
 @property (nonatomic, readwrite, strong) PLKTableSource *source;
 
@@ -24,49 +24,48 @@
 {
     [super viewDidLoad];
     
+    __weak typeof(self) weakSelf = self;
+    
     self.source = [[PLKTableSource alloc] initWithTableView:self.tableView];
-    self.source.provider = self;
     self.source.scrollOptions = PLKSourceScrollOptionInfiniteOnBottom | PLKSourceScrollOptionInfiniteOnTop;
     [self.source registerCellDescriptorForCellClass:[UITableViewCell class] modelClass:[PKEUser class] sizeStrategy:[PLKAutolayoutSize autolayoutSize]];
+    [self.source setDataProvider:^(PLKDirection direction) {
+        if (direction == PLKDirectionNone)
+        {
+            NSMutableArray *users = [[NSMutableArray alloc] init];
+            for (NSInteger i = 0; i < 30; i++)
+            {
+                [users addObject:[[PKEUser alloc] init]];
+            }
+            
+            [weakSelf.source.sections addEntities:users];
+        }
+        
+        if (direction == PLKDirectionTop)
+        {
+            NSMutableArray *users = [[NSMutableArray alloc] init];
+            for (NSInteger i = 0; i < 30; i++)
+            {
+                [users addObject:[[PKEUser alloc] init]];
+            }
+            
+            [weakSelf.source.sections addEntitiesOnTop:users];
+        }
+        
+        if (direction == PLKDirectionBottom)
+        {
+            NSMutableArray *users = [[NSMutableArray alloc] init];
+            for (NSInteger i = 0; i < 30; i++)
+            {
+                [users addObject:[[PKEUser alloc] init]];
+            }
+            
+            [weakSelf.source.sections addEntities:users];
+        }
+        
+        [weakSelf.source update];
+    }];
     [self.source loadData];
-}
-
-- (void)source:(id<PLKSource>)source itemsForDirection:(PLKDirection)direction
-{
-    if (direction == PLKDirectionNone)
-    {
-        NSMutableArray *users = [[NSMutableArray alloc] init];
-        for (NSInteger i = 0; i < 30; i++)
-        {
-            [users addObject:[[PKEUser alloc] init]];
-        }
-    
-        [source.sections addEntities:users];
-    }
-    
-    if (direction == PLKDirectionTop)
-    {
-        NSMutableArray *users = [[NSMutableArray alloc] init];
-        for (NSInteger i = 0; i < 30; i++)
-        {
-            [users addObject:[[PKEUser alloc] init]];
-        }
-        
-        [source.sections addEntitiesOnTop:users];
-    }
-    
-    if (direction == PLKDirectionBottom)
-    {
-        NSMutableArray *users = [[NSMutableArray alloc] init];
-        for (NSInteger i = 0; i < 30; i++)
-        {
-            [users addObject:[[PKEUser alloc] init]];
-        }
-        
-        [source.sections addEntities:users];
-    }
-    
-    [source update];
 }
 
 @end

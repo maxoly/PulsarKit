@@ -40,7 +40,6 @@
 		56E591D31AA7BEBB005493F9 /* PLKTableSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD881A8518FF009B09AE /* PLKTableSource.m */; };
 		56E591D41AA7BF45005493F9 /* PLKBaseSource.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD831A8515E0009B09AE /* PLKBaseSource.h */; };
 		56E591D51AA7BF45005493F9 /* PLKTableSource.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD871A8518FF009B09AE /* PLKTableSource.h */; };
-		56E591D71AA7BF45005493F9 /* PLKProvider.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD821A851295009B09AE /* PLKProvider.h */; };
 		56E591D81AA7BF45005493F9 /* PLKSource.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD811A85121E009B09AE /* PLKSource.h */; };
 		56E591D91AA7BF45005493F9 /* PLKCell.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD8A1A851D72009B09AE /* PLKCell.h */; };
 		56E591DA1AA7BF45005493F9 /* PLKSectionView.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD991A852CD1009B09AE /* PLKSectionView.h */; };
@@ -68,7 +67,6 @@
 				566771451B208EF700B2DE72 /* PLKTableViewCellBuilder.h in Copy Files */,
 				56E591D41AA7BF45005493F9 /* PLKBaseSource.h in Copy Files */,
 				56E591D51AA7BF45005493F9 /* PLKTableSource.h in Copy Files */,
-				56E591D71AA7BF45005493F9 /* PLKProvider.h in Copy Files */,
 				56E591D81AA7BF45005493F9 /* PLKSource.h in Copy Files */,
 				56E591D91AA7BF45005493F9 /* PLKCell.h in Copy Files */,
 				56E591DA1AA7BF45005493F9 /* PLKSectionView.h in Copy Files */,
@@ -83,7 +81,6 @@
 		5613BD641A85117A009B09AE /* libPulsarKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPulsarKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5613BD671A85117A009B09AE /* PulsarKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PulsarKit.h; sourceTree = "<group>"; };
 		5613BD811A85121E009B09AE /* PLKSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSource.h; sourceTree = "<group>"; };
-		5613BD821A851295009B09AE /* PLKProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKProvider.h; sourceTree = "<group>"; };
 		5613BD831A8515E0009B09AE /* PLKBaseSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKBaseSource.h; sourceTree = "<group>"; };
 		5613BD841A8515E0009B09AE /* PLKBaseSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKBaseSource.m; sourceTree = "<group>"; };
 		5613BD871A8518FF009B09AE /* PLKTableSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKTableSource.h; sourceTree = "<group>"; };
@@ -190,7 +187,6 @@
 			children = (
 				5613BD8A1A851D72009B09AE /* PLKCell.h */,
 				5667712E1B205B3000B2DE72 /* PLKCellBuilder.h */,
-				5613BD821A851295009B09AE /* PLKProvider.h */,
 				5613BD991A852CD1009B09AE /* PLKSectionView.h */,
 				566771281B2059CD00B2DE72 /* PLKSizeStrategy.h */,
 				5613BD811A85121E009B09AE /* PLKSource.h */,

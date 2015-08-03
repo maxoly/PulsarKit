@@ -13,5 +13,6 @@
 + (instancetype)plk_viewFromNib;
 + (instancetype)plk_viewFromNibOrClass;
 + (UINib *)plk_nibFromClassName;
++ (NSString *)plk_nibPathFromClassName;
 
 @end

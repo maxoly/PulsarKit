@@ -36,7 +36,7 @@
         NSValue *size = [self.sizeCache objectForKey:key];
 
         if (size) {
-        return [size CGSizeValue];
+            return [size CGSizeValue];
         }
     }
     
@@ -47,7 +47,9 @@
     [cell setBounds:bounds];
     
     if ([cell conformsToProtocol:@protocol(PLKCell)]) {
-        [cell configureWithEntity:entity];
+        if ([cell respondsToSelector:@selector(configureWithEntity:)]) {
+            [cell configureWithEntity:entity];
+        }
 
         if ([cell respondsToSelector:@selector(configureForLayoutInBounds:)]) {
             [cell configureForLayoutInBounds:bounds];

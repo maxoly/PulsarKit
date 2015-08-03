@@ -31,4 +31,8 @@
     return [UINib nibWithNibName:[self plk_className] bundle:nil];
 }
 
++ (NSString *)plk_nibPathFromClassName {
+    return [[NSBundle bundleForClass:self.class] pathForResource:[self plk_className] ofType:@"nib"];
+}
+
 @end

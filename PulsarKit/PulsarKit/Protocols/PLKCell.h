@@ -10,9 +10,8 @@
 
 @protocol PLKCell <NSObject>
 
-- (void)configureWithEntity:(id)entity;
-
 @optional
+- (void)configureWithEntity:(id)entity;
 - (void)configureForLayoutInBounds:(CGRect)bounds;
 
 @end

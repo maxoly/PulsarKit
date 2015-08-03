@@ -37,6 +37,7 @@
 @property (nonatomic, readwrite, strong) NSObject<PLKProvider> *provider;
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
+@property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;
 
 /**
  *   Unavailable init.
@@ -68,5 +69,9 @@
 - (id<PLKCellBuilder>)builderAtIndexPath:(NSIndexPath *)indexPath;
 - (id<PLKSizeStrategy>)strategyAtIndexPath:(NSIndexPath *)indexPath;
 - (id)entityAtIndexPath:(NSIndexPath *)indexPath;
+
+// to override
+- (void)registerNibForCellClass:(Class)cellClass;
+- (void)registerClassForCellClass:(Class)cellClass;
 
 @end

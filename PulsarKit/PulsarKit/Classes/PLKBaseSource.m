@@ -13,16 +13,18 @@
 #import "PLKItem.h"
 #import "PLKSection.h"
 #import "PLKSections.h"
-#import "PLKProvider.h"
+#import "PLKCellBuilder.h"
 #import "PLKCellDescriptor.h"
 
 // Categories
 #import "NSArray+PulsarKit.h"
+#import "UIView+PulsarKit.h"
 
 
 @interface PLKBaseSource ()
 
 @property (nonatomic, readwrite, strong) PLKSections *sections;
+@property (nonatomic, readwrite, copy) PLKSourceDataProviderBlock dataProviderBlock;
 
 @end
 
@@ -32,7 +34,8 @@
     self = [super init];
     if (self) {
         _container = container;
-
+        _firstTime = YES;
+        
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.container.window];
         [nc addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.container.window];
@@ -65,7 +68,7 @@
     return _descriptors;
 }
 
-#pragma mark - Descriptors
+#pragma mark - PLKSource
 
 - (PLKCellDescriptor *)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor {
     self.descriptors[NSStringFromClass(cellDescriptor.model)] = cellDescriptor;
@@ -76,23 +79,59 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerCellDescriptorForCellClass:modelClass:stategy: method" userInfo:nil];
 }
 
+- (void)setDataProvider:(PLKSourceDataProviderBlock)dataProviderBlock {
+    self.dataProviderBlock = dataProviderBlock;
+}
+
 #pragma mark - Loading
 
 - (void)loadData {
-    [self configureContainer];
+    if (self.isFirstTime) {
+        [self configureDescriptors];
+        [self configureContainer];
+    }
     [self loadDataWithDirection:PLKDirectionNone];
+    self.firstTime = NO;
 }
 
 - (void)loadDataWithDirection:(PLKDirection)direction {
-    if (self.provider) {
-        [self.provider source:self itemsForDirection:direction];
+    if (self.dataProviderBlock) {
+        self.dataProviderBlock(direction);
     }
 }
+
+- (void)configureDescriptors {
+    for (id key in self.descriptors.allKeys) {
+        PLKCellDescriptor *descriptor = self.descriptors[key];
+        
+        Class cellClass = descriptor.builder.cellClass;
+        
+        // Register Cell Nib
+        NSString *nibPath = [cellClass plk_nibPathFromClassName];
+        
+        if (nibPath) {
+            [self registerNibForCellClass:cellClass];
+        } else {
+            [self registerClassForCellClass:cellClass];
+        }
+    }
+}
+
+#pragma mark - To overrides
 
 - (void)configureContainer {
 }
 
 - (void)update {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override update method" userInfo:nil];
+}
+
+- (void)registerClassForCellClass:(Class)cellClass {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerClassForCellClass: method" userInfo:nil];
+}
+
+- (void)registerNibForCellClass:(Class)cellClass {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerNibForCellClass: method" userInfo:nil];
 }
 
 #pragma mark - Notifications

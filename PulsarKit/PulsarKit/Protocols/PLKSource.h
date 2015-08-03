@@ -22,14 +22,6 @@
 @protocol PLKSizeStrategy;
 
 /**
- *  Did select row block.
- *
- *  @param indexPath The index path.
- *  @param item      The item.
- */
-typedef void (^PLKSourceDidSelectItemBlock)(NSIndexPath *indexPath, id entity);
-
-/**
  * Enum.
  */
 typedef NS_ENUM (NSInteger, PLKDirection)
@@ -71,6 +63,20 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
     PLKSourceScrollOptionInfiniteOnBottom   = 1 <<  2
 };
 
+/**
+ *  Did select row block.
+ *
+ *  @param indexPath The index path.
+ *  @param item      The item.
+ */
+typedef void (^PLKSourceDidSelectItemBlock)(NSIndexPath *indexPath, id entity);
+
+/**
+ *  Data provider block.
+ *
+ *  @param direction Scroll direction.
+ */
+typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
 
 /**
  *  Define source protocol.
@@ -88,11 +94,6 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
 @property (nonatomic, readonly, strong) PLKSections *sections;
 
 /**
- *  Data provider.
- */
-@property (nonatomic, readwrite, strong) NSObject<PLKProvider> *provider;
-
-/**
  *  Did Select item/row block.
  */
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
@@ -103,10 +104,16 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 
 /**
- *  Load data into the container.
+ *  Update container with data.
  */
-- (void)loadData;
 - (void)update;
+
+/**
+ *  Set data provider block
+ *
+ *  @param dataProviderBlock The data provider block.
+ */
+- (void)setDataProvider:(PLKSourceDataProviderBlock)dataProviderBlock;
 
 /**
  *  Registers a new cell descriptor.

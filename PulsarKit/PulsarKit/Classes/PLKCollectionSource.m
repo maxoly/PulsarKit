@@ -52,24 +52,20 @@
 }
 
 - (void)configureContainer {
-    for (id key in self.descriptors.allKeys) {
-        PLKCellDescriptor *descriptor = self.descriptors[key];
-        
-        Class cellClass = descriptor.builder.cellClass;
-        
-        // Register Cell Nib
-        NSString *nibPath = [[NSBundle bundleForClass:cellClass] pathForResource:[cellClass plk_className] ofType:@"nib"];
-        
-        if (nibPath) {
-            [self.collectionView registerNib:[cellClass plk_nibFromClassName] forCellWithReuseIdentifier:[cellClass plk_className]];
-        } else {
-            [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:[cellClass plk_className]];
-        }
-    }
 }
 
 - (void)update {
     [self.collectionView reloadData];
+}
+
+#pragma mark - Cell Registration
+
+- (void)registerNibForCellClass:(Class)cellClass {
+    [self.collectionView registerNib:[cellClass plk_nibFromClassName] forCellWithReuseIdentifier:[cellClass plk_className]];
+}
+
+- (void)registerClassForCellClass:(Class)cellClass {
+    [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:[cellClass plk_className]];
 }
 
 #pragma mark - Descriptor

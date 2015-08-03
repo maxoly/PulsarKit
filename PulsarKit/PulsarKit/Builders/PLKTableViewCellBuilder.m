@@ -32,7 +32,9 @@
 
 - (UIView<PLKCell> *)cellForEntity:(id)entity inContainer:(UITableView *)container atIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell<PLKCell> *cell = [container dequeueReusableCellWithIdentifier:[self.cellClass plk_className]];
-    [cell configureWithEntity:entity];
+    if ([cell respondsToSelector:@selector(configureWithEntity:)]) {
+        [cell configureWithEntity:entity];
+    }
     return cell;
 }
 
