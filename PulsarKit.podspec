@@ -28,7 +28,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'PulsarKit/PulsarKit/**/*'
   s.header_mappings_dir = 'PulsarKit/PulsarKit'
-  s.public_header_files = "PulsarKit/PulsarKit/Public/*.h"
   s.frameworks = 'UIKit'
 
 end
