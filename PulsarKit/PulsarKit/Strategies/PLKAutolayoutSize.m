@@ -30,7 +30,7 @@
 }
 
 - (CGSize)sizeForEntity:(id)entity inContainer:(UIScrollView *)container atIndexPath:(NSIndexPath *)indexPath builder:(id<PLKCellBuilder>)builder {
-    NSString *key = [NSString stringWithFormat:@"%@.%zd", [builder.cellClass plk_className], [entity hash]];
+    NSString *key = [NSString stringWithFormat:@"%@.{%@}.%zd", [builder.cellClass plk_className], NSStringFromCGSize(container.frame.size) ,[entity hash]];
     
     if (self.isCacheEnabled) {
         NSValue *size = [self.sizeCache objectForKey:key];
@@ -59,7 +59,15 @@
     [cell setNeedsUpdateConstraints];
     [cell layoutIfNeeded];
     
-    CGSize cellSize = [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    
+    CGSize cellSize;
+    if ([cell isKindOfClass:[UITableViewCell class]]) {
+        UITableViewCell *tableCell = (UITableViewCell *)cell;
+        cellSize = [tableCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    } else {
+        cellSize = [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    }
+    
     CGSize finalSize = CGSizeMake(CGRectGetWidth(bounds), cellSize.height);
 
     if (self.isCacheEnabled) {
