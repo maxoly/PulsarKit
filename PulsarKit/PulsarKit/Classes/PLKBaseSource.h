@@ -16,12 +16,13 @@
 @import Foundation;
 
 
+@class PLKSections;
+
+
 @protocol PLKCellBuilder;
 @protocol PLKSizeStrategy;
+@protocol PLKCellDescriptor;
 
-
-@class PLKSections;
-@class PLKCellDescriptor;
 
 
 /**
@@ -33,7 +34,7 @@
 @property (nonatomic, readonly, strong) NSCache *cellCache;
 @property (nonatomic, readonly, strong) UIScrollView *container;
 @property (nonatomic, readonly, strong) PLKSections *sections;
-@property (nonatomic, readwrite, strong) NSMutableDictionary *descriptors;
+@property (nonatomic, readonly, strong) id<PLKCellBuilder> cellBuilder;
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 @property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;
@@ -52,7 +53,7 @@
  *
  *  @return A new instance of source.
  */
-- (instancetype)initWithContainer:(UIScrollView *)container;
+- (instancetype)initWithContainer:(UIScrollView *)container cellBuilder:(id<PLKCellBuilder>)cellBuilder;
 
 /**
  *  Loads data into container.
@@ -64,10 +65,10 @@
  */
 - (void)configureContainer;
 
-// Cell methods
-- (id<PLKCellBuilder>)builderAtIndexPath:(NSIndexPath *)indexPath;
-- (id<PLKSizeStrategy>)strategyAtIndexPath:(NSIndexPath *)indexPath;
-- (id)entityAtIndexPath:(NSIndexPath *)indexPath;
+
+// helper methods
+- (id)modelAtIndexPath:(NSIndexPath *)indexPath;
+- (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath;
 
 // to override
 - (void)registerNibForCellClass:(Class)cellClass;

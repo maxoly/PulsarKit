@@ -28,7 +28,7 @@
 #pragma mark - Inits
 
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView {
-    self = [super initWithContainer:collectionView];
+    self = [super initWithContainer:collectionView cellBuilder:[PLKCollectionViewCellBuilder new]];
     if (self) {
         _collectionView = collectionView;
         _collectionView.delegate = self;
@@ -68,14 +68,6 @@
     [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:[cellClass plk_className]];
 }
 
-#pragma mark - Descriptor
-
-- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
-    id<PLKCellBuilder> builder = [PLKCollectionViewCellBuilder builderWithCellClass:cellClass];
-    PLKCellDescriptor *descriptor = [PLKCellDescriptor cellDescriptorWithModel:model builder:builder strategy:strategy];
-    return [self registerCellDescriptor:descriptor];
-}
-
 #pragma mark - UICollecitonViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -87,28 +79,34 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    id entity = [self entityAtIndexPath:indexPath];
-    id<PLKCellBuilder> builder = [self builderAtIndexPath:indexPath];
-    return [builder cellForEntity:entity inContainer:collectionView atIndexPath:indexPath];
+    id model = [self modelAtIndexPath:indexPath];
+    id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
+    return [self.cellBuilder cellForModel:model withCellClass:cellDescriptor.cellClass inContainer:collectionView atIndexPath:indexPath];
 }
 
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.onDidSelectItem) {
-        id entity = [self entityAtIndexPath:indexPath];
-        self.onDidSelectItem(indexPath, entity);
+        id model = [self modelAtIndexPath:indexPath];
+        self.onDidSelectItem(indexPath, model);
     }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    id entity = [self entityAtIndexPath:indexPath];
-    id<PLKSizeStrategy> strategy = [self strategyAtIndexPath:indexPath];
-    id<PLKCellBuilder> builder = [self builderAtIndexPath:indexPath];
+    id model = [self modelAtIndexPath:indexPath];
+    id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
+    id<PLKSizeStrategy> sizeStrategy = cellDescriptor.sizeStrategy;
     
-    CGSize size = [strategy sizeForEntity:entity inContainer:collectionView atIndexPath:indexPath builder:builder];
+    UIView<PLKCell> *cell = [self.cellBuilder cachedCellForModel:model
+                                                    withCellClass:cellDescriptor.cellClass
+                                                      inContainer:collectionView
+                                                      atIndexPath:indexPath];
+    
+    
+    CGSize size = [sizeStrategy sizeForModel:model withCell:cell inContainer:collectionView];
     return size;
 }
 

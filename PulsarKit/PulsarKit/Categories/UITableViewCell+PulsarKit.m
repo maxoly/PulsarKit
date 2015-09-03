@@ -10,9 +10,13 @@
 
 @implementation UITableViewCell (PulsarKit)
 
-- (void)configureWithEntity:(id)entity {
-    if ([entity respondsToSelector:@selector(description)]) {
-        self.textLabel.text = [entity description];
+- (NSString *)reuseIdentifier {
+    return NSStringFromClass(self.class);
+}
+
+- (void)configureWithModel:(id)model {
+    if ([model respondsToSelector:@selector(description)]) {
+        self.textLabel.text = [model description];
     }
 }
 

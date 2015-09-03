@@ -10,19 +10,21 @@
 
 @class PLKItem;
 
-@class PLKCellDescriptor;
-
+@protocol PLKCellDescriptor;
 
 
 @interface PLKSection : NSObject
 
 @property (nonatomic, readonly, copy) NSArray *items;
-@property (nonatomic, readwrite, strong) PLKCellDescriptor *descriptor;
+@property (nonatomic, readwrite, strong) id<PLKCellDescriptor> cellDescriptor;
 
 - (void)addItems:(NSArray *)items;
-- (void)addEntities:(NSArray *)entities;
-- (void)addEntitiesOnTop:(NSArray *)entities;
+- (void)addModels:(NSArray *)models;
+- (void)addModelsOnTop:(NSArray *)models;
 
 - (PLKItem *)objectAtIndexedSubscript:(NSInteger)index;
+
++ (instancetype)sectionWithModels:(NSArray *)models;
++ (instancetype)sectionWithModels:(NSArray *)items cellDescriptor:(id<PLKCellDescriptor>)cellDescriptor;
 
 @end

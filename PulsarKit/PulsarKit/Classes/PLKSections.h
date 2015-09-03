@@ -8,19 +8,22 @@
 
 @import Foundation;
 
+@class PLKItem;
 @class PLKSection;
 
-@interface PLKSections : NSObject <NSXMLParserDelegate>
+@interface PLKSections : NSObject
 
 @property (nonatomic, readonly, assign) NSInteger count;
 @property (nonatomic, readonly, assign) NSInteger itemsCount;
 
+- (void)addItem:(PLKItem *)item;
+- (void)addItems:(NSArray *)items;
 
-- (void)addEntities:(NSArray *)entities;
-- (void)addEntitiesOnTop:(NSArray *)entities;
+- (void)addModels:(NSArray *)models;
+- (void)addModelsOnTop:(NSArray *)models;
 
 - (PLKSection *)addSection;
-- (PLKSection *)addSectionAtPostion:(NSInteger)position;
-- (PLKSection *)objectAtIndexedSubscript:(NSInteger)index;
+- (PLKSection *)addSectionAtIndex:(NSUInteger)position;
+- (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index;
 
 @end

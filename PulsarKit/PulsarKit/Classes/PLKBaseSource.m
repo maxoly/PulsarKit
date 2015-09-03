@@ -15,6 +15,7 @@
 #import "PLKSections.h"
 #import "PLKCellBuilder.h"
 #import "PLKCellDescriptor.h"
+#import "PLKDynamicCellDescriptor.h"
 
 // Categories
 #import "NSArray+PulsarKit.h"
@@ -24,17 +25,21 @@
 @interface PLKBaseSource ()
 
 @property (nonatomic, readwrite, strong) PLKSections *sections;
+@property (nonatomic, readwrite, strong) NSMutableArray *registeredCellClasses;
+@property (nonatomic, readwrite, strong) NSMutableDictionary *cellDescriptors;
 @property (nonatomic, readwrite, copy) PLKSourceDataProviderBlock dataProviderBlock;
 
 @end
 
 @implementation PLKBaseSource
 
-- (instancetype)initWithContainer:(UIScrollView *)container {
+- (instancetype)initWithContainer:(UIScrollView *)container cellBuilder:(id<PLKCellBuilder>)cellBuilder {
     self = [super init];
     if (self) {
         _container = container;
+        _cellBuilder = cellBuilder;
         _firstTime = YES;
+        
         
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.container.window];
@@ -60,25 +65,41 @@
     return _sections;
 }
 
-- (NSMutableDictionary *)descriptors {
-    if (!_descriptors) {
-        _descriptors = [[NSMutableDictionary alloc] init];
+- (NSMutableDictionary *)cellDescriptors {
+    if (!_cellDescriptors) {
+        _cellDescriptors = [[NSMutableDictionary alloc] init];
     }
+    
+    return _cellDescriptors;
+}
 
-    return _descriptors;
+- (NSMutableArray *)registeredCellClasses {
+    if (!_registeredCellClasses) {
+        _registeredCellClasses = [[NSMutableArray alloc] init];
+    }
+    
+    return _registeredCellClasses;
 }
 
 #pragma mark - PLKSource
 
-- (PLKCellDescriptor *)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor {
-    NSParameterAssert(cellDescriptor);
-    self.descriptors[NSStringFromClass(cellDescriptor.model)] = cellDescriptor;
-    return cellDescriptor;
+- (void)registerCellDescriptor:(id<PLKCellDescriptor>)cellDescriptor {
+    self.cellDescriptors[ NSStringFromClass(cellDescriptor.modelClass) ] = cellDescriptor;
 }
 
-- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerCellDescriptorForCellClass:modelClass:stategy: method" userInfo:nil];
-}
+//- (PLKCellDescriptor *)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor {
+//    NSParameterAssert(cellDescriptor);
+//    self.descriptors[NSStringFromClass(cellDescriptor.model)] = cellDescriptor;
+//    return cellDescriptor;
+//}
+//
+//- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
+//    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerCellDescriptorForCellClass:modelClass:stategy: method" userInfo:nil];
+//}
+//
+//- (PLKCellDescriptor *)createCellDescriptorForCellClass:(Class)cellClass sizeStrategy:(id<PLKSizeStrategy>)strategy {
+//    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override createCellDescriptorForCellClass:stategy: method" userInfo:nil];
+//}
 
 - (void)setDataProvider:(PLKSourceDataProviderBlock)dataProviderBlock {
     self.dataProviderBlock = dataProviderBlock;
@@ -89,7 +110,6 @@
 - (void)loadData {
     if (self.isFirstTime) {
         [self configureContainer];
-        [self configureDescriptors];
     }
     [self loadDataWithDirection:PLKDirectionNone];
     self.firstTime = NO;
@@ -98,27 +118,6 @@
 - (void)loadDataWithDirection:(PLKDirection)direction {
     if (self.dataProviderBlock) {
         self.dataProviderBlock(direction);
-    }
-}
-
-- (void)configureDescriptors {
-    if (self.descriptors.count == 0) {
-         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must register at leat one descriptor" userInfo:nil];
-    }
-    
-    for (id key in self.descriptors.allKeys) {
-        PLKCellDescriptor *descriptor = self.descriptors[key];
-        
-        Class cellClass = descriptor.builder.cellClass;
-        
-        // Register Cell Nib
-        NSString *nibPath = [cellClass plk_nibPathFromClassName];
-        
-        if (nibPath) {
-            [self registerNibForCellClass:cellClass];
-        } else {
-            [self registerClassForCellClass:cellClass];
-        }
     }
 }
 
@@ -175,33 +174,52 @@
 
 #pragma mark - Helpers
 
-- (PLKCellDescriptor *)descriptorAtIndexPath:(NSIndexPath *)indexPath {
+- (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath {
     NSParameterAssert(indexPath);
     
     PLKSection *section = self.sections[indexPath.section];
     PLKItem *item = section[indexPath.row];
-
-    if (item.descriptor) {
-        return item.descriptor;
+    
+    id<PLKCellDescriptor> cellDescriptor;
+    
+    if (item.cellDescriptor) {
+        cellDescriptor = item.cellDescriptor;
+    } else if (section.cellDescriptor) {
+        cellDescriptor = section.cellDescriptor;
+    } else {
+        cellDescriptor = self.cellDescriptors[ NSStringFromClass([item.model class]) ];
+    }
+    
+    if ([cellDescriptor isKindOfClass:[PLKDynamicCellDescriptor class]]) {
+        PLKDynamicCellDescriptor *dcd = cellDescriptor;
+        cellDescriptor = [dcd cellDescriptorForModel:item.model];
+    }
+    
+    if (!cellDescriptor) {
+        cellDescriptor = self.cellDescriptors[ NSStringFromClass([NSNull class])];
+    }
+    
+    if (!cellDescriptor.storyboard) {
+        
+        if (![self.registeredCellClasses containsObject:cellDescriptor.cellClass]) {
+        
+            NSString *nibPath = [cellDescriptor.cellClass plk_nibPathFromClassName];
+        
+            if (nibPath) {
+                [self registerNibForCellClass:cellDescriptor.cellClass];
+            } else {
+                [self registerClassForCellClass:cellDescriptor.cellClass];
+            }
+            
+            [self.registeredCellClasses addObject:cellDescriptor.cellClass];
+        }
     }
 
-    if (section.descriptor) {
-        return section.descriptor;
-    }
-
-    return self.descriptors[NSStringFromClass([item.entity class])];
+    return cellDescriptor;
 }
 
-- (id<PLKSizeStrategy>)strategyAtIndexPath:(NSIndexPath *)indexPath {
-    return [self descriptorAtIndexPath:indexPath].strategy;
-}
-
-- (id<PLKCellBuilder>)builderAtIndexPath:(NSIndexPath *)indexPath {
-    return [self descriptorAtIndexPath:indexPath].builder;
-}
-
-- (id)entityAtIndexPath:(NSIndexPath *)indexPath {
-    return self.sections[indexPath.section][indexPath.row].entity;
+- (id)modelAtIndexPath:(NSIndexPath *)indexPath {
+    return self.sections[indexPath.section][indexPath.row].model;
 }
 
 #pragma mark - UIScrollViewDelegate

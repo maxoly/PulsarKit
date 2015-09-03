@@ -38,19 +38,19 @@
     return [sum integerValue];
 }
 
-- (void)addEntitiesOnTop:(NSArray *)entities {
-    PLKSection *section = [self returnOrCreateFirstSection];
-    [section addEntitiesOnTop:entities];
+- (void)addModelsOnTop:(NSArray *)models {
+    PLKSection *section = [self returnOrCreateLastSection];
+    [section addModelsOnTop:models];
 }
 
-- (void)addEntities:(NSArray *)entities {
-    PLKSection *section = [self returnOrCreateFirstSection];
-    [section addEntities:entities];
+- (void)addModels:(NSArray *)models {
+    PLKSection *section = [self returnOrCreateLastSection];
+    [section addModels:models];
 }
 
 #pragma mark - Sections
 
-- (PLKSection *)returnOrCreateFirstSection {
+- (PLKSection *)returnOrCreateLastSection {
     PLKSection *section = [self.sections lastObject];
 
     if (!section) {
@@ -61,15 +61,15 @@
 }
 
 - (PLKSection *)addSection {
-    return [self addSectionAtPostion:self.sections.count];
+    return [self addSectionAtIndex:self.sections.count];
 }
 
-- (PLKSection *)addSectionAtPostion:(NSInteger)position {
-    PLKSection *section = [self.sections plk_safeObjectAtIndex:position];
+- (PLKSection *)addSectionAtIndex:(NSUInteger)index {
+    PLKSection *section = [self.sections plk_safeObjectAtIndex:index];
 
     if (!section) {
         section = [[PLKSection alloc] init];
-        [self.sections addObject:section];
+        [self.sections insertObject:section atIndex:index];
     }
 
     return section;
@@ -77,14 +77,18 @@
 
 #pragma mark - Items
 
+- (void)addItem:(PLKItem *)item {
+    [self addItems:@[ item ]];
+}
+
 - (void)addItems:(NSArray *)items {
-    PLKSection *section = [self addSectionAtPostion:0];
+    PLKSection *section = [self returnOrCreateLastSection];
     [section addItems:items];
 }
 
 #pragma mark - Subscripting
 
-- (PLKSection *)objectAtIndexedSubscript:(NSInteger)index {
+- (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index {
     return self.sections[index];
 }
 

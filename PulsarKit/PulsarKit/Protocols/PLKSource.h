@@ -12,14 +12,15 @@
 @import UIKit;
 @import Foundation;
 
+/// Forward declarations
 @class PLKSections;
-@class PLKCellDescriptor;
+
 
 /**
  *  Protocols.
  */
 @protocol PLKProvider;
-@protocol PLKSizeStrategy;
+@protocol PLKCellDescriptor;
 
 /**
  * Enum.
@@ -79,7 +80,7 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
  *  @param indexPath The index path.
  *  @param item      The item.
  */
-typedef void (^PLKSourceDidSelectItemBlock)(NSIndexPath *indexPath, id entity);
+typedef void (^PLKSourceDidSelectItemBlock)(NSIndexPath *indexPath, id model);
 
 /**
  *  Data provider block.
@@ -119,28 +120,17 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
 - (void)update;
 
 /**
+ *  Register a cell descriptor.
+ *
+ *  @param cellDescriptor The cell descriptor.
+ */
+- (void)registerCellDescriptor:(id<PLKCellDescriptor>)cellDescriptor;
+
+/**
  *  Set data provider block
  *
  *  @param dataProviderBlock The data provider block.
  */
 - (void)setDataProvider:(PLKSourceDataProviderBlock)dataProviderBlock;
-
-/**
- *  Registers a new cell descriptor.
- *
- *  @param cellDescriptor An instance of PLKCellDescriptor.
- */
-- (PLKCellDescriptor *)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor;
-
-/**
- *  Register a new cell description to the source.
- *
- *  @param cellClass The cell class.
- *  @param model     The model class.
- *  @param strategy  The cell size strategy.
- *
- *  @return A new instance of PLKCellDescriptor.
- */
-- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy;
 
 @end

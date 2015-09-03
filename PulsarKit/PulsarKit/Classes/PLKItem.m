@@ -10,9 +10,14 @@
 
 @implementation PLKItem
 
-+ (instancetype)itemWithEntity:(id)entity {
++ (instancetype)itemWithModel:(id)model {
+    return [self itemWithModel:model cellDescriptor:nil];
+}
+
++ (instancetype)itemWithModel:(id)model cellDescriptor:(id<PLKCellDescriptor>)cellDescriptor {
     PLKItem *item = [[self alloc] init];
-    item.entity = entity;
+    item.model = model;
+    item.cellDescriptor = cellDescriptor;
     return item;
 }
 

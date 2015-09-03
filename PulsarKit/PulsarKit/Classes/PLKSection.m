@@ -34,11 +34,11 @@
 
 #pragma mark - Items
 
-- (NSArray *)createItemsFromEntities:(NSArray *)entities {
-    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:entities.count];
+- (NSArray *)createItemsFromModels:(NSArray *)models {
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:models.count];
 
-    for (id entity in entities) {
-        [items addObject:[PLKItem itemWithEntity:entity]];
+    for (id model in models) {
+        [items addObject:[PLKItem itemWithModel:model]];
     }
 
     return [items copy];
@@ -48,15 +48,15 @@
     [self.itemsInternal addObjectsFromArray:items];
 }
 
-#pragma mark - Entities
+#pragma mark - Models
 
-- (void)addEntities:(NSArray *)entities {
-    NSArray *items = [self createItemsFromEntities:entities];
+- (void)addModels:(NSArray *)models {
+    NSArray *items = [self createItemsFromModels:models];
     [self addItems:items];
 }
 
-- (void)addEntitiesOnTop:(NSArray *)entities {
-    NSArray *items = [self createItemsFromEntities:entities];
+- (void)addModelsOnTop:(NSArray *)models {
+    NSArray *items = [self createItemsFromModels:models];
     [self.itemsInternal insertObjects:items atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, items.count)]];
 }
 
@@ -65,5 +65,19 @@
 - (PLKItem *)objectAtIndexedSubscript:(NSInteger)index {
     return self.items[index];
 }
+
+#pragma mark - Convenient Constructor
+
++ (instancetype)sectionWithModels:(NSArray *)models {
+    return [self sectionWithModels:models cellDescriptor:nil];
+}
+
++ (instancetype)sectionWithModels:(NSArray *)models cellDescriptor:(id<PLKCellDescriptor>)cellDescriptor {
+    PLKSection *section = [[self alloc] init];
+    [section addModels:models];
+    section.cellDescriptor = cellDescriptor;
+    return section;
+}
+
 
 @end

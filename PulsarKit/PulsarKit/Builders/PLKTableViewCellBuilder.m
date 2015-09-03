@@ -11,6 +11,7 @@
 #import "PLKCell.h"
 #import "UIView+PulsarKit.h"
 #import "NSObject+PulsarKit.h"
+#import "UITableViewCell+PulsarKit.h"
 
 
 @interface PLKTableViewCellBuilder ()
@@ -18,6 +19,7 @@
 @property (nonatomic, readwrite, strong) NSCache *cellCache;
 
 @end
+
 
 
 @implementation PLKTableViewCellBuilder
@@ -30,29 +32,25 @@
     return _cellCache;
 }
 
-- (UIView<PLKCell> *)cellForEntity:(id)entity inContainer:(UITableView *)container atIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell<PLKCell> *cell = [container dequeueReusableCellWithIdentifier:[self.cellClass plk_className]];
-    if ([cell respondsToSelector:@selector(configureWithEntity:)]) {
-        [cell configureWithEntity:entity];
+#pragma mark - PLKCellBuilder
+
+- (UIView<PLKCell> *)cellForModel:(id)model withCellClass:(Class)cellClass inContainer:(UITableView *)container atIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell<PLKCell> *cell = [container dequeueReusableCellWithIdentifier:[cellClass plk_className] forIndexPath:indexPath];
+    if ([cell respondsToSelector:@selector(configureWithModel:)]) {
+        [cell configureWithModel:model];
     }
     return cell;
 }
 
-- (UIView<PLKCell> *)cachedCellForEntity:(id)entity inContainer:(UIScrollView *)container atIndexPath:(NSIndexPath *)indexPath {
-    UIView<PLKCell> *cell = [self.cellCache objectForKey:[self.cellClass plk_className]];
+- (UIView<PLKCell> *)cachedCellForModel:(id)model withCellClass:(Class)cellClass inContainer:(UITableView *)container atIndexPath:(NSIndexPath *) indexPath {
+    UIView<PLKCell> *cell = [self.cellCache objectForKey:[cellClass plk_className]];
 
     if (!cell) {
-        cell = [self.cellClass plk_viewFromNibOrClass];
-        [self.cellCache setObject:cell forKey:[self.cellClass plk_className]];
+        cell = [cellClass plk_viewFromNibOrClass];
+        [self.cellCache setObject:cell forKey:[cellClass plk_className]];
     }
 
     return cell;
-}
-
-+ (instancetype)builderWithCellClass:(Class)cellClass {
-    PLKTableViewCellBuilder *builder = [[self alloc] init];
-    builder.cellClass = cellClass;
-    return builder;
 }
 
 @end

@@ -11,7 +11,7 @@
 @protocol PLKCell <NSObject>
 
 @optional
-- (void)configureWithEntity:(id)entity;
-- (void)configureForLayoutInBounds:(CGRect)bounds;
+- (void)configureWithModel:(id)model;
+- (void)prepareForLayoutInBounds:(CGRect)bounds;
 
 @end

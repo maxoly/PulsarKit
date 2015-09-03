@@ -10,4 +10,8 @@
 
 @interface PKEUser : NSObject
 
+@property (nonatomic, readwrite, copy) NSString *name;
+
++ (instancetype)userWithName:(NSString *)name;
+
 @end

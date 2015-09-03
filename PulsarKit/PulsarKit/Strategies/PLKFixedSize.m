@@ -16,7 +16,7 @@
 
 @implementation PLKFixedSize
 
-- (CGSize)sizeForEntity:(id)entity inContainer:(UIScrollView *)container atIndexPath:(NSIndexPath *)indexPath builder:(id<PLKCellBuilder>)builder {
+- (CGSize)sizeForModel:(id)model withCell:(UIView<PLKCell> *)cell inContainer:(UIScrollView *)container {
     return self.size;
 }
 

@@ -8,13 +8,16 @@
 
 @import Foundation;
 
-@class PLKCellDescriptor;
+@protocol PLKCellDescriptor;
+
+
 
 @interface PLKItem : NSObject
 
-@property (nonatomic, readwrite, strong) id entity;
-@property (nonatomic, readwrite, strong) PLKCellDescriptor *descriptor;
+@property (nonatomic, readwrite, strong) id model;
+@property (nonatomic, readwrite, strong) id<PLKCellDescriptor> cellDescriptor;
 
-+ (instancetype)itemWithEntity:(id)entity;
++ (instancetype)itemWithModel:(id)model;
++ (instancetype)itemWithModel:(id)model cellDescriptor:(id<PLKCellDescriptor>)cellDescriptor ;
 
 @end

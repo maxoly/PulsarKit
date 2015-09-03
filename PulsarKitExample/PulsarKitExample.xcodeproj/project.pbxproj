@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		560909D01B9738F4002BC328 /* PKECustomCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 560909CF1B9738F4002BC328 /* PKECustomCellTableViewCell.m */; };
 		5667714D1B20A33A00B2DE72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56E591A31AA7BB94005493F9 /* Main.storyboard */; };
 		56867FF31ACDE4F70073F110 /* PKEUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 56867FF21ACDE4F70073F110 /* PKEUser.m */; };
 		56E591991AA7BB94005493F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E591981AA7BB94005493F9 /* main.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		560909CE1B9738F4002BC328 /* PKECustomCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKECustomCellTableViewCell.h; sourceTree = "<group>"; };
+		560909CF1B9738F4002BC328 /* PKECustomCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKECustomCellTableViewCell.m; sourceTree = "<group>"; };
 		56867FF11ACDE4F70073F110 /* PKEUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKEUser.h; sourceTree = "<group>"; };
 		56867FF21ACDE4F70073F110 /* PKEUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKEUser.m; sourceTree = "<group>"; };
 		56E591931AA7BB94005493F9 /* PulsarKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PulsarKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +48,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		560909CC1B9738A1002BC328 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				560909CE1B9738F4002BC328 /* PKECustomCellTableViewCell.h */,
+				560909CF1B9738F4002BC328 /* PKECustomCellTableViewCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		560909CD1B9738C5002BC328 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56E591C11AA7BC29005493F9 /* Default-568h@2x.png */,
+				56E591BF1AA7BBDD005493F9 /* libPulsarKit.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		56867FF01ACDE4D90073F110 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -57,9 +78,8 @@
 		56E5918A1AA7BB94005493F9 = {
 			isa = PBXGroup;
 			children = (
-				56E591C11AA7BC29005493F9 /* Default-568h@2x.png */,
-				56E591BF1AA7BBDD005493F9 /* libPulsarKit.a */,
 				56E591951AA7BB94005493F9 /* PulsarKitExample */,
+				560909CD1B9738C5002BC328 /* Frameworks */,
 				56E591941AA7BB94005493F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +95,7 @@
 		56E591951AA7BB94005493F9 /* PulsarKitExample */ = {
 			isa = PBXGroup;
 			children = (
+				560909CC1B9738A1002BC328 /* Cells */,
 				56867FF01ACDE4D90073F110 /* Models */,
 				56E591C41AA7BDFA005493F9 /* Controllers */,
 				56E5919A1AA7BB94005493F9 /* AppDelegate.h */,
@@ -177,6 +198,7 @@
 				56E5919C1AA7BB94005493F9 /* AppDelegate.m in Sources */,
 				56E591C71AA7BE18005493F9 /* PKEHomeViewController.m in Sources */,
 				56E591991AA7BB94005493F9 /* main.m in Sources */,
+				560909D01B9738F4002BC328 /* PKECustomCellTableViewCell.m in Sources */,
 				56867FF31ACDE4F70073F110 /* PKEUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

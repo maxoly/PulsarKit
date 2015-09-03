@@ -35,7 +35,7 @@
 #pragma mark - Inits
 
 - (instancetype)initWithTableView:(UITableView *)tableView {
-    self = [super initWithContainer:tableView];
+    self = [super initWithContainer:tableView cellBuilder:[PLKTableViewCellBuilder new]];
     if (self) {
         _tableView = tableView;
         _tableView.delegate = self;
@@ -75,14 +75,6 @@
     [self.tableView registerClass:cellClass forCellReuseIdentifier:[cellClass plk_className]];
 }
 
-#pragma mark - Descriptor
-
-- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
-    id<PLKCellBuilder> builder = [PLKTableViewCellBuilder builderWithCellClass:cellClass];
-    PLKCellDescriptor *descriptor = [PLKCellDescriptor cellDescriptorWithModel:model builder:builder strategy:strategy];
-    return [self registerCellDescriptor:descriptor];
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -94,9 +86,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id entity = [self entityAtIndexPath:indexPath];
-    id<PLKCellBuilder> builder = [self builderAtIndexPath:indexPath];
-    return [builder cellForEntity:entity inContainer:tableView atIndexPath:indexPath];
+    id model = [self modelAtIndexPath:indexPath];
+    id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
+    return [self.cellBuilder cellForModel:model withCellClass:cellDescriptor.cellClass inContainer:tableView atIndexPath:indexPath];
 }
 
 #pragma mark - UITableViewDelegate
@@ -105,17 +97,24 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (self.onDidSelectItem) {
-        id entity = [self entityAtIndexPath:indexPath];
-        self.onDidSelectItem(indexPath, entity);
+        id model = [self modelAtIndexPath:indexPath];
+        self.onDidSelectItem(indexPath, model);
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id entity = [self entityAtIndexPath:indexPath];
-    id<PLKSizeStrategy> strategy = [self strategyAtIndexPath:indexPath];
-    id<PLKCellBuilder> builder = [self builderAtIndexPath:indexPath];
+    id model = [self modelAtIndexPath:indexPath];
+    
+    id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
+    id<PLKSizeStrategy> sizeStrategy = cellDescriptor.sizeStrategy;
+    
+    UIView<PLKCell> *cell = [self.cellBuilder cachedCellForModel:model
+                                                    withCellClass:cellDescriptor.cellClass
+                                                      inContainer:tableView
+                                                      atIndexPath:indexPath];
 
-    CGSize size = [strategy sizeForEntity:entity inContainer:tableView atIndexPath:indexPath builder:builder];
+    
+    CGSize size = [sizeStrategy sizeForModel:model withCell:cell inContainer:tableView];
     return size.height;
 }
 

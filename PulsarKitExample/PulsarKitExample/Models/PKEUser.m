@@ -10,4 +10,10 @@
 
 @implementation PKEUser
 
++ (instancetype)userWithName:(NSString *)name {
+    PKEUser *user = [[self alloc] init];
+    user.name = name;
+    return user;
+}
+
 @end

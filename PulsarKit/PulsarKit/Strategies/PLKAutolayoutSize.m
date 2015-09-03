@@ -29,8 +29,8 @@
     return _sizeCache;
 }
 
-- (CGSize)sizeForEntity:(id)entity inContainer:(UIScrollView *)container atIndexPath:(NSIndexPath *)indexPath builder:(id<PLKCellBuilder>)builder {
-    NSString *key = [NSString stringWithFormat:@"%@.{%@}.%zd", [builder.cellClass plk_className], NSStringFromCGSize(container.frame.size) ,[entity hash]];
+- (CGSize)sizeForModel:(id)model withCell:(UIView<PLKCell> *)cell inContainer:(UIScrollView *)container {
+    NSString *key = [NSString stringWithFormat:@"%@.{%@}.%zd", [cell plk_className], NSStringFromCGSize(container.frame.size) ,[model hash]];
     
     if (self.isCacheEnabled) {
         NSValue *size = [self.sizeCache objectForKey:key];
@@ -42,17 +42,17 @@
     
     CGRect bounds = container.bounds;
 
-    UIView<PLKCell> *cell = [builder cachedCellForEntity:entity inContainer:container atIndexPath:indexPath];
+    
     [cell setFrame:bounds];
     [cell setBounds:bounds];
     
     if ([cell conformsToProtocol:@protocol(PLKCell)]) {
-        if ([cell respondsToSelector:@selector(configureWithEntity:)]) {
-            [cell configureWithEntity:entity];
+        if ([cell respondsToSelector:@selector(configureWithModel:)]) {
+            [cell configureWithModel:model];
         }
 
-        if ([cell respondsToSelector:@selector(configureForLayoutInBounds:)]) {
-            [cell configureForLayoutInBounds:bounds];
+        if ([cell respondsToSelector:@selector(prepareForLayoutInBounds:)]) {
+            [cell prepareForLayoutInBounds:bounds];
         }
     }
 

@@ -16,9 +16,7 @@
 
 @protocol PLKCellBuilder <NSObject>
 
-@property (nonatomic, readwrite, assign) Class cellClass;
-
-- (id)cellForEntity:(id)entity inContainer:(UIScrollView *)container atIndexPath:(NSIndexPath *)indexPath;
-- (id)cachedCellForEntity:(id)entity inContainer:(UIScrollView *)container atIndexPath:(NSIndexPath *)indexPath;
+- (id)cellForModel:(id)model withCellClass:(Class)cellClass inContainer:(UIScrollView *)container atIndexPath:(NSIndexPath *)indexPath;
+- (id)cachedCellForModel:(id)model withCellClass:(Class)cellClass inContainer:(UIScrollView *)container atIndexPath:(NSIndexPath *)indexPath;
 
 @end

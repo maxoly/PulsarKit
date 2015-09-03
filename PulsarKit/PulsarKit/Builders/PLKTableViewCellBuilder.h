@@ -10,8 +10,5 @@
 
 @interface PLKTableViewCellBuilder : NSObject <PLKCellBuilder>
 
-@property (nonatomic, readwrite, assign) Class cellClass;
-
-+ (instancetype)builderWithCellClass:(Class)cellClass;
 
 @end
