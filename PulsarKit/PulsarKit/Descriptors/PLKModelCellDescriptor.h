@@ -19,5 +19,6 @@
 + (instancetype)descriptorWithCellClass:(Class)cellClass;
 + (instancetype)descriptorWithCellClass:(Class)cellClass forModelClass:(Class)modelClass;
 + (instancetype)descriptorWithCellClass:(Class)cellClass forModelClass:(Class)modelClass sizeStrategy:(id<PLKSizeStrategy>)sizeStrategy;
++ (instancetype)descriptorWithCellClass:(Class)cellClass sizeStrategy:(id<PLKSizeStrategy>)sizeStrategy;
 
 @end

@@ -22,6 +22,10 @@
     return [self descriptorWithCellClass:cellClass forModelClass:modelClass sizeStrategy:[PLKAutolayoutSize autolayoutSize]];
 }
 
++ (instancetype)descriptorWithCellClass:(Class)cellClass sizeStrategy:(id<PLKSizeStrategy>)sizeStrategy {
+    return [self descriptorWithCellClass:cellClass forModelClass:nil sizeStrategy:sizeStrategy];
+}
+
 + (instancetype)descriptorWithCellClass:(Class)cellClass forModelClass:(Class)modelClass sizeStrategy:(id<PLKSizeStrategy>)sizeStrategy {
     PLKModelCellDescriptor *cellDescriptor = [[self alloc] init];
     cellDescriptor.cellClass = cellClass;
