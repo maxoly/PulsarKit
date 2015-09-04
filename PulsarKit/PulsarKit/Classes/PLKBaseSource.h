@@ -18,8 +18,7 @@
 
 @class PLKSections;
 
-
-@protocol PLKCellBuilder;
+@protocol PLKCell;
 @protocol PLKSizeStrategy;
 @protocol PLKCellDescriptor;
 
@@ -31,10 +30,9 @@
 @interface PLKBaseSource : NSObject <PLKSource>
 
 // properties
-@property (nonatomic, readonly, strong) NSCache *cellCache;
+@property (nonatomic, readonly, strong) NSCache *cellsCache;
 @property (nonatomic, readonly, strong) UIScrollView *container;
 @property (nonatomic, readonly, strong) PLKSections *sections;
-@property (nonatomic, readonly, strong) id<PLKCellBuilder> cellBuilder;
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 @property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;
@@ -53,7 +51,7 @@
  *
  *  @return A new instance of source.
  */
-- (instancetype)initWithContainer:(UIScrollView *)container cellBuilder:(id<PLKCellBuilder>)cellBuilder;
+- (instancetype)initWithContainer:(UIScrollView *)container;
 
 /**
  *  Loads data into container.
@@ -63,7 +61,7 @@
 /**
  *  Configures the container. Override this method to perform additional initialization on a specific container.
  */
-- (void)configureContainer;
+- (void)prepareContainer;
 
 
 // helper methods
@@ -73,5 +71,6 @@
 // to override
 - (void)registerNibForCellClass:(Class)cellClass;
 - (void)registerClassForCellClass:(Class)cellClass;
+- (void)configureCell:(UIView<PLKCell> *)cell atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
 
 @end

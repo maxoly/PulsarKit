@@ -23,7 +23,7 @@
 }
 
 + (instancetype)descriptorWithCellClass:(Class)cellClass sizeStrategy:(id<PLKSizeStrategy>)sizeStrategy {
-    return [self descriptorWithCellClass:cellClass forModelClass:nil sizeStrategy:sizeStrategy];
+    return [self descriptorWithCellClass:cellClass forModelClass:[NSNull class] sizeStrategy:sizeStrategy];
 }
 
 + (instancetype)descriptorWithCellClass:(Class)cellClass forModelClass:(Class)modelClass sizeStrategy:(id<PLKSizeStrategy>)sizeStrategy {

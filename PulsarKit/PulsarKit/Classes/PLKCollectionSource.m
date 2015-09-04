@@ -16,10 +16,8 @@
 #import "NSObject+PulsarKit.h"
 #import "UIView+PulsarKit.h"
 
-#import "PLKCellBuilder.h"
 #import "PLKSizeStrategy.h"
 #import "PLKCellDescriptor.h"
-#import "PLKCollectionViewCellBuilder.h"
 
 
 
@@ -28,7 +26,7 @@
 #pragma mark - Inits
 
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView {
-    self = [super initWithContainer:collectionView cellBuilder:[PLKCollectionViewCellBuilder new]];
+    self = [super initWithContainer:collectionView];
     if (self) {
         _collectionView = collectionView;
         _collectionView.delegate = self;
@@ -79,12 +77,16 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    id model = [self modelAtIndexPath:indexPath];
     id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
-    return [self.cellBuilder cellForModel:model withCellClass:cellDescriptor.cellClass inContainer:collectionView atIndexPath:indexPath];
+    UICollectionViewCell<PLKCell> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[cellDescriptor.cellClass plk_className] forIndexPath:indexPath];
+    return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell<PLKCell> *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    [super configureCell:cell atIndexPath:indexPath];
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.onDidSelectItem) {
@@ -100,11 +102,11 @@
     id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
     id<PLKSizeStrategy> sizeStrategy = cellDescriptor.sizeStrategy;
     
-    UIView<PLKCell> *cell = [self.cellBuilder cachedCellForModel:model
-                                                    withCellClass:cellDescriptor.cellClass
-                                                      inContainer:collectionView
-                                                      atIndexPath:indexPath];
-    
+    UIView<PLKCell> *cell = [self.cellsCache objectForKey:[cellDescriptor.cellClass plk_className]];
+    if (!cell) {
+        cell = [cellDescriptor.cellClass plk_viewFromNibOrClass];
+        [self.cellsCache setObject:cell forKey:[cellDescriptor.cellClass plk_className]];
+    }
     
     CGSize size = [sizeStrategy sizeForModel:model withCell:cell inContainer:collectionView];
     return size;

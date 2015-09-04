@@ -30,15 +30,15 @@
     self.source = [[PLKTableSource alloc] initWithTableView:self.tableView];
     self.source.scrollOptions = PLKSourceScrollOptionInfiniteOnBottom | PLKSourceScrollOptionInfiniteOnTop;
     
-    PLKModelCellDescriptor *cellDescriptor =[PLKModelCellDescriptor descriptorWithCellClass:[PKECustomCellTableViewCell class]];
+    PLKModelCellDescriptor *cellDescriptor =[PLKModelCellDescriptor descriptorWithCellClass:[PKECustomCellTableViewCell class] sizeStrategy:[PLKFixedSize fixedHeight:50.0f]];
     cellDescriptor.storyboard = YES;
     [self.source registerCellDescriptor:cellDescriptor];
     
     
-    PLKDynamicCellDescriptor *dynamic = [PLKDynamicCellDescriptor descriptorForModelClass:[PKEUser class]];
-    [dynamic useCellDescriptor:[PLKModelCellDescriptor descriptorWithCellClass:[UITableViewCell class]] whenValueOfKeyPath:@"name" isEqualTo:@"user-2"];
-    
-    [self.source registerCellDescriptor:dynamic];
+//    PLKDynamicCellDescriptor *dynamic = [PLKDynamicCellDescriptor descriptorForModelClass:[PKEUser class]];
+//    [dynamic useCellDescriptor:[PLKModelCellDescriptor descriptorWithCellClass:[PKECustomCellTableViewCell class]] whenValueOfKeyPath:@"name" isEqualTo:@"user-2"];
+//    
+//    [self.source registerCellDescriptor:dynamic];
 //    [self.source registerStoryboardCellDescriptorForCellClass:[PKECustomCellTableViewCell class] modelClass:[PKEUser class] sizeStrategy:[PLKAutolayoutSize autolayoutSize]];
     
 /*

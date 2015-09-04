@@ -9,11 +9,13 @@
 // Header
 #import "PLKBaseSource.h"
 
+// Protocols
+#import "PLKCell.h"
+
 // Models
 #import "PLKItem.h"
 #import "PLKSection.h"
 #import "PLKSections.h"
-#import "PLKCellBuilder.h"
 #import "PLKCellDescriptor.h"
 #import "PLKDynamicCellDescriptor.h"
 
@@ -24,6 +26,7 @@
 
 @interface PLKBaseSource ()
 
+@property (nonatomic, readwrite, strong) NSCache *cellsCache;
 @property (nonatomic, readwrite, strong) PLKSections *sections;
 @property (nonatomic, readwrite, strong) NSMutableArray *registeredCellClasses;
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cellDescriptors;
@@ -33,11 +36,12 @@
 
 @implementation PLKBaseSource
 
-- (instancetype)initWithContainer:(UIScrollView *)container cellBuilder:(id<PLKCellBuilder>)cellBuilder {
+#pragma mark - Inits
+
+- (instancetype)initWithContainer:(UIScrollView *)container{
     self = [super init];
     if (self) {
         _container = container;
-        _cellBuilder = cellBuilder;
         _firstTime = YES;
         
         
@@ -81,25 +85,19 @@
     return _registeredCellClasses;
 }
 
+- (NSCache *)cellsCache {
+    if (!_cellsCache) {
+        _cellsCache = [[NSCache alloc] init];
+    }
+    
+    return _cellsCache;
+}
+
 #pragma mark - PLKSource
 
 - (void)registerCellDescriptor:(id<PLKCellDescriptor>)cellDescriptor {
     self.cellDescriptors[ NSStringFromClass(cellDescriptor.modelClass) ] = cellDescriptor;
 }
-
-//- (PLKCellDescriptor *)registerCellDescriptor:(PLKCellDescriptor *)cellDescriptor {
-//    NSParameterAssert(cellDescriptor);
-//    self.descriptors[NSStringFromClass(cellDescriptor.model)] = cellDescriptor;
-//    return cellDescriptor;
-//}
-//
-//- (PLKCellDescriptor *)registerCellDescriptorForCellClass:(Class)cellClass modelClass:(Class)model sizeStrategy:(id<PLKSizeStrategy>)strategy {
-//    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerCellDescriptorForCellClass:modelClass:stategy: method" userInfo:nil];
-//}
-//
-//- (PLKCellDescriptor *)createCellDescriptorForCellClass:(Class)cellClass sizeStrategy:(id<PLKSizeStrategy>)strategy {
-//    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override createCellDescriptorForCellClass:stategy: method" userInfo:nil];
-//}
 
 - (void)setDataProvider:(PLKSourceDataProviderBlock)dataProviderBlock {
     self.dataProviderBlock = dataProviderBlock;
@@ -109,7 +107,7 @@
 
 - (void)loadData {
     if (self.isFirstTime) {
-        [self configureContainer];
+        [self prepareContainer];
     }
     [self loadDataWithDirection:PLKDirectionNone];
     self.firstTime = NO;
@@ -123,7 +121,14 @@
 
 #pragma mark - To overrides
 
-- (void)configureContainer {
+- (void)prepareContainer {
+}
+
+- (void)configureCell:(UIView<PLKCell> *)cell atIndexPath:(NSIndexPath *)indexPath {
+    id model = [self modelAtIndexPath:indexPath];
+    if ([cell respondsToSelector:@selector(configureWithModel:)]) {
+        [cell configureWithModel:model];
+    }
 }
 
 - (void)update {

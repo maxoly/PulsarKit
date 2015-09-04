@@ -16,10 +16,10 @@
 #import "NSObject+PulsarKit.h"
 #import "UIView+PulsarKit.h"
 
-#import "PLKTableViewCellBuilder.h"
-#import "PLKCellBuilder.h"
 #import "PLKSizeStrategy.h"
 #import "PLKCellDescriptor.h"
+
+
 
 @interface PLKTableSource ()
 
@@ -35,7 +35,7 @@
 #pragma mark - Inits
 
 - (instancetype)initWithTableView:(UITableView *)tableView {
-    self = [super initWithContainer:tableView cellBuilder:[PLKTableViewCellBuilder new]];
+    self = [super initWithContainer:tableView];
     if (self) {
         _tableView = tableView;
         _tableView.delegate = self;
@@ -86,12 +86,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id model = [self modelAtIndexPath:indexPath];
     id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
-    return [self.cellBuilder cellForModel:model withCellClass:cellDescriptor.cellClass inContainer:tableView atIndexPath:indexPath];
+    UITableViewCell<PLKCell> *cell = [tableView dequeueReusableCellWithIdentifier:[cellDescriptor.cellClass plk_className] forIndexPath:indexPath];
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell<PLKCell> *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super configureCell:cell atIndexPath:indexPath];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -108,11 +112,11 @@
     id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
     id<PLKSizeStrategy> sizeStrategy = cellDescriptor.sizeStrategy;
     
-    UIView<PLKCell> *cell = [self.cellBuilder cachedCellForModel:model
-                                                    withCellClass:cellDescriptor.cellClass
-                                                      inContainer:tableView
-                                                      atIndexPath:indexPath];
-
+    UIView<PLKCell> *cell = [self.cellsCache objectForKey:[cellDescriptor.cellClass plk_className]];
+    if (!cell) {
+        cell = [cellDescriptor.cellClass plk_viewFromNibOrClass];
+        [self.cellsCache setObject:cell forKey:[cellDescriptor.cellClass plk_className]];
+    }
     
     CGSize size = [sizeStrategy sizeForModel:model withCell:cell inContainer:tableView];
     return size.height;
