@@ -11,5 +11,7 @@
 @interface PLKFixedSize : NSObject <PLKSizeStrategy>
 
 + (instancetype)fixedSize:(CGSize)size;
++ (instancetype)fixedWidth:(CGFloat)width;
++ (instancetype)fixedHeight:(CGFloat)height;
 
 @end

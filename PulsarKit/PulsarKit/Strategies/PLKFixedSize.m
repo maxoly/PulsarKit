@@ -17,6 +17,18 @@
 @implementation PLKFixedSize
 
 - (CGSize)sizeForModel:(id)model withCell:(UIView<PLKCell> *)cell inContainer:(UIScrollView *)container {
+    if (self.size.width == CGFLOAT_MIN) {
+        CGSize size = self.size;
+        size.width = CGRectGetWidth(container.bounds);
+        self.size = size;
+    }
+    
+    if (self.size.height == CGFLOAT_MIN) {
+        CGSize size = self.size;
+        size.height = CGRectGetHeight(container.bounds);
+        self.size = size;
+    }
+    
     return self.size;
 }
 
@@ -24,6 +36,14 @@
     PLKFixedSize *fixedSize = [[PLKFixedSize alloc] init];
     fixedSize.size = size;
     return fixedSize;
+}
+
++ (instancetype)fixedWidth:(CGFloat)width {
+    return [self fixedSize:CGSizeMake(width, CGFLOAT_MIN)];
+}
+
++ (instancetype)fixedHeight:(CGFloat)height {
+    return [self fixedSize:CGSizeMake(CGFLOAT_MIN, height)];
 }
 
 @end
