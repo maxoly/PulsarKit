@@ -46,12 +46,8 @@
     [cell setBounds:bounds];
     
     if ([cell conformsToProtocol:@protocol(PLKCell)]) {
-        if ([cell respondsToSelector:@selector(configureWithModel:)]) {
-            [cell configureWithModel:model];
-        }
-
-        if ([cell respondsToSelector:@selector(prepareForLayoutInBounds:)]) {
-            [cell prepareForLayoutInBounds:bounds];
+        if ([cell respondsToSelector:@selector(prepareForLayoutInBounds:model:)]) {
+            [cell prepareForLayoutInBounds:bounds model:model];
         }
     }
 

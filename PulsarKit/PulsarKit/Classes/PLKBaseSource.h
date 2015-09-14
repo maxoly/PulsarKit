@@ -33,9 +33,10 @@
 @property (nonatomic, readonly, strong) NSCache *cellsCache;
 @property (nonatomic, readonly, strong) UIScrollView *container;
 @property (nonatomic, readonly, strong) PLKSections *sections;
-@property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 @property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;
+@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onCellConfiguration;
+@property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
 
 /**
  *   Unavailable init.

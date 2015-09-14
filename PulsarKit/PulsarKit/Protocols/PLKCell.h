@@ -11,7 +11,20 @@
 @protocol PLKCell <NSObject>
 
 @optional
+
+/**
+ *  Configure cell content.
+ *
+ *  @param model The model.
+ */
 - (void)configureWithModel:(id)model;
-- (void)prepareForLayoutInBounds:(CGRect)bounds;
+
+/**
+ *  Prepare for layout.
+ *
+ *  @param bounds The container bounds.
+ *  @param model  The model.
+ */
+- (void)prepareForLayoutInBounds:(CGRect)bounds model:(id)model;
 
 @end

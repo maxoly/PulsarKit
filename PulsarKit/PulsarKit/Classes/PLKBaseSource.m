@@ -129,6 +129,10 @@
     if ([cell respondsToSelector:@selector(configureWithModel:)]) {
         [cell configureWithModel:model];
     }
+    
+    if (self.onCellConfiguration) {
+        self.onCellConfiguration(cell);
+    }
 }
 
 - (void)update {

@@ -19,7 +19,7 @@
 /**
  *  Protocols.
  */
-@protocol PLKProvider;
+@protocol PLKCell;
 @protocol PLKCellDescriptor;
 
 /**
@@ -74,6 +74,8 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
     PLKSourceScrollOptionInfiniteOnRight = 1 << 4
 };
 
+
+
 /**
  *  Did select row block.
  *
@@ -83,11 +85,20 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
 typedef void (^PLKSourceDidSelectItemBlock)(NSIndexPath *indexPath, id model);
 
 /**
+ *  Cell configuration block.
+ *
+ *  @param cell The cell.
+ */
+typedef void (^PLKSourceCellConfigurationBlock)(id<PLKCell> cell);
+
+/**
  *  Data provider block.
  *
  *  @param direction Scroll direction.
  */
 typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
+
+
 
 /**
  *  Define source protocol.
@@ -108,6 +119,11 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
  *  Did Select item/row block.
  */
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
+
+/**
+ *  Cell configuration block.
+ */
+@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onCellConfiguration;
 
 /**
  *  Scroll options
