@@ -7,6 +7,9 @@
 //
 
 @import Foundation;
+@import CoreGraphics;
+
+
 
 @protocol PLKCell <NSObject>
 
@@ -25,6 +28,6 @@
  *  @param bounds The container bounds.
  *  @param model  The model.
  */
-- (void)prepareForLayoutInBounds:(CGRect)bounds model:(id)model;
+- (void)prepareForLayoutWithModel:(id)model inBounds:(CGRect)bounds;
 
 @end

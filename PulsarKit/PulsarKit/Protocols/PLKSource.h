@@ -12,15 +12,23 @@
 @import UIKit;
 @import Foundation;
 
-/// Forward declarations
+
+
+/**
+ * Forward declarations.
+ */
 @class PLKSections;
+
 
 
 /**
  *  Protocols.
  */
 @protocol PLKCell;
+@protocol PLKCellHandler;
 @protocol PLKCellDescriptor;
+
+
 
 /**
  * Enum.
@@ -141,6 +149,13 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
  *  @param cellDescriptor The cell descriptor.
  */
 - (void)registerCellDescriptor:(id<PLKCellDescriptor>)cellDescriptor;
+
+/**
+ *  Register a cell handelr.
+ *
+ *  @param cellHandler The cell handler.
+ */
+- (void)registerCellHandler:(id<PLKCellHandler>)cellHandler;
 
 /**
  *  Set data provider block

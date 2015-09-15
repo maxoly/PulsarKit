@@ -8,19 +8,26 @@
 
 #import "PLKCollectionSource.h"
 
+// Protocoles
 #import "PLKCell.h"
+#import "PLKCellHandler.h"
+#import "PLKCellDescriptor.h"
+
+// Models
 #import "PLKSection.h"
 #import "PLKSections.h"
 #import "PLKSectionView.h"
+#import "PLKSizeStrategy.h"
 
+// Categories
 #import "NSObject+PulsarKit.h"
 #import "UIView+PulsarKit.h"
 
-#import "PLKSizeStrategy.h"
-#import "PLKCellDescriptor.h"
 
 
-
+/**
+ * Implementation
+ */
 @implementation PLKCollectionSource
 
 #pragma mark - Inits
@@ -66,6 +73,10 @@
     [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:[cellClass plk_className]];
 }
 
+- (id<PLKCell>)cellAtIndexPath:(NSIndexPath *)indexPath {
+    return (id<PLKCell>) [self.collectionView cellForItemAtIndexPath:indexPath];
+}
+
 #pragma mark - UICollecitonViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -89,10 +100,18 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    id model = [self modelAtIndexPath:indexPath];
+    
     if (self.onDidSelectItem) {
-        id model = [self modelAtIndexPath:indexPath];
         self.onDidSelectItem(indexPath, model);
     }
+    
+    id<PLKCell> cell = [self cellAtIndexPath:indexPath];
+    
+    NSArray *handlers = [self cellHandlersAtIndexPath:indexPath];
+    [handlers enumerateObjectsUsingBlock:^(id<PLKCellHandler> handler, NSUInteger idx, BOOL * _Nonnull stop) {
+        [handler handleCell:cell model:model atIndexPath:indexPath];
+    }];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

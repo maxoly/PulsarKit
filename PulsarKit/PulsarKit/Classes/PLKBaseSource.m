@@ -11,12 +11,13 @@
 
 // Protocols
 #import "PLKCell.h"
+#import "PLKCellHandler.h"
+#import "PLKCellDescriptor.h"
 
 // Models
 #import "PLKItem.h"
 #import "PLKSection.h"
 #import "PLKSections.h"
-#import "PLKCellDescriptor.h"
 #import "PLKDynamicCellDescriptor.h"
 
 // Categories
@@ -24,16 +25,26 @@
 #import "UIView+PulsarKit.h"
 
 
+
+/**
+ *  Extension
+ */
 @interface PLKBaseSource ()
 
 @property (nonatomic, readwrite, strong) NSCache *cellsCache;
 @property (nonatomic, readwrite, strong) PLKSections *sections;
 @property (nonatomic, readwrite, strong) NSMutableArray *registeredCellClasses;
+@property (nonatomic, readwrite, strong) NSMutableArray *cellHandlers;
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cellDescriptors;
 @property (nonatomic, readwrite, copy) PLKSourceDataProviderBlock dataProviderBlock;
 
 @end
 
+
+
+/**
+ * Implementation
+ */
 @implementation PLKBaseSource
 
 #pragma mark - Inits
@@ -77,6 +88,14 @@
     return _cellDescriptors;
 }
 
+- (NSMutableArray *)cellHandlers {
+    if (!_cellHandlers) {
+        _cellHandlers = [[NSMutableArray alloc] init];
+    }
+    
+    return _cellHandlers;
+}
+
 - (NSMutableArray *)registeredCellClasses {
     if (!_registeredCellClasses) {
         _registeredCellClasses = [[NSMutableArray alloc] init];
@@ -97,6 +116,10 @@
 
 - (void)registerCellDescriptor:(id<PLKCellDescriptor>)cellDescriptor {
     self.cellDescriptors[ NSStringFromClass(cellDescriptor.modelClass) ] = cellDescriptor;
+}
+
+- (void)registerCellHandler:(id<PLKCellHandler>)cellHandler {
+    [self.cellHandlers addObject:cellHandler];
 }
 
 - (void)setDataProvider:(PLKSourceDataProviderBlock)dataProviderBlock {
@@ -122,6 +145,10 @@
 #pragma mark - To overrides
 
 - (void)prepareContainer {
+}
+
+- (id<PLKCell>)cellAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
 }
 
 - (void)configureCell:(UIView<PLKCell> *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -182,6 +209,23 @@
 }
 
 #pragma mark - Helpers
+
+- (NSArray *)cellHandlersAtIndexPath:(NSIndexPath *)indexPath {
+    NSParameterAssert(indexPath);
+    
+    NSMutableArray *handlers = [[NSMutableArray alloc] init];
+    
+    id model = [self modelAtIndexPath:indexPath];
+    id cell = [self cellAtIndexPath:indexPath];
+    
+    for (id<PLKCellHandler> handler in self.cellHandlers) {
+        if ([handler canHandleCell:cell model:model atIndexPath:indexPath]) {
+            [handlers addObject:handler];
+        }
+    }
+    
+    return handlers.copy;
+}
 
 - (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath {
     NSParameterAssert(indexPath);

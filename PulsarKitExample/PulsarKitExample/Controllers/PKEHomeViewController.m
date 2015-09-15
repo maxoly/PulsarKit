@@ -30,9 +30,15 @@
     self.source = [[PLKTableSource alloc] initWithTableView:self.tableView];
     self.source.scrollOptions = PLKSourceScrollOptionInfiniteOnBottom | PLKSourceScrollOptionInfiniteOnTop;
     
-    PLKModelCellDescriptor *cellDescriptor =[PLKModelCellDescriptor descriptorWithCellClass:[PKECustomCellTableViewCell class] sizeStrategy:[PLKFixedSize fixedHeight:50.0f]];
+    PLKModelCellDescriptor *cellDescriptor =[PLKModelCellDescriptor descriptorWithCellClass:[PKECustomCellTableViewCell class] sizeStrategy:[PLKProportionalSize proportionalHeightBasedOnWidth:0.1]];
     cellDescriptor.storyboard = YES;
     [self.source registerCellDescriptor:cellDescriptor];
+    
+    [self.source registerCellHandler:[PLKClassCellHandler handlerForCellClass:[PKECustomCellTableViewCell class] withBlock:^(id<PLKCell> cell, id model, NSIndexPath *indexPath) {
+        NSLog(@"tapped");
+    }]];
+    
+//    [self.source registerCellHandler:[PLKClassCellHandler handlerForClass:[PKECustomCellTableViewCell class] block:^(){}]];
     
     
 //    PLKDynamicCellDescriptor *dynamic = [PLKDynamicCellDescriptor descriptorForModelClass:[PKEUser class]];

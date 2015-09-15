@@ -9,6 +9,7 @@
 // Protocols
 #import "PLKCell.h"
 #import "PLKSource.h"
+#import "PLKCellHandler.h"
 #import "PLKSizeStrategy.h"
 #import "PLKCellDescriptor.h"
 
@@ -29,6 +30,11 @@
 // Strategies
 #import "PLKFixedSize.h"
 #import "PLKAutolayoutSize.h"
+#import "PLKProportionalSize.h"
+
+// Handlers
+#import "PLKClassCellHandler.h"
+#import "PLKModelCellHandler.h"
 
 // Controllers
 #import "PLKTableSourceViewController.h"

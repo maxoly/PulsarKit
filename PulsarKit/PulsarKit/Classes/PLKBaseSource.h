@@ -60,13 +60,22 @@
 - (void)loadData NS_REQUIRES_SUPER;
 
 /**
- *  Configures the container. Override this method to perform additional initialization on a specific container.
+ *  Prepares the container. Override this method to perform additional initialization on a specific container.
  */
 - (void)prepareContainer;
 
+/**
+ *  Return the cell at a given indexpath.
+ *
+ *  @param indexPath The index path.
+ *
+ *  @return The cell at indexpath.
+ */
+- (id<PLKCell>)cellAtIndexPath:(NSIndexPath *)indexPath;
 
 // helper methods
 - (id)modelAtIndexPath:(NSIndexPath *)indexPath;
+- (NSArray *)cellHandlersAtIndexPath:(NSIndexPath *)indexPath;
 - (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath;
 
 // to override
