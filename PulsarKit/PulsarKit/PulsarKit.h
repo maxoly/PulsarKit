@@ -35,6 +35,7 @@
 // Handlers
 #import "PLKClassCellHandler.h"
 #import "PLKModelCellHandler.h"
+#import "PLKModelClassCellHandler.h"
 
 // Controllers
 #import "PLKTableSourceViewController.h"

@@ -41,6 +41,7 @@
 		56DA91E11BA82D7900E50EEB /* PLKModelClassCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DA91E01BA82D7900E50EEB /* PLKModelClassCellHandler.m */; settings = {ASSET_TAGS = (); }; };
 		56DA91E41BA82E9100E50EEB /* PLKProportionalSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DA91E31BA82E9100E50EEB /* PLKProportionalSize.m */; settings = {ASSET_TAGS = (); }; };
 		56DA91E61BA845E300E50EEB /* PLKProportionalSize.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 56DA91E21BA82E9100E50EEB /* PLKProportionalSize.h */; };
+		56DA91E81BA8490600E50EEB /* PLKModelClassCellHandler.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 56DA91DF1BA82D7900E50EEB /* PLKModelClassCellHandler.h */; };
 		56DEA38D1B9860CD00C3F564 /* PLKDynamicCellDescriptor.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 560909D21B975318002BC328 /* PLKDynamicCellDescriptor.h */; };
 		56DEA38E1B98618B00C3F564 /* PLKCellDescriptor.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 560909D11B9751BE002BC328 /* PLKCellDescriptor.h */; };
 		56E591D11AA7BEBB005493F9 /* PLKBaseSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD841A8515E0009B09AE /* PLKBaseSource.m */; };
@@ -67,6 +68,7 @@
 				56DA91E61BA845E300E50EEB /* PLKProportionalSize.h in Copy Files */,
 				56DEA38D1B9860CD00C3F564 /* PLKDynamicCellDescriptor.h in Copy Files */,
 				56DEA38E1B98618B00C3F564 /* PLKCellDescriptor.h in Copy Files */,
+				56DA91E81BA8490600E50EEB /* PLKModelClassCellHandler.h in Copy Files */,
 				566771481B20938800B2DE72 /* PLKSections.h in Copy Files */,
 				566771431B208EF700B2DE72 /* PLKModelCellDescriptor.h in Copy Files */,
 				56DA91DC1BA82CF200E50EEB /* PLKClassCellHandler.h in Copy Files */,
