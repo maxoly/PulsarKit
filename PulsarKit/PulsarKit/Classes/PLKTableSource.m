@@ -111,7 +111,7 @@
     id<PLKCell> cell = [self cellAtIndexPath:indexPath];
     
     NSArray *handlers = [self cellHandlersAtIndexPath:indexPath];
-    [handlers enumerateObjectsUsingBlock:^(id<PLKCellHandler> handler, NSUInteger idx, BOOL * _Nonnull stop) {
+    [handlers enumerateObjectsUsingBlock:^(id<PLKCellHandler> handler, NSUInteger idx, BOOL *stop) {
         [handler handleCell:cell model:model atIndexPath:indexPath];
     }];
 }
