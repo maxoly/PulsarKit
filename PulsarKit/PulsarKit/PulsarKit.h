@@ -28,6 +28,7 @@
 #import "PLKCollectionSource.h"
 
 // Strategies
+#import "PLKCellSize.h"
 #import "PLKFixedSize.h"
 #import "PLKAutolayoutSize.h"
 #import "PLKProportionalSize.h"

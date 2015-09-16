@@ -30,4 +30,18 @@
  */
 - (void)prepareForLayoutWithModel:(id)model inBounds:(CGRect)bounds;
 
+/**
+ *  Cell size.
+ *
+ *  @return The cell size.
+ */
+- (CGSize)cellSize;
+
+/**
+ *  Cell size.
+ *
+ *  @return The cell size.
+ */
++ (CGSize)cellSize;
+
 @end
