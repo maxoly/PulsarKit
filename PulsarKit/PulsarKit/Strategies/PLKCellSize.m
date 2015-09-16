@@ -12,7 +12,15 @@
 
 @implementation PLKCellSize
 
+#pragma mark - PLKSizeStrategy
+
 - (CGSize)sizeForModel:(id)model withCell:(UIView<PLKCell> *)cell inContainer:(UIScrollView *)container {
+    if ([cell conformsToProtocol:@protocol(PLKCell)]) {
+        if ([cell respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {
+            [cell prepareForLayoutWithModel:model inBounds:container.bounds];
+        }
+    }
+    
     if ([cell respondsToSelector:@selector(cellSize)]) {
         return [cell cellSize];
     }
@@ -22,6 +30,12 @@
     }
     
     return CGSizeZero;
+}
+
+#pragma mark - Convenient Constructors
+
++ (instancetype)size {
+    return [[self alloc] init];
 }
 
 @end

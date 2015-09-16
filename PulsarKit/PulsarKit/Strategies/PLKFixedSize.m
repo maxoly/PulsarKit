@@ -8,6 +8,8 @@
 
 #import "PLKFixedSize.h"
 
+#import "PLKCell.h"
+
 @interface PLKFixedSize ()
 
 @property (nonatomic, readwrite, assign) CGSize size;
@@ -17,6 +19,12 @@
 @implementation PLKFixedSize
 
 - (CGSize)sizeForModel:(id)model withCell:(UIView<PLKCell> *)cell inContainer:(UIScrollView *)container {
+    if ([cell conformsToProtocol:@protocol(PLKCell)]) {
+        if ([cell respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {
+            [cell prepareForLayoutWithModel:model inBounds:container.bounds];
+        }
+    }
+    
     if (self.size.width == CGFLOAT_MIN) {
         CGSize size = self.size;
         size.width = CGRectGetWidth(container.bounds);

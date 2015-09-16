@@ -10,4 +10,6 @@
 
 @interface PLKCellSize : NSObject <PLKSizeStrategy>
 
++ (instancetype)size;
+
 @end
