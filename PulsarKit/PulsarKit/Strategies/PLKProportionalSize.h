@@ -12,6 +12,7 @@
 
 @property (nonatomic,readwrite, assign) CGFloat ratio;
 
++ (instancetype)proportionalSame:(CGFloat)ratio;
 + (instancetype)proportionalHeightBasedOnWidth:(CGFloat)ratio;
 + (instancetype)proportionalHeightBasedOnContainerHeight:(CGFloat)ratio fixedWidth:(CGFloat)width;
 + (instancetype)proportionalWidthBasedOnHeight:(CGFloat)ratio;

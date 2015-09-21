@@ -10,6 +10,7 @@
 
 
 typedef NS_ENUM(NSUInteger, PLKProportionalType) {
+    PLKProportionalSame,
     PLKProportionalWidthBasedOnHeight,
     PLKProportionalWidthBasedOnContainerWidth,
     PLKProportionalHeightBasedOnWidth,
@@ -37,6 +38,10 @@ typedef NS_ENUM(NSUInteger, PLKProportionalType) {
     CGFloat height = 0;
     
     switch (self.type) {
+        case PLKProportionalSame:
+            width = CGRectGetWidth(container.frame) * self.ratio;
+            height = CGRectGetHeight(container.frame) * self.ratio;
+            
         case PLKProportionalWidthBasedOnHeight:
             width = CGRectGetHeight(container.frame) * self.ratio;
             height = CGRectGetHeight(container.frame);
@@ -63,6 +68,13 @@ typedef NS_ENUM(NSUInteger, PLKProportionalType) {
     
 
 #pragma mark - Convenient Constructors
+
++ (instancetype)proportionalSame:(CGFloat)ratio {
+    PLKProportionalSize *strategy = [[self alloc] init];
+    strategy.type = PLKProportionalSame;
+    strategy.ratio = ratio;
+    return strategy;
+}
 
 + (instancetype)proportionalHeightBasedOnWidth:(CGFloat)ratio {
     PLKProportionalSize *strategy = [[self alloc] init];
