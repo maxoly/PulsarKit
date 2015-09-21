@@ -11,7 +11,10 @@
 @implementation NSObject (PulsarKit)
 
 - (NSString *)plk_className {
-    return NSStringFromClass([self class]);
+    NSString *className = NSStringFromClass(self.class);
+    NSRange range = [className rangeOfString:@"." options:NSCaseInsensitiveSearch];
+    className = [className substringFromIndex:(range.location + range.length)];
+    return className;
 }
 
 @end
