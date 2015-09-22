@@ -152,13 +152,21 @@
 }
 
 - (void)configureCell:(UIView<PLKCell> *)cell atIndexPath:(NSIndexPath *)indexPath {
-    id model = [self modelAtIndexPath:indexPath];
-    if ([cell respondsToSelector:@selector(configureWithModel:)]) {
-        [cell configureWithModel:model];
+    if (self.onBeforeCellConfiguration) {
+        self.onBeforeCellConfiguration(cell);
     }
     
     if (self.onCellConfiguration) {
         self.onCellConfiguration(cell);
+    } else {
+        id model = [self modelAtIndexPath:indexPath];
+        if ([cell respondsToSelector:@selector(configureWithModel:)]) {
+            [cell configureWithModel:model];
+        }
+    }
+    
+    if (self.onAfterCellConfiguration) {
+        self.onAfterCellConfiguration(cell);
     }
 }
 

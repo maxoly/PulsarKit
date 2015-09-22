@@ -134,6 +134,15 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
 @property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onCellConfiguration;
 
 /**
+ *  Cell configuration block.
+ */
+@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onBeforeCellConfiguration;
+/**
+ *  Cell configuration block.
+ */
+@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onAfterCellConfiguration;
+
+/**
  *  Scroll options
  */
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;

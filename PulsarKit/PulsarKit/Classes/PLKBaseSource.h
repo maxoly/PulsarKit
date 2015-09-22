@@ -36,6 +36,8 @@
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 @property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;
 @property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onCellConfiguration;
+@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onBeforeCellConfiguration;
+@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onAfterCellConfiguration;
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
 
 /**
