@@ -15,7 +15,7 @@
         return nil;
     }
 
-    return [self objectAtIndex:index];
+    return self[index];
 }
 
 @end

@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger, PLKFixedSizeType) {
 }
 
 + (instancetype)fixedSize:(CGSize)size type:(PLKFixedSizeType)type {
-    PLKFixedSize *fixedSize = [[PLKFixedSize alloc] init];
+    PLKFixedSize *fixedSize = [[self alloc] init];
     fixedSize.size = size;
     fixedSize.type = type;
     return fixedSize;

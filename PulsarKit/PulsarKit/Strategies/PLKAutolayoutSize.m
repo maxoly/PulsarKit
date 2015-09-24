@@ -79,7 +79,7 @@
 }
 
 + (instancetype)autolayoutSizeAndCacheEnabled:(BOOL)cacheEnabled {
-    PLKAutolayoutSize *strategy = [[PLKAutolayoutSize alloc] init];
+    PLKAutolayoutSize *strategy = [[self alloc] init];
     strategy.cacheEnabled = cacheEnabled;
     return strategy;
 }
