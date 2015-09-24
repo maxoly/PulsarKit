@@ -14,22 +14,6 @@ This framework is inspire by [Lighter view controllers](http://objc.io/issues/1-
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
-
-- iOS 7.0+
-- Xcode 6.4+
-
-## Installation
-
-PulsarKit is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "PulsarKit"
-```
-
-## How To Use
-
 In your view controller
 
 ```objc
@@ -58,7 +42,7 @@ In your view controller
 	// set data provider
 	__weak typeof(self) weakSelf = self;
 	[self.source setDataProvider:^(PLKDirection direction) {
-		NSArray *user = ... // an array of MYUser instances retrieved from a web server or a database ..
+		NSArray *users = ... // an array of MYUser instances retrieved from a web server or a database ..
 		[weakSelf.sections.addModels:users];
 		[weakSelf update];
 	}];
@@ -68,6 +52,20 @@ In your view controller
 }
 
 @end
+```
+
+## Requirements
+
+- iOS 7.0+
+- Xcode 6.4+
+
+## Installation
+
+PulsarKit is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "PulsarKit"
 ```
 
 ## Author
