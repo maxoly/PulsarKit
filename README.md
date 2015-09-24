@@ -1,9 +1,11 @@
 # PulsarKit
 
-[![CI Status](http://img.shields.io/travis/maxoly/PulsarKit.svg?style=flat)](https://travis-ci.org/Massimo Oliviero/PulsarKit)
+[![Build Status](https://travis-ci.org/maxoly/PulsarKit.svg)](https://travis-ci.org/maxoly/PulsarKit)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
 [![License](https://img.shields.io/cocoapods/l/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
 [![Platform](https://img.shields.io/cocoapods/p/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
+[![Twitter](https://img.shields.io/badge/twitter-@maxoly-blue.svg?style=flat)](http://twitter.com/maxoly)
 
 ## Usage
 
