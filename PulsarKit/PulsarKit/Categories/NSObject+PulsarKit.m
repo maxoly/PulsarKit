@@ -12,8 +12,10 @@
 
 - (NSString *)plk_className {
     NSString *className = NSStringFromClass(self.class);
-    NSRange range = [className rangeOfString:@"." options:NSCaseInsensitiveSearch];
-    className = [className substringFromIndex:(range.location + range.length)];
+    if ([className containsString:@"."]) {
+        NSRange range = [className rangeOfString:@"." options:NSCaseInsensitiveSearch];
+        className = [className substringFromIndex:(range.location + range.length)];
+    }
     return className;
 }
 
