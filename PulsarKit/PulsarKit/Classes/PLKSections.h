@@ -22,6 +22,8 @@
 - (void)addModel:(id)model;
 - (void)addModels:(NSArray *)models;
 - (void)addModelsOnTop:(NSArray *)models;
+- (void)addModel:(id)model toSectionWithKey:(id)key;
+- (void)addModels:(NSArray *)models toSectionWithKey:(id)key;
 
 - (PLKSection *)addSection;
 - (PLKSection *)addSectionWithKey:(id)key;

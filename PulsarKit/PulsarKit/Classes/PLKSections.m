@@ -59,6 +59,11 @@
 - (void)addModels:(NSArray *)models {
     PLKSection *section = [self returnOrCreateLastSection];
     [section addModels:models];
+
+}
+
+- (void)addModel:(id)model toSectionWithKey:(id)key {
+    [self addModels:@[ model ] toSectionWithKey:key];
 }
 
 - (void)addModels:(NSArray *)models toSectionWithKey:(id)key {
