@@ -278,8 +278,6 @@
 }
 
 - (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(PLKSectionKind)kind {
-    NSParameterAssert(section);
-    
     PLKSection *internalSection = self.sections[section];
     id<PLKSectionDescriptor> sectionDescriptor = nil;
     
@@ -289,6 +287,11 @@
     
     NSString *key = [NSString stringWithFormat:@"%zd.%zd", section, kind];
     if (!sectionDescriptor) {
+        sectionDescriptor = self.sectionDescriptors[ key ];
+    }
+    
+    if (!sectionDescriptor) {
+        key = [NSString stringWithFormat:@"%zd.%zd", NSIntegerMax, kind];
         sectionDescriptor = self.sectionDescriptors[ key ];
     }
     
