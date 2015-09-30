@@ -27,7 +27,7 @@
 @protocol PLKView;
 @protocol PLKCellHandler;
 @protocol PLKCellDescriptor;
-
+@protocol PLKSectionDescriptor;
 
 
 /**
@@ -165,6 +165,13 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
  *  @param cellHandler The cell handler.
  */
 - (void)registerCellHandler:(id<PLKCellHandler>)cellHandler;
+
+/**
+ *  Register a section descriptor;
+ *
+ *  @param sectionDescriptor The section descriptor.
+ */
+- (void)registerSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor;
 
 /**
  *  Set data provider block
