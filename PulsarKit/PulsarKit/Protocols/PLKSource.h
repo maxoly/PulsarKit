@@ -152,6 +152,8 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
  */
 - (void)update;
 
+- (void)addLoadingViewOnBottom;
+
 /**
  *  Register a cell descriptor.
  *

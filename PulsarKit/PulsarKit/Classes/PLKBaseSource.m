@@ -149,6 +149,16 @@
     self.dataProviderBlock = dataProviderBlock;
 }
 
+- (void)addLoadingViewOnBottom {
+    if (self.scrollOptions == PLKSourceScrollOptionInfiniteOnBottom) {
+        id<PLKSectionDescriptor> sectionDescriptor = [self sectionDescriptorInSection:NSIntegerMax ofKind:PLKSectionKindBottom];
+        if (sectionDescriptor) {
+            PLKSection *section = [self.sections addSection];
+            section.sectionDescriptor = sectionDescriptor;
+        }
+    }
+}
+
 #pragma mark - Loading
 
 - (void)loadData {
@@ -193,6 +203,15 @@
     }
 }
 
+- (BOOL)hasSectionViewForScrollOption:(PLKSourceScrollOptions)scrollOptions {
+    if (self.scrollOptions == PLKSourceScrollOptionInfiniteOnBottom) {
+        id<PLKSectionDescriptor> sectionDescriptor = [self sectionDescriptorInSection:NSIntegerMax ofKind:PLKSectionKindBottom];
+        return sectionDescriptor != nil;
+    }
+    
+    return NO;
+}
+
 #pragma mark - To overrides
 
 - (void)prepareContainer {
@@ -202,10 +221,7 @@
     return nil;
 }
 
-
-
 - (void)update {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override update method" userInfo:nil];
 }
 
 - (void)registerClassForCellClass:(Class)cellClass {
@@ -296,7 +312,7 @@
     }
     
     if (!sectionDescriptor) {
-        key = [NSString stringWithFormat:@"%zd.%zd", NSIntegerMax, PLKSectionKindAll];
+        key = [NSString stringWithFormat:@"%zd.%zd", NSIntegerMax, PLKSectionKindHeader | PLKSectionKindFooter];
         sectionDescriptor = self.sectionDescriptors[ key ];
     }
     

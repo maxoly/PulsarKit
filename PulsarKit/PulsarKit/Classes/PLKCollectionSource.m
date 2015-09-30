@@ -61,30 +61,35 @@
 }
 
 - (void)update {
-    NSIndexSet *addedIndexes = [self.sections addedIndexes];
-    NSArray *addedIndexPaths = [self.sections addedIndexPaths];
+    [super update];
+    [self.collectionView reloadData];
     
-    __weak typeof(self) weakSelf = self;
-    
-    [self.collectionView performBatchUpdates:^{
-        [weakSelf.collectionView insertSections:addedIndexes];
-        [weakSelf.collectionView insertItemsAtIndexPaths:addedIndexPaths];
-    } completion:^(BOOL finished) {
-        [weakSelf.sections resetIndexes];
-    }];
+//    NSIndexSet *addedIndexes = [self.sections addedIndexes];
+//    NSArray *addedIndexPaths = [self.sections addedIndexPaths];
+//    
+//    __weak typeof(self) weakSelf = self;
+//    
+//    [self.collectionView performBatchUpdates:^{
+//        [weakSelf.collectionView insertSections:addedIndexes];
+//        [weakSelf.collectionView insertItemsAtIndexPaths:addedIndexPaths];
+//    } completion:^(BOOL finished) {
+//        [weakSelf.sections resetIndexes];
+//    }];
 }
 
 #pragma mark - Helpers
 
 - (NSString *)kindStringFromKind:(PLKSectionKind)kind {
     switch (kind) {
-        case PLKSectionKindAll:
         case PLKSectionKindHeader:
             return UICollectionElementKindSectionHeader;
             break;
             
         case PLKSectionKindFooter:
             return UICollectionElementKindSectionFooter;
+            
+        default:
+            return nil;
     }
 }
 
@@ -97,7 +102,7 @@
         return PLKSectionKindFooter;
     }
     
-    return PLKSectionKindAll;
+    return PLKSectionKindHeader | PLKSectionKindFooter;
 }
 
 - (CGSize)sizeForSupplementaryViewInSection:(NSInteger)section ofKind:(PLKSectionKind)kind {
@@ -164,7 +169,7 @@
     
     PLKSectionKind sectionKind = [self sectionKindFormString:kind];
     id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:indexPath.section ofKind:sectionKind];
-    if (sectionKind == sectionDescriptor.kind) {
+    if (sectionDescriptor) {
         UICollectionReusableView *sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                                                    withReuseIdentifier:[sectionDescriptor.sectionClass plk_className]
                                                                                           forIndexPath:indexPath];
@@ -217,10 +222,12 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return [self sizeForSupplementaryViewInSection:section ofKind:[self sectionKindFormString:UICollectionElementKindSectionHeader]];
+    return [self sizeForSupplementaryViewInSection:section
+                                            ofKind:[self sectionKindFormString:UICollectionElementKindSectionHeader]];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    return [self sizeForSupplementaryViewInSection:section ofKind:[self sectionKindFormString:UICollectionElementKindSectionFooter]];
+    return [self sizeForSupplementaryViewInSection:section
+                                            ofKind:[self sectionKindFormString:UICollectionElementKindSectionFooter]];
 }
 
 @end

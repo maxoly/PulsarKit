@@ -64,9 +64,14 @@
 - (void)loadData NS_REQUIRES_SUPER;
 
 /**
+ *  Loads data into container.
+ */
+- (void)update NS_REQUIRES_SUPER;
+
+/**
  *  Prepares the container. Override this method to perform additional initialization on a specific container.
  */
-- (void)prepareContainer;
+- (void)prepareContainer NS_REQUIRES_SUPER;
 
 /**
  *  Return the cell at a given indexpath.
@@ -76,6 +81,8 @@
  *  @return The cell at indexpath.
  */
 - (id<PLKView>)cellAtIndexPath:(NSIndexPath *)indexPath;
+
+- (BOOL)hasSectionViewForScrollOption:(PLKSourceScrollOptions)scrollOptions;
 
 // helper methods
 - (id)modelAtIndexPath:(NSIndexPath *)indexPath;

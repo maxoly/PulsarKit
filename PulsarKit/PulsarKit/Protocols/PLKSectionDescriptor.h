@@ -10,11 +10,12 @@
 
 @protocol PLKSizeStrategy;
 
-typedef NS_ENUM(NSInteger, PLKSectionKind)
+typedef NS_OPTIONS(NSInteger, PLKSectionKind)
 {
-    PLKSectionKindAll,
-    PLKSectionKindHeader,
-    PLKSectionKindFooter
+    PLKSectionKindHeader = 1 << 0,
+    PLKSectionKindFooter = 1 << 1,
+    PLKSectionKindTop = 1 << 2,
+    PLKSectionKindBottom =1 << 3
 };
 
 
