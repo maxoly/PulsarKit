@@ -24,7 +24,7 @@
 /**
  *  Protocols.
  */
-@protocol PLKCell;
+@protocol PLKView;
 @protocol PLKCellHandler;
 @protocol PLKCellDescriptor;
 
@@ -97,7 +97,7 @@ typedef void (^PLKSourceDidSelectItemBlock)(NSIndexPath *indexPath, id model);
  *
  *  @param cell The cell.
  */
-typedef void (^PLKSourceCellConfigurationBlock)(id<PLKCell> cell);
+typedef void (^PLKSourceCellConfigurationBlock)(id<PLKView> cell);
 
 /**
  *  Data provider block.

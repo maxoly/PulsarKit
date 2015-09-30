@@ -17,7 +17,7 @@
  *  @param model     The model.
  *  @param indexPath The index path.
  */
-typedef void(^PLKModelClassCellHandlerBlock)(id<PLKCell> cell, id model, NSIndexPath *indexPath);
+typedef void(^PLKModelClassCellHandlerBlock)(id<PLKView> cell, id model, NSIndexPath *indexPath);
 
 
 

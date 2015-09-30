@@ -56,7 +56,7 @@ In your view controller
 
 ## Requirements
 
-- iOS 7.0+
+- iOS 8.0+
 - Xcode 6.4+
 
 ## Installation

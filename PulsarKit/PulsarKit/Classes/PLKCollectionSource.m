@@ -9,9 +9,10 @@
 #import "PLKCollectionSource.h"
 
 // Protocoles
-#import "PLKCell.h"
+#import "PLKView.h"
 #import "PLKCellHandler.h"
 #import "PLKCellDescriptor.h"
+#import "PLKSectionDescriptor.h"
 
 // Models
 #import "PLKSection.h"
@@ -63,6 +64,30 @@
     [self.collectionView reloadData];
 }
 
+#pragma mark - Helpers
+
+- (CGSize)sizeForSupplementaryViewInSection:(NSInteger)section ofKind:(NSString *)kind {
+    id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:section ofKind:kind];
+
+    if (!sectionDescriptor) {
+        return CGSizeZero;
+    }
+
+    if (![sectionDescriptor.kind isEqualToString:kind]) {
+        return CGSizeZero;
+    }    
+    
+    UIView *sectionView = [self.cellsCache objectForKey:[sectionDescriptor.sectionClass plk_className]];
+    
+    if (!sectionView) {
+        sectionView = [sectionDescriptor.sectionClass plk_viewFromNibOrClass];
+        [self.cellsCache setObject:sectionView forKey:[sectionDescriptor.sectionClass plk_className]];
+    }
+    
+    id<PLKSizeStrategy> sizeStrategy = sectionDescriptor.sizeStrategy;
+    return [sizeStrategy sizeForModel:nil withView:nil inContainer:self.collectionView];
+}
+
 #pragma mark - Cell Registration
 
 - (void)registerNibForCellClass:(Class)cellClass {
@@ -73,8 +98,16 @@
     [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:[cellClass plk_className]];
 }
 
-- (id<PLKCell>)cellAtIndexPath:(NSIndexPath *)indexPath {
-    return (id<PLKCell>) [self.collectionView cellForItemAtIndexPath:indexPath];
+- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(NSString *)kind {
+    [self.collectionView registerClass:viewClass forSupplementaryViewOfKind:kind withReuseIdentifier:[viewClass plk_className]];
+}
+
+- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(NSString *)kind {
+    [self.collectionView registerNib:[viewClass plk_nibFromClassName] forSupplementaryViewOfKind:kind withReuseIdentifier:[viewClass plk_className]];
+}
+
+- (id<PLKView>)cellAtIndexPath:(NSIndexPath *)indexPath {
+    return (id<PLKView>) [self.collectionView cellForItemAtIndexPath:indexPath];
 }
 
 #pragma mark - UICollecitonViewDataSource
@@ -89,13 +122,25 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
-    UICollectionViewCell<PLKCell> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[cellDescriptor.cellClass plk_className] forIndexPath:indexPath];
+    UICollectionViewCell<PLKView> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[cellDescriptor.cellClass plk_className] forIndexPath:indexPath];
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:indexPath.section ofKind:kind];
+    if ([sectionDescriptor.kind isEqualToString:kind]) {
+        UICollectionReusableView *sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:sectionDescriptor.kind
+                                                                                   withReuseIdentifier:[sectionDescriptor.sectionClass plk_className]
+                                                                                          forIndexPath:indexPath];
+        return sectionView;
+    }
+    
+    return nil;
 }
 
 #pragma mark - UICollectionViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell<PLKCell> *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell<PLKView> *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     [super configureCell:cell atIndexPath:indexPath];
 }
 
@@ -106,12 +151,16 @@
         self.onDidSelectItem(indexPath, model);
     }
     
-    id<PLKCell> cell = [self cellAtIndexPath:indexPath];
+    id<PLKView> cell = [self cellAtIndexPath:indexPath];
     
     NSArray *handlers = [self cellHandlersAtIndexPath:indexPath];
     [handlers enumerateObjectsUsingBlock:^(id<PLKCellHandler> handler, NSUInteger idx, BOOL *stop) {
         [handler handleCell:cell model:model atIndexPath:indexPath];
     }];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView<PLKView> *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    [super configureSection:view atIndexPath:indexPath];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -121,14 +170,21 @@
     id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
     id<PLKSizeStrategy> sizeStrategy = cellDescriptor.sizeStrategy;
     
-    UIView<PLKCell> *cell = [self.cellsCache objectForKey:[cellDescriptor.cellClass plk_className]];
+    UIView<PLKView> *cell = [self.cellsCache objectForKey:[cellDescriptor.cellClass plk_className]];
     if (!cell) {
         cell = [cellDescriptor.cellClass plk_viewFromNibOrClass];
         [self.cellsCache setObject:cell forKey:[cellDescriptor.cellClass plk_className]];
     }
     
-    CGSize size = [sizeStrategy sizeForModel:model withCell:cell inContainer:collectionView];
+    CGSize size = [sizeStrategy sizeForModel:model withView:cell inContainer:collectionView];
     return size;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return [self sizeForSupplementaryViewInSection:section ofKind:UICollectionElementKindSectionHeader];
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return [self sizeForSupplementaryViewInSection:section ofKind:UICollectionElementKindSectionFooter];
 }
 
 @end

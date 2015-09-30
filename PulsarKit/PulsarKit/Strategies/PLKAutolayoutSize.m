@@ -10,7 +10,7 @@
 
 #import "NSObject+PulsarKit.h"
 
-#import "PLKCell.h"
+#import "PLKView.h"
 
 @interface PLKAutolayoutSize ()
 
@@ -28,7 +28,7 @@
     return _sizeCache;
 }
 
-- (CGSize)sizeForModel:(id)model withCell:(UIView<PLKCell> *)cell inContainer:(UIScrollView *)container {
+- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)cell inContainer:(UIScrollView *)container {
     NSString *key = [NSString stringWithFormat:@"%@.{%@}.%zd", [cell plk_className], NSStringFromCGSize(container.frame.size) ,[model hash]];
     
     if (self.isCacheEnabled) {
@@ -45,7 +45,7 @@
     [cell setFrame:bounds];
     [cell setBounds:bounds];
     
-    if ([cell conformsToProtocol:@protocol(PLKCell)]) {
+    if ([cell conformsToProtocol:@protocol(PLKView)]) {
         if ([cell respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {
             [cell prepareForLayoutWithModel:model inBounds:bounds];
         }

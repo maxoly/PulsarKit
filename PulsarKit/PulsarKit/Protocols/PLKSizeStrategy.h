@@ -12,12 +12,12 @@
 
 
 
-@protocol PLKCell;
+@protocol PLKView;
 
 
 
 @protocol PLKSizeStrategy <NSObject>
 
-- (CGSize)sizeForModel:(id)model withCell:(UIView<PLKCell> *)cell inContainer:(UIScrollView *)container;
+- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view inContainer:(UIScrollView *)container;
 
 @end

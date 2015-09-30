@@ -11,12 +11,16 @@
 @class PLKItem;
 
 @protocol PLKCellDescriptor;
+@protocol PLKSectionDescriptor;
+
 
 
 @interface PLKSection : NSObject
 
 @property (nonatomic, readonly, copy) NSArray *items;
+@property (nonatomic, readwrite, strong) id model;
 @property (nonatomic, readwrite, strong) id<PLKCellDescriptor> cellDescriptor;
+@property (nonatomic, readwrite, strong) id<PLKSectionDescriptor> sectionDescriptor;
 
 - (void)addItems:(NSArray *)items;
 - (void)addModels:(NSArray *)models;

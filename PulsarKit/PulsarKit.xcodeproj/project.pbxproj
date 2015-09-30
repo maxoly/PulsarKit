@@ -51,7 +51,7 @@
 		56E591D41AA7BF45005493F9 /* PLKBaseSource.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD831A8515E0009B09AE /* PLKBaseSource.h */; };
 		56E591D51AA7BF45005493F9 /* PLKTableSource.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD871A8518FF009B09AE /* PLKTableSource.h */; };
 		56E591D81AA7BF45005493F9 /* PLKSource.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD811A85121E009B09AE /* PLKSource.h */; };
-		56E591D91AA7BF45005493F9 /* PLKCell.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD8A1A851D72009B09AE /* PLKCell.h */; };
+		56E591D91AA7BF45005493F9 /* PLKView.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD8A1A851D72009B09AE /* PLKView.h */; };
 		56E591DA1AA7BF45005493F9 /* PLKSectionView.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613BD991A852CD1009B09AE /* PLKSectionView.h */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +83,7 @@
 				56E591D41AA7BF45005493F9 /* PLKBaseSource.h in Copy Files */,
 				56E591D51AA7BF45005493F9 /* PLKTableSource.h in Copy Files */,
 				56E591D81AA7BF45005493F9 /* PLKSource.h in Copy Files */,
-				56E591D91AA7BF45005493F9 /* PLKCell.h in Copy Files */,
+				56E591D91AA7BF45005493F9 /* PLKView.h in Copy Files */,
 				56E591DA1AA7BF45005493F9 /* PLKSectionView.h in Copy Files */,
 				5613BD681A85117A009B09AE /* PulsarKit.h in Copy Files */,
 			);
@@ -105,7 +105,7 @@
 		5613BD841A8515E0009B09AE /* PLKBaseSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKBaseSource.m; sourceTree = "<group>"; };
 		5613BD871A8518FF009B09AE /* PLKTableSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKTableSource.h; sourceTree = "<group>"; };
 		5613BD881A8518FF009B09AE /* PLKTableSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKTableSource.m; sourceTree = "<group>"; };
-		5613BD8A1A851D72009B09AE /* PLKCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCell.h; sourceTree = "<group>"; };
+		5613BD8A1A851D72009B09AE /* PLKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKView.h; sourceTree = "<group>"; };
 		5613BD8C1A851F2C009B09AE /* PLKTableSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKTableSourceViewController.h; sourceTree = "<group>"; };
 		5613BD8D1A851F2C009B09AE /* PLKTableSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKTableSourceViewController.m; sourceTree = "<group>"; };
 		5613BD901A852451009B09AE /* UIView+PulsarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PulsarKit.h"; sourceTree = "<group>"; };
@@ -134,6 +134,7 @@
 		5694B4B11ACDEC6400D801DC /* PLKSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKSection.m; sourceTree = "<group>"; };
 		5694B4B31ACDF10E00D801DC /* NSArray+PulsarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PulsarKit.h"; sourceTree = "<group>"; };
 		5694B4B41ACDF10E00D801DC /* NSArray+PulsarKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PulsarKit.m"; sourceTree = "<group>"; };
+		569FEF141BBBD4BD0064642E /* PLKSectionDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSectionDescriptor.h; sourceTree = "<group>"; };
 		56DA91D41BA8213500E50EEB /* PLKCellHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCellHandler.h; sourceTree = "<group>"; };
 		56DA91D61BA8239200E50EEB /* PLKClassCellHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKClassCellHandler.h; sourceTree = "<group>"; };
 		56DA91D71BA8239200E50EEB /* PLKClassCellHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKClassCellHandler.m; sourceTree = "<group>"; };
@@ -211,9 +212,10 @@
 		5613BD7F1A85119B009B09AE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				5613BD8A1A851D72009B09AE /* PLKCell.h */,
+				5613BD8A1A851D72009B09AE /* PLKView.h */,
 				560909D11B9751BE002BC328 /* PLKCellDescriptor.h */,
 				56DA91D41BA8213500E50EEB /* PLKCellHandler.h */,
+				569FEF141BBBD4BD0064642E /* PLKSectionDescriptor.h */,
 				5613BD991A852CD1009B09AE /* PLKSectionView.h */,
 				566771281B2059CD00B2DE72 /* PLKSizeStrategy.h */,
 				5613BD811A85121E009B09AE /* PLKSource.h */,

@@ -10,7 +10,7 @@
 
 #import <PulsarKit/PulsarKit.h>
 
-@interface PKECustomCellTableViewCell : UITableViewCell<PLKCell>
+@interface PKECustomCellTableViewCell : UITableViewCell<PLKView>
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 

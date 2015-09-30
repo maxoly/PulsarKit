@@ -8,8 +8,8 @@
 
 @import UIKit;
 
-#import "PLKCell.h"
+#import "PLKView.h"
 
-@interface UITableViewCell (PulsarKit) <PLKCell>
+@interface UITableViewCell (PulsarKit) <PLKView>
 
 @end

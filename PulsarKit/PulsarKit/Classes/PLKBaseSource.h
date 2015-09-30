@@ -18,9 +18,10 @@
 
 @class PLKSections;
 
-@protocol PLKCell;
+@protocol PLKView;
 @protocol PLKSizeStrategy;
 @protocol PLKCellDescriptor;
+@protocol PLKSectionDescriptor;
 
 
 
@@ -31,6 +32,7 @@
 
 // properties
 @property (nonatomic, readonly, strong) NSCache *cellsCache;
+@property (nonatomic, readonly, strong) NSCache *sectionsCache;
 @property (nonatomic, readonly, strong) UIScrollView *container;
 @property (nonatomic, readonly, strong) PLKSections *sections;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
@@ -73,16 +75,20 @@
  *
  *  @return The cell at indexpath.
  */
-- (id<PLKCell>)cellAtIndexPath:(NSIndexPath *)indexPath;
+- (id<PLKView>)cellAtIndexPath:(NSIndexPath *)indexPath;
 
 // helper methods
 - (id)modelAtIndexPath:(NSIndexPath *)indexPath;
 - (NSArray *)cellHandlersAtIndexPath:(NSIndexPath *)indexPath;
 - (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath;
+- (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(NSString *)kind;
+- (void)configureCell:(UIView<PLKView> *)cell atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
+- (void)configureSection:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
 
 // to override
 - (void)registerNibForCellClass:(Class)cellClass;
 - (void)registerClassForCellClass:(Class)cellClass;
-- (void)configureCell:(UIView<PLKCell> *)cell atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
+- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(NSString *)kind;
+- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(NSString *)kind;
 
 @end

@@ -12,11 +12,11 @@
 
 #pragma mark - PLKCellHandler
 
-- (BOOL)canHandleCell:(id<PLKCell>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)canHandleCell:(id<PLKView>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath {
     return [self.model isEqual:model];
 }
 
-- (void)handleCell:(id<PLKCell>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath {
+- (void)handleCell:(id<PLKView>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath {
     if ([self.model isEqual:model]) {
         if (self.block) {
             self.block(cell, model, indexPath);

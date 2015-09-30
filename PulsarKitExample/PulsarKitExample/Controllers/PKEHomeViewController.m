@@ -34,7 +34,7 @@
     cellDescriptor.storyboard = YES;
     [self.source registerCellDescriptor:cellDescriptor];
     
-    [self.source registerCellHandler:[PLKClassCellHandler handlerForCellClass:[PKECustomCellTableViewCell class] withBlock:^(id<PLKCell> cell, id model, NSIndexPath *indexPath) {
+    [self.source registerCellHandler:[PLKClassCellHandler handlerForCellClass:[PKECustomCellTableViewCell class] withBlock:^(id<PLKView> cell, id model, NSIndexPath *indexPath) {
         NSLog(@"tapped");
     }]];
     

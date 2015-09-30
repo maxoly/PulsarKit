@@ -8,17 +8,17 @@
 
 #import "PLKClassCellHandler.h"
 
-#import "PLKCell.h"
+#import "PLKView.h"
 
 @implementation PLKClassCellHandler
 
 #pragma mark - PLKCellHandler
 
-- (BOOL)canHandleCell:(id<PLKCell>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)canHandleCell:(id<PLKView>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath {
     return [cell isKindOfClass:self.cellClass];
 }
 
-- (void)handleCell:(id<PLKCell>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath {
+- (void)handleCell:(id<PLKView>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath {
     if ([cell isKindOfClass:self.cellClass]) {
         if (self.block) {
             self.block(cell, model, indexPath);

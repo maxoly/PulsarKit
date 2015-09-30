@@ -1,5 +1,5 @@
 //
-//  PLKCell.h
+//  PLKView.h
 //  PulsarKit
 //
 //  Created by Massimo Oliviero on 06/02/15.
@@ -11,7 +11,7 @@
 
 
 
-@protocol PLKCell <NSObject>
+@protocol PLKView <NSObject>
 
 @optional
 

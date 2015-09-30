@@ -8,11 +8,11 @@
 
 @import Foundation;
 
-@protocol PLKCell;
+@protocol PLKView;
 
 @protocol PLKCellHandler <NSObject>
 
-- (BOOL)canHandleCell:(id<PLKCell>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath;
-- (void)handleCell:(id<PLKCell>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)canHandleCell:(id<PLKView>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath;
+- (void)handleCell:(id<PLKView>)cell model:(id)model atIndexPath:(NSIndexPath *)indexPath;
 
 @end

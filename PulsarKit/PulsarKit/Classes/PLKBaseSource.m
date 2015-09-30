@@ -10,9 +10,10 @@
 #import "PLKBaseSource.h"
 
 // Protocols
-#import "PLKCell.h"
+#import "PLKView.h"
 #import "PLKCellHandler.h"
 #import "PLKCellDescriptor.h"
+#import "PLKSectionDescriptor.h"
 
 // Models
 #import "PLKItem.h"
@@ -32,10 +33,12 @@
 @interface PLKBaseSource ()
 
 @property (nonatomic, readwrite, strong) NSCache *cellsCache;
+@property (nonatomic, readwrite, strong) NSCache *sectionsCache;
 @property (nonatomic, readwrite, strong) PLKSections *sections;
 @property (nonatomic, readwrite, strong) NSMutableArray *registeredCellClasses;
 @property (nonatomic, readwrite, strong) NSMutableArray *cellHandlers;
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cellDescriptors;
+@property (nonatomic, readwrite, strong) NSMutableDictionary *sectionDescriptors;
 @property (nonatomic, readwrite, copy) PLKSourceDataProviderBlock dataProviderBlock;
 
 @end
@@ -80,6 +83,14 @@
     return _sections;
 }
 
+- (NSMutableDictionary *)sectionDescriptors {
+    if (!_sectionDescriptors) {
+        _sectionDescriptors = [[NSMutableDictionary alloc] init];
+    }
+    
+    return _sectionDescriptors;
+}
+
 - (NSMutableDictionary *)cellDescriptors {
     if (!_cellDescriptors) {
         _cellDescriptors = [[NSMutableDictionary alloc] init];
@@ -112,7 +123,19 @@
     return _cellsCache;
 }
 
+- (NSCache *)sectionsCache {
+    if (!_sectionsCache) {
+        _sectionsCache = [[NSCache alloc] init];
+    }
+    
+    return _sectionsCache;
+}
+
 #pragma mark - PLKSource
+
+- (void)registerSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor {
+    self.sectionDescriptors[ sectionDescriptor.key ] = sectionDescriptor;
+}
 
 - (void)registerCellDescriptor:(id<PLKCellDescriptor>)cellDescriptor {
     self.cellDescriptors[ NSStringFromClass(cellDescriptor.modelClass) ] = cellDescriptor;
@@ -142,16 +165,16 @@
     }
 }
 
-#pragma mark - To overrides
+#pragma mark - PLKBaseSource
 
-- (void)prepareContainer {
+- (void)configureSection:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath {
+    id model = [self modelAtSection:indexPath.section];
+    if ([view respondsToSelector:@selector(configureWithModel:)]) {
+        [view configureWithModel:model];
+    }
 }
 
-- (id<PLKCell>)cellAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
-}
-
-- (void)configureCell:(UIView<PLKCell> *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(UIView<PLKView> *)cell atIndexPath:(NSIndexPath *)indexPath {
     if (self.onBeforeCellConfiguration) {
         self.onBeforeCellConfiguration(cell);
     }
@@ -170,6 +193,17 @@
     }
 }
 
+#pragma mark - To overrides
+
+- (void)prepareContainer {
+}
+
+- (id<PLKView>)cellAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+
+
 - (void)update {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override update method" userInfo:nil];
 }
@@ -180,6 +214,14 @@
 
 - (void)registerNibForCellClass:(Class)cellClass {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerNibForCellClass: method" userInfo:nil];
+}
+
+- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(NSString *)kind {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerSupplementaryViewClass: method" userInfo:nil];
+}
+
+- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(NSString *)kind {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerSupplementaryNibForViewClass: method" userInfo:nil];
 }
 
 #pragma mark - Notifications
@@ -235,6 +277,50 @@
     return handlers.copy;
 }
 
+- (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(NSString *)kind {
+    NSParameterAssert(section);
+    
+    NSString *key = [NSString stringWithFormat:@"%zd.%@", section, kind];
+    
+    PLKSection *internalSection = self.sections[section];
+    id<PLKSectionDescriptor> sectionDescriptor = nil;
+    
+    if (internalSection.sectionDescriptor) {
+        sectionDescriptor = internalSection.sectionDescriptor;
+    }
+    
+    if (!sectionDescriptor) {
+        sectionDescriptor = self.sectionDescriptors[ key ];
+    }
+    
+    if (!sectionDescriptor) {
+        key = [NSString stringWithFormat:@"%zd.%@", NSIntegerMax, kind];
+        sectionDescriptor = self.sectionDescriptors[ key ];
+    }
+    
+    if (!sectionDescriptor) {
+        key = [NSString stringWithFormat:@"%zd", NSIntegerMax];
+        sectionDescriptor = self.sectionDescriptors[ key ];
+    }
+    
+    if (!sectionDescriptor) {
+        key = NSStringFromClass(sectionDescriptor.modelClass);
+        sectionDescriptor = self.sectionDescriptors[ key ];
+    }
+    
+    if (sectionDescriptor) {
+        NSString *nibPath = [sectionDescriptor.sectionClass plk_nibPathFromClassName];
+        
+        if (nibPath) {
+            [self registerSupplementaryNibForViewClass:sectionDescriptor.sectionClass ofKind:sectionDescriptor.kind];
+        } else {
+            [self registerSupplementaryViewClass:sectionDescriptor.sectionClass ofKind:sectionDescriptor.kind];
+        }
+    }
+    
+    return sectionDescriptor;
+}
+
 - (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath {
     NSParameterAssert(indexPath);
     
@@ -281,6 +367,10 @@
 
 - (id)modelAtIndexPath:(NSIndexPath *)indexPath {
     return self.sections[indexPath.section][indexPath.row].model;
+}
+
+- (id)modelAtSection:(NSInteger)section {
+    return self.sections[section].model;
 }
 
 #pragma mark - UIScrollViewDelegate
