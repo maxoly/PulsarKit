@@ -44,24 +44,26 @@
     return [items copy];
 }
 
-- (void)addItems:(NSArray *)items {
+- (PLKSection *)addItems:(NSArray *)items {
     [self.itemsInternal addObjectsFromArray:items];
+    return self;
 }
 
 #pragma mark - Models
 
-- (void)addModel:(id)model {
-    [self addModels:@[ model ]];
+- (PLKSection *)addModel:(id)model {
+    return [self addModels:@[ model ]];
 }
 
-- (void)addModels:(NSArray *)models {
+- (PLKSection *)addModels:(NSArray *)models {
     NSArray *items = [self createItemsFromModels:models];
-    [self addItems:items];
+    return [self addItems:items];
 }
 
-- (void)addModelsOnTop:(NSArray *)models {
+- (PLKSection *)addModelsOnTop:(NSArray *)models {
     NSArray *items = [self createItemsFromModels:models];
     [self.itemsInternal insertObjects:items atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, items.count)]];
+    return self;
 }
 
 #pragma mark - Subscripting

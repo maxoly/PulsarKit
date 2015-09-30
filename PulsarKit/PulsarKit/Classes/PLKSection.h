@@ -23,10 +23,10 @@
 @property (nonatomic, readwrite, strong) id<PLKCellDescriptor> cellDescriptor;
 @property (nonatomic, readwrite, strong) id<PLKSectionDescriptor> sectionDescriptor;
 
-- (void)addItems:(NSArray *)items;
-- (void)addModel:(id)model;
-- (void)addModels:(NSArray *)models;
-- (void)addModelsOnTop:(NSArray *)models;
+- (PLKSection *)addItems:(NSArray *)items;
+- (PLKSection *)addModel:(id)model;
+- (PLKSection *)addModels:(NSArray *)models;
+- (PLKSection *)addModelsOnTop:(NSArray *)models;
 
 - (PLKItem *)objectAtIndexedSubscript:(NSInteger)index;
 

@@ -97,16 +97,7 @@
 }
 
 - (PLKSection *)addSectionWithKey:(id)key {
-    NSInteger index = [self indexOfSectionWithKey:key];
-    PLKSection *section = [[PLKSection alloc] init];
-    section.key = key;
-    if (index == NSNotFound) {
-        [self.sections addObject:section];
-    } else {
-        self.sections[index] = section;
-    }
-    
-    return section;
+    return [self returnOrCreateSectionWithKey:key];
 }
 
 - (PLKSection *)addSectionAtIndex:(NSUInteger)index {
