@@ -114,7 +114,7 @@
     for (NSInteger sectionIndex = 0; sectionIndex < self.sections.count; sectionIndex++) {
         PLKSection *section = self.sections[sectionIndex];
         NSIndexSet *indexSet = section.addedIndexes;
-        [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+        [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
             [indexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:sectionIndex]];
         }];
     }
