@@ -33,4 +33,8 @@
 + (instancetype)sectionWithModels:(NSArray *)models;
 + (instancetype)sectionWithModels:(NSArray *)items cellDescriptor:(id<PLKCellDescriptor>)cellDescriptor;
 
+
+- (NSIndexSet *)addedIndexes;
+- (void)resetIndexes;
+
 @end

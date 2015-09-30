@@ -61,7 +61,17 @@
 }
 
 - (void)update {
-    [self.collectionView reloadData];
+    NSIndexSet *addedIndexes = [self.sections addedIndexes];
+    NSArray *addedIndexPaths = [self.sections addedIndexPaths];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self.collectionView performBatchUpdates:^{
+        [weakSelf.collectionView insertSections:addedIndexes];
+        [weakSelf.collectionView insertItemsAtIndexPaths:addedIndexPaths];
+    } completion:^(BOOL finished) {
+        [weakSelf.sections resetIndexes];
+    }];
 }
 
 #pragma mark - Helpers
@@ -92,14 +102,14 @@
 
 - (CGSize)sizeForSupplementaryViewInSection:(NSInteger)section ofKind:(PLKSectionKind)kind {
     id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:section ofKind:kind];
-
+    
     if (!sectionDescriptor) {
         return CGSizeZero;
     }
-
+    
     if (!sectionDescriptor.kind == kind) {
         return CGSizeZero;
-    }    
+    }
     
     UIView *sectionView = [self.cellsCache objectForKey:[sectionDescriptor.sectionClass plk_className]];
     

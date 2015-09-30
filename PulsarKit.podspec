@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PulsarKit"
-  s.version          = "0.1.4"
+  s.version          = "0.2.0"
   s.summary          = "PulsarKit is a lightweight framework to slim down your view controller when using UITableView or UICollectionView."
   s.description      = <<-DESC
                         A lightweight framework to slim down your view controller. PulsarKit is a set of class that provides all 

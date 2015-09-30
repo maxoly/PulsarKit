@@ -13,10 +13,18 @@
 @interface PLKSection ()
 
 @property (nonatomic, readwrite, strong) NSMutableArray *itemsInternal;
+@property (nonatomic, readwrite, strong) NSMutableIndexSet *indexSet;
 
 @end
 
 @implementation PLKSection
+
+#pragma mark - Helpers
+
+- (void)updateIndexSetWithIndex:(NSInteger)index {
+    [self.indexSet shiftIndexesStartingAtIndex:index by:1];
+    [self.indexSet addIndex:index];
+}
 
 #pragma mark - Properties
 
@@ -24,27 +32,49 @@
     if (!_itemsInternal) {
         _itemsInternal = [[NSMutableArray alloc] init];
     }
-
+    
     return _itemsInternal;
+}
+
+- (NSMutableIndexSet *)indexSet {
+    if (!_indexSet) {
+        _indexSet = [[NSMutableIndexSet alloc] init];
+    }
+    
+    return _indexSet;
 }
 
 - (NSArray *)items {
     return [self.itemsInternal copy];
 }
 
+#pragma mark - Indexes
+
+- (NSIndexSet *)addedIndexes {
+    NSIndexSet *indexSet = [self.indexSet copy];
+    return indexSet;
+}
+
+- (void)resetIndexes {
+    [self.indexSet removeAllIndexes];
+}
+
 #pragma mark - Items
 
 - (NSArray *)createItemsFromModels:(NSArray *)models {
     NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:models.count];
-
+    
     for (id model in models) {
         [items addObject:[PLKItem itemWithModel:model]];
     }
-
+    
     return [items copy];
 }
 
 - (PLKSection *)addItems:(NSArray *)items {
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.itemsInternal.count, items.count)];
+    [self.indexSet shiftIndexesStartingAtIndex:self.itemsInternal.count by:items.count];
+    [self.indexSet addIndexes:indexes];
     [self.itemsInternal addObjectsFromArray:items];
     return self;
 }

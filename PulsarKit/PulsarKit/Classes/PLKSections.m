@@ -7,16 +7,27 @@
 //
 
 #import "PLKSections.h"
-
 #import "PLKSection.h"
+
+// Categories
 #import "NSArray+PulsarKit.h"
 
+// Imports
+@import UIKit;
+
+
+
+// Extentions
 @interface PLKSections ()
 
 @property (nonatomic, readwrite, strong) NSMutableArray *sections;
+@property (nonatomic, readwrite, strong) NSMutableIndexSet *indexSet;
 
 @end
 
+
+
+// Implementation
 @implementation PLKSections
 
 #pragma mark - Heplers
@@ -28,6 +39,11 @@
     }];
 }
 
+- (void)updateIndexSetWithIndex:(NSInteger)index {
+    [self.indexSet shiftIndexesStartingAtIndex:index by:1];
+    [self.indexSet addIndex:index];
+}
+
 #pragma mark - Properties
 
 - (NSMutableArray *)sections {
@@ -36,6 +52,14 @@
     }
     
     return _sections;
+}
+
+- (NSMutableIndexSet *)indexSet {
+    if (!_indexSet) {
+        _indexSet = [[NSMutableIndexSet alloc] init];
+    }
+    
+    return _indexSet;
 }
 
 - (NSInteger)count {
@@ -59,7 +83,7 @@
 - (void)addModels:(NSArray *)models {
     PLKSection *section = [self returnOrCreateLastSection];
     [section addModels:models];
-
+    
 }
 
 - (void)addModel:(id)model toSectionWithKey:(id)key {
@@ -72,6 +96,31 @@
 }
 
 #pragma mark - Sections
+
+- (void)resetIndexes {
+    [self.indexSet removeAllIndexes];
+    for (PLKSection *section in self.sections) {
+        [section resetIndexes];
+    }
+}
+- (NSIndexSet *)addedIndexes {
+    NSIndexSet *indexSet = [self.indexSet copy];
+    return indexSet;
+}
+
+- (NSIndexPath *)addedIndexPaths {
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    
+    for (NSInteger sectionIndex = 0; sectionIndex < self.sections.count; sectionIndex++) {
+        PLKSection *section = self.sections[sectionIndex];
+        NSIndexSet *indexSet = section.addedIndexes;
+        [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:sectionIndex]];
+        }];
+    }
+    
+    return [indexPaths copy];
+}
 
 - (PLKSection *)returnOrCreateLastSection {
     PLKSection *section = [self.sections lastObject];
@@ -108,6 +157,7 @@
     if (!section) {
         section = [[PLKSection alloc] init];
         [self.sections insertObject:section atIndex:index];
+        [self updateIndexSetWithIndex:index];
     }
     
     return section;

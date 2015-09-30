@@ -30,4 +30,8 @@
 - (PLKSection *)addSectionAtIndex:(NSUInteger)position;
 - (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index;
 
+- (NSIndexSet *)addedIndexes;
+- (NSArray *)addedIndexPaths;
+- (void)resetIndexes;
+
 @end
