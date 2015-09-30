@@ -88,6 +88,7 @@
     if (index == NSNotFound) {
         PLKSection *section = [self addSection];
         section.key = key;
+        return section;
     }
     
     return self.sections[index];
