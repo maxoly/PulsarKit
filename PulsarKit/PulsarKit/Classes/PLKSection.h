@@ -24,6 +24,7 @@
 @property (nonatomic, readwrite, strong) id<PLKSectionDescriptor> sectionDescriptor;
 
 - (void)addItems:(NSArray *)items;
+- (void)addModel:(id)model;
 - (void)addModels:(NSArray *)models;
 - (void)addModelsOnTop:(NSArray *)models;
 

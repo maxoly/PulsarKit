@@ -50,6 +50,10 @@
 
 #pragma mark - Models
 
+- (void)addModel:(id)model {
+    [self addModels:@[ model ]];
+}
+
 - (void)addModels:(NSArray *)models {
     NSArray *items = [self createItemsFromModels:models];
     [self addItems:items];
