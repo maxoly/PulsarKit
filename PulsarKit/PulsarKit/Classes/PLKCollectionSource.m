@@ -66,14 +66,14 @@
 
 #pragma mark - Helpers
 
-- (CGSize)sizeForSupplementaryViewInSection:(NSInteger)section ofKind:(NSString *)kind {
+- (CGSize)sizeForSupplementaryViewInSection:(NSInteger)section ofKind:(PLKSectionKind)kind {
     id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:section ofKind:kind];
 
     if (!sectionDescriptor) {
         return CGSizeZero;
     }
 
-    if (![sectionDescriptor.kind isEqualToString:kind]) {
+    if (!sectionDescriptor.kind == kind) {
         return CGSizeZero;
     }    
     
@@ -98,12 +98,12 @@
     [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:[cellClass plk_className]];
 }
 
-- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(NSString *)kind {
-    [self.collectionView registerClass:viewClass forSupplementaryViewOfKind:kind withReuseIdentifier:[viewClass plk_className]];
+- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(PLKSectionKind)kind {
+    [self.collectionView registerClass:viewClass forSupplementaryViewOfKind:[self kindStringFromKind:kind] withReuseIdentifier:[viewClass plk_className]];
 }
 
-- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(NSString *)kind {
-    [self.collectionView registerNib:[viewClass plk_nibFromClassName] forSupplementaryViewOfKind:kind withReuseIdentifier:[viewClass plk_className]];
+- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(PLKSectionKind)kind {
+    [self.collectionView registerNib:[viewClass plk_nibFromClassName] forSupplementaryViewOfKind:[self kindStringFromKind:kind] withReuseIdentifier:[viewClass plk_className]];
 }
 
 - (id<PLKView>)cellAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,15 +127,41 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:indexPath.section ofKind:kind];
-    if ([sectionDescriptor.kind isEqualToString:kind]) {
-        UICollectionReusableView *sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:sectionDescriptor.kind
+    
+    PLKSectionKind sectionKind = [self sectionKindFormString:kind];
+    id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:indexPath.section ofKind:sectionKind];
+    if (sectionKind == sectionDescriptor.kind) {
+        UICollectionReusableView *sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                                                    withReuseIdentifier:[sectionDescriptor.sectionClass plk_className]
                                                                                           forIndexPath:indexPath];
         return sectionView;
     }
     
     return nil;
+}
+
+- (NSString *)kindStringFromKind:(PLKSectionKind)kind {
+    switch (kind) {
+        case PLKSectionKindAll:
+        case PLKSectionKindHeader:
+            return UICollectionElementKindSectionHeader;
+            break;
+            
+        case PLKSectionKindFooter:
+            return UICollectionElementKindSectionFooter;
+    }
+}
+
+- (PLKSectionKind)sectionKindFormString:(NSString *)kind {
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        return PLKSectionKindHeader;
+    }
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        return PLKSectionKindFooter;
+    }
+    
+    return PLKSectionKindAll;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -181,10 +207,10 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return [self sizeForSupplementaryViewInSection:section ofKind:UICollectionElementKindSectionHeader];
+    return [self sizeForSupplementaryViewInSection:section ofKind:[self sectionKindFormString:UICollectionElementKindSectionHeader]];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    return [self sizeForSupplementaryViewInSection:section ofKind:UICollectionElementKindSectionFooter];
+    return [self sizeForSupplementaryViewInSection:section ofKind:[self sectionKindFormString:UICollectionElementKindSectionFooter]];
 }
 
 @end

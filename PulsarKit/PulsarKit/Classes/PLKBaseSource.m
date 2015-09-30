@@ -216,11 +216,11 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerNibForCellClass: method" userInfo:nil];
 }
 
-- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(NSString *)kind {
+- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(PLKSectionKind)kind {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerSupplementaryViewClass: method" userInfo:nil];
 }
 
-- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(NSString *)kind {
+- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(PLKSectionKind)kind {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerSupplementaryNibForViewClass: method" userInfo:nil];
 }
 
@@ -277,10 +277,8 @@
     return handlers.copy;
 }
 
-- (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(NSString *)kind {
+- (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(PLKSectionKind)kind {
     NSParameterAssert(section);
-    
-    NSString *key = [NSString stringWithFormat:@"%zd.%@", section, kind];
     
     PLKSection *internalSection = self.sections[section];
     id<PLKSectionDescriptor> sectionDescriptor = nil;
@@ -289,17 +287,13 @@
         sectionDescriptor = internalSection.sectionDescriptor;
     }
     
+    NSString *key = [NSString stringWithFormat:@"%zd.%zd", section, kind];
     if (!sectionDescriptor) {
         sectionDescriptor = self.sectionDescriptors[ key ];
     }
     
     if (!sectionDescriptor) {
-        key = [NSString stringWithFormat:@"%zd.%@", NSIntegerMax, kind];
-        sectionDescriptor = self.sectionDescriptors[ key ];
-    }
-    
-    if (!sectionDescriptor) {
-        key = [NSString stringWithFormat:@"%zd", NSIntegerMax];
+        key = [NSString stringWithFormat:@"%zd.%zd", NSIntegerMax, PLKSectionKindAll];
         sectionDescriptor = self.sectionDescriptors[ key ];
     }
     

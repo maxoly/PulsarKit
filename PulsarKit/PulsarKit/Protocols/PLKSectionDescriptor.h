@@ -8,10 +8,20 @@
 
 @import Foundation;
 
+@protocol PLKSizeStrategy;
+
+typedef NS_ENUM(NSInteger, PLKSectionKind)
+{
+    PLKSectionKindAll,
+    PLKSectionKindHeader,
+    PLKSectionKindFooter
+};
+
+
 @protocol PLKSectionDescriptor <NSObject>
 
 @property (nonatomic, readonly, copy) NSString *key;
-@property (nonatomic, readonly, copy) NSString *kind;
+@property (nonatomic, readonly, assign) PLKSectionKind kind;
 @property (nonatomic, readonly, assign) Class modelClass;
 @property (nonatomic, readonly, assign) Class sectionClass;
 @property (nonatomic, readonly, strong) id<PLKSizeStrategy> sizeStrategy;

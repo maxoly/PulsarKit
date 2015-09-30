@@ -11,6 +11,7 @@
  */
 
 #import "PLKSource.h"
+#import "PLKSectionDescriptor.h"
 
 @import UIKit;
 @import Foundation;
@@ -21,7 +22,6 @@
 @protocol PLKView;
 @protocol PLKSizeStrategy;
 @protocol PLKCellDescriptor;
-@protocol PLKSectionDescriptor;
 
 
 
@@ -81,14 +81,14 @@
 - (id)modelAtIndexPath:(NSIndexPath *)indexPath;
 - (NSArray *)cellHandlersAtIndexPath:(NSIndexPath *)indexPath;
 - (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath;
-- (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(NSString *)kind;
+- (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(PLKSectionKind)kind;
 - (void)configureCell:(UIView<PLKView> *)cell atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
 - (void)configureSection:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
 
 // to override
 - (void)registerNibForCellClass:(Class)cellClass;
 - (void)registerClassForCellClass:(Class)cellClass;
-- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(NSString *)kind;
-- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(NSString *)kind;
+- (void)registerSupplementaryViewClass:(Class)viewClass ofKind:(PLKSectionKind)kind;
+- (void)registerSupplementaryNibForViewClass:(Class)viewClass ofKind:(PLKSectionKind)kind;
 
 @end
