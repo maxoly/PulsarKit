@@ -12,6 +12,7 @@
 #import "PLKCellHandler.h"
 #import "PLKSizeStrategy.h"
 #import "PLKCellDescriptor.h"
+#import "PLKSectionDescriptor.h"
 
 // Classes
 #import "PLKItem.h"
@@ -22,6 +23,7 @@
 // Descriptors
 #import "PLKModelCellDescriptor.h"
 #import "PLKDynamicCellDescriptor.h"
+#import "PLKPositionalSectionDescriptor.h"
 
 // Sources
 #import "PLKTableSource.h"

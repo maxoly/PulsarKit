@@ -34,6 +34,8 @@
 		5694B4B21ACDEC6400D801DC /* PLKSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694B4B11ACDEC6400D801DC /* PLKSection.m */; };
 		5694B4B51ACDF10E00D801DC /* NSArray+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5694B4B41ACDF10E00D801DC /* NSArray+PulsarKit.m */; };
 		569FEF181BBBE7B80064642E /* PLKPositionalSectionDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 569FEF171BBBE7B80064642E /* PLKPositionalSectionDescriptor.m */; settings = {ASSET_TAGS = (); }; };
+		569FEF1A1BBBED690064642E /* PLKPositionalSectionDescriptor.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 569FEF161BBBE7B80064642E /* PLKPositionalSectionDescriptor.h */; };
+		569FEF1B1BBBED6C0064642E /* PLKSectionDescriptor.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 569FEF141BBBD4BD0064642E /* PLKSectionDescriptor.h */; };
 		56DA91D81BA8239200E50EEB /* PLKClassCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DA91D71BA8239200E50EEB /* PLKClassCellHandler.m */; settings = {ASSET_TAGS = (); }; };
 		56DA91DB1BA8260B00E50EEB /* PLKModelCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DA91DA1BA8260B00E50EEB /* PLKModelCellHandler.m */; settings = {ASSET_TAGS = (); }; };
 		56DA91DC1BA82CF200E50EEB /* PLKClassCellHandler.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 56DA91D61BA8239200E50EEB /* PLKClassCellHandler.h */; };
@@ -69,12 +71,14 @@
 				566771461B20938800B2DE72 /* PLKItem.h in Copy Files */,
 				566771471B20938800B2DE72 /* PLKSection.h in Copy Files */,
 				56DA91E61BA845E300E50EEB /* PLKProportionalSize.h in Copy Files */,
+				569FEF1A1BBBED690064642E /* PLKPositionalSectionDescriptor.h in Copy Files */,
 				56DEA38D1B9860CD00C3F564 /* PLKDynamicCellDescriptor.h in Copy Files */,
 				56DEA38E1B98618B00C3F564 /* PLKCellDescriptor.h in Copy Files */,
 				56DA91E81BA8490600E50EEB /* PLKModelClassCellHandler.h in Copy Files */,
 				56E0F0041BA99F6B00253D36 /* PLKCellSize.h in Copy Files */,
 				566771481B20938800B2DE72 /* PLKSections.h in Copy Files */,
 				566771431B208EF700B2DE72 /* PLKModelCellDescriptor.h in Copy Files */,
+				569FEF1B1BBBED6C0064642E /* PLKSectionDescriptor.h in Copy Files */,
 				56DA91DC1BA82CF200E50EEB /* PLKClassCellHandler.h in Copy Files */,
 				56DA91DD1BA82CF400E50EEB /* PLKModelCellHandler.h in Copy Files */,
 				5667714A1B20938800B2DE72 /* PLKSizeStrategy.h in Copy Files */,
