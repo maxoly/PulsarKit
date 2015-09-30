@@ -19,13 +19,22 @@
 
 @implementation PLKSections
 
+#pragma mark - Heplers
+
+- (NSInteger)indexOfSectionWithKey:(id)key {
+    return [self.sections indexOfObjectPassingTest:^BOOL(PLKSection *section, NSUInteger idx, BOOL *stop) {
+        *stop = [section.key isEqual:key];
+        return *stop;
+    }];
+}
+
 #pragma mark - Properties
 
 - (NSMutableArray *)sections {
     if (!_sections) {
         _sections = [[NSMutableArray alloc] init];
     }
-
+    
     return _sections;
 }
 
@@ -38,6 +47,10 @@
     return [sum integerValue];
 }
 
+- (void)addModel:(id)model {
+    [self addModels:@[ model ]];
+}
+
 - (void)addModelsOnTop:(NSArray *)models {
     PLKSection *section = [self returnOrCreateLastSection];
     [section addModelsOnTop:models];
@@ -48,30 +61,57 @@
     [section addModels:models];
 }
 
+- (void)addModels:(NSArray *)models toSectionWithKey:(id)key {
+    PLKSection *section = [self returnOrCreateSectionWithKey:key];
+    [section addModels:models];
+}
+
 #pragma mark - Sections
 
 - (PLKSection *)returnOrCreateLastSection {
     PLKSection *section = [self.sections lastObject];
-
+    
     if (!section) {
         section = [self addSection];
     }
-
+    
     return section;
+}
+
+- (PLKSection *)returnOrCreateSectionWithKey:(id)key {
+    NSInteger index = [self indexOfSectionWithKey:key];
+    if (index == NSNotFound) {
+        return [self addSectionWithKey:key];
+    }
+    
+    return self.sections[index];
 }
 
 - (PLKSection *)addSection {
     return [self addSectionAtIndex:self.sections.count];
 }
 
+- (PLKSection *)addSectionWithKey:(id)key {
+    NSInteger index = [self indexOfSectionWithKey:key];
+    PLKSection *section = [[PLKSection alloc] init];
+    section.key = key;
+    if (index == NSNotFound) {
+        [self.sections addObject:section];
+    } else {
+        self.sections[index] = section;
+    }
+    
+    return section;
+}
+
 - (PLKSection *)addSectionAtIndex:(NSUInteger)index {
     PLKSection *section = [self.sections plk_safeObjectAtIndex:index];
-
+    
     if (!section) {
         section = [[PLKSection alloc] init];
         [self.sections insertObject:section atIndex:index];
     }
-
+    
     return section;
 }
 

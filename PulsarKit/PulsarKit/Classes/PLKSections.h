@@ -19,10 +19,12 @@
 - (void)addItem:(PLKItem *)item;
 - (void)addItems:(NSArray *)items;
 
+- (void)addModel:(id)model;
 - (void)addModels:(NSArray *)models;
 - (void)addModelsOnTop:(NSArray *)models;
 
 - (PLKSection *)addSection;
+- (PLKSection *)addSectionWithKey:(id)key;
 - (PLKSection *)addSectionAtIndex:(NSUInteger)position;
 - (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index;
 

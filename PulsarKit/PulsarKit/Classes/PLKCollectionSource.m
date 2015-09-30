@@ -66,6 +66,30 @@
 
 #pragma mark - Helpers
 
+- (NSString *)kindStringFromKind:(PLKSectionKind)kind {
+    switch (kind) {
+        case PLKSectionKindAll:
+        case PLKSectionKindHeader:
+            return UICollectionElementKindSectionHeader;
+            break;
+            
+        case PLKSectionKindFooter:
+            return UICollectionElementKindSectionFooter;
+    }
+}
+
+- (PLKSectionKind)sectionKindFormString:(NSString *)kind {
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        return PLKSectionKindHeader;
+    }
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        return PLKSectionKindFooter;
+    }
+    
+    return PLKSectionKindAll;
+}
+
 - (CGSize)sizeForSupplementaryViewInSection:(NSInteger)section ofKind:(PLKSectionKind)kind {
     id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:section ofKind:kind];
 
@@ -88,7 +112,7 @@
     return [sizeStrategy sizeForModel:nil withView:nil inContainer:self.collectionView];
 }
 
-#pragma mark - Cell Registration
+#pragma mark - Cell/Supplementary View Registration
 
 - (void)registerNibForCellClass:(Class)cellClass {
     [self.collectionView registerNib:[cellClass plk_nibFromClassName] forCellWithReuseIdentifier:[cellClass plk_className]];
@@ -138,30 +162,6 @@
     }
     
     return nil;
-}
-
-- (NSString *)kindStringFromKind:(PLKSectionKind)kind {
-    switch (kind) {
-        case PLKSectionKindAll:
-        case PLKSectionKindHeader:
-            return UICollectionElementKindSectionHeader;
-            break;
-            
-        case PLKSectionKindFooter:
-            return UICollectionElementKindSectionFooter;
-    }
-}
-
-- (PLKSectionKind)sectionKindFormString:(NSString *)kind {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        return PLKSectionKindHeader;
-    }
-    
-    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-        return PLKSectionKindFooter;
-    }
-    
-    return PLKSectionKindAll;
 }
 
 #pragma mark - UICollectionViewDelegate
