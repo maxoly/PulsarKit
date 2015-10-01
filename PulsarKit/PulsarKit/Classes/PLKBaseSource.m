@@ -63,7 +63,7 @@
         [nc addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.container.window];
         [nc addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.container.window];
     }
-
+    
     return self;
 }
 
@@ -79,7 +79,7 @@
     if (!_sections) {
         _sections = [[PLKSections alloc] init];
     }
-
+    
     return _sections;
 }
 
@@ -149,14 +149,24 @@
     self.dataProviderBlock = dataProviderBlock;
 }
 
-- (void)addLoadingViewOnBottom {
-    if (self.scrollOptions == PLKSourceScrollOptionInfiniteOnBottom) {
-        id<PLKSectionDescriptor> sectionDescriptor = [self sectionDescriptorInSection:NSIntegerMax ofKind:PLKSectionKindBottom];
-        if (sectionDescriptor) {
-            PLKSection *section = [self.sections addSection];
-            section.sectionDescriptor = sectionDescriptor;
-        }
+- (void)setContainerSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor {
+    if ([sectionDescriptor kind] == PLKSectionKindHeader) {
+        PLKSection *section = [[PLKSection alloc] init];
+        section.special = YES;
+        section.headerDescription = sectionDescriptor;
+        [self.sections addSectionAlwaysOnTop:section];
     }
+    
+    if ([sectionDescriptor kind] == PLKSectionKindFooter) {
+        PLKSection *section = [[PLKSection alloc] init];
+        section.special = YES;
+        section.footerDescription = sectionDescriptor;
+        [self.sections addSectionAlwaysOnBottom:section];
+    }
+}
+
+- (void)showOrHideContainerSection:(BOOL)show {
+    
 }
 
 #pragma mark - Loading
@@ -203,15 +213,6 @@
     }
 }
 
-- (BOOL)hasSectionViewForScrollOption:(PLKSourceScrollOptions)scrollOptions {
-    if (self.scrollOptions == PLKSourceScrollOptionInfiniteOnBottom) {
-        id<PLKSectionDescriptor> sectionDescriptor = [self sectionDescriptorInSection:NSIntegerMax ofKind:PLKSectionKindBottom];
-        return sectionDescriptor != nil;
-    }
-    
-    return NO;
-}
-
 #pragma mark - To overrides
 
 - (void)prepareContainer {
@@ -246,7 +247,7 @@
     NSDictionary *info = [notification userInfo];
     NSTimeInterval duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:duration];
     [UIView setAnimationCurve:options];
@@ -263,7 +264,7 @@
     NSTimeInterval duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     UIEdgeInsets inset = UIEdgeInsetsMake(0.0, 0.0, keyboardHeight, 0.0);
-
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:duration];
     [UIView setAnimationCurve:options];
@@ -297,8 +298,20 @@
     PLKSection *internalSection = self.sections[section];
     id<PLKSectionDescriptor> sectionDescriptor = nil;
     
-    if (internalSection.sectionDescriptor) {
-        sectionDescriptor = internalSection.sectionDescriptor;
+    if (kind & PLKSectionKindHeader && internalSection.headerDescription) {
+        if (internalSection.headerDescription.kind == kind) {
+            sectionDescriptor = internalSection.headerDescription;
+        }
+    }
+    
+    if (kind & PLKSectionKindFooter && internalSection.footerDescription) {
+        if (internalSection.footerDescription.kind == kind) {
+            sectionDescriptor = internalSection.footerDescription;
+        }
+    }
+    
+    if (internalSection.isSpecial) {
+        return sectionDescriptor;
     }
     
     NSString *key = [NSString stringWithFormat:@"%zd.%zd", section, kind];
@@ -362,9 +375,9 @@
     if (!cellDescriptor.storyboard) {
         
         if (![self.registeredCellClasses containsObject:cellDescriptor.cellClass]) {
-        
+            
             NSString *nibPath = [cellDescriptor.cellClass plk_nibPathFromClassName];
-        
+            
             if (nibPath) {
                 [self registerNibForCellClass:cellDescriptor.cellClass];
             } else {
@@ -374,7 +387,7 @@
             [self.registeredCellClasses addObject:cellDescriptor.cellClass];
         }
     }
-
+    
     return cellDescriptor;
 }
 
@@ -397,7 +410,7 @@
         scrollView.contentOffset.y == 0) {
         [self loadDataWithDirection:PLKDirectionTop];
     }
-
+    
     if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnBottom) == PLKSourceScrollOptionInfiniteOnBottom &&
         scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height)) {
         [self loadDataWithDirection:PLKDirectionBottom];

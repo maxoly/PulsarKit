@@ -152,7 +152,19 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
  */
 - (void)update;
 
-- (void)addLoadingViewOnBottom;
+/**
+ *  Set the Top or Bottom container section.
+ *
+ *  @param sectionDescriptor The sectin descriptor.
+ */
+- (void)setContainerSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor;
+
+/**
+ *  Show or hide the container section.
+ *
+ *  @param show Show or hide boolean.
+ */
+- (void)showOrHideContainerSection:(BOOL)show;
 
 /**
  *  Register a cell descriptor.

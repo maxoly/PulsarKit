@@ -82,7 +82,6 @@
  */
 - (id<PLKView>)cellAtIndexPath:(NSIndexPath *)indexPath;
 
-- (BOOL)hasSectionViewForScrollOption:(PLKSourceScrollOptions)scrollOptions;
 
 // helper methods
 - (id)modelAtIndexPath:(NSIndexPath *)indexPath;

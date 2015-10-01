@@ -13,9 +13,7 @@
 typedef NS_OPTIONS(NSInteger, PLKSectionKind)
 {
     PLKSectionKindHeader = 1 << 0,
-    PLKSectionKindFooter = 1 << 1,
-    PLKSectionKindTop = 1 << 2,
-    PLKSectionKindBottom =1 << 3
+    PLKSectionKindFooter = 1 << 1
 };
 
 

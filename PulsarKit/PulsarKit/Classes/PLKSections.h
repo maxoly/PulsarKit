@@ -25,12 +25,19 @@
 - (void)addModel:(id)model toSectionWithKey:(id)key;
 - (void)addModels:(NSArray *)models toSectionWithKey:(id)key;
 
+- (void)removeSection:(PLKSection *)section;
+- (void)removeSections:(NSArray *)sections;
+
 - (PLKSection *)addSection;
 - (PLKSection *)addSectionWithKey:(id)key;
 - (PLKSection *)addSectionAtIndex:(NSUInteger)position;
 - (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index;
 
+- (PLKSection *)addSectionAlwaysOnTop:(PLKSection *)section;
+- (PLKSection *)addSectionAlwaysOnBottom:(PLKSection *)section;
+
 - (NSIndexSet *)addedIndexes;
+- (NSIndexSet *)removedIndexes;
 - (NSArray *)addedIndexPaths;
 - (void)resetIndexes;
 

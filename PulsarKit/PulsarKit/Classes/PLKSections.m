@@ -20,8 +20,11 @@
 // Extentions
 @interface PLKSections ()
 
+@property (nonatomic, readwrite, strong) PLKSection *topSection;
+@property (nonatomic, readwrite, strong) PLKSection *bottomSection;
 @property (nonatomic, readwrite, strong) NSMutableArray *sections;
-@property (nonatomic, readwrite, strong) NSMutableIndexSet *indexSet;
+@property (nonatomic, readwrite, strong) NSMutableIndexSet *addedIndexSet;
+@property (nonatomic, readwrite, strong) NSMutableIndexSet *removedIndexSet;
 
 @end
 
@@ -40,8 +43,38 @@
 }
 
 - (void)updateIndexSetWithIndex:(NSInteger)index {
-    [self.indexSet shiftIndexesStartingAtIndex:index by:1];
-    [self.indexSet addIndex:index];
+    [self.addedIndexSet shiftIndexesStartingAtIndex:index by:1];
+    [self.addedIndexSet addIndex:index];
+}
+
+- (void)removeIndex:(NSInteger)index {
+    if ([self.addedIndexSet containsIndex:index]) {
+        [self.addedIndexSet shiftIndexesStartingAtIndex:0 by:-1];
+    }
+    else {
+        [self.removedIndexSet addIndex:index];
+    }
+}
+
+- (PLKSection *)returnOrCreateLastSection {
+    PLKSection *section = [self.sections lastObject];
+    
+    if (!section) {
+        section = [self addSection];
+    }
+    
+    return section;
+}
+
+- (PLKSection *)returnOrCreateSectionWithKey:(id)key {
+    NSInteger index = [self indexOfSectionWithKey:key];
+    if (index == NSNotFound) {
+        PLKSection *section = [self addSection];
+        section.key = key;
+        return section;
+    }
+    
+    return self.sections[index];
 }
 
 #pragma mark - Properties
@@ -54,22 +87,32 @@
     return _sections;
 }
 
-- (NSMutableIndexSet *)indexSet {
-    if (!_indexSet) {
-        _indexSet = [[NSMutableIndexSet alloc] init];
+- (NSMutableIndexSet *)addedIndexSet {
+    if (!_addedIndexSet) {
+        _addedIndexSet = [[NSMutableIndexSet alloc] init];
     }
     
-    return _indexSet;
+    return _addedIndexSet;
+}
+
+- (NSMutableIndexSet *)removedIndexSet {
+    if (!_removedIndexSet) {
+        _removedIndexSet = [[NSMutableIndexSet alloc] init];
+    }
+    
+    return _removedIndexSet;
 }
 
 - (NSInteger)count {
-    return self.sections.count;
+    return self.sections.count + (self.topSection ? 1 : 0) + (self.bottomSection ? 1 : 0);
 }
 
 - (NSInteger)itemsCount {
     NSNumber *sum = [self.sections valueForKeyPath:@"@sum.items.@count"];
     return [sum integerValue];
 }
+
+#pragma mark - Model
 
 - (void)addModel:(id)model {
     [self addModels:@[ model ]];
@@ -95,17 +138,23 @@
     [section addModels:models];
 }
 
-#pragma mark - Sections
+#pragma mark - Indexes
 
 - (void)resetIndexes {
-    [self.indexSet removeAllIndexes];
+    [self.addedIndexSet removeAllIndexes];
+    [self.removedIndexSet removeAllIndexes];
+    
     for (PLKSection *section in self.sections) {
         [section resetIndexes];
     }
 }
+
+- (NSIndexSet *)removedIndexes {
+    return [self.removedIndexSet copy];
+}
+
 - (NSIndexSet *)addedIndexes {
-    NSIndexSet *indexSet = [self.indexSet copy];
-    return indexSet;
+    return [self.addedIndexSet copy];
 }
 
 - (NSIndexPath *)addedIndexPaths {
@@ -122,25 +171,19 @@
     return [indexPaths copy];
 }
 
-- (PLKSection *)returnOrCreateLastSection {
-    PLKSection *section = [self.sections lastObject];
-    
-    if (!section) {
-        section = [self addSection];
-    }
-    
+#pragma mark - Section
+
+- (PLKSection *)addSectionAlwaysOnTop:(PLKSection *)section {
     return section;
 }
 
-- (PLKSection *)returnOrCreateSectionWithKey:(id)key {
-    NSInteger index = [self indexOfSectionWithKey:key];
-    if (index == NSNotFound) {
-        PLKSection *section = [self addSection];
-        section.key = key;
-        return section;
+- (PLKSection *)addSectionAlwaysOnBottom:(PLKSection *)section {
+    if (!self.bottomSection) {
+        [self updateIndexSetWithIndex:self.sections.count];
     }
     
-    return self.sections[index];
+    self.bottomSection = section;
+    return section;
 }
 
 - (PLKSection *)addSection {
@@ -163,6 +206,21 @@
     return section;
 }
 
+#pragma mark - Removing 
+
+- (void)removeSection:(PLKSection *)section {
+    [self removeSections:@[ section ]];
+}
+
+- (void)removeSections:(NSArray *)sections {
+    for (PLKSection *sectionToRemove in sections) {
+        NSInteger index = [self.sections indexOfObject:sectionToRemove];
+        [self removeIndex:index];
+    }
+    
+    [self.sections removeObjectsInArray:sections];
+}
+
 #pragma mark - Items
 
 - (void)addItem:(PLKItem *)item {
@@ -177,7 +235,15 @@
 #pragma mark - Subscripting
 
 - (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index {
-    return self.sections[index];
+    if (self.topSection && index == 0) {
+        return self.topSection;
+    }
+    
+    if (index >= self.sections.count) {
+        return self.bottomSection;
+    }
+    
+    return [self.sections plk_safeObjectAtIndex:index];
 }
 
 @end

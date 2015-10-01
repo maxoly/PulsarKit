@@ -60,6 +60,7 @@
 }
 
 - (void)update {
+    [super update];
     [self.tableView reloadData];
 }
 

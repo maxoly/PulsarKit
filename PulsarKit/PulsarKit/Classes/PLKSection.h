@@ -20,8 +20,10 @@
 @property (nonatomic, readonly, copy) NSArray *items;
 @property (nonatomic, readwrite, strong) id key;
 @property (nonatomic, readwrite, strong) id model;
+@property (nonatomic, readwrite, assign, getter=isSpecial) BOOL special;
 @property (nonatomic, readwrite, strong) id<PLKCellDescriptor> cellDescriptor;
-@property (nonatomic, readwrite, strong) id<PLKSectionDescriptor> sectionDescriptor;
+@property (nonatomic, readwrite, strong) id<PLKSectionDescriptor> headerDescription;
+@property (nonatomic, readwrite, strong) id<PLKSectionDescriptor> footerDescription;
 
 - (PLKSection *)addItems:(NSArray *)items;
 - (PLKSection *)addModel:(id)model;
