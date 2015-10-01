@@ -104,7 +104,7 @@
 }
 
 - (NSInteger)count {
-    return self.sections.count + (self.topSection ? 1 : 0) + (self.bottomSection ? 1 : 0);
+    return self.sections.count + ([self.topSection isVisible] ? 1 : 0) + ([self.bottomSection isVisible] ? 1 : 0);
 }
 
 - (NSInteger)itemsCount {
@@ -235,7 +235,7 @@
 #pragma mark - Subscripting
 
 - (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index {
-    if (self.topSection && index == 0) {
+    if ([self.topSection isVisible] && index == 0) {
         return self.topSection;
     }
     

@@ -153,6 +153,7 @@
     if ([sectionDescriptor kind] == PLKSectionKindHeader) {
         PLKSection *section = [[PLKSection alloc] init];
         section.special = YES;
+        section.visible = NO;
         section.headerDescription = sectionDescriptor;
         [self.sections addSectionAlwaysOnTop:section];
     }
@@ -160,6 +161,7 @@
     if ([sectionDescriptor kind] == PLKSectionKindFooter) {
         PLKSection *section = [[PLKSection alloc] init];
         section.special = YES;
+        section.visible = NO;
         section.footerDescription = sectionDescriptor;
         [self.sections addSectionAlwaysOnBottom:section];
     }
@@ -311,6 +313,7 @@
     }
     
     if (internalSection.isSpecial) {
+        [self registerViewOfSectionDescriptor:sectionDescriptor];
         return sectionDescriptor;
     }
     
@@ -334,6 +337,12 @@
         sectionDescriptor = self.sectionDescriptors[ key ];
     }
     
+    [self registerViewOfSectionDescriptor:sectionDescriptor];
+    
+    return sectionDescriptor;
+}
+
+- (void)registerViewOfSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor {
     if (sectionDescriptor) {
         NSString *nibPath = [sectionDescriptor.sectionClass plk_nibPathFromClassName];
         
@@ -343,8 +352,6 @@
             [self registerSupplementaryViewClass:sectionDescriptor.sectionClass ofKind:sectionDescriptor.kind];
         }
     }
-    
-    return sectionDescriptor;
 }
 
 - (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath {
