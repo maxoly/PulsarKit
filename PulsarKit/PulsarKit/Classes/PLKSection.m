@@ -9,6 +9,7 @@
 #import "PLKSection.h"
 
 #import "PLKItem.h"
+#import "PLKSectionDescriptor.h"
 
 @interface PLKSection ()
 
@@ -103,6 +104,20 @@
 }
 
 #pragma mark - Convenient Constructor
+
++ (instancetype)sectionWithSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor {
+    PLKSection *section = [[self alloc] init];
+    switch (sectionDescriptor.kind) {
+        case PLKSectionKindHeader:
+            section.headerDescription = sectionDescriptor;
+            break;
+            
+        case PLKSectionKindFooter:
+            section.footerDescription = sectionDescriptor;
+    }
+
+    return section;
+}
 
 + (instancetype)sectionWithModels:(NSArray *)models {
     return [self sectionWithModels:models cellDescriptor:nil];

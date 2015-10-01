@@ -15,6 +15,8 @@
 
 @property (nonatomic, readonly, assign) NSInteger count;
 @property (nonatomic, readonly, assign) NSInteger itemsCount;
+@property (nonatomic, readwrite, strong) PLKSection *topSection;
+@property (nonatomic, readwrite, strong) PLKSection *bottomSection;
 
 - (void)addItem:(PLKItem *)item;
 - (void)addItems:(NSArray *)items;
@@ -32,9 +34,6 @@
 - (PLKSection *)addSectionWithKey:(id)key;
 - (PLKSection *)addSectionAtIndex:(NSUInteger)position;
 - (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index;
-
-- (PLKSection *)addSectionAlwaysOnTop:(PLKSection *)section;
-- (PLKSection *)addSectionAlwaysOnBottom:(PLKSection *)section;
 
 - (NSIndexSet *)addedIndexes;
 - (NSIndexSet *)removedIndexes;

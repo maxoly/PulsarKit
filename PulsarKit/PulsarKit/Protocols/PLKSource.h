@@ -12,6 +12,7 @@
 @import UIKit;
 @import Foundation;
 
+#import "PLKSectionDescriptor.h"
 
 
 /**
@@ -27,7 +28,6 @@
 @protocol PLKView;
 @protocol PLKCellHandler;
 @protocol PLKCellDescriptor;
-@protocol PLKSectionDescriptor;
 
 
 /**
@@ -164,7 +164,7 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
  *
  *  @param show Show or hide boolean.
  */
-- (void)showOrHideContainerSection:(BOOL)show;
+- (void)showOrHideContainerSectionOfKind:(PLKSectionKind)kind show:(BOOL)show;
 
 /**
  *  Register a cell descriptor.

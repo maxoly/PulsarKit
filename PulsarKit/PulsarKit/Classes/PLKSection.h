@@ -33,6 +33,7 @@
 
 - (PLKItem *)objectAtIndexedSubscript:(NSInteger)index;
 
++ (instancetype)sectionWithSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor;
 + (instancetype)sectionWithModels:(NSArray *)models;
 + (instancetype)sectionWithModels:(NSArray *)items cellDescriptor:(id<PLKCellDescriptor>)cellDescriptor;
 

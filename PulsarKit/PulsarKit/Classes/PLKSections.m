@@ -20,8 +20,6 @@
 // Extentions
 @interface PLKSections ()
 
-@property (nonatomic, readwrite, strong) PLKSection *topSection;
-@property (nonatomic, readwrite, strong) PLKSection *bottomSection;
 @property (nonatomic, readwrite, strong) NSMutableArray *sections;
 @property (nonatomic, readwrite, strong) NSMutableIndexSet *addedIndexSet;
 @property (nonatomic, readwrite, strong) NSMutableIndexSet *removedIndexSet;
@@ -112,6 +110,30 @@
     return [sum integerValue];
 }
 
+- (void)setTopSection:(PLKSection *)topSection {
+    if (!_topSection) {
+        [self updateIndexSetWithIndex:0];
+    }
+    
+    if (!topSection && _topSection) {
+        [self removeIndex:0];
+    }
+    
+    _topSection = topSection;
+}
+
+- (void)setBottomSection:(PLKSection *)bottomSection {
+    if (!_bottomSection) {
+        [self updateIndexSetWithIndex:self.count];
+    }
+    
+    if (!bottomSection && _bottomSection) {
+        [self removeIndex:self.count];
+    }
+    
+    _bottomSection = bottomSection;
+}
+
 #pragma mark - Model
 
 - (void)addModel:(id)model {
@@ -160,7 +182,7 @@
 - (NSIndexPath *)addedIndexPaths {
     NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
     
-    for (NSInteger sectionIndex = 0; sectionIndex < self.sections.count; sectionIndex++) {
+    for (NSInteger sectionIndex = 0; sectionIndex < self.count; sectionIndex++) {
         PLKSection *section = self.sections[sectionIndex];
         NSIndexSet *indexSet = section.addedIndexes;
         [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
@@ -172,19 +194,6 @@
 }
 
 #pragma mark - Section
-
-- (PLKSection *)addSectionAlwaysOnTop:(PLKSection *)section {
-    return section;
-}
-
-- (PLKSection *)addSectionAlwaysOnBottom:(PLKSection *)section {
-    if (!self.bottomSection) {
-        [self updateIndexSetWithIndex:self.sections.count];
-    }
-    
-    self.bottomSection = section;
-    return section;
-}
 
 - (PLKSection *)addSection {
     return [self addSectionAtIndex:self.sections.count];

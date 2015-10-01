@@ -39,6 +39,7 @@
 @property (nonatomic, readwrite, strong) NSMutableArray *cellHandlers;
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cellDescriptors;
 @property (nonatomic, readwrite, strong) NSMutableDictionary *sectionDescriptors;
+@property (nonatomic, readwrite, strong) NSMutableDictionary *containerSectionDescriptors;
 @property (nonatomic, readwrite, copy) PLKSourceDataProviderBlock dataProviderBlock;
 
 @end
@@ -89,6 +90,14 @@
     }
     
     return _sectionDescriptors;
+}
+
+- (NSMutableDictionary *)containerSectionDescriptors {
+    if (!_containerSectionDescriptors) {
+        _containerSectionDescriptors = [[NSMutableDictionary alloc] init];
+    }
+    
+    return _containerSectionDescriptors;
 }
 
 - (NSMutableDictionary *)cellDescriptors {
@@ -150,25 +159,22 @@
 }
 
 - (void)setContainerSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor {
-    if ([sectionDescriptor kind] == PLKSectionKindHeader) {
-        PLKSection *section = [[PLKSection alloc] init];
-        section.special = YES;
-        section.visible = NO;
-        section.headerDescription = sectionDescriptor;
-        [self.sections addSectionAlwaysOnTop:section];
-    }
-    
-    if ([sectionDescriptor kind] == PLKSectionKindFooter) {
-        PLKSection *section = [[PLKSection alloc] init];
-        section.special = YES;
-        section.visible = NO;
-        section.footerDescription = sectionDescriptor;
-        [self.sections addSectionAlwaysOnBottom:section];
-    }
+    self.containerSectionDescriptors[ @(sectionDescriptor.kind) ] = sectionDescriptor;
 }
 
-- (void)showOrHideContainerSection:(BOOL)show {
-    
+- (void)showOrHideContainerSectionOfKind:(PLKSectionKind)kind show:(BOOL)show {
+    id<PLKSectionDescriptor> sectionDescriptor = self.containerSectionDescriptors[ @(kind) ];
+    if (sectionDescriptor) {
+        switch (kind) {
+            case PLKSectionKindHeader:
+                self.sections.topSection = [PLKSection sectionWithSectionDescriptor:sectionDescriptor];
+                break;
+                
+            case PLKSectionKindFooter:
+                self.sections.bottomSection = [PLKSection sectionWithSectionDescriptor:sectionDescriptor];
+                break;
+        }
+    }
 }
 
 #pragma mark - Loading
