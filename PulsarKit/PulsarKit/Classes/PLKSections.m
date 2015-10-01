@@ -102,7 +102,7 @@
 }
 
 - (NSInteger)count {
-    return self.sections.count + ([self.topSection isVisible] ? 1 : 0) + ([self.bottomSection isVisible] ? 1 : 0);
+    return self.sections.count + (self.topSection ? 1 : 0) + (self.bottomSection ? 1 : 0);
 }
 
 - (NSInteger)itemsCount {
@@ -183,7 +183,7 @@
     NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
     
     for (NSInteger sectionIndex = 0; sectionIndex < self.count; sectionIndex++) {
-        PLKSection *section = self.sections[sectionIndex];
+        PLKSection *section = self[sectionIndex];
         NSIndexSet *indexSet = section.addedIndexes;
         [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
             [indexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:sectionIndex]];
@@ -215,7 +215,7 @@
     return section;
 }
 
-#pragma mark - Removing 
+#pragma mark - Removing
 
 - (void)removeSection:(PLKSection *)section {
     [self removeSections:@[ section ]];
@@ -244,7 +244,7 @@
 #pragma mark - Subscripting
 
 - (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index {
-    if ([self.topSection isVisible] && index == 0) {
+    if (self.topSection && index == 0) {
         return self.topSection;
     }
     

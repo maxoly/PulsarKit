@@ -165,13 +165,19 @@
 - (void)showOrHideContainerSectionOfKind:(PLKSectionKind)kind show:(BOOL)show {
     id<PLKSectionDescriptor> sectionDescriptor = self.containerSectionDescriptors[ @(kind) ];
     if (sectionDescriptor) {
+        PLKSection *section = nil;
+        if (show) {
+            section = [PLKSection sectionWithSectionDescriptor:sectionDescriptor];
+            section.special = YES;
+        }
+        
         switch (kind) {
             case PLKSectionKindHeader:
-                self.sections.topSection = [PLKSection sectionWithSectionDescriptor:sectionDescriptor];
+                self.sections.topSection = section;
                 break;
                 
             case PLKSectionKindFooter:
-                self.sections.bottomSection = [PLKSection sectionWithSectionDescriptor:sectionDescriptor];
+                self.sections.bottomSection = section;
                 break;
         }
     }
