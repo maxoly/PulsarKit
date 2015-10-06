@@ -123,12 +123,12 @@
 }
 
 - (void)setBottomSection:(PLKSection *)bottomSection {
-    if (!_bottomSection) {
+    if (!_bottomSection && bottomSection) {
         [self updateIndexSetWithIndex:self.count];
     }
     
     if (!bottomSection && _bottomSection) {
-        [self removeIndex:self.count];
+        [self removeIndex:self.count-1];
     }
     
     _bottomSection = bottomSection;
