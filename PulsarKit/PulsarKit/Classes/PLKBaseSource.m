@@ -431,7 +431,7 @@
     }
     
     if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnBottom) == PLKSourceScrollOptionInfiniteOnBottom &&
-        scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height)) {
+        scrollView.contentOffset.y == (scrollView.contentSize.height - (scrollView.frame.size.height - scrollView.contentInset.bottom))) {
         [self loadDataWithDirection:PLKDirectionBottom];
     }
     
