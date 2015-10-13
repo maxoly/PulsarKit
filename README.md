@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
 [![License](https://img.shields.io/cocoapods/l/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
 [![Platform](https://img.shields.io/cocoapods/p/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
+[![Dependency Status](https://www.versioneye.com/objective-c/pulsarkit/0.2.4/badge.svg)](https://www.versioneye.com/objective-c/pulsarkit/0.2.4)
 [![Reference Status](https://www.versioneye.com/objective-c/pulsarkit/reference_badge.svg?style=flat)](https://www.versioneye.com/objective-c/pulsarkit/references)
 [![Twitter](https://img.shields.io/badge/twitter-@maxoly-blue.svg?style=flat)](http://twitter.com/maxoly)
 
