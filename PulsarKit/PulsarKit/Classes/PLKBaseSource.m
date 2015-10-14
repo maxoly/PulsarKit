@@ -420,7 +420,17 @@
 
 #pragma mark - UIScrollViewDelegate
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.onDidEndDecelerating) {
+        self.onDidEndDecelerating(scrollView);
+    }
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.onDidScroll) {
+        self.onDidScroll(scrollView);
+    }
+    
     if (self.sections.itemsCount == 0) {
         return;
     }

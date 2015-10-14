@@ -106,6 +106,13 @@ typedef void (^PLKSourceCellConfigurationBlock)(id<PLKView> cell);
  */
 typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
 
+/**
+ *  Container did scroll block
+ *
+ *  @param scrollView The scroll view.
+ */
+typedef void(^PLKSourceDidScrollBlock)(UIScrollView *scrollView);
+
 
 
 /**
@@ -127,6 +134,16 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
  *  Did Select item/row block.
  */
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
+
+/**
+ *  Did scroll.
+ */
+@property (nonatomic, readwrite, copy) PLKSourceDidScrollBlock onDidScroll;
+
+/**
+ *  Did end decelerating
+ */
+@property (nonatomic, readwrite, copy) PLKSourceDidScrollBlock onDidEndDecelerating;
 
 /**
  *  Cell configuration block.

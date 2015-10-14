@@ -28,7 +28,7 @@
 /**
  *  Source abstract class.
  */
-@interface PLKBaseSource : NSObject <PLKSource>
+@interface PLKBaseSource : NSObject <PLKSource, UIScrollViewDelegate>
 
 // properties
 @property (nonatomic, readonly, strong) NSCache *cellsCache;
@@ -41,6 +41,8 @@
 @property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onBeforeCellConfiguration;
 @property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onAfterCellConfiguration;
 @property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
+@property (nonatomic, readwrite, copy) PLKSourceDidScrollBlock onDidScroll;
+@property (nonatomic, readwrite, copy) PLKSourceDidScrollBlock onDidEndDecelerating;
 
 /**
  *   Unavailable init.
