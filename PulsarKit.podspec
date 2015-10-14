@@ -25,8 +25,10 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
-  
+
+  s.header_mappings_dir = 'PulsarKit/PulsarKit'
   s.source_files = 'PulsarKit/PulsarKit/**/*'
+  s.preserve_paths = 'PulsarKit/PulsarKit'
   
   s.frameworks = 'UIKit'
 
