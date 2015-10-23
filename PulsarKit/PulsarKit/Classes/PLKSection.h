@@ -30,6 +30,9 @@
 - (PLKSection *)addModels:(NSArray *)models;
 - (PLKSection *)addModelsOnTop:(NSArray *)models;
 
+- (void)removeModel:(id)model;
+- (void)removeModels:(NSArray *)models;
+
 - (PLKItem *)objectAtIndexedSubscript:(NSInteger)index;
 
 + (instancetype)sectionWithSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor;
@@ -38,6 +41,7 @@
 
 
 - (NSIndexSet *)addedIndexes;
+- (NSIndexSet *)removedIndexes;
 - (void)resetIndexes;
 
 @end

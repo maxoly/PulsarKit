@@ -14,7 +14,8 @@
 @interface PLKSection ()
 
 @property (nonatomic, readwrite, strong) NSMutableArray *itemsInternal;
-@property (nonatomic, readwrite, strong) NSMutableIndexSet *indexSet;
+@property (nonatomic, readwrite, strong) NSMutableIndexSet *addedIndexSet;
+@property (nonatomic, readwrite, strong) NSMutableIndexSet *removedIndexSet;
 
 @end
 
@@ -23,8 +24,17 @@
 #pragma mark - Helpers
 
 - (void)updateIndexSetWithIndex:(NSInteger)index {
-    [self.indexSet shiftIndexesStartingAtIndex:index by:1];
-    [self.indexSet addIndex:index];
+    [self.addedIndexSet shiftIndexesStartingAtIndex:index by:1];
+    [self.addedIndexSet addIndex:index];
+}
+
+- (void)removeIndex:(NSInteger)index {
+    if ([self.addedIndexSet containsIndex:index]) {
+        [self.addedIndexSet shiftIndexesStartingAtIndex:0 by:-1];
+    }
+    else {
+        [self.removedIndexSet addIndex:index];
+    }
 }
 
 #pragma mark - Properties
@@ -37,12 +47,20 @@
     return _itemsInternal;
 }
 
-- (NSMutableIndexSet *)indexSet {
-    if (!_indexSet) {
-        _indexSet = [[NSMutableIndexSet alloc] init];
+- (NSMutableIndexSet *)addedIndexSet {
+    if (!_addedIndexSet) {
+        _addedIndexSet = [[NSMutableIndexSet alloc] init];
     }
     
-    return _indexSet;
+    return _addedIndexSet;
+}
+
+- (NSMutableIndexSet *)removedIndexSet {
+    if (!_removedIndexSet) {
+        _removedIndexSet = [[NSMutableIndexSet alloc] init];
+    }
+    
+    return _removedIndexSet;
 }
 
 - (NSArray *)items {
@@ -52,12 +70,18 @@
 #pragma mark - Indexes
 
 - (NSIndexSet *)addedIndexes {
-    NSIndexSet *indexSet = [self.indexSet copy];
+    NSIndexSet *indexSet = [self.addedIndexSet copy];
+    return indexSet;
+}
+
+- (NSIndexSet *)removedIndexes {
+    NSIndexSet *indexSet = [self.removedIndexSet copy];
     return indexSet;
 }
 
 - (void)resetIndexes {
-    [self.indexSet removeAllIndexes];
+    [self.addedIndexSet removeAllIndexes];
+    [self.removedIndexSet removeAllIndexes];
 }
 
 #pragma mark - Items
@@ -74,13 +98,22 @@
 
 - (PLKSection *)addItems:(NSArray *)items {
     NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.itemsInternal.count, items.count)];
-    [self.indexSet shiftIndexesStartingAtIndex:self.itemsInternal.count by:items.count];
-    [self.indexSet addIndexes:indexes];
+    [self.addedIndexSet shiftIndexesStartingAtIndex:self.itemsInternal.count by:items.count];
+    [self.addedIndexSet addIndexes:indexes];
     [self.itemsInternal addObjectsFromArray:items];
     return self;
 }
 
 #pragma mark - Models
+
+- (NSInteger)indexOfItemForModel:(id)model {
+    NSInteger index = [self.itemsInternal indexOfObjectPassingTest:^BOOL(PLKItem  * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+        *stop = item.model == model;
+        return *stop;
+    }];
+    
+    return index;
+}
 
 - (PLKSection *)addModel:(id)model {
     return [self addModels:@[ model ]];
@@ -95,6 +128,22 @@
     NSArray *items = [self createItemsFromModels:models];
     [self.itemsInternal insertObjects:items atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, items.count)]];
     return self;
+}
+
+- (void)removeModel:(id)model {
+    [self removeModels:@[ model ]];
+}
+
+- (void)removeModels:(NSArray *)models {
+    for (id modelToRemove in models) {
+        NSInteger index = [self indexOfItemForModel:modelToRemove];
+        if (index != NSNotFound) {
+            [self removeIndex:index];
+            
+        }
+    }
+    
+    [self.itemsInternal removeObjectsAtIndexes:self.removedIndexes];
 }
 
 #pragma mark - Subscripting
@@ -115,7 +164,7 @@
         case PLKSectionKindFooter:
             section.footerDescription = sectionDescriptor;
     }
-
+    
     return section;
 }
 

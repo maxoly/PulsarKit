@@ -71,19 +71,20 @@
 
 - (void)update {
     [super update];
-    //    [self.collectionView.collectionViewLayout invalidateLayout];
-    //    [self.collectionView reloadData];
     
     NSIndexSet *addedIndexes = [self.sections addedIndexes];
-    NSArray *addedIndexPaths = [self.sections addedIndexPaths];
     NSIndexSet *removedIndexes = [self.sections removedIndexes];
+    
+    NSArray *addedIndexPaths = [self.sections addedIndexPaths];
+    NSArray *removedIndexPaths = [self.sections removedIndexPaths];
     
     __weak typeof(self) weakSelf = self;
     
     [self.collectionView performBatchUpdates:^{
         [weakSelf.collectionView insertSections:addedIndexes];
-        [weakSelf.collectionView insertItemsAtIndexPaths:addedIndexPaths];
         [weakSelf.collectionView deleteSections:removedIndexes];
+        [weakSelf.collectionView insertItemsAtIndexPaths:addedIndexPaths];
+        [weakSelf.collectionView deleteItemsAtIndexPaths:removedIndexPaths];
     } completion:^(BOOL finished) {
         [weakSelf.sections resetIndexes];
     }];
@@ -161,6 +162,7 @@
 #pragma mark - UICollecitonViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    [self.sections resetIndexes];
     return self.sections.count;
 }
 

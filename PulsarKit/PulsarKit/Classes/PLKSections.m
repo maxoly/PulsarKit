@@ -193,6 +193,20 @@
     return [indexPaths copy];
 }
 
+- (NSIndexPath *)removedIndexPaths {
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    
+    for (NSInteger sectionIndex = 0; sectionIndex < self.count; sectionIndex++) {
+        PLKSection *section = self[sectionIndex];
+        NSIndexSet *indexSet = section.removedIndexes;
+        [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:sectionIndex]];
+        }];
+    }
+    
+    return [indexPaths copy];
+}
+
 #pragma mark - Section
 
 - (PLKSection *)addSection {

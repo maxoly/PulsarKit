@@ -38,6 +38,7 @@
 - (NSIndexSet *)addedIndexes;
 - (NSIndexSet *)removedIndexes;
 - (NSArray *)addedIndexPaths;
+- (NSArray *)removedIndexPaths;
 - (void)resetIndexes;
 
 @end
