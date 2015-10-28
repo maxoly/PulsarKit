@@ -231,6 +231,10 @@
 
 #pragma mark - Removing
 
+- (void)removeAll {
+    [self removeSections:self.sections.copy];
+}
+
 - (void)removeSection:(PLKSection *)section {
     [self removeSections:@[ section ]];
 }

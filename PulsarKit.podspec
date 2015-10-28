@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PulsarKit"
-  s.version          = "0.2.5"
+  s.version          = "0.2.6"
   s.summary          = "PulsarKit is a lightweight framework to slim down your view controller when using UITableView or UICollectionView."
   s.description      = <<-DESC
                         A lightweight framework to slim down your view controller. PulsarKit is a set of class that provides all 
@@ -17,7 +17,6 @@ Pod::Spec.new do |s|
                         for each row, handling row selection and many other optional features. 
                        DESC
   s.homepage         = "https://github.com/maxoly/PulsarKit"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Massimo Oliviero" => "massimo.oliviero@gmail.com" }
   s.source           = { :git => "https://github.com/maxoly/PulsarKit.git", :tag => s.version.to_s }

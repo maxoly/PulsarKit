@@ -27,6 +27,7 @@
 - (void)addModel:(id)model toSectionWithKey:(id)key;
 - (void)addModels:(NSArray *)models toSectionWithKey:(id)key;
 
+- (void)removeAll;
 - (void)removeSection:(PLKSection *)section;
 - (void)removeSections:(NSArray *)sections;
 
