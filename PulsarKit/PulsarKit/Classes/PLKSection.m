@@ -39,6 +39,10 @@
 
 #pragma mark - Properties
 
+- (NSArray *)models {
+    return [self.items valueForKeyPath:@"@unionOfObjects.model"];
+}
+
 - (NSMutableArray *)itemsInternal {
     if (!_itemsInternal) {
         _itemsInternal = [[NSMutableArray alloc] init];

@@ -129,7 +129,7 @@
         [self.cellsCache setObject:cell forKey:[cellDescriptor.cellClass plk_className]];
     }
     
-    CGSize size = [sizeStrategy sizeForModel:model withView:cell inContainer:tableView];
+    CGSize size = [sizeStrategy sizeForModel:model withView:cell forSource:self];
     return size.height;
 }
 

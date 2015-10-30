@@ -18,6 +18,8 @@
 @interface PLKSection : NSObject
 
 @property (nonatomic, readonly, copy) NSArray *items;
+@property (nonatomic, readonly, copy) NSArray *models;
+
 @property (nonatomic, readwrite, strong) id key;
 @property (nonatomic, readwrite, strong) id model;
 @property (nonatomic, readwrite, assign, getter=isSpecial) BOOL special;

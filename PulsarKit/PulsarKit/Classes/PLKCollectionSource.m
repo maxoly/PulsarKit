@@ -134,7 +134,7 @@
     }
     
     id<PLKSizeStrategy> sizeStrategy = sectionDescriptor.sizeStrategy;
-    return [sizeStrategy sizeForModel:nil withView:sectionView inContainer:self.collectionView];
+    return [sizeStrategy sizeForModel:nil withView:sectionView forSource:self];
 }
 
 #pragma mark - Cell/Supplementary View Registration
@@ -232,7 +232,7 @@
         [self.cellsCache setObject:cell forKey:[cellDescriptor.cellClass plk_className]];
     }
     
-    CGSize size = [sizeStrategy sizeForModel:model withView:cell inContainer:collectionView];
+    CGSize size = [sizeStrategy sizeForModel:model withView:cell forSource:self];
     return size;
 }
 

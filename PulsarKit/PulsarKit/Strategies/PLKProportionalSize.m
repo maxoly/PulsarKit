@@ -8,6 +8,7 @@
 
 #import "PLKProportionalSize.h"
 
+#import "PLKSource.h"
 
 typedef NS_ENUM(NSUInteger, PLKProportionalType) {
     PLKProportionalSame,
@@ -33,7 +34,9 @@ typedef NS_ENUM(NSUInteger, PLKProportionalType) {
 
 #pragma mark - PLKSizeStrategy
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)cell inContainer:(UIScrollView *)container {
+- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source {
+    UIScrollView *container = source.container;
+    
     CGFloat width = 0;
     CGFloat height = 0;
     

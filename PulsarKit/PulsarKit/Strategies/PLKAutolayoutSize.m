@@ -11,6 +11,7 @@
 #import "NSObject+PulsarKit.h"
 
 #import "PLKView.h"
+#import "PLKSource.h"
 
 @interface PLKAutolayoutSize ()
 
@@ -28,8 +29,10 @@
     return _sizeCache;
 }
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)cell inContainer:(UIScrollView *)container {
-    NSString *key = [NSString stringWithFormat:@"%@.{%@}.%zd", [cell plk_className], NSStringFromCGSize(container.frame.size) ,[model hash]];
+- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source {
+    UIScrollView *container = source.container;
+    
+    NSString *key = [NSString stringWithFormat:@"%@.{%@}.%zd", [view plk_className], NSStringFromCGSize(container.frame.size) ,[model hash]];
     
     if (self.isCacheEnabled) {
         NSValue *size = [self.sizeCache objectForKey:key];
@@ -42,25 +45,25 @@
     CGRect bounds = container.bounds;
 
     
-    [cell setFrame:bounds];
-    [cell setBounds:bounds];
+    [view setFrame:bounds];
+    [view setBounds:bounds];
     
-    if ([cell conformsToProtocol:@protocol(PLKView)]) {
-        if ([cell respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {
-            [cell prepareForLayoutWithModel:model inBounds:bounds];
+    if ([view conformsToProtocol:@protocol(PLKView)]) {
+        if ([view respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {
+            [view prepareForLayoutWithModel:model inBounds:bounds];
         }
     }
 
-    [cell setNeedsUpdateConstraints];
-    [cell layoutIfNeeded];
+    [view setNeedsUpdateConstraints];
+    [view layoutIfNeeded];
     
     
     CGSize cellSize;
-    if ([cell isKindOfClass:[UITableViewCell class]]) {
-        UITableViewCell *tableCell = (UITableViewCell *)cell;
+    if ([view isKindOfClass:[UITableViewCell class]]) {
+        UITableViewCell *tableCell = (UITableViewCell *)view;
         cellSize = [tableCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     } else {
-        cellSize = [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        cellSize = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     }
     
     CGSize finalSize = CGSizeMake(CGRectGetWidth(bounds), cellSize.height);

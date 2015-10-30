@@ -13,11 +13,11 @@
 
 
 @protocol PLKView;
-
+@protocol PLKSource;
 
 
 @protocol PLKSizeStrategy <NSObject>
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view inContainer:(UIScrollView *)container;
+- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source;
 
 @end

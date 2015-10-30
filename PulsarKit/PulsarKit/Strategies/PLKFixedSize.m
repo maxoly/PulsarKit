@@ -9,6 +9,7 @@
 #import "PLKFixedSize.h"
 
 #import "PLKView.h"
+#import "PLKSource.h"
 
 typedef NS_ENUM(NSInteger, PLKFixedSizeType) {
     PLKFixedSizeTypeWidth,
@@ -27,10 +28,12 @@ typedef NS_ENUM(NSInteger, PLKFixedSizeType) {
 
 #pragma mark - PLKSizeStrategy
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)cell inContainer:(UIScrollView *)container {
-    if ([cell conformsToProtocol:@protocol(PLKView)]) {
-        if ([cell respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {
-            [cell prepareForLayoutWithModel:model inBounds:container.bounds];
+- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source {
+    UIScrollView *container = source.container;
+    
+    if ([view conformsToProtocol:@protocol(PLKView)]) {
+        if ([view respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {
+            [view prepareForLayoutWithModel:model inBounds:container.bounds];
         }
     }
     

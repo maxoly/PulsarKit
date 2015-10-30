@@ -77,6 +77,10 @@
 
 #pragma mark - Properties
 
+- (NSArray *)models {
+    return [self.sections valueForKeyPath:@"@unionOfArrays.models"];
+}
+
 - (NSMutableArray *)sections {
     if (!_sections) {
         _sections = [[NSMutableArray alloc] init];

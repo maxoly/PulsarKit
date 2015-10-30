@@ -13,6 +13,7 @@
 
 @interface PLKSections : NSObject
 
+@property (nonatomic, readonly, copy) NSArray *models;
 @property (nonatomic, readonly, assign) NSInteger count;
 @property (nonatomic, readonly, assign) NSInteger itemsCount;
 @property (nonatomic, readwrite, strong) PLKSection *topSection;
