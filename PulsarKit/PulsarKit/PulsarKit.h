@@ -34,6 +34,7 @@
 #import "PLKFixedSize.h"
 #import "PLKAutolayoutSize.h"
 #import "PLKProportionalSize.h"
+#import "PLKNumberOfCellsSize.h"
 
 // Handlers
 #import "PLKClassCellHandler.h"
