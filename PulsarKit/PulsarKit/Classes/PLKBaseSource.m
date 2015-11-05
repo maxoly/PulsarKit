@@ -32,6 +32,7 @@
  */
 @interface PLKBaseSource ()
 
+@property (nonatomic, readwrite, assign) UIEdgeInsets originalContentInset;
 @property (nonatomic, readwrite, strong) NSCache *cellsCache;
 @property (nonatomic, readwrite, strong) NSCache *sectionsCache;
 @property (nonatomic, readwrite, strong) PLKSections *sections;
@@ -267,8 +268,8 @@
     [UIView setAnimationCurve:options];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDelegate:self];
-    [self.container setContentInset:UIEdgeInsetsZero];
-    [self.container setScrollIndicatorInsets:UIEdgeInsetsZero];
+    [self.container setContentInset:self.originalContentInset];
+    [self.container setScrollIndicatorInsets:self.originalContentInset];
     [UIView commitAnimations];
 }
 
@@ -277,7 +278,9 @@
     CGFloat keyboardHeight = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     NSTimeInterval duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    UIEdgeInsets inset = UIEdgeInsetsMake(0.0, 0.0, keyboardHeight, 0.0);
+    self.originalContentInset = self.container.contentInset;
+    UIEdgeInsets inset = self.container.contentInset;
+    inset.bottom += keyboardHeight;
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:duration];
