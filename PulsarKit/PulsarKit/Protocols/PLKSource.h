@@ -97,7 +97,7 @@ typedef void (^PLKSourceDidSelectItemBlock)(NSIndexPath *indexPath, id model);
  *
  *  @param cell The cell.
  */
-typedef void (^PLKSourceCellConfigurationBlock)(id<PLKView> cell);
+typedef void (^PLKSourceCellConfigurationBlock)(id<PLKView> view);
 
 /**
  *  Data provider block.

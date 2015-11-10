@@ -90,7 +90,10 @@
 - (NSArray *)cellHandlersAtIndexPath:(NSIndexPath *)indexPath;
 - (id<PLKCellDescriptor>)cellDescriptorAtIndexPath:(NSIndexPath *)indexPath;
 - (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(PLKSectionKind)kind;
-- (void)configureCell:(UIView<PLKView> *)cell atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
+
+// cell and section life'cycle
+- (void)prepareView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
+- (void)willDisplayView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
 - (void)configureSection:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
 
 // to override

@@ -210,22 +210,26 @@
     }
 }
 
-- (void)configureCell:(UIView<PLKView> *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)prepareView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath {
+    [view layoutIfNeeded];
+}
+
+- (void)willDisplayView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath {
     if (self.onBeforeCellConfiguration) {
-        self.onBeforeCellConfiguration(cell);
+        self.onBeforeCellConfiguration(view);
     }
     
     if (self.onCellConfiguration) {
-        self.onCellConfiguration(cell);
+        self.onCellConfiguration(view);
     } else {
         id model = [self modelAtIndexPath:indexPath];
-        if ([cell respondsToSelector:@selector(configureWithModel:)]) {
-            [cell configureWithModel:model];
+        if ([view respondsToSelector:@selector(configureWithModel:)]) {
+            [view configureWithModel:model];
         }
     }
     
     if (self.onAfterCellConfiguration) {
-        self.onAfterCellConfiguration(cell);
+        self.onAfterCellConfiguration(view);
     }
 }
 

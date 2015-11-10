@@ -91,13 +91,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
     UITableViewCell<PLKView> *cell = [tableView dequeueReusableCellWithIdentifier:[cellDescriptor.cellClass plk_className] forIndexPath:indexPath];
+    [super prepareView:cell atIndexPath:indexPath];
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell<PLKView> *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super configureCell:cell atIndexPath:indexPath];
+    [super willDisplayView:cell atIndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
