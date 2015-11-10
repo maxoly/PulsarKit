@@ -32,6 +32,7 @@
  */
 @interface PLKBaseSource ()
 
+@property (nonatomic, readwrite, assign, getter=isOriginalContentInsetSaved) BOOL originalContentInsetSaved;
 @property (nonatomic, readwrite, assign) UIEdgeInsets originalContentInset;
 @property (nonatomic, readwrite, strong) NSCache *cellsCache;
 @property (nonatomic, readwrite, strong) NSCache *sectionsCache;
@@ -256,12 +257,22 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerSupplementaryNibForViewClass: method" userInfo:nil];
 }
 
+#pragma mark - Helpers
+
+- (void)storeOriginalContentInset:(BOOL)force {
+    if (!self.isOriginalContentInsetSaved || force) {
+        self.originalContentInset = self.container.contentInset;
+        self.originalContentInsetSaved = YES;
+    }
+}
+
 #pragma mark - Notifications
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     NSDictionary *info = [notification userInfo];
     NSTimeInterval duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    [self storeOriginalContentInset:NO];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:duration];
@@ -278,8 +289,8 @@
     CGFloat keyboardHeight = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     NSTimeInterval duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    self.originalContentInset = self.container.contentInset;
-    UIEdgeInsets inset = self.container.contentInset;
+    [self storeOriginalContentInset:YES];
+    UIEdgeInsets inset = self.originalContentInset;
     inset.bottom += keyboardHeight;
     
     [UIView beginAnimations:nil context:nil];
