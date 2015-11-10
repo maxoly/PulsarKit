@@ -9,7 +9,7 @@
 [![Release](https://img.shields.io/github/release/maxoly/PulsarKit.svg)](/releases)
 [![LICENSE](http://img.shields.io/badge/License-MIT-lightgrey.svg)](/LICENSE)
 
-[![Dependency Status](https://www.versioneye.com/objective-c/pulsarkit/0.3.1/badge.svg)](https://www.versioneye.com/objective-c/pulsarkit/0.3.1)
+[![Dependency Status](https://www.versioneye.com/objective-c/pulsarkit/0.3.2/badge.svg)](https://www.versioneye.com/objective-c/pulsarkit/0.3.2)
 [![Reference Status](https://www.versioneye.com/objective-c/pulsarkit/reference_badge.svg?style=flat)](https://www.versioneye.com/objective-c/pulsarkit/references)
 [![Twitter](https://img.shields.io/badge/twitter-@maxoly-blue.svg?style=flat)](http://twitter.com/maxoly)
 
