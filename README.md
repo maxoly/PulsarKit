@@ -1,14 +1,13 @@
 # PulsarKit
 
-[![iOS 8.0+](http://img.shields.io/badge/iOS-8.0%2B-blue.svg)]()
-[![Xcode 7.1](http://img.shields.io/badge/Xcode-7.1-blue.svg)]()
-[![Platform](https://img.shields.io/cocoapods/p/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
+[![iOS 8.0+](http://img.shields.io/badge/iOS-8.0%2B-blue.svg)](http://cocoapods.org/pods/PulsarKit)
+[![Xcode 7.1](http://img.shields.io/badge/Xcode-7.1-blue.svg)](http://cocoapods.org/pods/PulsarKit)
+[![Platform](https://img.shields.io/badge/Platform-iOS-blue.svg)](http://cocoapods.org/pods/PulsarKit)
 [![Version](https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
 
 [![Build Status](https://travis-ci.org/maxoly/PulsarKit.svg)](https://travis-ci.org/maxoly/PulsarKit)
 [![Release](https://img.shields.io/github/release/maxoly/PulsarKit.svg)](/releases)
 [![LICENSE](http://img.shields.io/badge/License-MIT-lightgrey.svg)](/LICENSE)
-[![License](https://img.shields.io/cocoapods/l/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
 
 [![Dependency Status](https://www.versioneye.com/objective-c/pulsarkit/0.3.1/badge.svg)](https://www.versioneye.com/objective-c/pulsarkit/0.3.1)
 [![Reference Status](https://www.versioneye.com/objective-c/pulsarkit/reference_badge.svg?style=flat)](https://www.versioneye.com/objective-c/pulsarkit/references)
