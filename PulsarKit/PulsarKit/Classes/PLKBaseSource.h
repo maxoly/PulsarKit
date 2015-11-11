@@ -35,14 +35,10 @@
 @property (nonatomic, readonly, strong) NSCache *sectionsCache;
 @property (nonatomic, readonly, strong) UIScrollView *container;
 @property (nonatomic, readonly, strong) PLKSections *sections;
+@property (nonatomic, readwrite, weak) id<PLKSourceDelegate> delegate;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 @property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;
-@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onCellConfiguration;
-@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onBeforeCellConfiguration;
-@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onAfterCellConfiguration;
-@property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
-@property (nonatomic, readwrite, copy) PLKSourceDidScrollBlock onDidScroll;
-@property (nonatomic, readwrite, copy) PLKSourceDidScrollBlock onDidEndDecelerating;
+
 
 /**
  *   Unavailable init.
@@ -92,9 +88,10 @@
 - (id<PLKSectionDescriptor>)sectionDescriptorInSection:(NSInteger)section ofKind:(PLKSectionKind)kind;
 
 // cell and section life'cycle
-- (void)prepareView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
-- (void)willDisplayView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
-- (void)configureSection:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
+- (void)prepareView:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
+- (void)willDisplayView:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
+- (void)configureSection:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
+- (void)didSelectView:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
 
 // to override
 - (void)registerNibForCellClass:(Class)cellClass;

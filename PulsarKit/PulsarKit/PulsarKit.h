@@ -11,6 +11,7 @@
 #import "PLKSource.h"
 #import "PLKCellHandler.h"
 #import "PLKSizeStrategy.h"
+#import "PLKSourceDelegate.h"
 #import "PLKCellDescriptor.h"
 #import "PLKSectionDescriptor.h"
 

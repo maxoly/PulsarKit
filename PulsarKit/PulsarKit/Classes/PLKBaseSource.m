@@ -203,7 +203,7 @@
 
 #pragma mark - PLKBaseSource
 
-- (void)configureSection:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureSection:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath {
     id model = [self modelAtSection:indexPath.section];
     if ([view respondsToSelector:@selector(configureWithModel:)]) {
         [view configureWithModel:model];
@@ -214,13 +214,13 @@
     [view layoutIfNeeded];
 }
 
-- (void)willDisplayView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath {
-    if (self.onBeforeCellConfiguration) {
-        self.onBeforeCellConfiguration(view);
+- (void)willDisplayView:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(source:willConfigureView:)]) {
+        [self.delegate source:self willConfigureView:view];
     }
     
-    if (self.onCellConfiguration) {
-        self.onCellConfiguration(view);
+    if ([self.delegate respondsToSelector:@selector(source:willConfigureView:)]) {
+        [self.delegate source:self configureView:view];
     } else {
         id model = [self modelAtIndexPath:indexPath];
         if ([view respondsToSelector:@selector(configureWithModel:)]) {
@@ -228,8 +228,28 @@
         }
     }
     
-    if (self.onAfterCellConfiguration) {
-        self.onAfterCellConfiguration(view);
+    if ([self.delegate respondsToSelector:@selector(source:didConfigureView:)]) {
+        [self.delegate source:self didConfigureView:view];
+    }
+}
+
+- (void)didSelectView:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath {
+    id model = [self modelAtIndexPath:indexPath];
+    BOOL run = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(source:canSelectModel:inView:atIndexPath:)]) {
+        run = [self.delegate source:self canSelectModel:model inView:view atIndexPath:indexPath];
+    }
+    
+    if (run) {
+        if ([self.delegate respondsToSelector:@selector(source:didSelectModel:inView:atIndexPath:)]) {
+            [self.delegate source:self didSelectModel:model inView:view atIndexPath:indexPath];
+        }
+        
+        NSArray *handlers = [self cellHandlersAtIndexPath:indexPath];
+        [handlers enumerateObjectsUsingBlock:^(id<PLKCellHandler> handler, NSUInteger idx, BOOL *stop) {
+            [handler handleCell:view model:model atIndexPath:indexPath];
+        }];
     }
 }
 
@@ -289,22 +309,24 @@
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    NSDictionary *info = [notification userInfo];
-    CGFloat keyboardHeight = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    NSTimeInterval duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    [self storeOriginalContentInset:YES];
-    UIEdgeInsets inset = self.originalContentInset;
-    inset.bottom += keyboardHeight;
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:duration];
-    [UIView setAnimationCurve:options];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDelegate:self];
-    [self.container setContentInset:inset];
-    [self.container setScrollIndicatorInsets:inset];
-    [UIView commitAnimations];
+    if (!self.originalContentInsetSaved) {
+        NSDictionary *info = [notification userInfo];
+        CGFloat keyboardHeight = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        NSTimeInterval duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        [self storeOriginalContentInset:YES];
+        UIEdgeInsets inset = self.originalContentInset;
+        inset.bottom += keyboardHeight;
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:options];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDelegate:self];
+        [self.container setContentInset:inset];
+        [self.container setScrollIndicatorInsets:inset];
+        [UIView commitAnimations];
+    }
 }
 
 #pragma mark - Helpers
@@ -439,14 +461,14 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (self.onDidEndDecelerating) {
-        self.onDidEndDecelerating(scrollView);
+    if ([self.delegate respondsToSelector:@selector(source:didEndDeceleratingContainer:)]) {
+        [self.delegate source:self didEndDeceleratingContainer:scrollView];
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.onDidScroll) {
-        self.onDidScroll(scrollView);
+    if ([self.delegate respondsToSelector:@selector(source:didScrollContainer:)]) {
+        [self.delegate source:self didScrollContainer:scrollView];
     }
     
     if (self.sections.itemsCount == 0) {

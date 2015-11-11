@@ -12,7 +12,9 @@
 @import UIKit;
 @import Foundation;
 
+#import "PLKSourceDelegate.h"
 #import "PLKSectionDescriptor.h"
+
 
 
 /**
@@ -85,33 +87,11 @@ typedef NS_OPTIONS (NSInteger, PLKSourceScrollOptions)
 
 
 /**
- *  Did select row block.
- *
- *  @param indexPath The index path.
- *  @param item      The item.
- */
-typedef void (^PLKSourceDidSelectItemBlock)(NSIndexPath *indexPath, id model);
-
-/**
- *  Cell configuration block.
- *
- *  @param cell The cell.
- */
-typedef void (^PLKSourceCellConfigurationBlock)(id<PLKView> view);
-
-/**
  *  Data provider block.
  *
  *  @param direction Scroll direction.
  */
 typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
-
-/**
- *  Container did scroll block
- *
- *  @param scrollView The scroll view.
- */
-typedef void(^PLKSourceDidScrollBlock)(UIScrollView *scrollView);
 
 
 
@@ -131,33 +111,9 @@ typedef void(^PLKSourceDidScrollBlock)(UIScrollView *scrollView);
 @property (nonatomic, readonly, strong) PLKSections *sections;
 
 /**
- *  Did Select item/row block.
+ *  Source delegate.
  */
-@property (nonatomic, readwrite, copy) PLKSourceDidSelectItemBlock onDidSelectItem;
-
-/**
- *  Did scroll.
- */
-@property (nonatomic, readwrite, copy) PLKSourceDidScrollBlock onDidScroll;
-
-/**
- *  Did end decelerating
- */
-@property (nonatomic, readwrite, copy) PLKSourceDidScrollBlock onDidEndDecelerating;
-
-/**
- *  Cell configuration block.
- */
-@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onCellConfiguration;
-
-/**
- *  Cell configuration block.
- */
-@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onBeforeCellConfiguration;
-/**
- *  Cell configuration block.
- */
-@property (nonatomic, readwrite, copy) PLKSourceCellConfigurationBlock onAfterCellConfiguration;
+@property (nonatomic, readwrite, weak) id<PLKSourceDelegate> delegate;
 
 /**
  *  Scroll options

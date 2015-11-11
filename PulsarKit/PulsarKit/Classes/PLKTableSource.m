@@ -103,20 +103,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    id model = [self modelAtIndexPath:indexPath];
-    
-    if (self.onDidSelectItem) {
-        self.onDidSelectItem(indexPath, model);
-    }
-    
     id<PLKView> cell = [self cellAtIndexPath:indexPath];
-    
-    NSArray *handlers = [self cellHandlersAtIndexPath:indexPath];
-    [handlers enumerateObjectsUsingBlock:^(id<PLKCellHandler> handler, NSUInteger idx, BOOL *stop) {
-        [handler handleCell:cell model:model atIndexPath:indexPath];
-    }];
+    [super didSelectView:cell atIndexPath:indexPath];
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id model = [self modelAtIndexPath:indexPath];

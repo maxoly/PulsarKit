@@ -178,7 +178,6 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    
     PLKSectionKind sectionKind = [self sectionKindFormString:kind section:indexPath.section];
     id<PLKSectionDescriptor> sectionDescriptor = [super sectionDescriptorInSection:indexPath.section ofKind:sectionKind];
     if (sectionDescriptor) {
@@ -202,18 +201,8 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    id model = [self modelAtIndexPath:indexPath];
-    
-    if (self.onDidSelectItem) {
-        self.onDidSelectItem(indexPath, model);
-    }
-    
     id<PLKView> cell = [self cellAtIndexPath:indexPath];
-    
-    NSArray *handlers = [self cellHandlersAtIndexPath:indexPath];
-    [handlers enumerateObjectsUsingBlock:^(id<PLKCellHandler> handler, NSUInteger idx, BOOL *stop) {
-        [handler handleCell:cell model:model atIndexPath:indexPath];
-    }];
+    [super didSelectView:cell atIndexPath:indexPath];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView<PLKView> *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
