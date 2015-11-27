@@ -12,26 +12,17 @@
 #import "PLKSource.h"
 #import "PLKCellBuilder.h"
 
+
 @implementation PLKCellSize
 
 #pragma mark - PLKSizeStrategy
 
 - (CGSize)sizeForModel:(id)model withCellBuilder:(PLKCellBuilder *)cellBuilder forSource:(id<PLKSource>)source {
     UIScrollView *container = source.container;
-    UIView<PLKView> *view = [cellBuilder build];
+    Class cellClass = cellBuilder.cellClass;
     
-    if ([view conformsToProtocol:@protocol(PLKView)]) {
-        if ([view respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {
-            [view prepareForLayoutWithModel:model inBounds:container.bounds];
-        }
-    }
-    
-    if ([view respondsToSelector:@selector(cellSize)]) {
-        return [view cellSize];
-    }
-    
-    if ([[view class] resolveClassMethod:@selector(cellSize)]) {
-        return [[view class] cellSize];
+    if ([cellClass resolveClassMethod:@selector(cellSizeWithModel:inBounds:)]) {
+        return [cellClass cellSizeWithModel:model inBounds:container.bounds];
     }
     
     return CGSizeZero;

@@ -35,13 +35,6 @@
  *
  *  @return The cell size.
  */
-- (CGSize)cellSize;
-
-/**
- *  Cell size.
- *
- *  @return The cell size.
- */
-+ (CGSize)cellSize;
++ (CGSize)cellSizeWithModel:(id)model inBounds:(CGRect)bounds;
 
 @end

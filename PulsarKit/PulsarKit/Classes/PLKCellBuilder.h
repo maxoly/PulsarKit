@@ -16,6 +16,8 @@
 
 @interface PLKCellBuilder : NSObject
 
+@property (nonatomic, readonly, assign) Class cellClass;
+
 - (UIView<PLKView> *)build;
 - (void)configureWithCellDescriptor:(id<PLKCellDescriptor>)cellDescriptor;
 - (void)configureWithSectionDescriptor:(id<PLKSectionDescriptor>)sectionDescriptor;

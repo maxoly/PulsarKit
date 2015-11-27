@@ -33,6 +33,10 @@
     return _cellsCache;
 }
 
+- (Class)cellClass {
+    return self.cellDescriptor.cellClass;
+}
+
 - (void)configureWithCellDescriptor:(id<PLKCellDescriptor>)cellDescriptor {
     self.cellDescriptor = cellDescriptor;
 }
