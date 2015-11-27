@@ -39,6 +39,7 @@
 		569FEF1B1BBBED6C0064642E /* PLKSectionDescriptor.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 569FEF141BBBD4BD0064642E /* PLKSectionDescriptor.h */; };
 		56B473961BE3D71C00A6BE4B /* PLKNumberOfCellsSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B473951BE3D71C00A6BE4B /* PLKNumberOfCellsSize.m */; };
 		56B473981BE3DC2100A6BE4B /* PLKNumberOfCellsSize.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 56B473941BE3D71C00A6BE4B /* PLKNumberOfCellsSize.h */; };
+		56D9B8821C088159009F555A /* PLKCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9B8811C088159009F555A /* PLKCellBuilder.m */; };
 		56DA91D81BA8239200E50EEB /* PLKClassCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DA91D71BA8239200E50EEB /* PLKClassCellHandler.m */; };
 		56DA91DB1BA8260B00E50EEB /* PLKModelCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DA91DA1BA8260B00E50EEB /* PLKModelCellHandler.m */; };
 		56DA91DC1BA82CF200E50EEB /* PLKClassCellHandler.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 56DA91D61BA8239200E50EEB /* PLKClassCellHandler.h */; };
@@ -150,6 +151,8 @@
 		569FEF171BBBE7B80064642E /* PLKPositionalSectionDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKPositionalSectionDescriptor.m; sourceTree = "<group>"; };
 		56B473941BE3D71C00A6BE4B /* PLKNumberOfCellsSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKNumberOfCellsSize.h; sourceTree = "<group>"; };
 		56B473951BE3D71C00A6BE4B /* PLKNumberOfCellsSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKNumberOfCellsSize.m; sourceTree = "<group>"; };
+		56D9B8801C088159009F555A /* PLKCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCellBuilder.h; sourceTree = "<group>"; };
+		56D9B8811C088159009F555A /* PLKCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKCellBuilder.m; sourceTree = "<group>"; };
 		56DA91D41BA8213500E50EEB /* PLKCellHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKCellHandler.h; sourceTree = "<group>"; };
 		56DA91D61BA8239200E50EEB /* PLKClassCellHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKClassCellHandler.h; sourceTree = "<group>"; };
 		56DA91D71BA8239200E50EEB /* PLKClassCellHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKClassCellHandler.m; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				566771371B2078EC00B2DE72 /* PLKSections.m */,
 				5613BD871A8518FF009B09AE /* PLKTableSource.h */,
 				5613BD881A8518FF009B09AE /* PLKTableSource.m */,
+				56D9B8801C088159009F555A /* PLKCellBuilder.h */,
+				56D9B8811C088159009F555A /* PLKCellBuilder.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				5667713F1B20870200B2DE72 /* PLKModelCellDescriptor.m in Sources */,
 				567E3EEB1B6F7EED0007B617 /* PLKCollectionSource.m in Sources */,
 				56DA91DB1BA8260B00E50EEB /* PLKModelCellHandler.m in Sources */,
+				56D9B8821C088159009F555A /* PLKCellBuilder.m in Sources */,
 				566771381B2078EC00B2DE72 /* PLKSections.m in Sources */,
 				566771271B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m in Sources */,
 				5694B4B51ACDF10E00D801DC /* NSArray+PulsarKit.m in Sources */,

@@ -110,8 +110,12 @@
 }
 
 - (NSInteger)itemsCount {
-    NSNumber *sum = [self.sections valueForKeyPath:@"@sum.items.@count"];
-    return [sum integerValue];
+    NSInteger sum = 0;
+    for (PLKSection *section in self.sections) {
+        sum += section.itemsCount;
+    }
+    
+    return sum;
 }
 
 - (void)setTopSection:(PLKSection *)topSection {

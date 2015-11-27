@@ -16,6 +16,7 @@
 // Models
 #import "PLKSection.h"
 #import "PLKSections.h"
+#import "PLKCellBuilder.h"
 #import "PLKSectionView.h"
 #import "PLKSizeStrategy.h"
 
@@ -114,13 +115,9 @@
     id<PLKCellDescriptor> cellDescriptor = [self cellDescriptorAtIndexPath:indexPath];
     id<PLKSizeStrategy> sizeStrategy = cellDescriptor.sizeStrategy;
     
-    UIView<PLKView> *cell = [self.cellsCache objectForKey:[cellDescriptor.cellClass plk_className]];
-    if (!cell) {
-        cell = [cellDescriptor.cellClass plk_viewFromNibOrClass];
-        [self.cellsCache setObject:cell forKey:[cellDescriptor.cellClass plk_className]];
-    }
+    [self.cellBuilder configureWithCellDescriptor:cellDescriptor];
     
-    CGSize size = [sizeStrategy sizeForModel:model withView:cell forSource:self];
+    CGSize size = [sizeStrategy sizeForModel:model withCellBuilder:self.cellBuilder forSource:self];
     return size.height;
 }
 

@@ -15,9 +15,11 @@
 @protocol PLKView;
 @protocol PLKSource;
 
+@class PLKCellBuilder;
+
 
 @protocol PLKSizeStrategy <NSObject>
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source;
+- (CGSize)sizeForModel:(id)model withCellBuilder:(PLKCellBuilder *)cellBuilder forSource:(id<PLKSource>)source;
 
 @end

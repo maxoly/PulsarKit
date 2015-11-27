@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, PLKNumberOfCellsSizeType) {
 
 #pragma mark - PLKSizeStrategy
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source {
+- (CGSize)sizeForModel:(id)model withCellBuilder:(PLKCellBuilder *)cellBuilder forSource:(id<PLKSource>)source {
     switch (self.type) {
         case PLKNumberOfCellsSizeTypeWidth: {
             CGFloat width = CGRectGetWidth(source.container.frame) / source.sections.models.count;

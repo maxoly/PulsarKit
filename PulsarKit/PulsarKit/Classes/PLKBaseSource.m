@@ -19,6 +19,7 @@
 #import "PLKItem.h"
 #import "PLKSection.h"
 #import "PLKSections.h"
+#import "PLKCellBuilder.h"
 #import "PLKDynamicCellDescriptor.h"
 
 // Categories
@@ -34,9 +35,9 @@
 
 @property (nonatomic, readwrite, assign, getter=isOriginalContentInsetSaved) BOOL originalContentInsetSaved;
 @property (nonatomic, readwrite, assign) UIEdgeInsets originalContentInset;
-@property (nonatomic, readwrite, strong) NSCache *cellsCache;
 @property (nonatomic, readwrite, strong) NSCache *sectionsCache;
 @property (nonatomic, readwrite, strong) PLKSections *sections;
+@property (nonatomic, readwrite, strong) PLKCellBuilder *cellBuilder;
 @property (nonatomic, readwrite, strong) NSMutableArray *registeredCellClasses;
 @property (nonatomic, readwrite, strong) NSMutableArray *cellHandlers;
 @property (nonatomic, readwrite, strong) NSMutableDictionary *cellDescriptors;
@@ -126,20 +127,20 @@
     return _registeredCellClasses;
 }
 
-- (NSCache *)cellsCache {
-    if (!_cellsCache) {
-        _cellsCache = [[NSCache alloc] init];
-    }
-    
-    return _cellsCache;
-}
-
 - (NSCache *)sectionsCache {
     if (!_sectionsCache) {
         _sectionsCache = [[NSCache alloc] init];
     }
     
     return _sectionsCache;
+}
+
+- (PLKCellBuilder *)cellBuilder {
+    if (!_cellBuilder) {
+        _cellBuilder = [[PLKCellBuilder alloc] init];
+    }
+    
+    return _cellBuilder;
 }
 
 #pragma mark - PLKSource
@@ -211,7 +212,8 @@
 }
 
 - (void)prepareView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath {
-    [view layoutIfNeeded];
+    // removed due to low scrolling performance. It needs deep checking.
+    // [view layoutIfNeeded];
 }
 
 - (void)willDisplayView:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath {

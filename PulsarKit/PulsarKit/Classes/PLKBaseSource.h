@@ -18,6 +18,7 @@
 
 
 @class PLKSections;
+@class PLKCellBuilder;
 
 @protocol PLKView;
 @protocol PLKSizeStrategy;
@@ -31,10 +32,10 @@
 @interface PLKBaseSource : NSObject <PLKSource, UIScrollViewDelegate>
 
 // properties
-@property (nonatomic, readonly, strong) NSCache *cellsCache;
 @property (nonatomic, readonly, strong) NSCache *sectionsCache;
 @property (nonatomic, readonly, strong) UIScrollView *container;
 @property (nonatomic, readonly, strong) PLKSections *sections;
+@property (nonatomic, readonly, strong) PLKCellBuilder *cellBuilder;
 @property (nonatomic, readwrite, weak) id<PLKSourceDelegate> delegate;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 @property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;

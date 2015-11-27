@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, PLKProportionalType) {
 
 #pragma mark - PLKSizeStrategy
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source {
+- (CGSize)sizeForModel:(id)model withCellBuilder:(PLKCellBuilder *)cellBuilder forSource:(id<PLKSource>)source {
     UIScrollView *container = source.container;
     
     CGFloat width = 0;

@@ -10,13 +10,15 @@
 
 #import "PLKView.h"
 #import "PLKSource.h"
+#import "PLKCellBuilder.h"
 
 @implementation PLKCellSize
 
 #pragma mark - PLKSizeStrategy
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source {
+- (CGSize)sizeForModel:(id)model withCellBuilder:(PLKCellBuilder *)cellBuilder forSource:(id<PLKSource>)source {
     UIScrollView *container = source.container;
+    UIView<PLKView> *view = [cellBuilder build];
     
     if ([view conformsToProtocol:@protocol(PLKView)]) {
         if ([view respondsToSelector:@selector(prepareForLayoutWithModel:inBounds:)]) {

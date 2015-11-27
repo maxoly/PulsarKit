@@ -12,6 +12,7 @@
 
 #import "PLKView.h"
 #import "PLKSource.h"
+#import "PLKCellBuilder.h"
 
 @interface PLKAutolayoutSize ()
 
@@ -29,8 +30,9 @@
     return _sizeCache;
 }
 
-- (CGSize)sizeForModel:(id)model withView:(UIView<PLKView> *)view forSource:(id<PLKSource>)source {
+- (CGSize)sizeForModel:(id)model withCellBuilder:(PLKCellBuilder *)cellBuilder forSource:(id<PLKSource>)source {
     UIScrollView *container = source.container;
+    UIView<PLKView> *view = [cellBuilder build];
     
     NSString *key = [NSString stringWithFormat:@"%@.{%@}.%zd", [view plk_className], NSStringFromCGSize(container.frame.size) ,[model hash]];
     

@@ -71,6 +71,10 @@
     return [self.itemsInternal copy];
 }
 
+- (NSInteger)itemsCount {
+    return self.itemsInternal.count;
+}
+
 #pragma mark - Indexes
 
 - (NSIndexSet *)addedIndexes {
