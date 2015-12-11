@@ -33,8 +33,7 @@
  */
 @interface PLKBaseSource ()
 
-@property (nonatomic, readwrite, assign, getter=isOriginalContentInsetSaved) BOOL originalContentInsetSaved;
-@property (nonatomic, readwrite, assign) UIEdgeInsets originalContentInset;
+@property (nonatomic, readwrite, assign) CGFloat keyboardHeight;
 @property (nonatomic, readwrite, strong) NSCache *sectionsCache;
 @property (nonatomic, readwrite, strong) PLKSections *sections;
 @property (nonatomic, readwrite, strong) PLKCellBuilder *cellBuilder;
@@ -176,11 +175,11 @@
         
         switch (kind) {
             case PLKSectionKindHeader:
-                self.sections.topSection = section;
+                self.sections.firstSection = section;
                 break;
                 
             case PLKSectionKindFooter:
-                self.sections.bottomSection = section;
+                self.sections.lastSection = section;
                 break;
         }
     }
@@ -212,8 +211,20 @@
 }
 
 - (void)prepareView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath {
-    // removed due to low scrolling performance. It needs deep checking.
-    // [view layoutIfNeeded];
+    NSInteger rowbuffer = self.sections.lastSection.itemsCount > 3 ? 3 : 1;
+    
+    NSInteger lastSectionIndex = self.sections.count - 1;
+    NSInteger lastRowIndex = self.sections.lastSection.itemsCount - rowbuffer;
+    
+    if (indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex) {
+        if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnBottom) == PLKSourceScrollOptionInfiniteOnBottom) {
+            [self loadDataWithDirection:PLKDirectionBottom];
+        }
+        
+        if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnRight) == PLKSourceScrollOptionInfiniteOnRight) {
+            [self loadDataWithDirection:PLKDirectionBottom];
+        }
+    }
 }
 
 - (void)willDisplayView:(id<PLKView>)view atIndexPath:(NSIndexPath *)indexPath {
@@ -283,42 +294,39 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"you must override registerSupplementaryNibForViewClass: method" userInfo:nil];
 }
 
-#pragma mark - Helpers
-
-- (void)storeOriginalContentInset:(BOOL)force {
-    if (!self.isOriginalContentInsetSaved || force) {
-        self.originalContentInset = self.container.contentInset;
-        self.originalContentInsetSaved = YES;
-    }
-}
-
 #pragma mark - Notifications
 
-- (void)keyboardWillHide:(NSNotification *)notification {
-    NSDictionary *info = [notification userInfo];
-    NSTimeInterval duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    [self storeOriginalContentInset:NO];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:duration];
-    [UIView setAnimationCurve:options];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDelegate:self];
-    [self.container setContentInset:self.originalContentInset];
-    [self.container setScrollIndicatorInsets:self.originalContentInset];
-    [UIView commitAnimations];
-}
-
 - (void)keyboardWillShow:(NSNotification *)notification {
-    if (!self.originalContentInsetSaved) {
+    if (self.keyboardHeight == 0.0f) {
         NSDictionary *info = [notification userInfo];
         CGFloat keyboardHeight = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
         NSTimeInterval duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-        [self storeOriginalContentInset:YES];
-        UIEdgeInsets inset = self.originalContentInset;
+        
+        UIEdgeInsets inset = self.container.contentInset;
         inset.bottom += keyboardHeight;
+        self.keyboardHeight = keyboardHeight;
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:options];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDelegate:self];
+        [self.container setContentInset:inset];
+        [self.container setScrollIndicatorInsets:inset];
+        [UIView commitAnimations];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    if (self.keyboardHeight > 0.0f) {
+        NSDictionary *info = [notification userInfo];
+        NSTimeInterval duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+
+        UIEdgeInsets inset = self.container.contentInset;
+        inset.bottom -= self.keyboardHeight;
+        self.keyboardHeight = 0.0f;
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:duration];
@@ -482,19 +490,9 @@
         [self loadDataWithDirection:PLKDirectionTop];
     }
     
-    if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnBottom) == PLKSourceScrollOptionInfiniteOnBottom &&
-        scrollView.contentOffset.y == (scrollView.contentSize.height - (scrollView.frame.size.height - scrollView.contentInset.bottom))) {
-        [self loadDataWithDirection:PLKDirectionBottom];
-    }
-    
     if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnLeft) == PLKSourceScrollOptionInfiniteOnLeft &&
         scrollView.contentOffset.x == 0) {
         [self loadDataWithDirection:PLKDirectionTop];
-    }
-    
-    if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnRight) == PLKSourceScrollOptionInfiniteOnRight &&
-        scrollView.contentOffset.x == (scrollView.contentSize.width - scrollView.frame.size.width)) {
-        [self loadDataWithDirection:PLKDirectionBottom];
     }
 }
 

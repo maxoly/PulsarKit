@@ -106,7 +106,7 @@
 }
 
 - (NSInteger)count {
-    return self.sections.count + (self.topSection ? 1 : 0) + (self.bottomSection ? 1 : 0);
+    return self.sections.count + (self.firstSection ? 1 : 0) + (self.lastSection ? 1 : 0);
 }
 
 - (NSInteger)itemsCount {
@@ -118,28 +118,28 @@
     return sum;
 }
 
-- (void)setTopSection:(PLKSection *)topSection {
-    if (!_topSection) {
+- (void)setFirstSection:(PLKSection *)firstSection {
+    if (!_firstSection) {
         [self updateIndexSetWithIndex:0];
     }
     
-    if (!topSection && _topSection) {
+    if (!firstSection && _firstSection) {
         [self removeIndex:0];
     }
     
-    _topSection = topSection;
+    _firstSection = firstSection;
 }
 
-- (void)setBottomSection:(PLKSection *)bottomSection {
-    if (!_bottomSection && bottomSection) {
+- (void)setLastSection:(PLKSection *)lastSection {
+    if (!_lastSection && lastSection) {
         [self updateIndexSetWithIndex:self.count];
     }
     
-    if (!bottomSection && _bottomSection) {
+    if (!lastSection && _lastSection) {
         [self removeIndex:self.count-1];
     }
     
-    _bottomSection = bottomSection;
+    _lastSection = lastSection;
 }
 
 #pragma mark - Model
@@ -270,12 +270,12 @@
 #pragma mark - Subscripting
 
 - (PLKSection *)objectAtIndexedSubscript:(NSUInteger)index {
-    if (self.topSection && index == 0) {
-        return self.topSection;
+    if (self.firstSection && index == 0) {
+        return self.firstSection;
     }
     
     if (index >= self.sections.count) {
-        return self.bottomSection;
+        return self.lastSection;
     }
     
     return [self.sections plk_safeObjectAtIndex:index];

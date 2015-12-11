@@ -16,8 +16,8 @@
 @property (nonatomic, readonly, copy) NSArray *models;
 @property (nonatomic, readonly, assign) NSInteger count;
 @property (nonatomic, readonly, assign) NSInteger itemsCount;
-@property (nonatomic, readwrite, strong) PLKSection *topSection;
-@property (nonatomic, readwrite, strong) PLKSection *bottomSection;
+@property (nonatomic, readwrite, strong) PLKSection *firstSection;
+@property (nonatomic, readwrite, strong) PLKSection *lastSection;
 
 - (void)addItem:(PLKItem *)item;
 - (void)addItems:(NSArray *)items;
