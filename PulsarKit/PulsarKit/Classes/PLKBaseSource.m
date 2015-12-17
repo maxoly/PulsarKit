@@ -234,11 +234,11 @@
     
     if ([self.delegate respondsToSelector:@selector(source:configureView:)]) {
         [self.delegate source:self configureView:view];
-    } else {
+    }
+    
+    if ([view respondsToSelector:@selector(configureWithModel:)]) {
         id model = [self modelAtIndexPath:indexPath];
-        if ([view respondsToSelector:@selector(configureWithModel:)]) {
-            [view configureWithModel:model];
-        }
+        [view configureWithModel:model];
     }
     
     if ([self.delegate respondsToSelector:@selector(source:didConfigureView:)]) {
