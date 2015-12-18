@@ -21,7 +21,7 @@
     UIScrollView *container = source.container;
     Class cellClass = cellBuilder.cellClass;
     
-    if ([cellClass resolveClassMethod:@selector(cellSizeWithModel:inBounds:)]) {
+    if ([cellClass respondsToSelector:@selector(cellSizeWithModel:inBounds:)]) {
         return [cellClass cellSizeWithModel:model inBounds:container.bounds];
     }
     
