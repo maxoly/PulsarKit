@@ -37,6 +37,7 @@
 @property (nonatomic, readonly, strong) PLKSections *sections;
 @property (nonatomic, readonly, strong) PLKCellBuilder *cellBuilder;
 @property (nonatomic, readwrite, weak) id<PLKSourceDelegate> delegate;
+@property (nonatomic, readwrite, assign) PLKDirection lastDirection;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;
 @property (nonatomic, readwrite, assign, getter = isFirstTime) BOOL firstTime;
 
@@ -61,6 +62,13 @@
  *  Loads data into container.
  */
 - (void)loadData NS_REQUIRES_SUPER;
+
+/**
+ *  Load data for specific direction.
+ *
+ *  @param direction The direction.
+ */
+- (void)loadDataWithDirection:(PLKDirection)direction;
 
 /**
  *  Loads data into container.

@@ -196,6 +196,7 @@
 }
 
 - (void)loadDataWithDirection:(PLKDirection)direction {
+    self.lastDirection = direction;
     if (self.dataProviderBlock) {
         self.dataProviderBlock(direction);
     }
@@ -211,10 +212,16 @@
 }
 
 - (void)prepareView:(UIView<PLKView> *)view atIndexPath:(NSIndexPath *)indexPath {
-    NSInteger rowbuffer = self.sections.lastSection.itemsCount > 3 ? 3 : 1;
-    
+    NSInteger lastSectionItemsCount = self.sections.lastSection.itemsCount;
     NSInteger lastSectionIndex = self.sections.count - 1;
-    NSInteger lastRowIndex = self.sections.lastSection.itemsCount - rowbuffer;
+    
+    if (lastSectionItemsCount == 0 && self.sections.count > 1) {
+        lastSectionIndex--;
+        lastSectionItemsCount = self.sections[self.sections.count - 2].itemsCount;
+    }
+    
+    NSInteger rowbuffer = (lastSectionItemsCount > 3) ? (lastSectionItemsCount > 20) ? 10 : 3 : 1;
+    NSInteger lastRowIndex = lastSectionItemsCount - rowbuffer;
     
     if (indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex) {
         if ((self.scrollOptions & PLKSourceScrollOptionInfiniteOnBottom) == PLKSourceScrollOptionInfiniteOnBottom) {
@@ -232,13 +239,13 @@
         [self.delegate source:self willConfigureView:view];
     }
     
-    if ([self.delegate respondsToSelector:@selector(source:configureView:)]) {
+    if ([self.delegate respondsToSelector:@selector(source:willConfigureView:)]) {
         [self.delegate source:self configureView:view];
-    }
-    
-    if ([view respondsToSelector:@selector(configureWithModel:)]) {
+    } else {
         id model = [self modelAtIndexPath:indexPath];
-        [view configureWithModel:model];
+        if ([view respondsToSelector:@selector(configureWithModel:)]) {
+            [view configureWithModel:model];
+        }
     }
     
     if ([self.delegate respondsToSelector:@selector(source:didConfigureView:)]) {
@@ -323,7 +330,7 @@
         NSDictionary *info = [notification userInfo];
         NSTimeInterval duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve options = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-
+        
         UIEdgeInsets inset = self.container.contentInset;
         inset.bottom -= self.keyboardHeight;
         self.keyboardHeight = 0.0f;

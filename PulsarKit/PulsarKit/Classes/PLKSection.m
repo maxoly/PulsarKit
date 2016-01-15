@@ -134,6 +134,10 @@
 
 - (PLKSection *)addModelsOnTop:(NSArray *)models {
     NSArray *items = [self createItemsFromModels:models];
+    
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, items.count)];
+    [self.addedIndexSet shiftIndexesStartingAtIndex:0 by:models.count];
+    [self.addedIndexSet addIndexes:indexes];
     [self.itemsInternal insertObjects:items atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, items.count)]];
     return self;
 }
@@ -186,6 +190,5 @@
     section.cellDescriptor = cellDescriptor;
     return section;
 }
-
 
 @end

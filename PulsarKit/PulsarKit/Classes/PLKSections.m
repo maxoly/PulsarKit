@@ -148,9 +148,10 @@
     [self addModels:@[ model ]];
 }
 
-- (void)addModelsOnTop:(NSArray *)models {
+- (PLKSection *)addModelsOnTop:(NSArray *)models {
     PLKSection *section = [self returnOrCreateLastSection];
     [section addModelsOnTop:models];
+    return section;
 }
 
 - (void)addModels:(NSArray *)models {
