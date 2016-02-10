@@ -239,7 +239,7 @@
         [self.delegate source:self willConfigureView:view];
     }
     
-    if ([self.delegate respondsToSelector:@selector(source:willConfigureView:)]) {
+    if ([self.delegate respondsToSelector:@selector(source:configureView:)]) {
         [self.delegate source:self configureView:view];
     } else {
         id model = [self modelAtIndexPath:indexPath];
