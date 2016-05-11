@@ -68,7 +68,12 @@
         cellSize = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     }
     
-    CGSize finalSize = CGSizeMake(CGRectGetWidth(bounds), cellSize.height);
+    CGFloat width = cellSize.width;
+    if (!self.isAutolayoutWidthEnabled) {
+        width = CGRectGetWidth(bounds);
+    }
+    
+    CGSize finalSize = CGSizeMake(width, cellSize.height);
 
     if (self.isCacheEnabled) {
         [self.sizeCache setObject:[NSValue valueWithCGSize:finalSize] forKey:key];
@@ -84,10 +89,14 @@
 }
 
 + (instancetype)autolayoutSizeAndCacheEnabled:(BOOL)cacheEnabled {
-    PLKAutolayoutSize *strategy = [[self alloc] init];
-    strategy.cacheEnabled = cacheEnabled;
-    return strategy;
+    return [self autolayoutSizeAndCacheEnabled:cacheEnabled autolayoutWidthEnabled:NO];
 }
 
++ (instancetype)autolayoutSizeAndCacheEnabled:(BOOL)cacheEnabled autolayoutWidthEnabled:(BOOL)autolayoutWidthEnabled {
+    PLKAutolayoutSize *strategy = [[self alloc] init];
+    strategy.cacheEnabled = cacheEnabled;
+    strategy.autolayoutWidthEnabled = autolayoutWidthEnabled;
+    return strategy;
+}
 
 @end

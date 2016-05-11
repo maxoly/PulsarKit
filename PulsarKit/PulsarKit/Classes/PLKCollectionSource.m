@@ -123,7 +123,7 @@
         return CGSizeZero;
     }
     
-    if (!sectionDescriptor.kind == kind) {
+    if (sectionDescriptor.kind != kind) {
         return CGSizeZero;
     }
     
