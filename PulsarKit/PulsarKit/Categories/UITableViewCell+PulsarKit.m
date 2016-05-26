@@ -10,10 +10,6 @@
 
 @implementation UITableViewCell (PulsarKit)
 
-- (NSString *)reuseIdentifier {
-    return NSStringFromClass(self.class);
-}
-
 - (void)configureWithModel:(id)model {
     if ([model respondsToSelector:@selector(description)]) {
         self.textLabel.text = [model description];

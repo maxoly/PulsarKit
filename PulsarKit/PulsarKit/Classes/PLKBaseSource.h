@@ -36,6 +36,7 @@
 @property (nonatomic, readonly, strong) UIScrollView *container;
 @property (nonatomic, readonly, strong) PLKSections *sections;
 @property (nonatomic, readonly, strong) PLKCellBuilder *cellBuilder;
+@property (nonatomic, readwrite, assign) UIEdgeInsets containerInset;
 @property (nonatomic, readwrite, weak) id<PLKSourceDelegate> delegate;
 @property (nonatomic, readwrite, assign) PLKDirection lastDirection;
 @property (nonatomic, readwrite, assign) PLKSourceScrollOptions scrollOptions;

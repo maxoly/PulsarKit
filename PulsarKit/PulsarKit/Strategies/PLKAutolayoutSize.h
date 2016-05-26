@@ -16,5 +16,7 @@
 + (instancetype)autolayoutSize;
 + (instancetype)autolayoutSizeAndCacheEnabled:(BOOL)cacheEnabled;
 + (instancetype)autolayoutSizeAndCacheEnabled:(BOOL)cacheEnabled autolayoutWidthEnabled:(BOOL)autolayoutWidthEnabled;
++ (instancetype)autolayoutAndSizeForWidth:(id<PLKSizeStrategy>)sizeForWidth;
++ (instancetype)autolayoutAndSizeForHeight:(id<PLKSizeStrategy>)sizeForHeight;
 
 @end

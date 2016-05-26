@@ -17,6 +17,8 @@
 @interface PLKAutolayoutSize ()
 
 @property (nonatomic, readwrite, strong) NSCache *sizeCache;
+@property (nonatomic, readwrite, strong) id<PLKSizeStrategy> sizeForWidth;
+@property (nonatomic, readwrite, strong) id<PLKSizeStrategy> sizeForHeight;
 
 @end
 
@@ -45,7 +47,17 @@
     }
     
     CGRect bounds = container.bounds;
-
+    bounds = UIEdgeInsetsInsetRect(bounds, source.containerInset);
+    
+    if (self.sizeForWidth) {
+        CGSize size = [self.sizeForWidth sizeForModel:model withCellBuilder:cellBuilder forSource:source];
+        bounds.size.width = size.width;
+    }
+    
+    if (self.sizeForHeight) {
+        CGSize size = [self.sizeForHeight sizeForModel:model withCellBuilder:cellBuilder forSource:source];
+        bounds.size.height = size.height;
+    }
     
     [view setFrame:bounds];
     [view setBounds:bounds];
@@ -58,7 +70,6 @@
 
     [view setNeedsUpdateConstraints];
     [view layoutIfNeeded];
-    
     
     CGSize cellSize;
     if ([view isKindOfClass:[UITableViewCell class]]) {
@@ -74,6 +85,16 @@
     }
     
     CGSize finalSize = CGSizeMake(width, cellSize.height);
+    
+    if (self.sizeForWidth) {
+        CGSize size = [self.sizeForWidth sizeForModel:model withCellBuilder:cellBuilder forSource:source];
+        finalSize.width = size.width;
+    }
+    
+    if (self.sizeForHeight) {
+        CGSize size = [self.sizeForHeight sizeForModel:model withCellBuilder:cellBuilder forSource:source];
+        finalSize.height = size.height;
+    }
 
     if (self.isCacheEnabled) {
         [self.sizeCache setObject:[NSValue valueWithCGSize:finalSize] forKey:key];
@@ -97,6 +118,18 @@
     strategy.cacheEnabled = cacheEnabled;
     strategy.autolayoutWidthEnabled = autolayoutWidthEnabled;
     return strategy;
+}
+
++ (instancetype)autolayoutAndSizeForWidth:(id<PLKSizeStrategy>)sizeForWidth {
+    PLKAutolayoutSize *size = [self autolayoutSizeAndCacheEnabled:YES];
+    size.sizeForWidth = sizeForWidth;
+    return size;
+}
+
++ (instancetype)autolayoutAndSizeForHeight:(id<PLKSizeStrategy>)sizeForHeight {
+    PLKAutolayoutSize *size = [self autolayoutSizeAndCacheEnabled:YES];
+    size.sizeForHeight = sizeForHeight;
+    return size;
 }
 
 @end

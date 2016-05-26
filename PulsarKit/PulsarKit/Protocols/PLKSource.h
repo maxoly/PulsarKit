@@ -106,6 +106,12 @@ typedef void (^PLKSourceDataProviderBlock)(PLKDirection direction);
 @property (nonatomic, readonly, strong) UIScrollView *container;
 
 /**
+ *  Container inset.
+ */
+@property (nonatomic, readonly, assign) UIEdgeInsets containerInset;
+
+
+/**
  *  Container's sections.
  */
 @property (nonatomic, readonly, strong) PLKSections *sections;

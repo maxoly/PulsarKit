@@ -214,6 +214,13 @@
     
     [self.cellBuilder configureWithCellDescriptor:cellDescriptor];
     
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    if ([layout isKindOfClass:[UICollectionViewFlowLayout class]]) {
+        UIEdgeInsets inset = layout.sectionInset;
+        inset.right += layout.minimumLineSpacing;
+        self.containerInset = inset;
+    }
+    
     CGSize size = [sizeStrategy sizeForModel:model withCellBuilder:self.cellBuilder forSource:self];
     return size;
 }

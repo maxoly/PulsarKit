@@ -118,6 +118,10 @@
     return sum;
 }
 
+- (PLKSection *)currentSection {
+    return [self.sections lastObject];
+}
+
 - (void)setFirstSection:(PLKSection *)firstSection {
     if (!_firstSection) {
         [self updateIndexSetWithIndex:0];
