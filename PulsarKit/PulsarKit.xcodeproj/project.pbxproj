@@ -14,7 +14,6 @@
 		5613BD921A852451009B09AE /* UIView+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD911A852451009B09AE /* UIView+PulsarKit.m */; };
 		5613BD951A85290E009B09AE /* NSObject+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613BD941A85290E009B09AE /* NSObject+PulsarKit.m */; };
 		5613E3D11BF35A2F0024D45B /* PLKSourceDelegate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 5613E3D01BF355D80024D45B /* PLKSourceDelegate.h */; };
-		566771271B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771261B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m */; };
 		5667712D1B205A2A00B2DE72 /* PLKAutolayoutSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5667712C1B205A2A00B2DE72 /* PLKAutolayoutSize.m */; };
 		566771311B205E8A00B2DE72 /* PLKFixedSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771301B205E8A00B2DE72 /* PLKFixedSize.m */; };
 		566771381B2078EC00B2DE72 /* PLKSections.m in Sources */ = {isa = PBXBuildFile; fileRef = 566771371B2078EC00B2DE72 /* PLKSections.m */; };
@@ -125,8 +124,6 @@
 		5613BD941A85290E009B09AE /* NSObject+PulsarKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PulsarKit.m"; sourceTree = "<group>"; };
 		5613BD991A852CD1009B09AE /* PLKSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSectionView.h; sourceTree = "<group>"; };
 		5613E3D01BF355D80024D45B /* PLKSourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSourceDelegate.h; sourceTree = "<group>"; };
-		566771251B1F11C700B2DE72 /* UITableViewCell+PulsarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+PulsarKit.h"; sourceTree = "<group>"; };
-		566771261B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+PulsarKit.m"; sourceTree = "<group>"; };
 		566771281B2059CD00B2DE72 /* PLKSizeStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKSizeStrategy.h; sourceTree = "<group>"; };
 		5667712B1B205A2A00B2DE72 /* PLKAutolayoutSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKAutolayoutSize.h; sourceTree = "<group>"; };
 		5667712C1B205A2A00B2DE72 /* PLKAutolayoutSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKAutolayoutSize.m; sourceTree = "<group>"; };
@@ -264,8 +261,6 @@
 				5613BD941A85290E009B09AE /* NSObject+PulsarKit.m */,
 				5694B4B31ACDF10E00D801DC /* NSArray+PulsarKit.h */,
 				5694B4B41ACDF10E00D801DC /* NSArray+PulsarKit.m */,
-				566771251B1F11C700B2DE72 /* UITableViewCell+PulsarKit.h */,
-				566771261B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -382,7 +377,6 @@
 				56DA91DB1BA8260B00E50EEB /* PLKModelCellHandler.m in Sources */,
 				56D9B8821C088159009F555A /* PLKCellBuilder.m in Sources */,
 				566771381B2078EC00B2DE72 /* PLKSections.m in Sources */,
-				566771271B1F11C700B2DE72 /* UITableViewCell+PulsarKit.m in Sources */,
 				5694B4B51ACDF10E00D801DC /* NSArray+PulsarKit.m in Sources */,
 				569FEF181BBBE7B80064642E /* PLKPositionalSectionDescriptor.m in Sources */,
 				567E3EF31B6F9E700007B617 /* PLKCollectionSourceViewController.m in Sources */,

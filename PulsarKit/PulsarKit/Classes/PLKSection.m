@@ -142,6 +142,15 @@
     return self;
 }
 
+- (void)removeItems:(NSArray *)items {
+    NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:items.count];
+    for (PLKItem *item in items) {
+        [models addObject:item.model];
+    }
+    
+    [self removeModels:models];
+}
+
 - (void)removeModel:(id)model {
     [self removeModels:@[ model ]];
 }

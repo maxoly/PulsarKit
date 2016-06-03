@@ -33,6 +33,7 @@
 - (PLKSection *)addModels:(NSArray *)models;
 - (PLKSection *)addModelsOnTop:(NSArray *)models;
 
+- (void)removeItems:(NSArray *)items;
 - (void)removeModel:(id)model;
 - (void)removeModels:(NSArray *)models;
 
