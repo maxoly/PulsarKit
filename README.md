@@ -36,7 +36,7 @@ PulsarKit 1.0.x is compatible with **Swift 4.2+** and the following platforms:
 - iOS 10+
 - Xcode 10+
 
-## Communication
+## Communication
 
 * If you **need help with an PulsarKit feature**, open an issue.
 * If you'd like to **discuss a feature request**, open an issue.
