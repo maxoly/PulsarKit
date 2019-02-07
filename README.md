@@ -1,10 +1,9 @@
 # PulsarKit
 
-[![iOS 8.0+](http://img.shields.io/badge/iOS-8.0%2B-blue.svg)](http://cocoapods.org/pods/PulsarKit)
-[![Xcode 10](http://img.shields.io/badge/Xcode-7.1-blue.svg)](http://cocoapods.org/pods/PulsarKit)
-[![Platform](https://img.shields.io/badge/Platform-iOS-blue.svg)](http://cocoapods.org/pods/PulsarKit)
-[![Version](https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat)](http://cocoapods.org/pods/PulsarKit)
-
+![Platform](https://img.shields.io/badge/Platform-iOS-blue.svg)
+![iOS 10.0+](http://img.shields.io/badge/iOS-10.0%2B-blue.svg)
+![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg)
+![Version](https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat)
 [![Build Status](https://travis-ci.org/maxoly/PulsarKit.svg)](https://travis-ci.org/maxoly/PulsarKit)
 [![Release](https://img.shields.io/github/release/maxoly/PulsarKit.svg)](/releases)
 [![LICENSE](http://img.shields.io/badge/License-MIT-lightgrey.svg)](/LICENSE)
