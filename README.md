@@ -2,7 +2,7 @@
 
 ![Platform](https://img.shields.io/badge/Platform-iOS-blue.svg)
 ![iOS 10.0+](http://img.shields.io/badge/iOS-10.0%2B-blue.svg)
-![Swift 4.2.x](https://img.shields.io/badge/Swift-4.3.x-orange.svg)
+![Swift 4.2.x](https://img.shields.io/badge/Swift-4.2-orange.svg)
 ![Version](https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat)
 [![Build Status](https://travis-ci.org/maxoly/PulsarKit.svg)](https://travis-ci.org/maxoly/PulsarKit)
 [![LICENSE](http://img.shields.io/badge/License-MIT-lightgrey.svg)](/LICENSE)
