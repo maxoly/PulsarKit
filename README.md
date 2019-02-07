@@ -13,7 +13,21 @@ PulsarKit is a simple and beautiful wrapper around the official UICollectionView
 
 This framework is lightly inspire by [Lighter view controllers](http://objc.io/issues/1-view-controllers/lighter-view-controllers/) and UITableViewSource and UICollectionViewSource in [Xamarin Platform](https://developer.xamarin.com/guides/ios/user_interface/tables/part_1_-_table_parts_and_functionality/).
 
+# Contents
+
+- [Features Highlights](#features-highlights)
+- [Requirements](#requirements)
+- [Communication](#communication)
+- [Installation](#installation)
+- [Author](#author)
+- [License](#license)
+
 ## Features Highlights
+
+- [x] Fluent interface configuration (`.when(Model).use(Cell)`)
+- [x] Easy section and row insertion, updation, deletion and moving (`source.add(model: ...)`)
+- [x] Easy and fine grained row event handling (`.on.didSelect`)
+- [x] Comprehensive Unit tests (*50+*)
 
 ## Requirements
 
@@ -24,11 +38,11 @@ PulsarKit 1.0.x is compatible with **Swift 4.2+** and the following platforms:
 
 ## Communication
 
-* If you need help with an PulsarKit feature, open an issue.
-* If you'd like to discuss a feature request, open an issue.
-* If you found a bug, open an issue. The more detail the better!
-* If you need to find or understand an API, check our documentation or Apple's documentation for UICollectionView, on top of which PulsarKit is built.
-* If you want to contribute, submit a pull request.
+* If you **need help with an PulsarKit feature**, open an issue.
+* If you'd like to **discuss a feature request**, open an issue.
+* If you **found a bug**, open an issue. The more detail the better!
+* If you need to **find or understand an API**, check our documentation or Apple's documentation for UICollectionView, on top of which PulsarKit is built.
+* If you want to **contribute**, submit a pull request.
 
 ## Installation
 
