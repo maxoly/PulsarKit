@@ -22,6 +22,14 @@ PulsarKit 1.0.x is compatible with **Swift 4.2+** and the following platforms:
 - iOS 10+
 - Xcode 10+
 
+## Communication
+
+* If you need help with an PulsarKit feature, open an issue.
+* If you'd like to discuss a feature request, open an issue.
+* If you found a bug, open an issue. The more detail the better!
+* If you need to find or understand an API, check our documentation or Apple's documentation for UICollectionView, on top of which PulsarKit is built.
+* If you want to contribute, submit a pull request.
+
 ## Installation
 
 PulsarKit is available through [CocoaPods](http://cocoapods.org). 
@@ -52,4 +60,4 @@ Massimo Oliviero, massimo.oliviero@gmail.com
 
 ## License
 
-PulsarKit is available under the MIT license. See the LICENSE file for more info.
+PulsarKit is available under the MIT license. See the [See LICENSE](https://github.com/maxoly/PulsarKit/blob/master/LICENSE) file for more info.
