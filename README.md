@@ -17,24 +17,32 @@ This framework is lightly inspire by [Lighter view controllers](http://objc.io/i
 
 # Contents
 
+- [Introduction](#introduction)
 - [Features Highlights](#features-highlights)
 - [Requirements](#requirements)
 - [Communication](#communication)
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [Author](#author)
 - [License](#license)
+
+## Introduction
+
+**Never** implement `UICollectionViewDataSource`, `UICollectionViewDelegate` and `UICollectionViewDelegateFlowLayout` again.
+
+PulsarKit is a small, focused library that lets you populate and update UICollectionView views from **your models**. Forget about dequeuing and type casting cells. Forget about converting an IndexPath to a model object. PulsarKit will hand you dequeued views of the correct type along with the right model object for the index path. You can focus on applying your custom data to your custom view.
 
 ## Features Highlights
 
 - [x] Fluent interface configuration (`.when(Model).use(Cell)`)
 - [x] Easy section and row insertion, updation, deletion and moving (`source.add(model: ...)`)
 - [x] Easy and fine grained row event handling (`.on.didSelect`)
-- [x] Comprehensive Unit tests (*50+*)
+- [x] Drop-in ready to use view controllers
 
 ## Requirements
 
-PulsarKit 1.0.x is compatible with **Swift 4.2+** and the following platforms:
-
+PulsarKit 1.0.x is compatible with:
+- **Swift 4.2+**
 - iOS 10+
 - Xcode 10+
 
@@ -68,6 +76,16 @@ end
 Then, run the following command:
 ```shell
 $ pod install
+```
+
+## Documentation
+
+The `CollectionSource` is the main class that manages the state of the `UICollectionView`. All that is required is to initialize a *source* with an instance of `UICollectionView`.
+
+```swift
+import PulsarKit
+
+let source = CollectionSource(container: collectionView)
 ```
 
 ## Author
