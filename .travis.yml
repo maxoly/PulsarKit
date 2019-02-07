@@ -15,6 +15,11 @@ env:
     - DESTINATION="OS=12.1,name=iPhone XS"       SCHEME="$IOS_FRAMEWORK_SCHEME"
     - DESTINATION="OS=11.4,name=iPhone X"        SCHEME="$IOS_FRAMEWORK_SCHEME"
 
+before_install:
+  - echo "BEFORE INSTALL START"
+  - gem install bundler
+  - echo "BEFORE INSTALL END"
+  
 script:
   - set -o pipefail
   - xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty
