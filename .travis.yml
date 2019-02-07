@@ -1,6 +1,8 @@
 language: objective-c
 osx_image: xcode10.1
-
+branches:
+  only:
+    - master
 env:
   global:
   - LC_CTYPE=en_US.UTF-8
