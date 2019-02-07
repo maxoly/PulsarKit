@@ -3,14 +3,17 @@ osx_image: xcode10.1
 branches:
   only:
     - master
+    
 env:
   global:
   - LC_CTYPE=en_US.UTF-8
   - LANG=en_US.UTF-8
   - WORKSPACE=PulsarKit.xcworkspace
-  - FRAMEWORK_SCHEME="PulsarKit"
+  - IOS_FRAMEWORK_SCHEME="PulsarKit"
   matrix:
-    - DESTINATION="OS=11.3,name=iPhone X"          SCHEME="$FRAMEWORK_SCHEME"
+    - DESTINATION="OS=12.1,name=iPhone XS"       SCHEME="$IOS_FRAMEWORK_SCHEME"
+    - DESTINATION="OS=11.4,name=iPhone X"        SCHEME="$IOS_FRAMEWORK_SCHEME"
+    - DESTINATION="OS=10.3.1,name=iPhone 7 Plus" SCHEME="$IOS_FRAMEWORK_SCHEME"
 
 script:
   - set -o pipefail
