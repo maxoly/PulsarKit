@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:PulsarKit/PulsarKit.xcodeproj">
+      location = "group:PulsarKitExample/PulsarKitExample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:PulsarKitExample/PulsarKitExample.xcodeproj">
+      location = "group:PulsarKit/PulsarKit.xcodeproj">
    </FileRef>
 </Workspace>
