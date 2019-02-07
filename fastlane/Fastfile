@@ -1,21 +1,4 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:ios)
-
-
 
 platform :ios do
  	desc "Release a new version with a patch bump_type"
@@ -31,10 +14,6 @@ platform :ios do
   	desc "Release a new version with a major bump_type"
   	lane :major do
 	    release("major")
-  	end
-
-  	lane :sync do
-  		syncRepos
   	end
 
 	def release(type)
@@ -55,10 +34,4 @@ platform :ios do
 	    # Publish new pod version
     	pod_push(path: podspec_name, allow_warnings: true)
 	end
-
-	# def syncRepos
-	# 	git_add
-	# 	sh("git commit -m'sync'")
-	# 	sh("git push origin master")
-	# end
 end
