@@ -13,19 +13,39 @@ PulsarKit is a set of class that provides all the methods required to display a 
 
 This framework is inspire by [Lighter view controllers](http://objc.io/issues/1-view-controllers/lighter-view-controllers/) and UITableViewSource and UICollectionViewSource in [Xamarin Platform](https://developer.xamarin.com/guides/ios/user_interface/tables/part_1_-_table_parts_and_functionality/).
 
+## Features Highlights
+
+
+
 ## Requirements
+
+PulsarKit 1.0.x is compatible with **Swift 4.2+** and the following platforms:
 
 - iOS 10+
 - Xcode 10+
-- Swift 4.2+
 
 ## Installation
 
-PulsarKit is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+PulsarKit is available through [CocoaPods](http://cocoapods.org). 
+CocoaPods is a dependency manager for Cocoa projects. You can install it with the following command:
+```shell
+$ gem install cocoapods
+```
 
+To integrate PulsarKit into your Xcode project using CocoaPods, specify it in your Podfile:
 ```ruby
-pod "PulsarKit"
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target '<target>' do
+	pod 'PulsarKit'
+end
+```
+
+Then, run the following command:
+```shell
+$ pod install
 ```
 
 ## Author
