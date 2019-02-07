@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "PulsarKit"
-  spec.version      = "1.0.2"
+  spec.version      = "1.0.3"
   spec.summary      = "PulsarKit is a simple and beautiful wrapper around the official UICollectionView API written in pure Swift"
 
   # This description is used to generate tags and improve search results.
