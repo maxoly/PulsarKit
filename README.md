@@ -8,14 +8,12 @@
 [![LICENSE](http://img.shields.io/badge/License-MIT-lightgrey.svg)](/LICENSE)
 [![Twitter](https://img.shields.io/badge/twitter-@maxoly-blue.svg?style=flat)](http://twitter.com/maxoly)
 
-## Description
-PulsarKit is a set of class that provides all the methods required to display a `UITableView` or a `UICollectionView`, including row count, returning a cell view for each row, handling row selection and many other great features.
+## What is PulsarKit?
+PulsarKit is a simple and beautiful wrapper around the official UICollectionView API written in pure Swift. PulsarKit is a library that lets you populate and update collection views simply using your models.
 
-This framework is inspire by [Lighter view controllers](http://objc.io/issues/1-view-controllers/lighter-view-controllers/) and UITableViewSource and UICollectionViewSource in [Xamarin Platform](https://developer.xamarin.com/guides/ios/user_interface/tables/part_1_-_table_parts_and_functionality/).
+This framework is lightly inspire by [Lighter view controllers](http://objc.io/issues/1-view-controllers/lighter-view-controllers/) and UITableViewSource and UICollectionViewSource in [Xamarin Platform](https://developer.xamarin.com/guides/ios/user_interface/tables/part_1_-_table_parts_and_functionality/).
 
 ## Features Highlights
-
-
 
 ## Requirements
 
@@ -39,7 +37,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<target>' do
-	pod 'PulsarKit'
+pod 'PulsarKit'
 end
 ```
 
