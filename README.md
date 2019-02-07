@@ -8,6 +8,8 @@
 [![LICENSE](http://img.shields.io/badge/License-MIT-lightgrey.svg)](/LICENSE)
 [![Twitter](https://img.shields.io/badge/twitter-@maxoly-blue.svg?style=flat)](http://twitter.com/maxoly)
 
+---
+
 ## What is PulsarKit?
 PulsarKit is a simple and beautiful wrapper around the official UICollectionView API written in pure Swift. PulsarKit is a library that lets you populate and update collection views **simply using *your models***.
 
