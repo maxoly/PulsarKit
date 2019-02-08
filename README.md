@@ -36,12 +36,15 @@ PulsarKit is a small, focused library that lets you populate and update UICollec
 
 - [x] Fluent interface configuration (`.when(Model).use(Cell)`)
 - [x] Easy section and row insertion, updation, deletion and moving (`source.add(model: ...)`)
+- [x] Easy reordering of collection view cells
 - [x] Easy and fine grained row event handling (`.on.didSelect`)
-- [x] Drop-in ready to use view controllers
+- [x] Ready to use view controllers
+- [x] Simple plugin system
 
 ## Requirements
 
 PulsarKit 1.0.x is compatible with:
+
 - **Swift 4.2+**
 - iOS 10+
 - Xcode 10+

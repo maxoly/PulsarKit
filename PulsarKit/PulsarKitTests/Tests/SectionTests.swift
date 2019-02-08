@@ -148,7 +148,7 @@ class SectionTests: XCTestCase {
         source.update()
         
         // Act
-        let before = Int.random(in: 1...random)
+        let before = Int.random(in: 1..<random)
         source.sections.deleteAll(before: before)
         source.update(forceReload: true)
         
