@@ -80,14 +80,3 @@ public extension Source {
         return model
     }
 }
-
-// MARK: - Global Reload
-public extension Source {
-    func reload<Model: Hashable>(model: Model) {
-        reload(models: [model])
-    }
-    
-    func reload<Model: Hashable>(models: [Model]) {
-        sections.current.forEach { $0.models.reload(elements: models) }
-    }
-}

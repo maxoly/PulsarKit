@@ -34,7 +34,7 @@ public final class CollectionSource: NSObject, Source {
 
 internal extension CollectionSource {
     func modelType<Model>(of model: Model) -> Any.Type {
-        if !(model is AnyHashable) {
+        if (model is AnyHashable) == false {
             return type(of: model)
         }
         

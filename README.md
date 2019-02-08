@@ -22,7 +22,7 @@ This framework is lightly inspire by [Lighter view controllers](http://objc.io/i
 - [Requirements](#requirements)
 - [Communication](#communication)
 - [Installation](#installation)
-- [Documentation](#documentation)
+- [Usage](#usage)
 - [Author](#author)
 - [License](#license)
 
@@ -81,7 +81,7 @@ Then, run the following command:
 $ pod install
 ```
 
-## Documentation
+## Usage
 
 The `CollectionSource` is the main class that manages the state of the `UICollectionView`. All that is required is to initialize a *source* with an instance of `UICollectionView`.
 

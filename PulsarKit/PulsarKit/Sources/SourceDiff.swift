@@ -12,7 +12,7 @@ public final class SourceDiff<Element: Hashable> {
     // private
     private lazy var added: [Element] = []
     private lazy var moved: [Move] = []
-    private lazy var deleted: [Int] = []
+    private lazy var deleted: Set<Int> = []
     private lazy var reloaded: [Int: Element] = [:]
     private lazy var inserted: [Int: Element] = [:]
     private lazy var indexesToIgnore: [Int] = []
@@ -165,14 +165,19 @@ public extension SourceDiff {
 
 // MARK: - Delete
 public extension SourceDiff {
-    func delete(allOccurrencesOf element: Element) {
+    func delete(allInstancesOf element: Element) {
         delete(all: current.indexes(of: element))
+    }
+    
+    func delete(allInstancesIn elements: [Element]) {
+        let indexes = elements.map(current.indexes).reduce(into: Set<Int>()) { $0.formUnion($1) }
+        delete(all: indexes)
     }
     
     @discardableResult
     func delete(at index: Int) -> Element {
         precondition(current.count > index)
-        deleted.append(index)
+        deleted.insert(index)
         return current[index]
     }
     

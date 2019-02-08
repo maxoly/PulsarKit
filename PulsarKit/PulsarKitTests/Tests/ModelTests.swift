@@ -510,7 +510,7 @@ class ModelTests: XCTestCase {
         // Act
         let exp = expectation(description: "batch")
         let newModel1 = User(id: 1, name: "new")
-        source.reload(model: newModel1)
+        source.reload(allInstancesOf: newModel1)
         source.update { _ in exp.fulfill() }
         
         // Assert

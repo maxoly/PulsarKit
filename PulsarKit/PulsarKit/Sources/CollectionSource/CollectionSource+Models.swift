@@ -10,8 +10,8 @@ import Foundation
 
 // MARK: - Add
 public extension CollectionSource {
-    func add<Model: Hashable>(element: Model) {
-        lastSection.models.add(element: element)
+    func add<Model: Hashable>(model: Model) {
+        lastSection.models.add(element: model)
     }
     
     func add<Model: Hashable>(elements: [Model]) {
@@ -21,8 +21,8 @@ public extension CollectionSource {
 
 // MARK: - Insert
 public extension CollectionSource {
-    func insert<Model: Hashable>(element: Model, at index: Int) {
-        lastSection.models.insert(element: element, at: index)
+    func insert<Model: Hashable>(model: Model, at index: Int) {
+        lastSection.models.insert(element: model, at: index)
     }
     
     func insert<Model: Hashable>(elements: [Model], in range: ClosedRange<Int>) {
@@ -32,6 +32,14 @@ public extension CollectionSource {
 
 // MARK: - Delete
 public extension CollectionSource {
+    func delete<Model: Hashable>(allInstancesIn models: [Model]) {
+        lastSection.models.delete(allInstancesIn: models)
+    }
+    
+    func delete<Model: Hashable>(allInstancesOf model: Model) {
+        lastSection.models.delete(allInstancesOf: model)
+    }
+    
     func delete(at index: Int) {
         lastSection.models.delete(at: index)
     }
@@ -83,11 +91,19 @@ public extension CollectionSource {
         lastSection.models.reload(in: range)
     }
     
-    func reload<Model: Hashable>(element: Model) {
-        lastSection.models.reload(element: element)
+    func reload<Model: Hashable>(model: Model) {
+        lastSection.models.reload(element: model)
     }
     
-    func reload<Model: Hashable>(elements: [Model]) {
-        lastSection.models.reload(elements: elements)
+    func reload<Model: Hashable>(models: [Model]) {
+        lastSection.models.reload(elements: models)
+    }
+    
+    func reload<Model: Hashable>(allInstancesOf model: Model) {
+        reload(allIntancesIn: [model])
+    }
+        
+    func reload<Model: Hashable>(allIntancesIn models: [Model]) {
+        sections.current.forEach { $0.models.reload(elements: models) }
     }
 }
