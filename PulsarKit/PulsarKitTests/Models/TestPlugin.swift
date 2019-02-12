@@ -3,7 +3,7 @@
 //  PulsarKitTests
 //
 //  Created by Massimo Oliviero on 29/08/2018.
-//  Copyright © 2018 Nacoon. All rights reserved.
+//  Copyright © 2019 Nacoon. All rights reserved.
 //
 
 import Foundation

@@ -1,9 +1,9 @@
 //
 //  SegmentedSize.swift
-//  RIBConnectUIKit
+//  PulsarKit
 //
 //  Created by Massimo Oliviero on 21/03/2018.
-//  Copyright © 2018 DuckMa Srl. All rights reserved.
+//  Copyright © 2019 Nacoon. All rights reserved.
 //
 
 import Foundation
