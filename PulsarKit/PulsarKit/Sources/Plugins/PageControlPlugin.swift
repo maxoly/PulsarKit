@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class PageControlPlugin {
+public final class PageControlPlugin {
     public let pageControl: UIPageControl
     
     public init(pageControl: UIPageControl) {
@@ -17,24 +17,22 @@ open class PageControlPlugin {
 }
 
 extension PageControlPlugin: SourcePlugin {
+    public var filter: SourcePluginFilter? { return nil }
+    public var events: SourcePluginEvents? { return self }
+
     public func activate() {}
-    
     public func deactivate() {}
-    
-    public var filter: SourcePluginFilter? {
-        return self
-    }
 }
 
-extension PageControlPlugin: SourcePluginFilter {
-    public func containerDidScroll(_ container: UIScrollView) {
-        guard let collectionView = container as? UICollectionView else { return }
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+extension PageControlPlugin: SourcePluginEvents {
+    public func dispatch(source: CollectionSource, event: Event.Scroll, context: ScrollContext) {
+        guard event == .onDidScroll else { return }
+        guard let layout = source.container.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         
         if layout.scrollDirection == .horizontal {
-            let visibleRect = CGRect(origin: container.contentOffset, size: container.bounds.size)
+            let visibleRect = CGRect(origin: source.container.contentOffset, size: source.container.bounds.size)
             let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-            let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint)
+            let visibleIndexPath = source.container.indexPathForItem(at: visiblePoint)
             pageControl.currentPage = visibleIndexPath?.row ?? 0
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 
 open class KeyboardHandlerPlugin: SourcePlugin {
     public var filter: SourcePluginFilter?
+    public var events: SourcePluginEvents?
     
     internal weak var container: UIScrollView?
     internal var keyboardSize: CGSize = .zero

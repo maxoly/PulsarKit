@@ -39,6 +39,10 @@ public enum Event {
         case onCanPerformAction
         case onPerformAction
     }
+    
+    public enum Scroll {
+        case onDidScroll
+    }
 }
 
 public class CollectionEvents<Model: Hashable, Cell: UICollectionReusableView> {

@@ -16,6 +16,7 @@ public final class CollectionSource: NSObject, Source {
     
     internal var isFirstTime: Bool = true
     internal lazy var filters = [SourcePluginFilter]()
+    internal lazy var events = [SourcePluginEvents]()
     internal lazy var descriptors = [String: Descriptor]()
     internal lazy var registeredIdentifiers = Set<String>()
     internal lazy var cellCache: NSCache<NSString, UIView> = NSCache<NSString, UIView>()
@@ -196,6 +197,10 @@ public extension CollectionSource {
         
         if let filter = plugin.filter {
             filters.append(filter)
+        }
+        
+        if let event = plugin.events {
+            events.append(event)
         }
     }
 }

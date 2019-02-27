@@ -10,6 +10,7 @@ import Foundation
 import PulsarKit
 
 class TestPlugin: SourcePlugin {
+    var events: SourcePluginEvents?
     var filter: SourcePluginFilter?
     
     var activated: Bool = false

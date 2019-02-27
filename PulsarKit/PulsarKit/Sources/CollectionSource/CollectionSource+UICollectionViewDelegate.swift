@@ -9,10 +9,6 @@
 import UIKit
 
 extension CollectionSource: UICollectionViewDelegate {
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        filters.forEach { $0.containerDidScroll(scrollView) }
-    }
-    
     // MARK: selection
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dispatch(event: .onDidSelect, container: collectionView, indexPath: indexPath)
@@ -68,5 +64,13 @@ extension CollectionSource: UICollectionViewDelegate {
     // MARK: layout
     public func collectionView(_ collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout {
         return on.dispatch(from: fromLayout, to: toLayout) ?? UICollectionViewTransitionLayout(currentLayout: fromLayout, nextLayout: toLayout)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+public extension CollectionSource {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let context = ScrollContext(container: scrollView)
+        events.forEach { $0.dispatch(source: self, event: Event.Scroll.onDidScroll, context: context) }
     }
 }
