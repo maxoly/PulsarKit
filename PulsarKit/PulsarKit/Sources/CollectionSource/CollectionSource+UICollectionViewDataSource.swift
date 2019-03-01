@@ -26,7 +26,9 @@ extension CollectionSource: UICollectionViewDataSource {
             return collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptor.cellReuseIdentifier, for: indexPath)
+        let dequeueCell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptor.cellReuseIdentifier, for: indexPath)
+        let cell = filters.reduce(dequeueCell) { $1.filter(source: self, cell: $0, at: indexPath) }
+        
         descriptor.bind(cell: cell, with: model)
         
         return cell

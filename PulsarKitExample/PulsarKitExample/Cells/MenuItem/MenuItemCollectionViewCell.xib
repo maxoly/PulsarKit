@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MenuItemCollectionViewCell" customModule="PulsarKitExample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="311" height="74"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="311" height="74"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sIN-Ns-HjW" userLabel="icon">
+                        <rect key="frame" x="15" y="18" width="38" height="38"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="38" id="Rlu-0O-C2P"/>
+                            <constraint firstAttribute="height" constant="38" id="gsK-Rv-47I"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGd-Bd-NaN" userLabel="line">
+                        <rect key="frame" x="15" y="73" width="281" height="1"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="XKV-cq-sWI"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Menu item title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVm-gG-hb9" userLabel="title">
+                        <rect key="frame" x="68" y="8" width="210" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rj1-pX-sDt" userLabel="description">
+                        <rect key="frame" x="68" y="29.5" width="210" height="36.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="angle-right-solid" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aOt-Ns-1JG" userLabel="arrow">
+                        <rect key="frame" x="286" y="27" width="10" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="aOt-Ns-1JG" secondAttribute="height" multiplier="227:451" id="S65-ra-yyZ"/>
+                            <constraint firstAttribute="width" constant="10" id="wQ9-cj-w3p"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="rj1-pX-sDt" firstAttribute="trailing" secondItem="HVm-gG-hb9" secondAttribute="trailing" id="RMp-kR-dfd"/>
+                <constraint firstItem="tGd-Bd-NaN" firstAttribute="leading" secondItem="sIN-Ns-HjW" secondAttribute="leading" id="TQn-Ol-ydg"/>
+                <constraint firstItem="rj1-pX-sDt" firstAttribute="top" secondItem="HVm-gG-hb9" secondAttribute="bottom" id="WYx-PH-XkR"/>
+                <constraint firstItem="aOt-Ns-1JG" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="b1k-VT-Dca"/>
+                <constraint firstItem="aOt-Ns-1JG" firstAttribute="leading" secondItem="HVm-gG-hb9" secondAttribute="trailing" constant="8" id="cVq-fg-Qit"/>
+                <constraint firstItem="sIN-Ns-HjW" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="dJk-Dq-4i5"/>
+                <constraint firstItem="HVm-gG-hb9" firstAttribute="leading" secondItem="sIN-Ns-HjW" secondAttribute="trailing" constant="15" id="iIu-qV-JBm"/>
+                <constraint firstItem="tGd-Bd-NaN" firstAttribute="trailing" secondItem="aOt-Ns-1JG" secondAttribute="trailing" id="iLS-Tz-0uY"/>
+                <constraint firstAttribute="bottom" secondItem="tGd-Bd-NaN" secondAttribute="bottom" id="iZd-DY-DI7"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="rj1-pX-sDt" secondAttribute="bottom" constant="8" id="nCy-EA-27K"/>
+                <constraint firstItem="sIN-Ns-HjW" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="15" id="rIG-OF-KO1"/>
+                <constraint firstItem="HVm-gG-hb9" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="8" id="vkM-Ji-PcY"/>
+                <constraint firstItem="rj1-pX-sDt" firstAttribute="leading" secondItem="HVm-gG-hb9" secondAttribute="leading" id="waq-t6-1eU"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="aOt-Ns-1JG" secondAttribute="trailing" constant="15" id="xXq-le-Pjp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="311" height="74"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="rj1-pX-sDt" id="NxW-sB-rmC"/>
+                <outlet property="iconImageView" destination="sIN-Ns-HjW" id="Pr4-lB-mvW"/>
+                <outlet property="lineView" destination="tGd-Bd-NaN" id="mHC-rJ-aWK"/>
+                <outlet property="titleLabel" destination="HVm-gG-hb9" id="cfG-TJ-S65"/>
+            </connections>
+            <point key="canvasLocation" x="-175.19999999999999" y="62.968515742128943"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="angle-right-solid" width="192" height="384"/>
+    </resources>
+</document>

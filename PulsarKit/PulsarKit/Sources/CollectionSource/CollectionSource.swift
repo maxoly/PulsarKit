@@ -29,7 +29,7 @@ public final class CollectionSource: NSObject, Source {
     }
     
     deinit {
-        plugins.forEach { $0.deactivate() }
+        plugins.forEach { $0.lifecycle?.deactivate() }
     }
 }
 
@@ -193,7 +193,7 @@ public extension CollectionSource {
 public extension CollectionSource {
     func add(plugin: SourcePlugin) {
         plugins.append(plugin)
-        plugin.activate()
+        plugin.lifecycle?.activate()
         
         if let filter = plugin.filter {
             filters.append(filter)

@@ -61,7 +61,8 @@ extension CollectionSource {
         
         // new size
         guard let cell: UICollectionReusableView = cell(for: descriptor) else { return CGSize.zero }
-        let size = descriptor.size(for: model).size(for: cell, descriptor: descriptor, model: model, in: collectionView)
+        let sizeable = descriptor.size(for: model, cell: cell)
+        let size = sizeable.size(for: cell, descriptor: descriptor, model: model, in: collectionView)
         
         // caches new size
         let cacheValue = NSValue(cgSize: size)

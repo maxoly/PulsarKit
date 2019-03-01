@@ -7,16 +7,14 @@
 //
 
 import UIKit
+import PulsarKit
 
 class UserCollectionViewCell: UICollectionViewCell {
-
     @IBOutlet weak var userLabel: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override var reuseIdentifier: String? {
-        return "UserCollectionViewCell"
+}
+
+extension UserCollectionViewCell: Sizeable {
+    func size<View>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize where View: UIView {
+        return CGSize(width: container.bounds.width, height: 50)
     }
 }

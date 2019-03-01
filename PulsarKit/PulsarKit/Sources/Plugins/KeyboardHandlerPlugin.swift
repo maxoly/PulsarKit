@@ -9,12 +9,15 @@
 import UIKit
 
 open class KeyboardHandlerPlugin: SourcePlugin {
-    public var filter: SourcePluginFilter?
-    public var events: SourcePluginEvents?
+    public var filter: SourcePluginFilter? { return nil }
+    public var events: SourcePluginEvents? { return nil }
+    public var lifecycle: SourcePluginLifecycle? { return self }
     
     internal weak var container: UIScrollView?
     internal var keyboardSize: CGSize = .zero
-    
+}
+
+extension KeyboardHandlerPlugin: SourcePluginLifecycle {
     public func activate() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -23,7 +26,9 @@ open class KeyboardHandlerPlugin: SourcePlugin {
     public func deactivate() {
         NotificationCenter.default.removeObserver(self)
     }
-    
+}
+
+extension KeyboardHandlerPlugin {
     @objc
     func keyboardWillShow(_ notification: Foundation.Notification) {
         guard let container = self.container else { return }

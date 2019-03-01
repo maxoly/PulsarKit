@@ -10,16 +10,17 @@ import UIKit
 import PulsarKit
 
 class SectionCollectionReusableView: UICollectionReusableView {
-
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        titleLabel.textColor = .secondary
+        backgroundColor = .clear
     }
-    
 }
 
 extension SectionCollectionReusableView: Bindable {
-    func bind(to element: Secion) {
-        
+    func bind(to element: Header) {
+        titleLabel.text = element.title
     }
 }

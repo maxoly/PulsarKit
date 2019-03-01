@@ -19,7 +19,7 @@ public protocol Descriptor {
     
     // methods
     func cellConfiguration() -> Any
-    func size(for model: Any) -> Sizeable
+    func size(for model: Any, cell: UICollectionReusableView) -> Sizeable
     func create<C: UIView>() -> C?
     func bind(cell: UIView, with model: Any)
 }

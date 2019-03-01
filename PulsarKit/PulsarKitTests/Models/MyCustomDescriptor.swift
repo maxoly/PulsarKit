@@ -9,7 +9,7 @@
 import Foundation
 import PulsarKit
 
-struct MyCustomDescriptor: Descriptor {
+struct MyCustomDescriptor: Descriptor {    
     var handle: DescriptorDispatcher { return self }
     
     var isCellAlreadyRegistered: Bool = false
@@ -19,7 +19,7 @@ struct MyCustomDescriptor: Descriptor {
     var cellClass: AnyClass = User1CollectionViewCell.self
     var cellReuseIdentifier: String = "User1CollectionViewCell"
     
-    func size(for model: Any) -> Sizeable {
+    func size(for model: Any, cell: UICollectionReusableView) -> Sizeable {
         return TableSize()
     }
     

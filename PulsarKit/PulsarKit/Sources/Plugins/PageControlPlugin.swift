@@ -19,9 +19,7 @@ public final class PageControlPlugin {
 extension PageControlPlugin: SourcePlugin {
     public var filter: SourcePluginFilter? { return nil }
     public var events: SourcePluginEvents? { return self }
-
-    public func activate() {}
-    public func deactivate() {}
+    public var lifecycle: SourcePluginLifecycle? { return nil }
 }
 
 extension PageControlPlugin: SourcePluginEvents {

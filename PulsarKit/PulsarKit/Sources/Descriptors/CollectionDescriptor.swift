@@ -28,16 +28,20 @@ open class CollectionDescriptor<Model, Cell, B: Binder>: Descriptor where B.Mode
         return configuration
     }
     
-    public func size(for model: Any) -> Sizeable {
-        guard let currentModel = model as? Model else {
-            return configuration.size
+    public func size(for model: Any, cell: UICollectionReusableView) -> Sizeable {
+        if let currentModel = model as? Model, let modelSize = configuration.sizes[currentModel] {
+            return modelSize
         }
         
-        guard let modelSize = configuration.sizes[currentModel] else {
-            return configuration.size
+        if let sizeable = configuration.size {
+            return sizeable
         }
         
-        return modelSize
+        if let sizeable = cell as? Sizeable {
+            return sizeable
+        }
+        
+        return TableSize()
     }
     
     public func create<C: UIView>() -> C? {

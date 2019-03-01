@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		560081EA22299E9E00EEC6C2 /* MoveSectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081E922299E9E00EEC6C2 /* MoveSectionsViewController.swift */; };
+		560081EC22299F9200EEC6C2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081EB22299F9200EEC6C2 /* UIViewController.swift */; };
+		560081EE2229A19E00EEC6C2 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081ED2229A19E00EEC6C2 /* MoveViewController.swift */; };
+		560081F02229A2EE00EEC6C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081EF2229A2ED00EEC6C2 /* Constants.swift */; };
+		560081F52229E07F00EEC6C2 /* InsertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F42229E07F00EEC6C2 /* InsertViewController.swift */; };
+		560081F72229E10600EEC6C2 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F62229E10600EEC6C2 /* UIImage.swift */; };
 		56288A19212DC02F0053C888 /* PulsarKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56288A18212DC02F0053C888 /* PulsarKit.framework */; };
 		5642605521824EB300311A75 /* SpaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5642605321824EB300311A75 /* SpaceCollectionViewCell.swift */; };
 		5642605621824EB300311A75 /* SpaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5642605421824EB300311A75 /* SpaceCollectionViewCell.xib */; };
@@ -18,7 +24,12 @@
 		5645EF97211E227F00B66E3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5645EF95211E227F00B66E3B /* LaunchScreen.storyboard */; };
 		564658C421691C3500B5EBAD /* SectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564658C221691C3500B5EBAD /* SectionCollectionReusableView.swift */; };
 		564658C521691C3500B5EBAD /* SectionCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 564658C321691C3500B5EBAD /* SectionCollectionReusableView.xib */; };
-		56D54261218248DB00A70C20 /* MovingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D54260218248DB00A70C20 /* MovingViewController.swift */; };
+		567533D722274A8D003C5BD8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533D622274A8D003C5BD8 /* UIColor.swift */; };
+		567533D922274C10003C5BD8 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533D822274C10003C5BD8 /* MenuItem.swift */; };
+		567533DC22274C77003C5BD8 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533DA22274C77003C5BD8 /* MenuItemCollectionViewCell.swift */; };
+		567533DD22274C77003C5BD8 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 567533DB22274C77003C5BD8 /* MenuItemCollectionViewCell.xib */; };
+		567533E1222759F8003C5BD8 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533E0222759F8003C5BD8 /* Header.swift */; };
+		56D54261218248DB00A70C20 /* MoveItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D54260218248DB00A70C20 /* MoveItemsViewController.swift */; };
 		56EE07482130B1840000B7D1 /* CollectionSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE07472130B1840000B7D1 /* CollectionSourceViewController.swift */; };
 		56EE074B2130B2C30000B7D1 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE07492130B2C30000B7D1 /* UserCollectionViewCell.swift */; };
 		56EE074C2130B2C30000B7D1 /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56EE074A2130B2C30000B7D1 /* UserCollectionViewCell.xib */; };
@@ -26,6 +37,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		560081E922299E9E00EEC6C2 /* MoveSectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSectionsViewController.swift; sourceTree = "<group>"; };
+		560081EB22299F9200EEC6C2 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		560081ED2229A19E00EEC6C2 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
+		560081EF2229A2ED00EEC6C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		560081F42229E07F00EEC6C2 /* InsertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertViewController.swift; sourceTree = "<group>"; };
+		560081F62229E10600EEC6C2 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		56288A18212DC02F0053C888 /* PulsarKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PulsarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5642605321824EB300311A75 /* SpaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		5642605421824EB300311A75 /* SpaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpaceCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -39,7 +56,12 @@
 		5645EF98211E227F00B66E3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		564658C221691C3500B5EBAD /* SectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		564658C321691C3500B5EBAD /* SectionCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionCollectionReusableView.xib; sourceTree = "<group>"; };
-		56D54260218248DB00A70C20 /* MovingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingViewController.swift; sourceTree = "<group>"; };
+		567533D622274A8D003C5BD8 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		567533D822274C10003C5BD8 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		567533DA22274C77003C5BD8 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		567533DB22274C77003C5BD8 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		567533E0222759F8003C5BD8 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		56D54260218248DB00A70C20 /* MoveItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveItemsViewController.swift; sourceTree = "<group>"; };
 		56EE07472130B1840000B7D1 /* CollectionSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionSourceViewController.swift; sourceTree = "<group>"; };
 		56EE07492130B2C30000B7D1 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		56EE074A2130B2C30000B7D1 /* UserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -59,6 +81,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		560081E822299E4D00EEC6C2 /* Move */ = {
+			isa = PBXGroup;
+			children = (
+				56D54260218248DB00A70C20 /* MoveItemsViewController.swift */,
+				560081E922299E9E00EEC6C2 /* MoveSectionsViewController.swift */,
+				560081ED2229A19E00EEC6C2 /* MoveViewController.swift */,
+			);
+			path = Move;
+			sourceTree = "<group>";
+		};
+		560081F32229E02800EEC6C2 /* Insert */ = {
+			isa = PBXGroup;
+			children = (
+				560081F42229E07F00EEC6C2 /* InsertViewController.swift */,
+			);
+			path = Insert;
+			sourceTree = "<group>";
+		};
 		56288A17212DC02F0053C888 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +127,7 @@
 		5645EF8B211E227C00B66E3B /* PulsarKitExample */ = {
 			isa = PBXGroup;
 			children = (
+				567533D522274A7C003C5BD8 /* Helpers */,
 				56B7F89D2131979C00C9D0F6 /* Application */,
 				56B7F89E213197AB00C9D0F6 /* Cells */,
 				56B7F89C2131978A00C9D0F6 /* Controllers */,
@@ -94,6 +135,53 @@
 				56B7F89B2131977D00C9D0F6 /* Resources */,
 			);
 			path = PulsarKitExample;
+			sourceTree = "<group>";
+		};
+		567533D522274A7C003C5BD8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				567533D622274A8D003C5BD8 /* UIColor.swift */,
+				560081EB22299F9200EEC6C2 /* UIViewController.swift */,
+				560081EF2229A2ED00EEC6C2 /* Constants.swift */,
+				560081F62229E10600EEC6C2 /* UIImage.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		567533DE22274C81003C5BD8 /* MenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				567533DA22274C77003C5BD8 /* MenuItemCollectionViewCell.swift */,
+				567533DB22274C77003C5BD8 /* MenuItemCollectionViewCell.xib */,
+			);
+			path = MenuItem;
+			sourceTree = "<group>";
+		};
+		567533DF222758F2003C5BD8 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				564658C221691C3500B5EBAD /* SectionCollectionReusableView.swift */,
+				564658C321691C3500B5EBAD /* SectionCollectionReusableView.xib */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		567533E42227E0DC003C5BD8 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				56EE07492130B2C30000B7D1 /* UserCollectionViewCell.swift */,
+				56EE074A2130B2C30000B7D1 /* UserCollectionViewCell.xib */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		567533E52227E0E3003C5BD8 /* Space */ = {
+			isa = PBXGroup;
+			children = (
+				5642605321824EB300311A75 /* SpaceCollectionViewCell.swift */,
+				5642605421824EB300311A75 /* SpaceCollectionViewCell.xib */,
+			);
+			path = Space;
 			sourceTree = "<group>";
 		};
 		56B7F89B2131977D00C9D0F6 /* Resources */ = {
@@ -109,9 +197,10 @@
 		56B7F89C2131978A00C9D0F6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				560081F32229E02800EEC6C2 /* Insert */,
+				560081E822299E4D00EEC6C2 /* Move */,
 				56EE07472130B1840000B7D1 /* CollectionSourceViewController.swift */,
 				5645EF8E211E227C00B66E3B /* HomeViewController.swift */,
-				56D54260218248DB00A70C20 /* MovingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -129,12 +218,10 @@
 		56B7F89E213197AB00C9D0F6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				56EE07492130B2C30000B7D1 /* UserCollectionViewCell.swift */,
-				56EE074A2130B2C30000B7D1 /* UserCollectionViewCell.xib */,
-				564658C221691C3500B5EBAD /* SectionCollectionReusableView.swift */,
-				564658C321691C3500B5EBAD /* SectionCollectionReusableView.xib */,
-				5642605321824EB300311A75 /* SpaceCollectionViewCell.swift */,
-				5642605421824EB300311A75 /* SpaceCollectionViewCell.xib */,
+				567533DE22274C81003C5BD8 /* MenuItem */,
+				567533DF222758F2003C5BD8 /* Section */,
+				567533E52227E0E3003C5BD8 /* Space */,
+				567533E42227E0DC003C5BD8 /* User */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -144,6 +231,8 @@
 			children = (
 				56EE074E2130B2FE0000B7D1 /* User.swift */,
 				5642605721824F1000311A75 /* Space.swift */,
+				567533D822274C10003C5BD8 /* MenuItem.swift */,
+				567533E0222759F8003C5BD8 /* Header.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -210,6 +299,7 @@
 				5645EF97211E227F00B66E3B /* LaunchScreen.storyboard in Resources */,
 				56EE074C2130B2C30000B7D1 /* UserCollectionViewCell.xib in Resources */,
 				5645EF94211E227F00B66E3B /* Assets.xcassets in Resources */,
+				567533DD22274C77003C5BD8 /* MenuItemCollectionViewCell.xib in Resources */,
 				5645EF92211E227C00B66E3B /* Main.storyboard in Resources */,
 				564658C521691C3500B5EBAD /* SectionCollectionReusableView.xib in Resources */,
 				5642605621824EB300311A75 /* SpaceCollectionViewCell.xib in Resources */,
@@ -224,14 +314,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				5645EF8F211E227C00B66E3B /* HomeViewController.swift in Sources */,
+				560081F02229A2EE00EEC6C2 /* Constants.swift in Sources */,
+				567533E1222759F8003C5BD8 /* Header.swift in Sources */,
+				560081F52229E07F00EEC6C2 /* InsertViewController.swift in Sources */,
 				564658C421691C3500B5EBAD /* SectionCollectionReusableView.swift in Sources */,
 				56EE074B2130B2C30000B7D1 /* UserCollectionViewCell.swift in Sources */,
 				5642605521824EB300311A75 /* SpaceCollectionViewCell.swift in Sources */,
-				56D54261218248DB00A70C20 /* MovingViewController.swift in Sources */,
+				56D54261218248DB00A70C20 /* MoveItemsViewController.swift in Sources */,
 				56EE07482130B1840000B7D1 /* CollectionSourceViewController.swift in Sources */,
 				56EE074F2130B2FE0000B7D1 /* User.swift in Sources */,
 				5645EF8D211E227C00B66E3B /* AppDelegate.swift in Sources */,
+				560081EE2229A19E00EEC6C2 /* MoveViewController.swift in Sources */,
+				567533DC22274C77003C5BD8 /* MenuItemCollectionViewCell.swift in Sources */,
+				560081EA22299E9E00EEC6C2 /* MoveSectionsViewController.swift in Sources */,
+				567533D922274C10003C5BD8 /* MenuItem.swift in Sources */,
 				5642605821824F1000311A75 /* Space.swift in Sources */,
+				560081F72229E10600EEC6C2 /* UIImage.swift in Sources */,
+				567533D722274A8D003C5BD8 /* UIColor.swift in Sources */,
+				560081EC22299F9200EEC6C2 /* UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 import Foundation
 
 public final class DescriptorConfiguration<Model: Hashable, Cell: UICollectionReusableView> {
-    internal var size: Sizeable = TableSize()
+    internal var size: Sizeable?
     internal lazy var sizes = [Model: Sizeable]()
     internal lazy var handlers = [Model: CollectionEvents<Model, Cell>]()
     public private(set) lazy var on = CollectionEvents<Model, Cell>()

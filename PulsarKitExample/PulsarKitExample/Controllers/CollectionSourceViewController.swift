@@ -19,17 +19,27 @@ final class CellaCollectionViewCell: UICollectionViewCell, Bindable {
     }
 }
 
-struct Secion: Hashable {
-    let id: String
-}
-
-class CollectionSourceViewController: UICollectionViewController {
+class CollectionSourceViewController1: UICollectionViewController {
     lazy var source = CollectionSource(container: collectionView)
+    let specialUser1 = User(id: 1922, name: "SPECIAL USER")
+    let specialUser2 = User(id: 1923, name: "PIPPO USER")
+    
+    lazy var infinite = InfiniteScrollingPlugin(offset: 10) { source in
+        print("reach the end")
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            for index in 200...300 {
+                source.add(model: User(id: index, name: "Username \(index)"))
+            }
+            source.update()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        source.when(Secion.self).use(SectionCollectionReusableView.self).withCellBinder()
+        source.add(plugin: infinite)
+        source.when(Header.self).use(SectionCollectionReusableView.self).withCellBinder()
+        
         let desc = source.when(User.self).use(UserCollectionViewCell.self).withModelBinder()
 
         //        .set(sizeable: CompositeSize(widthSize: ContainerSize(), heightSize: FixedSize(height: 54)))
@@ -55,18 +65,28 @@ class CollectionSourceViewController: UICollectionViewController {
             print("qua")
         }
         
-        source.sections.add(element: SourceSection(footerModel: Secion(id: "1")))
+        source.sections.add(element: SourceSection(footerModel: Header(title: "1")))
+        
+        source.add(model: specialUser1)
+        source.add(model: specialUser1)
+        source.add(model: specialUser1)
+        source.add(model: specialUser2)
+        source.add(model: specialUser2)
         
         for index in 0...100 {
-            source.add(element: User(id: index, name: "Username \(index)"))
+            source.add(model: User(id: index, name: "Username \(index)"))
         }
     }
     
     @IBAction func deleteItems(_ sender: Any) {
-        source.delete(in: 2...4)
-        source.move(from: 0, to: 1)
-        source.insert(element: User(id: 300, name: "Username 300"), at: 6)
-        source.insert(element: User(id: 301, name: "Username 301"), at: 7)
+        let array: [AnyHashable] = [specialUser1, specialUser2]
+        source.delete(allInstancesOf: specialUser2)
+        source.delete(allInstancesIn: array)
+//        source.delete(in: 2...4)
+        source.move(from: 10, to: 11)
+//        source.reload(model: specialUser2)
+        source.insert(model: User(id: 300, name: "Username 300"), at: 6)
+        source.insert(model: User(id: 301, name: "Username 301"), at: 7)
         source.update()
     }
     

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		560081E22229743B00EEC6C2 /* GroupedCollectionPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081E12229743B00EEC6C2 /* GroupedCollectionPlugin.swift */; };
+		560081E5222975AC00EEC6C2 /* SourcePluginFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081E4222975AC00EEC6C2 /* SourcePluginFilter.swift */; };
+		560081E7222975BF00EEC6C2 /* SourcePluginEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081E6222975BF00EEC6C2 /* SourcePluginEvents.swift */; };
+		560081F22229DDEA00EEC6C2 /* SourcePluginLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F12229DDEA00EEC6C2 /* SourcePluginLifecycle.swift */; };
 		5615AB16212377D10047664F /* SourceDiff+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB15212377D10047664F /* SourceDiff+Section.swift */; };
 		5615AB1A21237EF60047664F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB1921237EF60047664F /* User.swift */; };
 		5615AB1C21237F0D0047664F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB1B21237F0D0047664F /* Product.swift */; };
@@ -77,6 +81,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		560081E12229743B00EEC6C2 /* GroupedCollectionPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedCollectionPlugin.swift; sourceTree = "<group>"; };
+		560081E4222975AC00EEC6C2 /* SourcePluginFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePluginFilter.swift; sourceTree = "<group>"; };
+		560081E6222975BF00EEC6C2 /* SourcePluginEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePluginEvents.swift; sourceTree = "<group>"; };
+		560081F12229DDEA00EEC6C2 /* SourcePluginLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePluginLifecycle.swift; sourceTree = "<group>"; };
 		5615AB15212377D10047664F /* SourceDiff+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SourceDiff+Section.swift"; sourceTree = "<group>"; };
 		5615AB1921237EF60047664F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5615AB1B21237F0D0047664F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -158,6 +166,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		560081E32229759700EEC6C2 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				56B7F8A42131A8F000C9D0F6 /* SourcePlugin.swift */,
+				560081E6222975BF00EEC6C2 /* SourcePluginEvents.swift */,
+				560081E4222975AC00EEC6C2 /* SourcePluginFilter.swift */,
+				560081F12229DDEA00EEC6C2 /* SourcePluginLifecycle.swift */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
 		5615AB1721237ED60047664F /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,13 +312,13 @@
 				5645EFF2211E231600B66E3B /* Source.swift */,
 				56289DED211E33AB0041AC8A /* SourceDiff.swift */,
 				5615AB15212377D10047664F /* SourceDiff+Section.swift */,
-				56B7F8A42131A8F000C9D0F6 /* SourcePlugin.swift */,
 				5645EFF4211E233700B66E3B /* SourceSection.swift */,
 				56289DFD211F39240041AC8A /* Binders */,
 				56289DEC211E2DC20041AC8A /* CollectionSource */,
 				56E87272214C7A080011E625 /* Contexts */,
 				56289DF5211F28650041AC8A /* Descriptors */,
 				56289DE9211E2CD50041AC8A /* Extensions */,
+				560081E32229759700EEC6C2 /* Plugin */,
 				56B7F89F2131A5C300C9D0F6 /* Plugins */,
 				56289DFA211F34030041AC8A /* Sizes */,
 				56D542622182495100A70C20 /* ViewControllers */,
@@ -310,6 +329,7 @@
 		56B7F89F2131A5C300C9D0F6 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				560081E12229743B00EEC6C2 /* GroupedCollectionPlugin.swift */,
 				567533D12226EF3B003C5BD8 /* InfiniteScrollingPlugin.swift */,
 				56B7F8A02131A5D200C9D0F6 /* KeyboardHandlerPlugin.swift */,
 				56B7F8A62131AB0F00C9D0F6 /* PageControlPlugin.swift */,
@@ -469,10 +489,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				56DA04D421223657006BE217 /* FixedSize.swift in Sources */,
+				560081E7222975BF00EEC6C2 /* SourcePluginEvents.swift in Sources */,
 				56288A16212DBAE30053C888 /* DescriptorConfiguration.swift in Sources */,
 				564658BF2169130300B5EBAD /* CellContext.swift in Sources */,
 				564658BB21690EEC00B5EBAD /* CollectionSource+Dispatch.swift in Sources */,
 				56DA04D321223657006BE217 /* ContainerSize.swift in Sources */,
+				560081F22229DDEA00EEC6C2 /* SourcePluginLifecycle.swift in Sources */,
 				56E8726D214C5F7E0011E625 /* Array.swift in Sources */,
 				56289E03211F395E0041AC8A /* CellBinder.swift in Sources */,
 				56B7F8A32131A84400C9D0F6 /* UIView.swift in Sources */,
@@ -481,6 +503,7 @@
 				562F15C321431C14006459BE /* CollectionSource+Models.swift in Sources */,
 				56DA04D221223657006BE217 /* CompositeSize.swift in Sources */,
 				5645EFFC211E29EE00B66E3B /* CollectionSource+UICollectionViewDataSource.swift in Sources */,
+				560081E22229743B00EEC6C2 /* GroupedCollectionPlugin.swift in Sources */,
 				56DA04D721223657006BE217 /* Sizeable.swift in Sources */,
 				56289DFF211F392F0041AC8A /* Binder.swift in Sources */,
 				5645EFF3211E231600B66E3B /* Source.swift in Sources */,
@@ -508,6 +531,7 @@
 				5645EFF1211E22E900B66E3B /* CollectionSource.swift in Sources */,
 				56DA04D121223657006BE217 /* AutolayoutSize.swift in Sources */,
 				56EE07462130A8C90000B7D1 /* AnyBinder.swift in Sources */,
+				560081E5222975AC00EEC6C2 /* SourcePluginFilter.swift in Sources */,
 				567533D42226F770003C5BD8 /* ScrollContext.swift in Sources */,
 				56B08A2E213736AA00F8AFF5 /* CollectionEvents.swift in Sources */,
 			);

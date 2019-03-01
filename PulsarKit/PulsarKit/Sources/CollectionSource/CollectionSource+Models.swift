@@ -14,8 +14,8 @@ public extension CollectionSource {
         lastSection.models.add(element: model)
     }
     
-    func add<Model: Hashable>(elements: [Model]) {
-        lastSection.models.add(elements: elements)
+    func add<Model: Hashable>(models: [Model]) {
+        lastSection.models.add(elements: models)
     }
 }
 
@@ -25,8 +25,8 @@ public extension CollectionSource {
         lastSection.models.insert(element: model, at: index)
     }
     
-    func insert<Model: Hashable>(elements: [Model], in range: ClosedRange<Int>) {
-        lastSection.models.insert(elements: elements, in: range)
+    func insert<Model: Hashable>(models: [Model], in range: ClosedRange<Int>) {
+        lastSection.models.insert(elements: models, in: range)
     }
 }
 
