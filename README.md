@@ -1,5 +1,5 @@
 <p align="center" >
-<img src="Assets/PulsarKit-logo.png" width="500px" alt="PulsarKit" title="PulsarKit">
+<img src="Assets/pulsarkit-logo.png" width="500px" alt="PulsarKit" title="PulsarKit">
 </p>
 
 ![Platform](https://img.shields.io/badge/Platform-iOS-blue.svg)
