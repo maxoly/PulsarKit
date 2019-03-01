@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sIN-Ns-HjW" userLabel="icon">
-                        <rect key="frame" x="15" y="18" width="38" height="38"/>
+                        <rect key="frame" x="15" y="21" width="32" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="38" id="Rlu-0O-C2P"/>
-                            <constraint firstAttribute="height" constant="38" id="gsK-Rv-47I"/>
+                            <constraint firstAttribute="width" constant="32" id="Rlu-0O-C2P"/>
+                            <constraint firstAttribute="height" constant="32" id="gsK-Rv-47I"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGd-Bd-NaN" userLabel="line">
@@ -34,13 +34,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Menu item title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVm-gG-hb9" userLabel="title">
-                        <rect key="frame" x="68" y="8" width="210" height="21.5"/>
+                        <rect key="frame" x="62" y="8" width="216" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rj1-pX-sDt" userLabel="description">
-                        <rect key="frame" x="68" y="29.5" width="210" height="36.5"/>
+                        <rect key="frame" x="62" y="29.5" width="216" height="36.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -79,7 +79,7 @@
                 <outlet property="lineView" destination="tGd-Bd-NaN" id="mHC-rJ-aWK"/>
                 <outlet property="titleLabel" destination="HVm-gG-hb9" id="cfG-TJ-S65"/>
             </connections>
-            <point key="canvasLocation" x="-175.19999999999999" y="62.968515742128943"/>
+            <point key="canvasLocation" x="-308" y="31"/>
         </collectionViewCell>
     </objects>
     <resources>

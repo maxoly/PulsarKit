@@ -11,6 +11,7 @@
 		560081E5222975AC00EEC6C2 /* SourcePluginFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081E4222975AC00EEC6C2 /* SourcePluginFilter.swift */; };
 		560081E7222975BF00EEC6C2 /* SourcePluginEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081E6222975BF00EEC6C2 /* SourcePluginEvents.swift */; };
 		560081F22229DDEA00EEC6C2 /* SourcePluginLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F12229DDEA00EEC6C2 /* SourcePluginLifecycle.swift */; };
+		560081F92229E78F00EEC6C2 /* CollectionSource+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F82229E78F00EEC6C2 /* CollectionSource+Sections.swift */; };
 		5615AB16212377D10047664F /* SourceDiff+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB15212377D10047664F /* SourceDiff+Section.swift */; };
 		5615AB1A21237EF60047664F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB1921237EF60047664F /* User.swift */; };
 		5615AB1C21237F0D0047664F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB1B21237F0D0047664F /* Product.swift */; };
@@ -85,6 +86,7 @@
 		560081E4222975AC00EEC6C2 /* SourcePluginFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePluginFilter.swift; sourceTree = "<group>"; };
 		560081E6222975BF00EEC6C2 /* SourcePluginEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePluginEvents.swift; sourceTree = "<group>"; };
 		560081F12229DDEA00EEC6C2 /* SourcePluginLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePluginLifecycle.swift; sourceTree = "<group>"; };
+		560081F82229E78F00EEC6C2 /* CollectionSource+Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionSource+Sections.swift"; sourceTree = "<group>"; };
 		5615AB15212377D10047664F /* SourceDiff+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SourceDiff+Section.swift"; sourceTree = "<group>"; };
 		5615AB1921237EF60047664F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5615AB1B21237F0D0047664F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				5645EFF0211E22E900B66E3B /* CollectionSource.swift */,
 				564658BA21690EEC00B5EBAD /* CollectionSource+Dispatch.swift */,
 				562F15C221431C14006459BE /* CollectionSource+Models.swift */,
+				560081F82229E78F00EEC6C2 /* CollectionSource+Sections.swift */,
 				5645EFFB211E29EE00B66E3B /* CollectionSource+UICollectionViewDataSource.swift */,
 				5645EFFD211E2A3000B66E3B /* CollectionSource+UICollectionViewDelegate.swift */,
 				56289DEF211E66AC0041AC8A /* CollectionSource+UICollectionViewDelegateFlowLayout.swift */,
@@ -522,6 +525,7 @@
 				5645EFF5211E233700B66E3B /* SourceSection.swift in Sources */,
 				56B7F8A12131A5D200C9D0F6 /* KeyboardHandlerPlugin.swift in Sources */,
 				56289DF7211F28780041AC8A /* Descriptor.swift in Sources */,
+				560081F92229E78F00EEC6C2 /* CollectionSource+Sections.swift in Sources */,
 				56B7F8A72131AB0F00C9D0F6 /* PageControlPlugin.swift in Sources */,
 				56289DEB211E2CE40041AC8A /* UICollectionView.swift in Sources */,
 				56289DF0211E66AC0041AC8A /* CollectionSource+UICollectionViewDelegateFlowLayout.swift in Sources */,

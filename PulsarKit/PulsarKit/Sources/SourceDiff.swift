@@ -138,8 +138,10 @@ internal extension SourceDiff {
 
 // MARK: - Add
 public extension SourceDiff {
-    func add(element: Element) {
+    @discardableResult
+    func add(element: Element) -> Element {
         add(elements: [element])
+        return element
     }
     
     func add(elements: [Element]) {
@@ -149,8 +151,10 @@ public extension SourceDiff {
 
 // MARK: - Insert
 public extension SourceDiff {
-    func insert(element: Element, at index: Int) {
+    @discardableResult
+    func insert(element: Element, at index: Int) -> Element {
         inserted[index] = element
+        return element
     }
     
     func insert(elements: [Element], in range: ClosedRange<Int>) {

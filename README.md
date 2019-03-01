@@ -1,4 +1,6 @@
-# PulsarKit
+<p align="center" >
+<img src="Assets/PulsarKit-logo.png" width="500px" alt="PulsarKit" title="PulsarKit">
+</p>
 
 ![Platform](https://img.shields.io/badge/Platform-iOS-blue.svg)
 ![iOS 10.0+](http://img.shields.io/badge/iOS-10.0%2B-blue.svg)

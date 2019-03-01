@@ -52,10 +52,10 @@ extension InsertViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
-        source.sections.add(element: SourceSection(headerModel: Header(title: "Items")))
+        source.add(section: SourceSection(headerModel: Header(title: "Items")))
         source.add(models: [addItemMenu, inserRowMenu])
         
-        source.sections.add(element: SourceSection(headerModel: Header(title: "Sections")))
+        source.add(section: SourceSection(headerModel: Header(title: "Sections")))
         source.add(models: [addSectionMenu, insertSectionMenu])
     }
 }

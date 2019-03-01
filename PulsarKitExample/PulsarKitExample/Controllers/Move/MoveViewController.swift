@@ -30,19 +30,17 @@ extension MoveViewController {
     }
     
     func populateSource() {
-        let itemsMoveIcon = UIImage(named: "grip-vertical-solid")?.withRenderingMode(.alwaysTemplate)
-        let itemsMenuItem = MenuItem(icon: itemsMoveIcon, title: "Move Items", description: Constants.Lorem) {
+        let itemsMenuItem = MenuItem(icon: UIImage.itemsMove, title: "Move Items", description: Constants.Lorem) {
             let controller = MoveItemsViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
-        let sectionsMoveIcon = UIImage(named: "object-ungroup-solid")?.withRenderingMode(.alwaysTemplate)
-        let sectionsMenuItem = MenuItem(icon: sectionsMoveIcon, title: "Move Sections", description: Constants.Lorem) {
+        let sectionsMenuItem = MenuItem(icon: UIImage.sectionsMove, title: "Move Sections", description: Constants.Lorem) {
             let controller = MoveSectionsViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
-        source.sections.add(element: SourceSection(headerModel: Header(title: "Basic")))
+        source.add(section: SourceSection(headerModel: Header(title: "Basic")))
         source.add(models: [itemsMenuItem, sectionsMenuItem])
     }
 }

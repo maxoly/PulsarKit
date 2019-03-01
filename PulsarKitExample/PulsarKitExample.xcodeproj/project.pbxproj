@@ -13,6 +13,7 @@
 		560081F02229A2EE00EEC6C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081EF2229A2ED00EEC6C2 /* Constants.swift */; };
 		560081F52229E07F00EEC6C2 /* InsertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F42229E07F00EEC6C2 /* InsertViewController.swift */; };
 		560081F72229E10600EEC6C2 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F62229E10600EEC6C2 /* UIImage.swift */; };
+		560081FB2229ED1000EEC6C2 /* PulsarKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56288A18212DC02F0053C888 /* PulsarKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		56288A19212DC02F0053C888 /* PulsarKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56288A18212DC02F0053C888 /* PulsarKit.framework */; };
 		5642605521824EB300311A75 /* SpaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5642605321824EB300311A75 /* SpaceCollectionViewCell.swift */; };
 		5642605621824EB300311A75 /* SpaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5642605421824EB300311A75 /* SpaceCollectionViewCell.xib */; };
@@ -35,6 +36,20 @@
 		56EE074C2130B2C30000B7D1 /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56EE074A2130B2C30000B7D1 /* UserCollectionViewCell.xib */; };
 		56EE074F2130B2FE0000B7D1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE074E2130B2FE0000B7D1 /* User.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		560081FC2229ED1000EEC6C2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				560081FB2229ED1000EEC6C2 /* PulsarKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		560081E922299E9E00EEC6C2 /* MoveSectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSectionsViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +262,7 @@
 				5645EF85211E227C00B66E3B /* Sources */,
 				5645EF86211E227C00B66E3B /* Frameworks */,
 				5645EF87211E227C00B66E3B /* Resources */,
+				560081FC2229ED1000EEC6C2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
