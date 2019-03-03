@@ -277,9 +277,9 @@ descriptor.set(sizeable: composite)
 import PulsarKit
 
 class MyCustomSize: Sizable {
-	public func size<View: UIView>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize {
-		// your custom logic here
-	}
+   public func size<View: UIView>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize {
+      // your custom logic here
+   }
 }
 
 // ....
