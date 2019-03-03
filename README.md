@@ -135,7 +135,7 @@ class MyViewController: UIViewController {
         
        // 4. Register cells classes
        // the code below tells source to show a `UserCollectionViewCell`
-       // for every instance of `User` you adds to source.
+       // for every instance of `User` you add to source.
        source.when(User.self).use(UserCollectionViewCell.self).withCellBinder()
 
       // fetch users
@@ -185,7 +185,7 @@ class MyViewController: UIViewController {
         
        // 4. Register cells classes
        // the code below tells source to show a `OrderCollectionViewCell`
-       // for every instance of `Order` you adds to source.
+       // for every instance of `Order` you add to source.
        source.when(Order.self).use(OrderCollectionViewCell.self).withModelBinder()
 
       // fetch order
