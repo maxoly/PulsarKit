@@ -31,13 +31,13 @@ This framework is lightly inspire by [Lighter view controllers](http://objc.io/i
 - [Author](#author)
 - [License](#license)
 
-## 👋 Introduction
+##👋 Introduction
 
 **Never** implement `UICollectionViewDataSource`, `UICollectionViewDelegate` and `UICollectionViewDelegateFlowLayout` again.
 
 PulsarKit is a small, focused library that lets you populate and update UICollectionView views from **your models**. Forget about dequeuing and type casting cells. Forget about converting an IndexPath to a model object. PulsarKit will hand you dequeued views of the correct type along with the right model object for the index path. You can focus on applying your custom data to your custom view.
 
-## 🚀 Features Highlights
+# 🚀 Features Highlights
 
 - [x] Fluent interface configuration (`.when(Model).use(Cell)`)
 - [x] Easy section and row insertion, updation, deletion and moving (`source.add(model: ...)`)
@@ -46,7 +46,7 @@ PulsarKit is a small, focused library that lets you populate and update UICollec
 - [x] Ready to use view controllers
 - [x] Powerful plugin system
 
-## 🛑 Requirements
+# 🛑 Requirements
 
 PulsarKit 1.1.x is compatible with:
 
@@ -54,7 +54,7 @@ PulsarKit 1.1.x is compatible with:
 - iOS 10+
 - Xcode 10+
 
-## 📣 Communication
+# 📣 Communication
 
 * If you **need help with an PulsarKit feature**, open an issue.
 * If you'd like to **discuss a feature request**, open an issue.
@@ -62,7 +62,7 @@ PulsarKit 1.1.x is compatible with:
 * If you need to **find or understand an API**, check our documentation or Apple's documentation for UICollectionView, on top of which PulsarKit is built.
 * If you want to **contribute**, submit a pull request.
 
-## 💽 Installation
+# 💽 Installation
 
 PulsarKit is available through [CocoaPods](http://cocoapods.org). 
 CocoaPods is a dependency manager for Cocoa projects. You can install it with the following command:
@@ -86,7 +86,7 @@ Then, run the following command:
 $ pod install
 ```
 
-## 🕹 Usage
+# 🕹 Usage
 
 In order to use **PulsarKit** it is necessary to follow 5 simply steps:
 
@@ -98,9 +98,9 @@ In order to use **PulsarKit** it is necessary to follow 5 simply steps:
 
 The `CollectionSource` is the main class that manages the state of the `UICollectionView`. All that is required is to initialize a *source* with an instance of `UICollectionView`. 
 
-### 🐣 Basic usage
+## 🐣 Basic usage
 
-#### Example with Bindable cells
+### Example with Bindable cells
 
 ```swift
 import PulsarKit
@@ -151,8 +151,7 @@ class MyViewController: UIViewController {
    }
 }
 ```
-#### Example with Bindable models
-
+### Example with Bindable models
 ```swift
 import PulsarKit
 
@@ -202,9 +201,8 @@ class MyViewController: UIViewController {
    }
 }
 ```
-### 📡 Event Handling
-
-#### Cell selection
+## 📡 Event Handling
+### Cell selection
 ```swift
 import PulsarKit
 
@@ -243,7 +241,7 @@ class MyViewController: UIViewController {
    // ...
 }
 ```
-### 📐 Sizing cells
+## 📐 Sizing cells
 
 PulsarKit supports different kind of cell sizing. You can provide your custom sizing implementing `Sizable` protocol. By default PulsarKit uses the `TableSize` layout that uses autolayout to calculate height and the width of collection view as width of the cell.
 
@@ -256,7 +254,7 @@ PulsarKit has 6 ready-to-use sizes:
 - `FixedSize`: provide a fixed height/width for all cell types (faster if you plan to have all cell sized same)
 - `CompositeSize`: a special size that evaluates combinations of two sizes
 
-#### Fixed sizing
+### Fixed sizing
 ```swift
 import PulsarKit
 
@@ -273,7 +271,7 @@ class MyViewController: UIViewController {
    }
 }
 ```
-#### Composite sizing 
+### Composite sizing 
 ```swift
 import PulsarKit
 
@@ -294,7 +292,7 @@ class MyViewController: UIViewController {
    }
 }
 ```
-#### Custom sizing 
+### Custom sizing 
 ```swift
 import PulsarKit
 
@@ -314,8 +312,6 @@ class MyViewController: UIViewController {
    }
 }
 ```
-
-
 ## Author
 
 Massimo Oliviero, massimo.oliviero@gmail.com
