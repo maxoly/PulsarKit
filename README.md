@@ -28,6 +28,7 @@ This framework is lightly inspire by [Lighter view controllers](http://objc.io/i
 	- [Basic usage](#basic-usage)
 	- [Event handling](#event-handling)
 	- [Sizing cells](#sizing-cells)
+	- [Plugins](#plugins)
 - [Author](#author)
 - [License](#license)
 
@@ -203,42 +204,37 @@ class MyViewController: UIViewController {
 ```
 ## Event Handling
 ### Cell selection
+```swift   
+let user1 = User(id: 1, name: "Guest") 
+let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder()
+
+// the callback is called when user did tap on any cell of type `UserCollectionViewCell`
+descriptor.on.didSelect { context in
+   print("model: \(context.model)")
+   print("indexPath: \(context.indexPath)")
+}
+
+// the callback is callend when user did tap on a cell `binded` with a specific instance of user
+descriptor.on(model: user1).didSelect { context in
+   print("model: \(context.model)")
+   print("indexPath: \(context.indexPath)")
+}
+
+// the callback is callend when user did tap on any cell
+source.on.didSelect { _ in
+   print("model: \(context.model)")
+   print("indexPath: \(context.indexPath)")
+}
+```
+### Other events
 ```swift
-import PulsarKit
+let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder()
 
-class MyViewController: UIViewController {
-   @IBOutlet weak var collectionView: UICollectionView!
-   lazy var source = CollectionSource(container: collectionView)
-
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      let user1 = User(id: 1, name: "Guest") 
-      let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder()
-
-      // the callback is called when user did tap on any cell of type `UserCollectionViewCell`
-      descriptor.on.didSelect { context in
-         print("model: \(context.model)")
-         print("indexPath: \(context.indexPath)")
-      }
-
-      // the callback is callend when user did tap on a cell `binded` with a specific instance of user
-      descriptor.on(model: user1).didSelect { context in
-	     print("model: \(context.model)")
-         print("indexPath: \(context.indexPath)")
-      }
-
-	  // the callback is callend when user did tap on any cell
-      source.on.didSelect { _ in
-         print("model: \(context.model)")
-         print("indexPath: \(context.indexPath)")
-      }  
-
-      // fetch users
-      fetchUsersFromNetwork()
-   }
-
-   // ...
+// the callback is called when before adding a cell to collection view
+descriptor.on.willDisplay { context in
+   print("cell: \(context.cell)")
+   print("model: \(context.model)")
+   print("indexPath: \(context.indexPath)")
 }
 ```
 ## Sizing cells
@@ -256,41 +252,25 @@ PulsarKit has 6 ready-to-use sizes:
 
 ### Fixed sizing
 ```swift
-import PulsarKit
+let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder()
 
-class MyViewController: UIViewController {
-   // ...
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder()
+// fixed cell sizing
+let fixed = FixedSize(width: 40, height: 50)
 
-      // fixed cell sizing
-      let fixed = FixedSize(width: 40, height: 50)
-      descriptor.set(sizeable: fixed)
-   }
-}
+// set to descriptor
+descriptor.set(sizeable: fixed)
 ```
 ### Composite sizing 
 ```swift
-import PulsarKit
+let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder()
 
-class MyViewController: UIViewController {
-   // ...
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder()
+// sizing composition
+let container = ContainerSize() 	// it uses collection view bounds
+let fixed = FixedSize(height: 50) 	// fixed height size
+let composite = CompositeSize(widthSize: container, heightSize: fixed)  
 
-      // sizing composition
-      let container = ContainerSize() 	// it uses collection view bounds
-      let fixed = FixedSize(height: 50) // fixed height size
-
-      // put togher
-      let composite = CompositeSize(widthSize: container, heightSize: fixed)  
-      descriptor.set(sizeable: composite)
-   }
-}
+// set to descriptor
+descriptor.set(sizeable: composite)
 ```
 ### Custom sizing 
 ```swift
@@ -302,15 +282,46 @@ class MyCustomSize: Sizable {
 	}
 }
 
-class MyViewController: UIViewController {
-   // ...
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder() 
-      descriptor.set(sizeable: MyCustomSize())
-   }
+// ....
+
+let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder() 
+descriptor.set(sizeable: MyCustomSize())
+```
+### Sizing for a specific model
+```swift
+
+// your models instances
+let user1 = User(id: 1, name: "John")
+let user2 = User(id: 1, name: "Jim")
+
+let descriptor = source.when(User.self).use(UserCollectionViewCell.self).withCellBinder() 
+
+// set to descriptor
+descriptor.set(sizeable: FixedSize(width: 300, height: 50), for: user1) // <- user 1
+descriptor.set(sizeable: FixedSize(width: 50, height: 320), for: user2) // <- user 2
+```
+## Plugins
+
+PulsarKit has a _powerful plugin system_ that allows you to add new features and behaviors. You can provide your custom plugin implementing `SourcePlugin` protocol.
+
+PulsarKit has 4 ready-to-use plugins:
+
+- `PageControlPlugin`: mantains in sync the UICollectionView pages and UIPageControl
+- `KeyboardHandlerPlugin`: prevents issues of keyboard sliding up and cover UITextField/UITextView inside a cell
+- `InfiniteScrollingPlugin`: enables infinite scrolling handling
+- `GroupedCollectionPlugin`: mimics grouped table view style behavior
+
+### Plugin usage example
+
+```swift
+var infinite = InfiniteScrollingPlugin { source in
+	self.fetchMoreUsers { (users: [User]) in
+    	self.source.add(models: users)
+        self.source.update()
+    }
 }
+
+source.add(plugin: infinite)
 ```
 ## Author
 
