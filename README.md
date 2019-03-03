@@ -1,15 +1,16 @@
 <p align="center" >
-<img src="Assets/pulsarkit-logo.png" width="500px" alt="PulsarKit" title="PulsarKit">
+	<img src="https://raw.githubusercontent.com/maxoly/PulsarKit/master/Assets/pulsarkit-logo.png" width="500px" alt="PulsarKit" title="PulsarKit">
+	<h5 align="center">Lightweight and beautiful wrapper around the official UICollectionView API written in pure Swift.</h5>
+  	<p align="center">
+    	<a href="https://cocoapods.org/pods/PulsarKit"><img src="https://img.shields.io/badge/Platform-iOS-blue.svg"></a>
+    	<a href="https://cocoapods.org/pods/PulsarKit"><img src="http://img.shields.io/badge/iOS-10.0%2B-blue.svg"></a>
+    	<a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-4.2-orange.svg"></a>
+    	<a href="https://cocoapods.org/pods/PulsarKit"><img src="https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat"></a>
+    	<a href="https://travis-ci.org/maxoly/PulsarKit"><img src="https://travis-ci.org/maxoly/PulsarKit.svg"></a>
+    	<a href="https://github.com/maxoly/PulsarKit/blob/master/LICENSE"><img src="http://img.shields.io/badge/License-MIT-lightgrey.svg"></a>
+		<a href="http://twitter.com/maxoly"><img src="https://img.shields.io/badge/twitter-@maxoly-blue.svg?style=flat"></a>
+  	</p>
 </p>
-
-![Platform](https://img.shields.io/badge/Platform-iOS-blue.svg)
-![iOS 10.0+](http://img.shields.io/badge/iOS-10.0%2B-blue.svg)
-![Swift 4.2.x](https://img.shields.io/badge/Swift-4.2-orange.svg)
-![Version](https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat)
-[![Build Status](https://travis-ci.org/maxoly/PulsarKit.svg)](https://travis-ci.org/maxoly/PulsarKit)
-[![LICENSE](http://img.shields.io/badge/License-MIT-lightgrey.svg)](/LICENSE)
-[![Twitter](https://img.shields.io/badge/twitter-@maxoly-blue.svg?style=flat)](http://twitter.com/maxoly)
-
 ---
 
 # What is PulsarKit?
@@ -40,8 +41,9 @@ PulsarKit is a small, focused library that lets you populate and update UICollec
 
 # Features Highlights
 
+- [x] No more UICollectionViewDataSource/UICollectionViewDelegate
 - [x] Fluent interface configuration (`.when(Model).use(Cell)`)
-- [x] Easy section and row insertion, updation, deletion and moving (`source.add(model: ...)`)
+- [x] Easy section and row insertion, updation, deletion and movement (`source.add(model: ...)`)
 - [x] Easy reordering of collection view cells and sections
 - [x] Easy and fine grained row event handling (`.on.didSelect`)
 - [x] Ready to use view controllers
