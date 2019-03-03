@@ -31,7 +31,7 @@ This framework is lightly inspire by [Lighter view controllers](http://objc.io/i
 - [Author](#author)
 - [License](#license)
 
-##👋 Introduction
+## 👋 Introduction
 
 **Never** implement `UICollectionViewDataSource`, `UICollectionViewDelegate` and `UICollectionViewDelegateFlowLayout` again.
 
