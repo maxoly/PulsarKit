@@ -171,6 +171,7 @@
 		560081E32229759700EEC6C2 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				56B7F89F2131A5C300C9D0F6 /* Plugins */,
 				56B7F8A42131A8F000C9D0F6 /* SourcePlugin.swift */,
 				560081E6222975BF00EEC6C2 /* SourcePluginEvents.swift */,
 				560081E4222975AC00EEC6C2 /* SourcePluginFilter.swift */,
@@ -322,7 +323,6 @@
 				56289DF5211F28650041AC8A /* Descriptors */,
 				56289DE9211E2CD50041AC8A /* Extensions */,
 				560081E32229759700EEC6C2 /* Plugin */,
-				56B7F89F2131A5C300C9D0F6 /* Plugins */,
 				56289DFA211F34030041AC8A /* Sizes */,
 				56D542622182495100A70C20 /* ViewControllers */,
 			);

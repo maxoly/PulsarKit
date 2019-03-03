@@ -41,6 +41,12 @@ class CollectionSourceViewController1: UICollectionViewController {
         source.when(Header.self).use(SectionCollectionReusableView.self).withCellBinder()
         
         let desc = source.when(User.self).use(UserCollectionViewCell.self).withModelBinder()
+        
+        let container = ContainerSize()
+        let fixed = FixedSize(height: 50)
+        let composite = CompositeSize(widthSize: container, heightSize: fixed)
+        
+        desc.set(sizeable: composite)
 
         //        .set(sizeable: CompositeSize(widthSize: ContainerSize(), heightSize: FixedSize(height: 54)))
         
@@ -57,12 +63,14 @@ class CollectionSourceViewController1: UICollectionViewController {
 
         }
         
-        desc.on.didSelect { _ in
-            print("quo")
+        desc.on.didSelect { context in
+            print("model: \(context.model)")
+            print("indexPath: \(context.indexPath)")
         }
         
-        source.on.didSelect { _ in
-            print("qua")
+        source.on.didSelect { context in
+            print("model: \(context.model)")
+            print("indexPath: \(context.indexPath)")
         }
         
         source.sections.add(element: SourceSection(footerModel: Header(title: "1")))

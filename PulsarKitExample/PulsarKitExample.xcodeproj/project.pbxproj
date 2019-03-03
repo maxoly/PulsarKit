@@ -142,10 +142,10 @@
 		5645EF8B211E227C00B66E3B /* PulsarKitExample */ = {
 			isa = PBXGroup;
 			children = (
-				567533D522274A7C003C5BD8 /* Helpers */,
 				56B7F89D2131979C00C9D0F6 /* Application */,
 				56B7F89E213197AB00C9D0F6 /* Cells */,
 				56B7F89C2131978A00C9D0F6 /* Controllers */,
+				567533D522274A7C003C5BD8 /* Helpers */,
 				56EE074D2130B2F50000B7D1 /* Models */,
 				56B7F89B2131977D00C9D0F6 /* Resources */,
 			);

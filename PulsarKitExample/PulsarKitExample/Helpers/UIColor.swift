@@ -25,5 +25,6 @@ extension UIColor {
     // #f0f7da (240,247,218)
     static let light = UIColor(red: 240/255, green: 247/255, blue: 218/255, alpha: 1)
     
+    // #f0f0f0 (245, 245, 245)
     static let tableGray = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
 }
