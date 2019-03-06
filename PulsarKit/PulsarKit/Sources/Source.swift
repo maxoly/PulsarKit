@@ -79,4 +79,14 @@ public extension Source {
         let model = section.models[inStage: indexPath.item]
         return model
     }
+    
+    func indexPaths(of model: AnyHashable) -> [IndexPath] {
+        return sections.current
+            .enumerated()
+            .map { (section: $0.offset, elements: $0.element.models.current.enumerated()) }
+            .flatMap { val in val.elements
+                .filter { $0.element == model }
+                .map { (section: val.section, item: $0.offset, model: $0.element) } }
+            .map { IndexPath(item: $0.item, section: $0.section) }
+    }
 }

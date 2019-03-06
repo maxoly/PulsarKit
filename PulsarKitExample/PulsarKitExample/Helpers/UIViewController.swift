@@ -28,3 +28,20 @@ extension CollectionSourceViewController {
         source.add(model: User(id: 10, name: "John 10"))
     }
 }
+
+final class UserProvider {
+    static func getUsers(count: Int = 5, completion: @escaping ([User]) -> Void) {
+        var result = [User]()
+        
+        let names = ["John", "Maria", "Angelina", "Jennifer", "Mark", "Paul"]
+        let name = names.randomElement() ?? "John"
+        
+        for index in 1...count {
+            result.append(User(id: index, name: "\(name) \(index)"))
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+            completion(result)
+        }
+    }
+}

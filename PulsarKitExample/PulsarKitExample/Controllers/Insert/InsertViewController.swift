@@ -30,32 +30,19 @@ extension InsertViewController {
     }
     
     func populateSource() {
-        let addItemMenu = MenuItem(icon: UIImage.moveSection, title: "Add new item", description: Constants.Lorem) {
+        let addItemMenu = MenuItem(icon: UIImage.addItems, title: "Add/insert new item", description: Constants.Lorem) {
+            let controller = InsertItemsViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    
+        
+        let addSectionMenu = MenuItem(icon: UIImage.addSections, title: "Add/insert new section", description: Constants.Lorem) {
             let controller = MoveItemsViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
         
-        let inserRowMenu = MenuItem(icon: UIImage.moveSection, title: "Insert new item", description: Constants.Lorem) {
-            let controller = MoveSectionsViewController()
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
-        
-        
-        let addSectionMenu = MenuItem(icon: UIImage.moveSection, title: "Add new section", description: Constants.Lorem) {
-            let controller = MoveItemsViewController()
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
-        
-        let insertSectionMenu = MenuItem(icon: UIImage.moveSection, title: "Insert new section", description: Constants.Lorem) {
-            let controller = MoveSectionsViewController()
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
-        
-        source.add(section: SourceSection(headerModel: Header(title: "Items")))
-        source.add(models: [addItemMenu, inserRowMenu])
-        
-        source.add(section: SourceSection(headerModel: Header(title: "Sections")))
-        source.add(models: [addSectionMenu, insertSectionMenu])
+        source.add(section: SourceSection(headerModel: Header(title: "Basic")))
+        source.add(models: [addItemMenu, addSectionMenu])
     }
 }

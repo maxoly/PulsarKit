@@ -12,6 +12,31 @@ import XCTest
 // swiftlint:disable file_length
 // swiftlint:disable type_body_length
 class ModelTests: XCTestCase {
+    func testIndexPaths() {
+        // Arrange
+        let source = CollectionSource()
+        
+        // Act
+        let section1 = source.sections.add()
+        for index in 1..<40 { section1.models.add(element: User(id: index)) }
+        
+        let section2 = source.sections.add()
+        for index in 40..<60 { section2.models.add(element: User(id: index)) }
+        section2.models.add(element: User(id: 30))
+        
+        let section3 = source.sections.add()
+        for index in 60..<100 { section3.models.add(element: User(id: index)) }
+        section3.models.add(element: User(id: 30))
+
+        source.update()
+        let result = source.indexPaths(of: User(id: 30))
+        
+        // Assert
+        XCTAssertEqual(result.count, 3)
+        XCTAssertEqual(source.sections.count, 3)
+
+    }
+    
     func testAddModels() {
         // Arrange
         let source = CollectionSource()
