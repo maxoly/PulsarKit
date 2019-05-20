@@ -40,6 +40,10 @@ class CollectionSourceViewController1: UICollectionViewController {
         source.add(plugin: infinite)
         source.when(Header.self).use(SectionCollectionReusableView.self).withCellBinder()
         
+        source.when(Header.self).use(SectionCollectionReusableView.self).with { (header, view) in
+            view.titleLabel.text = header.title
+        }
+        
         let desc = source.when(User.self).use(UserCollectionViewCell.self).withModelBinder()
         
         let container = ContainerSize()

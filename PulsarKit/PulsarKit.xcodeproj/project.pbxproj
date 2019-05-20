@@ -37,6 +37,7 @@
 		564658BB21690EEC00B5EBAD /* CollectionSource+Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564658BA21690EEC00B5EBAD /* CollectionSource+Dispatch.swift */; };
 		564658BD216912F100B5EBAD /* ActionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564658BC216912F100B5EBAD /* ActionContext.swift */; };
 		564658BF2169130300B5EBAD /* CellContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564658BE2169130300B5EBAD /* CellContext.swift */; };
+		5673AF6222935C19009687DD /* ClosureBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673AF6122935C19009687DD /* ClosureBinder.swift */; };
 		5673B434212222C5008741A6 /* ChangeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B433212222C5008741A6 /* ChangeSet.swift */; };
 		5673B43621222F5C008741A6 /* DescriptorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B43521222F5C008741A6 /* DescriptorFactory.swift */; };
 		567533D22226EF3B003C5BD8 /* InfiniteScrollingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533D12226EF3B003C5BD8 /* InfiniteScrollingPlugin.swift */; };
@@ -116,6 +117,7 @@
 		564658BA21690EEC00B5EBAD /* CollectionSource+Dispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionSource+Dispatch.swift"; sourceTree = "<group>"; };
 		564658BC216912F100B5EBAD /* ActionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionContext.swift; sourceTree = "<group>"; };
 		564658BE2169130300B5EBAD /* CellContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellContext.swift; sourceTree = "<group>"; };
+		5673AF6122935C19009687DD /* ClosureBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosureBinder.swift; sourceTree = "<group>"; };
 		5673B433212222C5008741A6 /* ChangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSet.swift; sourceTree = "<group>"; };
 		5673B43521222F5C008741A6 /* DescriptorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptorFactory.swift; sourceTree = "<group>"; };
 		5673B43921223557008741A6 /* FixedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSize.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				56289DFE211F392F0041AC8A /* Binder.swift */,
 				56289E02211F395E0041AC8A /* CellBinder.swift */,
 				56EE07412130A8150000B7D1 /* ModelBinder.swift */,
+				5673AF6122935C19009687DD /* ClosureBinder.swift */,
 			);
 			path = Binders;
 			sourceTree = "<group>";
@@ -422,11 +425,11 @@
 				TargetAttributes = {
 					5645EFD4211E22BD00B66E3B = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 					};
 					5645EFDD211E22BD00B66E3B = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -436,6 +439,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 5645EFCB211E22BD00B66E3B;
 			productRefGroup = 5645EFD6211E22BD00B66E3B /* Products */;
@@ -538,6 +542,7 @@
 				560081E5222975AC00EEC6C2 /* SourcePluginFilter.swift in Sources */,
 				567533D42226F770003C5BD8 /* ScrollContext.swift in Sources */,
 				56B08A2E213736AA00F8AFF5 /* CollectionEvents.swift in Sources */,
+				5673AF6222935C19009687DD /* ClosureBinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,12 +715,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=200 -Xfrontend -warn-long-function-bodies=200";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=300 -Xfrontend -warn-long-function-bodies=300";
 				PRODUCT_BUNDLE_IDENTIFIER = net.massimooliviero.PulsarKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -738,11 +743,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=200 -Xfrontend -warn-long-function-bodies=200";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=300 -Xfrontend -warn-long-function-bodies=300";
 				PRODUCT_BUNDLE_IDENTIFIER = net.massimooliviero.PulsarKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -761,7 +766,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.massimooliviero.PulsarKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -780,7 +785,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.massimooliviero.PulsarKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

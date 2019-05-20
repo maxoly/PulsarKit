@@ -28,6 +28,15 @@ public extension DescriptorFactory {
     }
     
     @discardableResult
+    func with(adapter: @escaping (Model, Cell) -> Void) -> DescriptorConfiguration<Model, Cell> {
+        let binder = ClosureBinder(adapter: adapter)
+        let descriptor = CollectionDescriptor(binder: binder)
+        descriptor.isCellAlreadyRegistered = isStoryboard
+        onFinish(descriptor)
+        return descriptor.configuration
+    }
+    
+    @discardableResult
     func withoutBinder() -> DescriptorConfiguration<Model, Cell> {
         let binder = AnyBinder<Model, Cell>()
         let descriptor = CollectionDescriptor(binder: binder)

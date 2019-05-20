@@ -11,7 +11,7 @@ import Foundation
 public extension UIView {
     private static weak var _currentFirstResponder: UIView?
     
-    public class func currentFirstResponder() -> UIView? {
+    class func currentFirstResponder() -> UIView? {
         UIView._currentFirstResponder = nil
         UIApplication.shared.sendAction(#selector(findFirstResponder), to: nil, from: nil, for: nil)
         return UIView._currentFirstResponder

@@ -81,6 +81,10 @@ internal extension SourceDiff {
     func commit() -> ChangeSet {
         let prev = current
         
+        // reloaded
+        reloaded.sorted { $0.key < $1.key }.forEach { current[$0.key] = $0.value }
+        let reloadedIndexSet = IndexSet(reloaded.keys)
+        
         // commit
         deleted.sorted(by: >).forEach { current.remove(at: $0) }
         inserted.sorted { $0.key < $1.key }.forEach { current.insert($0.value, at: $0.key) }
@@ -110,10 +114,6 @@ internal extension SourceDiff {
         // deleted
         let realDeleted = Set(deleted).subtracting(Set(indexesToIgnore))
         let deletedIndexSet = IndexSet(realDeleted)
-        
-        // reloaded
-        reloaded.sorted { $0.key < $1.key }.forEach { current[$0.key] = $0.value }
-        let reloadedIndexSet = IndexSet(reloaded.keys)
         
         // moved
         let movedIndexes = moved

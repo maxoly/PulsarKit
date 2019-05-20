@@ -21,6 +21,7 @@ class HomeViewController: CollectionSourceViewController {
 extension HomeViewController {
     func prepareSource() {
         source.container.backgroundColor = .tableGray
+        source.when(User.self).use(UserCollectionViewCell.self).withModelBinder()
         source.when(Space.self).use(SpaceCollectionViewCell.self).withoutBinder()
         source.when(MenuItem.self).use(MenuItemCollectionViewCell.self).withCellBinder()
         source.when(Header.self).use(SectionCollectionReusableView.self).withCellBinder()
