@@ -51,11 +51,11 @@ PulsarKit is a small, focused library that lets you populate and update UICollec
 
 # Requirements
 
-PulsarKit 1.1.x is compatible with:
+PulsarKit 1.3.x is compatible with:
 
-- **Swift 4.2+**
+- **Swift 5.0+**
 - iOS 10+
-- Xcode 10+
+- Xcode 10.2+
 
 # Communication
 
