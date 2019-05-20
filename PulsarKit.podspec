@@ -14,5 +14,5 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "10.0"
   spec.source       = { :git => "https://github.com/maxoly/PulsarKit.git", :tag => "#{spec.version}" }
   spec.source_files  = "PulsarKit", "PulsarKit/PulsarKit/**/*.{h,m,swift,c}"
-  spec.swift_version = '4.2'
+  spec.swift_version = '5.0'
 end
