@@ -22,3 +22,20 @@ public extension UIView {
         UIView._currentFirstResponder = self
     }
 }
+
+extension UIView.AnimationCurve {
+    var toAnimationOptions: UIView.AnimationOptions {
+        switch self {
+        case .easeIn:
+            return .curveEaseIn
+        case .easeInOut:
+            return .curveEaseInOut
+        case .easeOut:
+            return .curveEaseOut
+        case .linear:
+            return .curveLinear
+        @unknown default:
+            return .curveLinear
+        }
+    }
+}

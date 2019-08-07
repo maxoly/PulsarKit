@@ -80,7 +80,8 @@ internal extension CollectionSource {
             let nib = UINib(nibName: nibName, bundle: bundle)
             
             if descriptor.cellClass.isSubclass(of: UICollectionViewCell.self) {
-                container.register(nib, forCellWithReuseIdentifier: cellIdentifier)
+                container.register(nib,
+                                   forCellWithReuseIdentifier: cellIdentifier)
             } else {
                 container.register(nib,
                                    forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -91,7 +92,8 @@ internal extension CollectionSource {
             }
         } else {
             if descriptor.cellClass.isSubclass(of: UICollectionViewCell.self) {
-                container.register(descriptor.cellClass, forCellWithReuseIdentifier: cellIdentifier)
+                container.register(descriptor.cellClass,
+                                   forCellWithReuseIdentifier: cellIdentifier)
             } else {
                 container.register(descriptor.cellClass,
                                    forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,

@@ -15,6 +15,8 @@ open class KeyboardHandlerPlugin: SourcePlugin {
     
     internal weak var container: UIScrollView?
     internal var keyboardSize: CGSize = .zero
+    
+    public init() {}
 }
 
 extension KeyboardHandlerPlugin: SourcePluginLifecycle {
@@ -31,7 +33,7 @@ extension KeyboardHandlerPlugin: SourcePluginLifecycle {
 extension KeyboardHandlerPlugin {
     @objc
     func keyboardWillShow(_ notification: Foundation.Notification) {
-        guard let container = self.container else { return }
+        guard let container = container else { return }
         guard keyboardSize == .zero else { return }
         guard container.window != nil else { return }
         guard let firstResponder = UIView.currentFirstResponder() else { return }
@@ -41,7 +43,7 @@ extension KeyboardHandlerPlugin {
         guard let keyboardRectValue = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         guard let animationCurveValue = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
         guard let animationDurationValue = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber else { return }
-
+        
         let keyboardRect = keyboardRectValue.cgRectValue
         let animationCurve = animationCurveValue.intValue
         let animationDuration = animationDurationValue.doubleValue
@@ -60,13 +62,12 @@ extension KeyboardHandlerPlugin {
         DispatchQueue.main.async {
             var inset = container.contentInset
             inset.bottom += self.keyboardSize.height
-            UIView.beginAnimations("KeyboardHandlerPlugin", context: nil)
-            UIView.setAnimationCurve(animation)
-            UIView.setAnimationDuration(animationDuration)
-            UIView.setAnimationBeginsFromCurrentState(true)
-            container.contentInset = inset
-            container.scrollIndicatorInsets = inset
-            UIView.commitAnimations()
+            
+            let options: UIView.AnimationOptions = [.beginFromCurrentState, animation.toAnimationOptions]
+            UIView.animate(withDuration: animationDuration, delay: 0, options: options, animations: {
+                container.contentInset = inset
+                container.scrollIndicatorInsets = inset
+            }, completion: { _ in })
         }
     }
     
@@ -89,13 +90,12 @@ extension KeyboardHandlerPlugin {
             var inset = container.contentInset
             inset.bottom -= self.keyboardSize.height
             self.keyboardSize = .zero
-            UIView.beginAnimations("KeyboardHandlerPlugin", context: nil)
-            UIView.setAnimationCurve(animation)
-            UIView.setAnimationDuration(animationDuration)
-            UIView.setAnimationBeginsFromCurrentState(true)
-            container.contentInset = inset
-            container.scrollIndicatorInsets = inset
-            UIView.commitAnimations()
+            
+            let options: UIView.AnimationOptions = [.beginFromCurrentState, animation.toAnimationOptions]
+            UIView.animate(withDuration: animationDuration, delay: 0, options: options, animations: {
+                container.contentInset = inset
+                container.scrollIndicatorInsets = inset
+            }, completion: { _ in })
         }
     }
 }
