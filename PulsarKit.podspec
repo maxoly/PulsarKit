@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.social_media_url = 'http://twitter.com/maxoly'
   spec.license      = "MIT"
   spec.author       = { "Massimo Oliviero" => "massimo.oliviero@gmail.com" }
-  spec.ios.deployment_target = "10.0"
+  spec.ios.deployment_target = "11.0"
   spec.source       = { :git => "https://github.com/maxoly/PulsarKit.git", :tag => "#{spec.version}" }
   spec.source_files  = "PulsarKit", "PulsarKit/PulsarKit/**/*.{h,m,swift,c}"
   spec.swift_version = '5.0'
