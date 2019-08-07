@@ -195,7 +195,7 @@ public extension CollectionSource {
 public extension CollectionSource {
     func add(plugin: SourcePlugin) {
         plugins.append(plugin)
-        plugin.lifecycle?.activate()
+        plugin.lifecycle?.activate(in: container)
         
         if let filter = plugin.filter {
             filters.append(filter)

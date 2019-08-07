@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol SourcePluginLifecycle {
-    func activate()
+    func activate(in container: UIScrollView)
     func deactivate()
 }

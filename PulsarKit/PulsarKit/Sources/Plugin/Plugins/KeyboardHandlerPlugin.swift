@@ -13,14 +13,16 @@ open class KeyboardHandlerPlugin: SourcePlugin {
     public var events: SourcePluginEvents? { return nil }
     public var lifecycle: SourcePluginLifecycle? { return self }
     
-    internal weak var container: UIScrollView?
-    internal var keyboardSize: CGSize = .zero
+    private weak var container: UIScrollView?
+    private var keyboardSize: CGSize = .zero
     
     public init() {}
 }
 
 extension KeyboardHandlerPlugin: SourcePluginLifecycle {
-    public func activate() {
+    public func activate(in container: UIScrollView) {
+        self.container = container
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -73,7 +75,7 @@ extension KeyboardHandlerPlugin {
     
     @objc
     func keyboardWillHide(_ notification: Foundation.Notification) {
-        guard let container = self.container else { return }
+        guard let container = container else { return }
         guard keyboardSize != .zero else { return }
         guard container.window != nil else { return }
         if container.contentInset.bottom == 0 { return }
