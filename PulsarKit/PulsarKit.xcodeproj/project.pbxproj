@@ -70,6 +70,7 @@
 		56EE07402130A4C70000B7D1 /* MyCustomBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE073F2130A4C70000B7D1 /* MyCustomBinder.swift */; };
 		56EE07422130A8150000B7D1 /* ModelBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE07412130A8150000B7D1 /* ModelBinder.swift */; };
 		56EE07462130A8C90000B7D1 /* AnyBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE07452130A8C90000B7D1 /* AnyBinder.swift */; };
+		56FB0049230419D5004BDA58 /* SourceSection+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB0048230419D5004BDA58 /* SourceSection+Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		56EE073F2130A4C70000B7D1 /* MyCustomBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomBinder.swift; sourceTree = "<group>"; };
 		56EE07412130A8150000B7D1 /* ModelBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBinder.swift; sourceTree = "<group>"; };
 		56EE07452130A8C90000B7D1 /* AnyBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBinder.swift; sourceTree = "<group>"; };
+		56FB0048230419D5004BDA58 /* SourceSection+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SourceSection+Models.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +322,7 @@
 				56289DED211E33AB0041AC8A /* SourceDiff.swift */,
 				5615AB15212377D10047664F /* SourceDiff+Section.swift */,
 				5645EFF4211E233700B66E3B /* SourceSection.swift */,
+				56FB0048230419D5004BDA58 /* SourceSection+Models.swift */,
 				56289DFD211F39240041AC8A /* Binders */,
 				56289DEC211E2DC20041AC8A /* CollectionSource */,
 				56E87272214C7A080011E625 /* Contexts */,
@@ -505,6 +508,7 @@
 				56E8726D214C5F7E0011E625 /* Array.swift in Sources */,
 				56289E03211F395E0041AC8A /* CellBinder.swift in Sources */,
 				56B7F8A32131A84400C9D0F6 /* UIView.swift in Sources */,
+				56FB0049230419D5004BDA58 /* SourceSection+Models.swift in Sources */,
 				56289E01211F39460041AC8A /* Bindable.swift in Sources */,
 				56DA04D621223657006BE217 /* TableSize.swift in Sources */,
 				562F15C321431C14006459BE /* CollectionSource+Models.swift in Sources */,

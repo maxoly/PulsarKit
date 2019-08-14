@@ -63,6 +63,10 @@ public extension CollectionSource {
     func deleteAll(before endIndex: Int) {
         lastSection.models.deleteAll(before: endIndex)
     }
+    
+    func deleteAll(atSection index: Int) {
+        sections[index].models.deleteAll()
+    }
 }
 
 // MARK: - Move

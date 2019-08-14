@@ -18,7 +18,7 @@ class TestPlugin: SourcePlugin, SourcePluginLifecycle {
     var activated: Bool = false
     var deactivated: Bool = false
     
-    func activate() {
+    func activate(in container: UIScrollView) {
         activated = true
     }
     
