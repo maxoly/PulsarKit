@@ -27,7 +27,9 @@ public struct AutolayoutSize: Sizeable {
         view.layoutIfNeeded()
         
         // run autolayout
-        let viewSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        let viewSize = view.systemLayoutSizeFitting(bounds.size,
+                                                    withHorizontalFittingPriority: .defaultHigh,
+                                                    verticalFittingPriority: .fittingSizeLevel)
         
         // cache
         return viewSize
