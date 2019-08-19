@@ -41,6 +41,10 @@ open class CollectionDescriptor<Model, Cell, B: Binder>: Descriptor where B.Mode
             return sizeable
         }
         
+        if let sizeable = model as? Sizeable {
+            return sizeable
+        }
+        
         return TableSize()
     }
     
