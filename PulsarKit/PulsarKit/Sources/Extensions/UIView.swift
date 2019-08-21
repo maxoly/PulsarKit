@@ -8,8 +8,20 @@
 
 import Foundation
 
-public extension UIView {
+internal extension UIView {
     private static weak var _currentFirstResponder: UIView?
+    
+    var firstResponder: UIView? {
+        guard !isFirstResponder else { return self }
+        
+        for subview in subviews {
+            if let firstResponder = subview.firstResponder {
+                return firstResponder
+            }
+        }
+        
+        return nil
+    }
     
     class func currentFirstResponder() -> UIView? {
         UIView._currentFirstResponder = nil
@@ -18,12 +30,12 @@ public extension UIView {
     }
     
     @objc
-    internal func findFirstResponder(sender: AnyObject) {
+    func findFirstResponder(sender: AnyObject) {
         UIView._currentFirstResponder = self
     }
 }
 
-extension UIView.AnimationCurve {
+internal extension UIView.AnimationCurve {
     var toAnimationOptions: UIView.AnimationOptions {
         switch self {
         case .easeIn:

@@ -38,7 +38,7 @@ extension KeyboardHandlerPlugin {
         guard let container = container else { return }
         guard keyboardSize == .zero else { return }
         guard container.window != nil else { return }
-        guard let firstResponder = UIView.currentFirstResponder() else { return }
+        guard let firstResponder = container.firstResponder else { return }
         guard let superview = container.superview else { return }
         guard firstResponder.isDescendant(of: superview) else { return }
         guard let info = notification.userInfo else { return }
@@ -61,16 +61,14 @@ extension KeyboardHandlerPlugin {
             keyboardSize.height += view.frame.height
         }
         
-        DispatchQueue.main.async {
-            var inset = container.contentInset
-            inset.bottom += self.keyboardSize.height
-            
-            let options: UIView.AnimationOptions = [.beginFromCurrentState, animation.toAnimationOptions]
-            UIView.animate(withDuration: animationDuration, delay: 0, options: options, animations: {
-                container.contentInset = inset
-                container.scrollIndicatorInsets = inset
-            }, completion: { _ in })
-        }
+        var inset = container.contentInset
+        inset.bottom += self.keyboardSize.height
+        
+        let options: UIView.AnimationOptions = [.beginFromCurrentState, animation.toAnimationOptions]
+        UIView.animate(withDuration: animationDuration, delay: 0, options: options, animations: {
+            container.contentInset = inset
+            container.scrollIndicatorInsets = inset
+        }, completion: { _ in })
     }
     
     @objc
@@ -88,16 +86,14 @@ extension KeyboardHandlerPlugin {
         
         guard let animation = UIView.AnimationCurve(rawValue: animationCurve) else { return }
         
-        DispatchQueue.main.async {
-            var inset = container.contentInset
-            inset.bottom -= self.keyboardSize.height
-            self.keyboardSize = .zero
-            
-            let options: UIView.AnimationOptions = [.beginFromCurrentState, animation.toAnimationOptions]
-            UIView.animate(withDuration: animationDuration, delay: 0, options: options, animations: {
-                container.contentInset = inset
-                container.scrollIndicatorInsets = inset
-            }, completion: { _ in })
-        }
+        var inset = container.contentInset
+        inset.bottom -= self.keyboardSize.height
+        self.keyboardSize = .zero
+        
+        let options: UIView.AnimationOptions = [.beginFromCurrentState, animation.toAnimationOptions]
+        UIView.animate(withDuration: animationDuration, delay: 0, options: options, animations: {
+            container.contentInset = inset
+            container.scrollIndicatorInsets = inset
+        }, completion: { _ in })
     }
 }

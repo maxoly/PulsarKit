@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Source: class {
+public protocol Source: AnyObject {
     var sections: SourceDiff<SourceSection> { get }
     var plugins: [SourcePlugin] { get }
     var firstSection: SourceSection { get }

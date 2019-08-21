@@ -101,12 +101,10 @@ internal extension SourceDiff {
         let insertedIndexSet = IndexSet(realInserted)
         
         // remapped
-        let remapped = current.reduce([Int: Int]()) { dic, element in
-            var dictionary = dic
-            guard let newIndex = current.firstIndex(of: element) else { return dic }
-            guard let oldIndex = prev.firstIndex(of: element) else { return dic }
+        let remapped = current.reduce(into: [Int: Int]()) { dictionary, element in
+            guard let newIndex = current.firstIndex(of: element) else { return }
+            guard let oldIndex = prev.firstIndex(of: element) else { return }
             dictionary[newIndex] = oldIndex
-            return dictionary
         }
         
         indexes = indexes.sorted(by: <)
