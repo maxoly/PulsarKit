@@ -61,6 +61,7 @@ internal extension CollectionSource {
         if let cell = result {
             cellCache.setObject(cell, forKey: key as NSString)
         }
+        
         return result
     }
     

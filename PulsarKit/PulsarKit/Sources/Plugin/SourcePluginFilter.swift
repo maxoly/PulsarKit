@@ -10,10 +10,10 @@ import Foundation
 
 public protocol SourcePluginFilter {
     func filter<Model: Hashable>(source: CollectionSource, model: Model) -> Model
-    func filter<Cell: UICollectionReusableView>(source: CollectionSource, cell: Cell, at indexPath: IndexPath) -> Cell
+    func filter<Cell: UICollectionViewCell>(source: CollectionSource, cell: Cell, at indexPath: IndexPath) -> Cell
 }
 
 public extension SourcePluginFilter {
     func filter<Model: Hashable>(source: CollectionSource, model: Model) -> Model { return model }
-    func filter<Cell: UICollectionReusableView>(source: CollectionSource, cell: Cell, at indexPath: IndexPath) -> Cell { return cell }
+    func filter<Cell: UICollectionViewCell>(source: CollectionSource, cell: Cell, at indexPath: IndexPath) -> Cell { return cell }
 }

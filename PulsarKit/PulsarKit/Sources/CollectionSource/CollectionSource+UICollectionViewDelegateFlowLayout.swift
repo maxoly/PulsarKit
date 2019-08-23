@@ -49,11 +49,19 @@ extension CollectionSource: UICollectionViewDelegateFlowLayout {
 }
 
 extension CollectionSource {
+    var scrollDirection: UICollectionView.ScrollDirection {
+        if let flow = container.collectionViewLayout as? UICollectionViewFlowLayout {
+            return flow.scrollDirection
+        }
+        return .vertical
+    }
+    
     func size(for model: AnyHashable, in collectionView: UICollectionView) -> CGSize {
         guard let descriptor = descriptor(for: model) else { return .zero }
         
         // check size cache
-        let key = "\(type(of: descriptor.cellClass)).\(container.bounds.size).\(model.hashValue)"
+        let dimension = scrollDirection == .vertical ? container.bounds.size.width : container.bounds.size.height
+        let key = "\(type(of: descriptor.cellClass)).\(dimension).\(model.hashValue)"
         let value = sizeCache.object(forKey: key as NSString)
         if let size = value?.cgSizeValue {
             return size
