@@ -10,7 +10,8 @@ import Foundation
 
 extension CollectionSource {
     func dispatch(event: Event.Selection, container: UICollectionView, indexPath: IndexPath) {
-        let model = self.model(at: indexPath)
+        guard let model = self.model(safeAt: indexPath) else { return }
+        
         descriptor(for: model)?.handle.event(event, model: model, container: container, indexPath: indexPath)
         let context = StandardContext(model: model, container: container, indexPath: indexPath)
         on.dispatch(event: event, context: context)
@@ -18,10 +19,12 @@ extension CollectionSource {
     }
     
     func dispatch(event: Event.Should, container: UICollectionView, indexPath: IndexPath) -> Bool {
-        let model = self.model(at: indexPath)
-        let context = StandardContext(model: model, container: container, indexPath: indexPath)
         let standard = true
         
+        guard indexPath.isEmpty == false else { return standard }
+        guard let model = self.model(safeAt: indexPath) else { return standard }
+        
+        let context = StandardContext(model: model, container: container, indexPath: indexPath)
         let specific = descriptor(for: model)?.handle.event(event, model: model, container: container, indexPath: indexPath) ?? standard
         let general = on.dispatch(event: event, context: context) ?? standard
         let plugin = events.reduce(standard) { $0 && ($1.dispatch(source: self, event: event, context: context) ?? standard) }
@@ -30,7 +33,9 @@ extension CollectionSource {
     }
     
     func dispatch(event: Event.Display, container: UICollectionView, cell: UICollectionViewCell, indexPath: IndexPath) {
+        guard indexPath.isEmpty == false else { return }
         guard let model = self.model(safeAt: indexPath) else { return }
+        
         descriptor(for: model)?.handle.event(event, model: model, container: container, cell: cell, indexPath: indexPath)
         let context = CellContext(model: model, cell: cell, container: container, indexPath: indexPath)
         on.dispatch(event: event, context: context)
@@ -38,10 +43,11 @@ extension CollectionSource {
     }
     
     func dispatch(event: Event.Menu, container: UICollectionView, indexPath: IndexPath) -> Bool {
-        let model = self.model(at: indexPath)
-        let context = ActionContext(model: model, container: container, indexPath: indexPath, action: nil, sender: nil)
         let standard = false
+        guard indexPath.isEmpty == false else { return standard }
+        guard let model = self.model(safeAt: indexPath) else { return standard }
         
+        let context = ActionContext(model: model, container: container, indexPath: indexPath, action: nil, sender: nil)
         let specific = descriptor(for: model)?.handle.event(event, model: model, container: container, indexPath: indexPath) ?? standard
         let general = on.dispatch(event: event, context: context) ?? standard
         let plugin = events.reduce(standard) { $0 && ($1.dispatch(source: self, event: event, context: context) ?? standard) }
@@ -50,10 +56,11 @@ extension CollectionSource {
     }
     
     func dispatch(event: Event.Menu, container: UICollectionView, indexPath: IndexPath, action: Selector, sender: Any?) -> Bool {
-        let model = self.model(at: indexPath)
-        let context = ActionContext(model: model, container: container, indexPath: indexPath, action: action, sender: sender)
         let standard = false
-        
+        guard indexPath.isEmpty == false else { return standard }
+        guard let model = self.model(safeAt: indexPath) else { return standard }
+
+        let context = ActionContext(model: model, container: container, indexPath: indexPath, action: action, sender: sender)
         let specific = descriptor(for: model)?.handle.event(event, model: model, container: container, indexPath: indexPath) ?? standard
         let general = on.dispatch(event: event, context: context) ?? standard
         let plugin = events.reduce(standard) { $0 && ($1.dispatch(source: self, event: event, context: context) ?? standard) }
