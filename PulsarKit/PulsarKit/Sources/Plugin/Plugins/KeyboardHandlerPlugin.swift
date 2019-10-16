@@ -37,7 +37,7 @@ extension KeyboardHandlerPlugin {
     func keyboardWillShow(_ notification: Foundation.Notification) {
         guard let container = container else { return }
         guard keyboardSize == .zero else { return }
-        guard container.window != nil else { return }
+        guard let window = container.window else { return }
         guard let firstResponder = container.firstResponder else { return }
         guard let superview = container.superview else { return }
         guard firstResponder.isDescendant(of: superview) else { return }
@@ -64,10 +64,17 @@ extension KeyboardHandlerPlugin {
         var inset = container.contentInset
         inset.bottom += self.keyboardSize.height
         
+        let boundsWindow = window.convert(firstResponder.bounds, from: firstResponder)
+        let remain = window.bounds.height - inset.bottom
+        let vertical = remain >= boundsWindow.maxY ? container.contentOffset.y : (container.contentOffset.y - (remain - boundsWindow.maxY))
+        
         let options: UIView.AnimationOptions = [.beginFromCurrentState, animation.toAnimationOptions]
         UIView.animate(withDuration: animationDuration, delay: 0, options: options, animations: {
             container.contentInset = inset
             container.scrollIndicatorInsets = inset
+            if container.contentOffset.y != vertical {
+                container.setContentOffset(CGPoint(x: 0, y: vertical), animated: true)
+            }
         }, completion: { _ in })
     }
     
