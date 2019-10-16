@@ -8,7 +8,15 @@
 
 import UIKit
 
-public struct AutolayoutSize: Sizeable {    
+public struct AutolayoutSize: Sizeable {
+    public let verticalFittingPriority: UILayoutPriority
+    public let horizontalFittingPriority: UILayoutPriority
+    
+    public init(horizontalFittingPriority: UILayoutPriority = .defaultHigh, verticalFittingPriority: UILayoutPriority = .fittingSizeLevel) {
+        self.verticalFittingPriority = verticalFittingPriority
+        self.horizontalFittingPriority = horizontalFittingPriority
+    }
+    
     public func size<View: UIView>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize {
         // starting bounds
         var bounds = container.bounds
@@ -28,8 +36,8 @@ public struct AutolayoutSize: Sizeable {
         
         // run autolayout
         let viewSize = view.systemLayoutSizeFitting(bounds.size,
-                                                    withHorizontalFittingPriority: .defaultHigh,
-                                                    verticalFittingPriority: .fittingSizeLevel)
+                                                    withHorizontalFittingPriority: horizontalFittingPriority,
+                                                    verticalFittingPriority: verticalFittingPriority)
         
         // cache
         return viewSize
