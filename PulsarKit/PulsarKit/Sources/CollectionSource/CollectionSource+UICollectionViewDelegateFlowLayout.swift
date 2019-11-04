@@ -44,7 +44,6 @@ extension CollectionSource: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard let model = sections[section].footerModel else { return .zero }
         return size(for: model, in: collectionView)
-
     }
 }
 
