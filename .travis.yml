@@ -14,11 +14,11 @@ env:
 matrix:
   include:
   - osx_image: xcode11
-    env: DESTINATION='OS=13.0,name=iPhone Pro'
+    env: DESTINATION='OS=13.0,name=iPhone 11'
   - osx_image: xcode11.1
-    env: DESTINATION='OS=13.0,name=iPhone XS'
+    env: DESTINATION='OS=13.1,name=iPhone 11 Pro'
   - osx_image: xcode11.2
-    env: DESTINATION='OS=13.0,name=iPhone X'
+    env: DESTINATION='OS=13.2,name=iPhone 11 Pro Max'
 
 before_install:
   - echo "BEFORE INSTALL START"
