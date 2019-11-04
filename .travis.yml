@@ -21,6 +21,7 @@ matrix:
 
 before_install:
   - echo "BEFORE INSTALL START"
+  - gem install xcpretty
   - gem install bundler
   - echo "BEFORE INSTALL END"
   
