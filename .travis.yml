@@ -1,5 +1,3 @@
-os: osx
-osx_image: xcode11.1
 cache: bundler
 branches:
   only:
@@ -11,14 +9,15 @@ env:
   - LANG=en_US.UTF-8
   - WORKSPACE=PulsarKit.xcworkspace
   - SCHEME="PulsarKit"
-  matrix:
-    include:
-    - osx_image: xcode11
-      env: DESTINATION="OS=13.1,name=iPhone Pro"
-    - osx_image: xcode10
-      env: DESTINATION="OS=12.1,name=iPhone XS"
-    - osx_image: xcode10
-      env: DESTINATION="OS=11.4,name=iPhone X"
+
+matrix:
+  include:
+  - osx_image: xcode11
+    env: DESTINATION='OS=13.1,name=iPhone Pro'
+  - osx_image: xcode10
+    env: DESTINATION='OS=12.1,name=iPhone XS'
+  - osx_image: xcode10
+    env: DESTINATION='OS=11.4,name=iPhone X'
 
 before_install:
   - echo "BEFORE INSTALL START"
