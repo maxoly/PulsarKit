@@ -3,8 +3,8 @@
 	<h5 align="center">Lightweight and beautiful wrapper around the official UICollectionView API written in pure Swift.</h5>
   	<p align="center">
     	<a href="https://cocoapods.org/pods/PulsarKit"><img src="https://img.shields.io/badge/Platform-iOS-blue.svg"></a>
-    	<a href="https://cocoapods.org/pods/PulsarKit"><img src="http://img.shields.io/badge/iOS-10.0%2B-blue.svg"></a>
-    	<a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-4.2-orange.svg"></a>
+    	<a href="https://cocoapods.org/pods/PulsarKit"><img src="http://img.shields.io/badge/iOS-11.0%2B-blue.svg"></a>
+    	<a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-5.1-orange.svg"></a>
     	<a href="https://cocoapods.org/pods/PulsarKit"><img src="https://img.shields.io/cocoapods/v/PulsarKit.svg?style=flat"></a>
     	<a href="https://travis-ci.org/maxoly/PulsarKit"><img src="https://travis-ci.org/maxoly/PulsarKit.svg"></a>
     	<a href="https://github.com/maxoly/PulsarKit/blob/master/LICENSE"><img src="http://img.shields.io/badge/License-MIT-lightgrey.svg"></a>
@@ -53,9 +53,9 @@ PulsarKit is a small, focused library that lets you populate and update UICollec
 
 PulsarKit 1.3.x is compatible with:
 
-- **Swift 5.0+**
+- **Swift 5.1+**
 - iOS 10+
-- Xcode 10.2+
+- Xcode 11.0+
 
 # Communication
 
