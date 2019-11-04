@@ -12,8 +12,13 @@ env:
   - WORKSPACE=PulsarKit.xcworkspace
   - IOS_FRAMEWORK_SCHEME="PulsarKit"
   matrix:
-    - DESTINATION="OS=12.1,name=iPhone XS"       SCHEME="$IOS_FRAMEWORK_SCHEME"
-    - DESTINATION="OS=11.4,name=iPhone X"        SCHEME="$IOS_FRAMEWORK_SCHEME"
+    include:
+    - osx_image: xcode11
+      env: DESTINATION="OS=13.1,name=iPhone Pro"      SCHEME="$IOS_FRAMEWORK_SCHEME"
+    - osx_image: xcode10
+      env: DESTINATION="OS=12.1,name=iPhone XS"       SCHEME="$IOS_FRAMEWORK_SCHEME"
+    - osx_image: xcode10
+      end: DESTINATION="OS=11.4,name=iPhone X"        SCHEME="$IOS_FRAMEWORK_SCHEME"
 
 before_install:
   - echo "BEFORE INSTALL START"
