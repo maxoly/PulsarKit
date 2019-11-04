@@ -1,3 +1,4 @@
+os: osx
 cache: bundler
 branches:
   only:
