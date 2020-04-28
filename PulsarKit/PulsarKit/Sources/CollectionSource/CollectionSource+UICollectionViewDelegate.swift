@@ -28,15 +28,15 @@ extension CollectionSource: UICollectionViewDelegate {
     
     // MARK: should
     public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return dispatch(event: .onShouldHighlight, container: collectionView, indexPath: indexPath)
+        dispatch(event: .onShouldHighlight, container: collectionView, indexPath: indexPath)
     }
     
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return dispatch(event: .onShouldSelect, container: collectionView, indexPath: indexPath)
+        dispatch(event: .onShouldSelect, container: collectionView, indexPath: indexPath)
     }
     
     public func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-        return dispatch(event: .onShouldDeselect, container: collectionView, indexPath: indexPath)
+        dispatch(event: .onShouldDeselect, container: collectionView, indexPath: indexPath)
     }
     
     // MARK: display
@@ -50,11 +50,11 @@ extension CollectionSource: UICollectionViewDelegate {
     
     // MARK: menu
     public func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return dispatch(event: .onShouldShowMenu, container: collectionView, indexPath: indexPath)
+        dispatch(event: .onShouldShowMenu, container: collectionView, indexPath: indexPath)
     }
     
     public func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return dispatch(event: .onCanPerformAction, container: collectionView, indexPath: indexPath, action: action, sender: sender)
+        dispatch(event: .onCanPerformAction, container: collectionView, indexPath: indexPath, action: action, sender: sender)
     }
     
     public func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
@@ -63,7 +63,7 @@ extension CollectionSource: UICollectionViewDelegate {
     
     // MARK: layout
     public func collectionView(_ collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout {
-        return on.dispatch(from: fromLayout, to: toLayout) ?? UICollectionViewTransitionLayout(currentLayout: fromLayout, nextLayout: toLayout)
+        on.dispatch(from: fromLayout, to: toLayout) ?? UICollectionViewTransitionLayout(currentLayout: fromLayout, nextLayout: toLayout)
     }
 }
 

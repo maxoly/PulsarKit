@@ -222,7 +222,7 @@ public extension CollectionSource {
     }
     
     func descriptor(for model: AnyHashable) -> Descriptor? {
-        return descriptors[String(describing: modelType(of: model))]
+        descriptors[String(describing: modelType(of: model))]
     }
     
     @discardableResult

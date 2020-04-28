@@ -9,9 +9,9 @@
 import UIKit
 
 open class KeyboardHandlerPlugin: SourcePlugin {
-    public var filter: SourcePluginFilter? { return nil }
-    public var events: SourcePluginEvents? { return nil }
-    public var lifecycle: SourcePluginLifecycle? { return self }
+    public var filter: SourcePluginFilter? { nil }
+    public var events: SourcePluginEvents? { nil }
+    public var lifecycle: SourcePluginLifecycle? { self }
     
     private weak var container: UIScrollView?
     private var keyboardSize: CGSize = .zero

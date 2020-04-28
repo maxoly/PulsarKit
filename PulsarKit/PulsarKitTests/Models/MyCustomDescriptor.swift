@@ -10,7 +10,7 @@ import Foundation
 import PulsarKit
 
 struct MyCustomDescriptor: Descriptor {    
-    var handle: DescriptorDispatcher { return self }
+    var handle: DescriptorDispatcher { self }
     
     var isCellAlreadyRegistered: Bool = false
     
@@ -20,11 +20,11 @@ struct MyCustomDescriptor: Descriptor {
     var cellReuseIdentifier: String = "User1CollectionViewCell"
     
     func size(for model: Any, cell: UICollectionReusableView) -> Sizeable {
-        return TableSize()
+        TableSize()
     }
     
     func cellConfiguration() -> Any {
-        return Void()
+        Void()
     }
     
     func bind(cell: UIView, with model: Any) {
@@ -32,7 +32,7 @@ struct MyCustomDescriptor: Descriptor {
     }
     
     func create<C>() -> C? where C: UIView {
-        return UICollectionViewCell() as? C
+        UICollectionViewCell() as? C
     }
     
     func handle(model: AnyHashable, at indexPath: IndexPath) {
@@ -41,11 +41,11 @@ struct MyCustomDescriptor: Descriptor {
 
 extension MyCustomDescriptor: DescriptorDispatcher {
     func event<M>(_ event: Event.Menu, model: M, container: UICollectionView, indexPath: IndexPath, selector: Selector?, sender: Any?) -> Bool? where M: Hashable {
-        return nil
+        nil
     }
     
     func event<M>(_ event: Event.Should, model: M, container: UICollectionView, indexPath: IndexPath) -> Bool? where M: Hashable {
-        return nil
+        nil
     }
     
     func event<M, C>(_ event: Event.Display, model: M, container: UICollectionView, cell: C, indexPath: IndexPath) where M: Hashable {

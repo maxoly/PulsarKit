@@ -18,7 +18,7 @@ struct User: Hashable {
     }
     
     static func == (lhs: User, rhs: User) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {

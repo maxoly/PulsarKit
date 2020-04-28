@@ -33,6 +33,6 @@ public protocol DescriptorDispatcher {
 
 public extension DescriptorDispatcher {
     func event<M: Hashable>(_ event: Event.Menu, model: M, container: UICollectionView, indexPath: IndexPath) -> Bool? {
-        return true
+        true
     }
 }

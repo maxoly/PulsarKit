@@ -14,6 +14,6 @@ public protocol SourcePluginFilter {
 }
 
 public extension SourcePluginFilter {
-    func filter<Model: Hashable>(source: CollectionSource, model: Model) -> Model { return model }
-    func filter<Cell: UICollectionViewCell>(source: CollectionSource, cell: Cell, at indexPath: IndexPath) -> Cell { return cell }
+    func filter<Model: Hashable>(source: CollectionSource, model: Model) -> Model { model }
+    func filter<Cell: UICollectionViewCell>(source: CollectionSource, cell: Cell, at indexPath: IndexPath) -> Cell { cell }
 }

@@ -10,7 +10,7 @@ import Foundation
 import PulsarKit
 
 class TestPlugin: SourcePlugin, SourcePluginLifecycle {
-    var lifecycle: SourcePluginLifecycle? { return self }
+    var lifecycle: SourcePluginLifecycle? { self }
     
     var events: SourcePluginEvents?
     var filter: SourcePluginFilter?

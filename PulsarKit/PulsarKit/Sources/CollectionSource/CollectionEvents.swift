@@ -128,6 +128,6 @@ public class CollectionEvents<Model: Hashable, Cell: UICollectionReusableView> {
     }
     
     internal func dispatch(from fromLayout: UICollectionViewLayout, to toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout? {
-        return transitionLayout?(fromLayout, toLayout)
+        transitionLayout?(fromLayout, toLayout)
     }
 }

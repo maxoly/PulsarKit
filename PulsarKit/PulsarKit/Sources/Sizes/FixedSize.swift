@@ -18,6 +18,6 @@ public struct FixedSize: Sizeable {
     }
     
     public func size<View: UIView>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize {
-        return CGSize(width: width, height: height)
+        CGSize(width: width, height: height)
     }
 }

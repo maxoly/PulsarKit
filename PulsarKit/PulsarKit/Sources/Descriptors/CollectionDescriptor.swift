@@ -11,12 +11,12 @@ import Foundation
 open class CollectionDescriptor<Model, Cell, B: Binder>: Descriptor where B.Model == Model, B.Cell == Cell {
     private let binder: B
     
-    public var modelType: Any.Type { return Model.self }
-    public var cellType: Any.Type { return Cell.self }
-    public var cellClass: AnyClass { return Cell.self }
-    public var cellReuseIdentifier: String { return String(describing: Cell.self) }
+    public var modelType: Any.Type { Model.self }
+    public var cellType: Any.Type { Cell.self }
+    public var cellClass: AnyClass { Cell.self }
+    public var cellReuseIdentifier: String { String(describing: Cell.self) }
     public var isCellAlreadyRegistered: Bool = false
-    public var handle: DescriptorDispatcher { return self }
+    public var handle: DescriptorDispatcher { self }
     
     public let configuration = DescriptorConfiguration<Model, Cell>()
     
@@ -25,7 +25,7 @@ open class CollectionDescriptor<Model, Cell, B: Binder>: Descriptor where B.Mode
     }
     
     public func cellConfiguration() -> Any {
-        return configuration
+        configuration
     }
     
     public func size(for model: Any, cell: UICollectionReusableView) -> Sizeable {

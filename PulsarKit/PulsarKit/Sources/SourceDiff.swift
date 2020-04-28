@@ -18,33 +18,33 @@ public final class SourceDiff<Element: Hashable> {
     private lazy var indexesToIgnore: [Int] = []
     
     // internal
-    internal var count: Int { return current.count }
+    internal var count: Int { current.count }
     internal private(set) lazy var current: [Element] = []
 }
 
 // MARK: - computed properties
 public extension SourceDiff {
     var staged: [Element] {
-        return apply(to: current)
+        apply(to: current)
     }
 }
 
 // MARK: - subscript
 public extension SourceDiff {
     subscript(index: Int) -> Element {
-        return current[index]
+        current[index]
     }
     
     subscript(safe index: Int) -> Element? {
-        return current[safe: index]
+        current[safe: index]
     }
     
     subscript(inStage index: Int) -> Element {
-        return staged[index]
+        staged[index]
     }
 
     subscript(inStageSafe index: Int) -> Element? {
-        return staged[safe: index]
+        staged[safe: index]
     }
 }
 
@@ -197,7 +197,7 @@ public extension SourceDiff {
     
     @discardableResult
     func deleteAll() -> [Element] {
-        return current.indices.map(delete)
+        current.indices.map(delete)
     }
     
     @discardableResult

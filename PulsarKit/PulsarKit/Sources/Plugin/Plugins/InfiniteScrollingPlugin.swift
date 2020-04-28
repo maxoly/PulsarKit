@@ -21,9 +21,9 @@ open class InfiniteScrollingPlugin: SourcePlugin {
 }
 
 extension InfiniteScrollingPlugin: SourcePluginEvents {
-    public var filter: SourcePluginFilter? { return nil }
-    public var events: SourcePluginEvents? { return self }
-    public var lifecycle: SourcePluginLifecycle? { return nil }
+    public var filter: SourcePluginFilter? { nil }
+    public var events: SourcePluginEvents? { self }
+    public var lifecycle: SourcePluginLifecycle? { nil }
     
     public func dispatch(source: CollectionSource, event: Event.Display, context: CellContext<AnyHashable, UICollectionViewCell>) {
         guard event == .onWillDisplay else { return }

@@ -10,12 +10,12 @@ import Foundation
 
 extension Array where Element: Equatable {
     func indexes(of element: Element) -> Set<Int> {
-        return Set(self.enumerated().filter { element == $0.element }.map { $0.offset })
+        Set(self.enumerated().filter { element == $0.element }.map { $0.offset })
     }
 }
 
 extension Array {
     subscript (safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
+        indices.contains(index) ? self[index] : nil
     }
 }

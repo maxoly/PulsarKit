@@ -12,16 +12,16 @@ import Foundation
 public extension CollectionSource {
     @discardableResult
     func add(section: SourceSection) -> SourceSection {
-        return sections.add(element: section)
+        sections.add(element: section)
     }
     
     @discardableResult
     func addSection() -> SourceSection {
-        return sections.add()
+        sections.add()
     }
     
     @discardableResult
     func add<Model: Hashable>(header: Model) -> SourceSection {
-        return sections.add(element: SourceSection(headerModel: header))
+        sections.add(element: SourceSection(headerModel: header))
     }
 }

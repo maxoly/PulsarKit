@@ -81,7 +81,7 @@ public extension Source {
     }
     
     func indexPaths(of model: AnyHashable) -> [IndexPath] {
-        return sections.current
+        sections.current
             .enumerated()
             .map { (section: $0.offset, elements: $0.element.models.current.enumerated()) }
             .flatMap { val in val.elements

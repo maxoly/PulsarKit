@@ -24,9 +24,9 @@ open class GroupedCollectionPlugin {
 }
 
 extension GroupedCollectionPlugin: SourcePlugin {
-    public var filter: SourcePluginFilter? { return self }
-    public var events: SourcePluginEvents? { return nil }
-    public var lifecycle: SourcePluginLifecycle? { return nil }
+    public var filter: SourcePluginFilter? { self }
+    public var events: SourcePluginEvents? { nil }
+    public var lifecycle: SourcePluginLifecycle? { nil }
 }
 
 extension GroupedCollectionPlugin: SourcePluginFilter {

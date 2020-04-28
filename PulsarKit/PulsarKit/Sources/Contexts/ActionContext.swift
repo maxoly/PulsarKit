@@ -26,6 +26,6 @@ public final class ActionContext<Model: Hashable> {
 
 extension ActionContext {
     var standard: StandardContext<Model> {
-        return StandardContext(model: model, container: container, indexPath: indexPath)
+        StandardContext(model: model, container: container, indexPath: indexPath)
     }
 }

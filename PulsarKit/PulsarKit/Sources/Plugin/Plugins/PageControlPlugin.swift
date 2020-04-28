@@ -17,9 +17,9 @@ public final class PageControlPlugin {
 }
 
 extension PageControlPlugin: SourcePlugin {
-    public var filter: SourcePluginFilter? { return nil }
-    public var events: SourcePluginEvents? { return self }
-    public var lifecycle: SourcePluginLifecycle? { return nil }
+    public var filter: SourcePluginFilter? { nil }
+    public var events: SourcePluginEvents? { self }
+    public var lifecycle: SourcePluginLifecycle? { nil }
 }
 
 extension PageControlPlugin: SourcePluginEvents {

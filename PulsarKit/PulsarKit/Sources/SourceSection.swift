@@ -38,6 +38,6 @@ extension SourceSection: Hashable {
 // MARK: - Equatable
 extension SourceSection: Equatable {
     public static func == (lhs: SourceSection, rhs: SourceSection) -> Bool {
-        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+        ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
 }

@@ -16,10 +16,10 @@ public struct DescriptorBuilder<Model: Hashable> {
     }
     
     public func use<Cell: UIView>(_ type: Cell.Type) -> DescriptorFactory<Model, Cell> {
-        return DescriptorFactory<Model, Cell>(onFinish: onFinish)
+        DescriptorFactory<Model, Cell>(onFinish: onFinish)
     }
     
     public func useStoryboard<Cell: UIView>(_ type: Cell.Type) -> DescriptorFactory<Model, Cell> {
-        return DescriptorFactory<Model, Cell>(onFinish: onFinish, isStoryboard: true)
+        DescriptorFactory<Model, Cell>(onFinish: onFinish, isStoryboard: true)
     }
 }
