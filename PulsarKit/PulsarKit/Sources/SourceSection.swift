@@ -9,12 +9,6 @@
 import Foundation
 
 public final class SourceSection {
-    public struct Layout {
-        public let inset: UIEdgeInsets = .zero
-        public let minimumLineSpacing: CGFloat = 0
-        public let minimumInteritemSpacing: CGFloat = 0
-    }
-    
     public var headerModel: AnyHashable?
     public var footerModel: AnyHashable?
     public var layout: Layout?
@@ -25,6 +19,23 @@ public final class SourceSection {
         self.layout = layout
         self.headerModel = headerModel
         self.footerModel = footerModel
+    }
+}
+
+// MARK: - Nested types
+public extension SourceSection {
+    struct Layout {
+        public let inset: UIEdgeInsets
+        public let minimumLineSpacing: CGFloat
+        public let minimumInteritemSpacing: CGFloat
+        
+        public static let zero = Layout()
+        
+        public init(inset: UIEdgeInsets = .zero, minimumLineSpacing: CGFloat = 0, minimumInteritemSpacing: CGFloat = 0) {
+            self.inset = inset
+            self.minimumLineSpacing = minimumLineSpacing
+            self.minimumInteritemSpacing = minimumInteritemSpacing
+        }
     }
 }
 
