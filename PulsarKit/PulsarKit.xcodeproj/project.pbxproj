@@ -12,6 +12,8 @@
 		560081E7222975BF00EEC6C2 /* SourcePluginEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081E6222975BF00EEC6C2 /* SourcePluginEvents.swift */; };
 		560081F22229DDEA00EEC6C2 /* SourcePluginLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F12229DDEA00EEC6C2 /* SourcePluginLifecycle.swift */; };
 		560081F92229E78F00EEC6C2 /* CollectionSource+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560081F82229E78F00EEC6C2 /* CollectionSource+Sections.swift */; };
+		5605D0C525A478AC00BA4169 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605D0C425A478AC00BA4169 /* ProductCollectionViewCell.swift */; };
+		5605D0C925A478D600BA4169 /* DescriptorDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605D0C825A478D600BA4169 /* DescriptorDispatcher.swift */; };
 		5615AB16212377D10047664F /* SourceDiff+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB15212377D10047664F /* SourceDiff+Section.swift */; };
 		5615AB1A21237EF60047664F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB1921237EF60047664F /* User.swift */; };
 		5615AB1C21237F0D0047664F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615AB1B21237F0D0047664F /* Product.swift */; };
@@ -89,6 +91,8 @@
 		560081E6222975BF00EEC6C2 /* SourcePluginEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePluginEvents.swift; sourceTree = "<group>"; };
 		560081F12229DDEA00EEC6C2 /* SourcePluginLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePluginLifecycle.swift; sourceTree = "<group>"; };
 		560081F82229E78F00EEC6C2 /* CollectionSource+Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionSource+Sections.swift"; sourceTree = "<group>"; };
+		5605D0C425A478AC00BA4169 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		5605D0C825A478D600BA4169 /* DescriptorDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptorDispatcher.swift; sourceTree = "<group>"; };
 		5615AB15212377D10047664F /* SourceDiff+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SourceDiff+Section.swift"; sourceTree = "<group>"; };
 		5615AB1921237EF60047664F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5615AB1B21237F0D0047664F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 				56B08A2B21372F8600F8AFF5 /* TestPlugin.swift */,
 				5615AB1921237EF60047664F /* User.swift */,
 				56EE073921309F330000B7D1 /* User1CollectionViewCell.swift */,
+				5605D0C425A478AC00BA4169 /* ProductCollectionViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				56289DF6211F28780041AC8A /* Descriptor.swift */,
 				56EE073521309D5D0000B7D1 /* DescriptorBuilder.swift */,
 				56288A15212DBAE30053C888 /* DescriptorConfiguration.swift */,
+				5605D0C825A478D600BA4169 /* DescriptorDispatcher.swift */,
 				5673B43521222F5C008741A6 /* DescriptorFactory.swift */,
 			);
 			path = Descriptors;
@@ -521,6 +527,7 @@
 				564658BD216912F100B5EBAD /* ActionContext.swift in Sources */,
 				56B7F8A52131A8F000C9D0F6 /* SourcePlugin.swift in Sources */,
 				5673B434212222C5008741A6 /* ChangeSet.swift in Sources */,
+				5605D0C925A478D600BA4169 /* DescriptorDispatcher.swift in Sources */,
 				5615AB16212377D10047664F /* SourceDiff+Section.swift in Sources */,
 				56EE073621309D5D0000B7D1 /* DescriptorBuilder.swift in Sources */,
 				56289DEE211E33AB0041AC8A /* SourceDiff.swift in Sources */,
@@ -556,6 +563,7 @@
 			files = (
 				56EE07402130A4C70000B7D1 /* MyCustomBinder.swift in Sources */,
 				56EE073E2130A3800000B7D1 /* MyCustomDescriptor.swift in Sources */,
+				5605D0C525A478AC00BA4169 /* ProductCollectionViewCell.swift in Sources */,
 				56289DF4211E68C40041AC8A /* ModelTests.swift in Sources */,
 				56EE073821309F1B0000B7D1 /* DescriptorTests.swift in Sources */,
 				56289DF2211E67E50041AC8A /* SectionTests.swift in Sources */,

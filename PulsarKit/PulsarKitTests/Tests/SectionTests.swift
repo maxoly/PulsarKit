@@ -10,8 +10,7 @@ import Foundation
 import XCTest
 @testable import PulsarKit
 
-class SectionTests: XCTestCase {
-    
+class SectionTests: XCTestCase {    
     func testAddSections() {
         // Arrange
         let source = CollectionSource()

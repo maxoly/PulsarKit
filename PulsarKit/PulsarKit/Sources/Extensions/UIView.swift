@@ -40,12 +40,16 @@ internal extension UIView.AnimationCurve {
         switch self {
         case .easeIn:
             return .curveEaseIn
+            
         case .easeInOut:
             return .curveEaseInOut
+            
         case .easeOut:
             return .curveEaseOut
+            
         case .linear:
             return .curveLinear
+            
         @unknown default:
             return .curveLinear
         }

@@ -8,14 +8,6 @@
 
 import Foundation
 
-internal struct ChangeSet {
-    let inserted: IndexSet
-    let deleted: IndexSet
-    let reloaded: IndexSet
-    let remapped: [Int: Int]
-    let moved: [Move]
-}
-
 internal struct Move {
     let from: Int
     let to: Int
@@ -32,4 +24,12 @@ internal struct Move {
         self.to = indexPath.item
         self.toSection = indexPath.section
     }
+}
+
+internal struct ChangeSet {
+    let inserted: IndexSet
+    let deleted: IndexSet
+    let reloaded: IndexSet
+    let remapped: [Int: Int]
+    let moved: [Move]
 }

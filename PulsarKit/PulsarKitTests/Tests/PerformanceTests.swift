@@ -10,7 +10,6 @@ import XCTest
 @testable import PulsarKit
 
 class PerformanceTests: XCTestCase {
-
     func testAddSectionsPerformace() {
         measure {
             let source = CollectionSource()

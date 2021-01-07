@@ -28,7 +28,6 @@ struct MyCustomDescriptor: Descriptor {
     }
     
     func bind(cell: UIView, with model: Any) {
-        
     }
     
     func create<C>() -> C? where C: UIView {
@@ -49,10 +48,8 @@ extension MyCustomDescriptor: DescriptorDispatcher {
     }
     
     func event<M, C>(_ event: Event.Display, model: M, container: UICollectionView, cell: C, indexPath: IndexPath) where M: Hashable {
-        
     }
     
     func event<M>(_ event: Event.Selection, model: M, container: UICollectionView, indexPath: IndexPath) where M: Hashable {
-        
     }
 }

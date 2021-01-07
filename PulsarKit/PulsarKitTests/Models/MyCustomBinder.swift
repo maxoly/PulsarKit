@@ -11,6 +11,5 @@ import PulsarKit
 
 struct MyCustomBinder: Binder {
     func bind(model: User, to cell: ProductCollectionViewCell) {
-        
     }
 }

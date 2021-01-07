@@ -12,7 +12,3 @@ import UIKit
 final class User1CollectionViewCell: UICollectionViewCell, Bindable {
     func bind(to element: User) { }
 }
-
-final class ProductCollectionViewCell: UICollectionViewCell {
-    
-}

@@ -33,8 +33,8 @@ class DescriptorTests: XCTestCase {
         let source = CollectionSource()
         let user1 = User(id: 1)
         let user2: AnyHashable = User(id: 2)
-        let user3: AnyHashable = AnyHashable(User(id: 3))
-        let user4: AnyHashable = AnyHashable(AnyHashable(User(id: 4)))
+        let user3 = AnyHashable(User(id: 3))
+        let user4 = AnyHashable(AnyHashable(User(id: 4)))
         
         // Act
         source.when(User.self).use(User1CollectionViewCell.self).withCellBinder()

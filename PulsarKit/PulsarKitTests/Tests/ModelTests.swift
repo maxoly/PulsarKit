@@ -11,6 +11,7 @@ import XCTest
 
 // swiftlint:disable file_length
 // swiftlint:disable type_body_length
+// swiftlint:disable numbers_smell
 class ModelTests: XCTestCase {
     func testIndexPaths() {
         // Arrange
@@ -34,7 +35,6 @@ class ModelTests: XCTestCase {
         // Assert
         XCTAssertEqual(result.count, 3)
         XCTAssertEqual(source.sections.count, 3)
-
     }
     
     func testAddModels() {
@@ -425,7 +425,7 @@ class ModelTests: XCTestCase {
         source.sections.add()
         source.sections.add()
         
-        // section 2
+        // Section 2
         let section2 = source.sections.add()
         let model1 = User(id: 1)
         let model2 = User(id: 2)
@@ -436,7 +436,7 @@ class ModelTests: XCTestCase {
         section2.models.add(element: model3)
         section2.models.add(element: model4)
         
-        // section 3
+        // Section 3
         let section3 = source.sections.add()
         let model5 = User(id: 5)
         let model6 = User(id: 6)
@@ -477,7 +477,7 @@ class ModelTests: XCTestCase {
         source.sections.add()
         source.sections.add()
         
-        // section 2
+        // Section 2
         let section2 = source.sections.add()
         let model1 = User(id: 1)
         let model2 = User(id: 2)
@@ -488,7 +488,7 @@ class ModelTests: XCTestCase {
         section2.models.add(element: model3)
         section2.models.add(element: model4)
         
-        // section 3
+        // Section 3
         let section3 = source.sections.add()
         let model5 = User(id: 5)
         let model6 = User(id: 6)

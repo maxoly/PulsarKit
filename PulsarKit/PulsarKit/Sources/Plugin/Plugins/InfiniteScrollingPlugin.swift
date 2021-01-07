@@ -31,10 +31,10 @@ extension InfiniteScrollingPlugin: SourcePluginEvents {
         let indexPath = context.indexPath
         let sections = source.sections
         
-        // section check
+        // Section check
         guard indexPath.section == sections.count - 1 else { return }
         
-        // row check
+        // Row check
         let section = sections[indexPath.section]
         let finalOffset = min(offset, section.models.count)
         guard indexPath.row == section.models.count - finalOffset else { return }

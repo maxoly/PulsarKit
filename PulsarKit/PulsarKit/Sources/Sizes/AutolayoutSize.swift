@@ -18,28 +18,28 @@ public struct AutolayoutSize: Sizeable {
     }
     
     public func size<View: UIView>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize {
-        // starting bounds
+        // Starting bounds
         var bounds = container.bounds
         bounds = bounds.inset(by: container.contentInset)
         bounds = bounds.inset(by: container.sectionInset)
         
-        // frame
+        // Frame
         view.frame = bounds
         view.bounds = bounds
         
-        // bind model
+        // Bind model
         descriptor.bind(cell: view, with: model)
         
-        // layout
+        // Layout
         view.setNeedsUpdateConstraints()
         view.layoutIfNeeded()
         
-        // run autolayout
+        // Run autolayout
         let viewSize = view.systemLayoutSizeFitting(bounds.size,
                                                     withHorizontalFittingPriority: horizontalFittingPriority,
                                                     verticalFittingPriority: verticalFittingPriority)
         
-        // cache
+        // Cache
         return viewSize
     }
 }

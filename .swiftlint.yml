@@ -3,9 +3,21 @@ disabled_rules: # rule identifiers to exclude from running
   - class_delegate_protocol
 opt_in_rules: # some rules are only opt-in
   - anyobject_protocol
-  - empty_count
+  - array_init
   - closure_spacing
+  - closure_body_length
   - collection_alignment
+  - contains_over_range_nil_comparison
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - discouraged_object_literal
+  - empty_collection_literal
+  - empty_string
+  - empty_count
+  - empty_xctest_method
+  - enum_case_associated_values_count
+  - explicit_init
   - implicit_return
   - implicitly_unwrapped_optional
   - identical_operands
@@ -13,13 +25,14 @@ opt_in_rules: # some rules are only opt-in
   - first_where
   - fatal_error_message
   - for_where
+  - flatmap_over_map_reduce
+  - generic_type_name
+  - modifier_order
   - joined_default_parameter
   - extension_access_modifier
-  - explicit_init
   - fallthrough
   - closure_end_indentation
   - attributes
-  - discouraged_object_literal
   - let_var_whitespace
   - last_where
   - legacy_multiple
@@ -27,28 +40,31 @@ opt_in_rules: # some rules are only opt-in
   - multiline_parameters
   - multiline_literal_brackets
   - number_separator
+  - private_action
+  - private_outlet
+  - prefer_zero_over_explicit_init
+  - prefer_self_type_over_type_of_self
   - overridden_super_call 
   - prohibited_super_call
   - redundant_nil_coalescing
   - switch_case_on_newline
   - trailing_closure
   - vertical_parameter_alignment_on_call
-  - array_init
-  - contains_over_first_not_nil
   - literal_expression_end_indentation
   - lower_acl_than_parent
   - operator_usage_whitespace
   - operator_whitespace
   - quick_discouraged_call
-  - empty_string
-  - empty_xctest_method
   - untyped_error_in_catch
   - multiline_function_chains
   - file_name
+  - file_name_no_space
+  - file_types_order
   - convenience_type
-  - modifier_order
   - unused_import
   - reduce_into
+  - redundant_type_annotation
+  - single_test_class
   - sorted_first_last
   - static_operator
   - toggle_bool
@@ -58,8 +74,11 @@ opt_in_rules: # some rules are only opt-in
   - unneeded_parentheses_in_closure_argument
   - unowned_variable_capture
   - unused_declaration
-  #- unused_import
   - yoda_condition
+  - vertical_whitespace
+  - vertical_whitespace_between_cases
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
 
 # configurable rules can be customized from this configuration file
 # binary rules can set their severity level
@@ -68,43 +87,48 @@ cyclomatic_complexity:
   - 20
 
 force_cast: warning # implicitly
+
 force_try:
   severity: warning # explicitly
+
 # rules that have both warning and error levels, can set just the warning level
 # implicitly
 line_length: 250
+
 # they can set both implicitly with an array
 type_body_length:
   - 300 # warning
   - 400 # error
+
 function_body_length:
   - 100
   - 200
+
 # or they can set both explicitly
 file_length:
   warning: 500
   error: 1200
+
 # naming rules can set warnings/errors for min_length and max_length
 # additionally they can set excluded names
 type_name:
   min_length: 4 # only warning
   max_length: # warning and error
-    warning: 40
-    error: 50
+    warning: 50
+    error: 60
   excluded: 
     - iPhone # excluded via string
     - In
     - Out
     - Err
-    - Bit
-    - Bits
+    - Box
+
 identifier_name:
   min_length: # only min_length
     error: 2 # only error
   excluded: # excluded via string array
     - id
     - URL
-    - GlobalAPIKey
     - to
     - op
     - x
@@ -112,20 +136,28 @@ identifier_name:
     - ex
     - on
 
-function_parameter_count:
-    warning: 6
-    error: 9
-
-
 large_tuple:
     warning: 3
     error: 4
 
+nesting:
+    type_level: 3
+
+function_parameter_count:
+    warning: 6
+    error: 8
+    
 custom_rules:
   comments_space: # From https://github.com/brandenr/swiftlintconfig
       name: "Space After Comment"
       regex: "(^ *//\\w+)"
       message: "There should be a space after //"
+      severity: warning
+
+  comments_capitalized_ignore_possible_code:
+      name: "Capitalize First Word In Comment"
+      regex: "(^ +// +(?!swiftlint)[a-z]+)"
+      message: "The first word of a comment should be capitalized"
       severity: warning
 
   double_space: # From https://github.com/IBM-Swift/Package-Builder
@@ -140,4 +172,14 @@ custom_rules:
       name: "New line between import"
       regex: "import(.*?)\n\n+import"
       message: "No new line between import"
+      severity: warning
+
+  numbers_smell:
+      regex: '(return |case |\w\(|: |\?\? |\, |== |<=? |>=? |\+= |\-= |\/= |\*= |%= |\w\.\w+ = )\(*\d{2,}'
+      message: "Numbers smell; define a constant instead."
+      severity: warning
+
+  auto_generated_leftovers:
+      regex: 'func [^\n]*\{\n(\s*super\.[^\n]*\n(\s*\/\/[^\n]*\n)*|(\s*\/\/[^\n]*\n)+)\s*\}'
+      message: "Delete auto-generated functions that you don't use"
       severity: warning

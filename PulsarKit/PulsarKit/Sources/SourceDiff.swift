@@ -9,7 +9,7 @@
 import Foundation
 
 public final class SourceDiff<Element: Hashable> {
-    // private
+    // Private
     private lazy var added: [Element] = []
     private lazy var moved: [Move] = []
     private lazy var deleted: Set<Int> = []
@@ -17,7 +17,7 @@ public final class SourceDiff<Element: Hashable> {
     private lazy var inserted: [Int: Element] = [:]
     private lazy var indexesToIgnore: [Int] = []
     
-    // internal
+    // Internal
     internal var count: Int { current.count }
     internal private(set) lazy var current: [Element] = []
 }
@@ -52,7 +52,7 @@ private extension SourceDiff {
     func apply(to: [Element]) -> [Element] {
         var elements = to
         
-        // commit
+        // Commit
         deleted.sorted(by: >).forEach { elements.remove(at: $0) }
         inserted.sorted { $0.key < $1.key }.forEach { elements.insert($0.value, at: $0.key) }
         elements.append(contentsOf: added)
@@ -81,16 +81,16 @@ internal extension SourceDiff {
     func commit() -> ChangeSet {
         let prev = current
         
-        // reloaded
+        // Reloaded
         reloaded.sorted { $0.key < $1.key }.forEach { current[$0.key] = $0.value }
         let reloadedIndexSet = IndexSet(reloaded.keys)
         
-        // commit
+        // Commit
         deleted.sorted(by: >).forEach { current.remove(at: $0) }
         inserted.sorted { $0.key < $1.key }.forEach { current.insert($0.value, at: $0.key) }
         current.append(contentsOf: added)
         
-        // inserted
+        // Inserted
         var indexes = inserted.map { $0.key }
         if !added.isEmpty {
             for index in (current.count - added.count)...(current.count - 1) {
@@ -100,7 +100,7 @@ internal extension SourceDiff {
         let realInserted = Set(indexes).subtracting(Set(indexesToIgnore))
         let insertedIndexSet = IndexSet(realInserted)
         
-        // remapped
+        // Remapped
         let remapped = current.reduce(into: [Int: Int]()) { dictionary, element in
             guard let newIndex = current.firstIndex(of: element) else { return }
             guard let oldIndex = prev.firstIndex(of: element) else { return }
@@ -109,14 +109,14 @@ internal extension SourceDiff {
         
         indexes = indexes.sorted(by: <)
         
-        // deleted
+        // Deleted
         let realDeleted = Set(deleted).subtracting(Set(indexesToIgnore))
         let deletedIndexSet = IndexSet(realDeleted)
         
-        // moved
+        // Moved
         let movedIndexes = moved
         
-        // cleanup
+        // Cleanup
         cleanup()
         
         return ChangeSet(inserted: insertedIndexSet,

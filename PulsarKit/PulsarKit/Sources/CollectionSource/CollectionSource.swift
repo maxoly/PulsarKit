@@ -143,19 +143,19 @@ private extension CollectionSource {
             let section = entry.element
             let sectionChangeSet = section.models.commit()
             
-            // reload
+            // Reload
             let reloadedIndexPaths = sectionChangeSet.reloaded.map { IndexPath(item: $0, section: previousSectionIndex) }
             self.container.reloadItems(at: reloadedIndexPaths)
             
-            // deleted
+            // Deleted
             let deletedIndexPaths = sectionChangeSet.deleted.map { IndexPath(item: $0, section: previousSectionIndex) }
             self.container.deleteItems(at: deletedIndexPaths)
             
-            // inserted
+            // Inserted
             let insertedIndexPaths = sectionChangeSet.inserted.map { IndexPath(item: $0, section: actualSectionIndex) }
             self.container.insertItems(at: insertedIndexPaths)
             
-            // moved
+            // Moved
             sectionChangeSet.moved.forEach { entry in
                 let toSection = entry.toSection ?? previousSectionIndex
                 let fromIndexPath = IndexPath(item: entry.from, section: previousSectionIndex)

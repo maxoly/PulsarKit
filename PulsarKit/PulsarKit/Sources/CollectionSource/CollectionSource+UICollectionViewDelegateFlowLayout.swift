@@ -58,7 +58,7 @@ extension CollectionSource {
     func size(for model: AnyHashable, in collectionView: UICollectionView) -> CGSize {
         guard let descriptor = descriptor(for: model) else { return .zero }
         
-        // check size cache
+        // Check size cache
         let dimension = scrollDirection == .vertical ? container.bounds.size.width : container.bounds.size.height
         let key = "\(type(of: descriptor.cellClass)).\(dimension).\(model.hashValue)"
         let value = sizeCache.object(forKey: key as NSString)
@@ -66,16 +66,16 @@ extension CollectionSource {
             return size
         }
         
-        // new size
+        // New size
         guard let cell: UICollectionReusableView = cell(for: descriptor) else { return CGSize.zero }
         let sizeable = descriptor.size(for: model, cell: cell)
         let size = sizeable.size(for: cell, descriptor: descriptor, model: model, in: collectionView)
         
-        // caches new size
+        // Caches new size
         let cacheValue = NSValue(cgSize: size)
         sizeCache.setObject(cacheValue, forKey: key as NSString)
         
-        // return
+        // Return
         return size
     }
 }
