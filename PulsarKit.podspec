@@ -1,14 +1,14 @@
 Pod::Spec.new do |spec|
   spec.name         = "PulsarKit"
-  spec.version      = "1.4.0"
+  spec.version      = "1.5.0"
   spec.summary      = "PulsarKit is a simple and beautiful wrapper around the official UICollectionView API written in pure Swift"
   spec.description  = <<-DESC
                   PulsarKit is a simple and beautiful wrapper around the official UICollectionView API written in pure Swift. PulsarKit is a library that lets you populate and update collection views simply using your models. 
                   This framework is lightly inspire by Lighter view controllers and UITableViewSource and UICollectionViewSource in Xamarin Platform.
                    DESC
 
-  spec.homepage     = "http://www.massimooliviero.net"
-  spec.social_media_url = 'http://twitter.com/maxoly'
+  spec.homepage     = "https://www.massimooliviero.net"
+  spec.social_media_url = 'https://twitter.com/maxoly'
   spec.license      = "MIT"
   spec.author       = { "Massimo Oliviero" => "massimo.oliviero@gmail.com" }
   spec.ios.deployment_target = "11.0"
