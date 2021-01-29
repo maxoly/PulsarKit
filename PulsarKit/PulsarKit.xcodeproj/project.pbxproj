@@ -44,7 +44,7 @@
 		5673B43621222F5C008741A6 /* DescriptorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B43521222F5C008741A6 /* DescriptorFactory.swift */; };
 		567533D22226EF3B003C5BD8 /* InfiniteScrollingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533D12226EF3B003C5BD8 /* InfiniteScrollingPlugin.swift */; };
 		567533D42226F770003C5BD8 /* ScrollContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533D32226F770003C5BD8 /* ScrollContext.swift */; };
-		569D8802214EF26600DB9F9E /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D8801214EF26600DB9F9E /* UIScrollView.swift */; };
+		569D8802214EF26600DB9F9E /* Sizeable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D8801214EF26600DB9F9E /* Sizeable+Utils.swift */; };
 		569D8804214F00B200DB9F9E /* CollectionDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D8803214F00B200DB9F9E /* CollectionDescriptor.swift */; };
 		56B08A2A21372DEB00F8AFF5 /* PluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B08A2921372DEB00F8AFF5 /* PluginTests.swift */; };
 		56B08A2C21372F8600F8AFF5 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B08A2B21372F8600F8AFF5 /* TestPlugin.swift */; };
@@ -59,7 +59,7 @@
 		56DA04D221223657006BE217 /* CompositeSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B43B21223557008741A6 /* CompositeSize.swift */; };
 		56DA04D321223657006BE217 /* ContainerSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B43D21223557008741A6 /* ContainerSize.swift */; };
 		56DA04D421223657006BE217 /* FixedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B43921223557008741A6 /* FixedSize.swift */; };
-		56DA04D521223657006BE217 /* SegmentedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B43A21223557008741A6 /* SegmentedSize.swift */; };
+		56DA04D521223657006BE217 /* SplittedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B43A21223557008741A6 /* SplittedSize.swift */; };
 		56DA04D621223657006BE217 /* TableSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673B43C21223557008741A6 /* TableSize.swift */; };
 		56DA04D721223657006BE217 /* Sizeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56289DFB211F340D0041AC8A /* Sizeable.swift */; };
 		56E8726D214C5F7E0011E625 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E8726C214C5F7E0011E625 /* Array.swift */; };
@@ -126,14 +126,14 @@
 		5673B433212222C5008741A6 /* ChangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSet.swift; sourceTree = "<group>"; };
 		5673B43521222F5C008741A6 /* DescriptorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptorFactory.swift; sourceTree = "<group>"; };
 		5673B43921223557008741A6 /* FixedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSize.swift; sourceTree = "<group>"; };
-		5673B43A21223557008741A6 /* SegmentedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedSize.swift; sourceTree = "<group>"; };
+		5673B43A21223557008741A6 /* SplittedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplittedSize.swift; sourceTree = "<group>"; };
 		5673B43B21223557008741A6 /* CompositeSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeSize.swift; sourceTree = "<group>"; };
 		5673B43C21223557008741A6 /* TableSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSize.swift; sourceTree = "<group>"; };
 		5673B43D21223557008741A6 /* ContainerSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSize.swift; sourceTree = "<group>"; };
 		5673B43E21223557008741A6 /* AutolayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutolayoutSize.swift; sourceTree = "<group>"; };
 		567533D12226EF3B003C5BD8 /* InfiniteScrollingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingPlugin.swift; sourceTree = "<group>"; };
 		567533D32226F770003C5BD8 /* ScrollContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollContext.swift; sourceTree = "<group>"; };
-		569D8801214EF26600DB9F9E /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		569D8801214EF26600DB9F9E /* Sizeable+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sizeable+Utils.swift"; sourceTree = "<group>"; };
 		569D8803214F00B200DB9F9E /* CollectionDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionDescriptor.swift; sourceTree = "<group>"; };
 		56B08A2921372DEB00F8AFF5 /* PluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginTests.swift; sourceTree = "<group>"; };
 		56B08A2B21372F8600F8AFF5 /* TestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
@@ -220,8 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				56E8726C214C5F7E0011E625 /* Array.swift */,
+				569D8801214EF26600DB9F9E /* Sizeable+Utils.swift */,
 				56289DEA211E2CE40041AC8A /* UICollectionView.swift */,
-				569D8801214EF26600DB9F9E /* UIScrollView.swift */,
 				56B7F8A22131A84400C9D0F6 /* UIView.swift */,
 			);
 			path = Extensions;
@@ -262,7 +262,7 @@
 				5673B43B21223557008741A6 /* CompositeSize.swift */,
 				5673B43D21223557008741A6 /* ContainerSize.swift */,
 				5673B43921223557008741A6 /* FixedSize.swift */,
-				5673B43A21223557008741A6 /* SegmentedSize.swift */,
+				5673B43A21223557008741A6 /* SplittedSize.swift */,
 				56289DFB211F340D0041AC8A /* Sizeable.swift */,
 				5673B43C21223557008741A6 /* TableSize.swift */,
 			);
@@ -533,7 +533,7 @@
 				56289DEE211E33AB0041AC8A /* SourceDiff.swift in Sources */,
 				56EE07422130A8150000B7D1 /* ModelBinder.swift in Sources */,
 				569D8804214F00B200DB9F9E /* CollectionDescriptor.swift in Sources */,
-				569D8802214EF26600DB9F9E /* UIScrollView.swift in Sources */,
+				569D8802214EF26600DB9F9E /* Sizeable+Utils.swift in Sources */,
 				5673B43621222F5C008741A6 /* DescriptorFactory.swift in Sources */,
 				567533D22226EF3B003C5BD8 /* InfiniteScrollingPlugin.swift in Sources */,
 				5645EFFE211E2A3000B66E3B /* CollectionSource+UICollectionViewDelegate.swift in Sources */,
@@ -545,7 +545,7 @@
 				56289DEB211E2CE40041AC8A /* UICollectionView.swift in Sources */,
 				56289DF0211E66AC0041AC8A /* CollectionSource+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				56E87274214C7A300011E625 /* StandardContext.swift in Sources */,
-				56DA04D521223657006BE217 /* SegmentedSize.swift in Sources */,
+				56DA04D521223657006BE217 /* SplittedSize.swift in Sources */,
 				56D542642182496900A70C20 /* CollectionSourceViewController.swift in Sources */,
 				5645EFF1211E22E900B66E3B /* CollectionSource.swift in Sources */,
 				56DA04D121223657006BE217 /* AutolayoutSize.swift in Sources */,

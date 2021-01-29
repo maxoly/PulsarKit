@@ -27,9 +27,9 @@ public struct CompositeSize: Sizeable {
         self.heightSize = ContainerSize()
     }
     
-    public func size<View: UIView>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize {
-        let width = widthSize.size(for: view, descriptor: descriptor, model: model, in: container).width
-        let height = heightSize.size(for: view, descriptor: descriptor, model: model, in: container).height
+    public func size<View: UIView>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView, at indexPath: IndexPath) -> CGSize {
+        let width = widthSize.size(for: view, descriptor: descriptor, model: model, in: container, at: indexPath).width
+        let height = heightSize.size(for: view, descriptor: descriptor, model: model, in: container, at: indexPath).height
         return CGSize(width: width, height: height)
     }
 }

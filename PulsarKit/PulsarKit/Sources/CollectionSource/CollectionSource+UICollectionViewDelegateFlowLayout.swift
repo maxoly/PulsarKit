@@ -12,7 +12,7 @@ import UIKit
 extension CollectionSource: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let model = self.model(at: indexPath)
-        return size(for: model, in: collectionView)
+        return size(for: model, in: collectionView, at: indexPath)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -38,12 +38,12 @@ extension CollectionSource: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         guard let model = sections[section].headerModel else { return .zero }
-        return size(for: model, in: collectionView)
+        return size(for: model, in: collectionView, at: IndexPath(item: 0, section: section))
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard let model = sections[section].footerModel else { return .zero }
-        return size(for: model, in: collectionView)
+        return size(for: model, in: collectionView, at: IndexPath(item: 0, section: section))
     }
 }
 
@@ -55,7 +55,7 @@ extension CollectionSource {
         return .vertical
     }
     
-    func size(for model: AnyHashable, in collectionView: UICollectionView) -> CGSize {
+    func size(for model: AnyHashable, in collectionView: UICollectionView, at indexPath: IndexPath) -> CGSize {
         guard let descriptor = descriptor(for: model) else { return .zero }
         
         // Check size cache
@@ -69,7 +69,7 @@ extension CollectionSource {
         // New size
         guard let cell: UICollectionReusableView = cell(for: descriptor) else { return CGSize.zero }
         let sizeable = descriptor.size(for: model, cell: cell)
-        let size = sizeable.size(for: cell, descriptor: descriptor, model: model, in: collectionView)
+        let size = sizeable.size(for: cell, descriptor: descriptor, model: model, in: collectionView, at: indexPath)
         
         // Caches new size
         let cacheValue = NSValue(cgSize: size)
