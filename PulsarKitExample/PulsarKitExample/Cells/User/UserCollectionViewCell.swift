@@ -14,7 +14,7 @@ class UserCollectionViewCell: UICollectionViewCell {
 }
 
 extension UserCollectionViewCell: Sizeable {
-    func size<View>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize where View: UIView {
+    func size<View>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView, at indexPath: IndexPath) -> CGSize where View: UIView {
         return CGSize(width: container.bounds.width, height: 50)
     }
 }

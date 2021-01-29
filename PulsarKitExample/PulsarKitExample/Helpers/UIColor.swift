@@ -10,7 +10,6 @@ import UIKit
 
 extension UIColor {
     // #234d20 (35,77,32)
-//    static let primary = UIColor(red: 35/255, green: 77/255, blue: 32/255, alpha: 1)
     static let primary = UIColor(red: 201/255, green: 80/255, blue: 3/255, alpha: 1)
     
     // #36802d (54,128,45)

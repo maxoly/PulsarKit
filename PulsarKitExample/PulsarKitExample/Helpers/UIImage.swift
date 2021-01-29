@@ -14,7 +14,7 @@ extension UIImage {
     static let sectionsMove = UIImage(named: "object-ungroup-solid")?.withRenderingMode(.alwaysTemplate)
     
     // insert
-    static let addItems      = UIImage(named: "table-solid")?.withRenderingMode(.alwaysTemplate)
+    static let addItems     = UIImage(named: "table-solid")?.withRenderingMode(.alwaysTemplate)
     static let addSections  = UIImage(named: "layer-group-solid")?.withRenderingMode(.alwaysTemplate)
     
     // menu

@@ -1,46 +1,44 @@
 //
-//  MoveSectionsViewController.swift
+//  MoveItemsViewController.swift
 //  PulsarKitExample
 //
-//  Created by Massimo Oliviero on 01/03/2019.
-//  Copyright © 2019 Nacoon. All rights reserved.
+//  Created by Massimo Oliviero on 25/10/2018.
+//  Copyright © 2018 Nacoon. All rights reserved.
 //
 
 import Foundation
 import PulsarKit
 
-class MoveSectionsViewController: PulsarKit.CollectionSourceViewController {
+final class MoveItemsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Move Sections"
-        forthMoveButton()
-        prepareSource()
+        title = "Move Items"
         populateWithUsers()
+        forthMoveButton()
     }
- 
+    
     @objc
     func moveForthButtonDidTouch(_ sender: Any) {
-        source.sections.move(from: 0, to: 2)
+        let from = IndexPath(item: 2, section: 0)
+        let to = IndexPath(item: 1, section: 2)
+        
+        source.move(from: from, to: to)
         source.update()
         backMoveButton()
     }
     
     @objc
     func moveBackButtonDidTouch(_ sender: Any) {
-        source.sections.move(from: 2, to: 0)
+        let from = IndexPath(item: 1, section: 2)
+        let to = IndexPath(item: 2, section: 0)
+        
+        source.move(from: from, to: to)
         source.update()
         forthMoveButton()
     }
 }
 
-extension MoveSectionsViewController {
-    func prepareSource() {
-        collectionView.backgroundColor = .tableGray
-        source.when(User.self).use(UserCollectionViewCell.self).withModelBinder()
-        source.when(Space.self).use(SpaceCollectionViewCell.self).withoutBinder()
-        source.when(Header.self).use(SectionCollectionReusableView.self).withCellBinder()
-    }
-    
+extension MoveItemsViewController {
     func backMoveButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Back",
                                                             style: .done,

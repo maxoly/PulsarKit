@@ -9,27 +9,15 @@
 import UIKit
 import PulsarKit
 
-class HomeViewController: CollectionSourceViewController {
+class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "PulsarKit Demo"
-        prepareSource()
         populateSource()
     }
 }
 
 extension HomeViewController {
-    func prepareSource() {
-        source.container.backgroundColor = .tableGray
-        source.when(User.self).use(UserCollectionViewCell.self).withModelBinder()
-        source.when(Space.self).use(SpaceCollectionViewCell.self).withoutBinder()
-        source.when(MenuItem.self).use(MenuItemCollectionViewCell.self).withCellBinder()
-        source.when(Header.self).use(SectionCollectionReusableView.self).withCellBinder()
-        
-        let conf = source.configuration(for: MenuItem.self, cell: MenuItemCollectionViewCell.self)
-        conf?.on.didSelect { context in context.model.action() }
-    }
-    
     func populateSource() {
         let insertItem = MenuItem(icon: UIImage.insertIcon, title: "Insert", description: Constants.Lorem) {
             let controller = InsertViewController()
@@ -37,7 +25,7 @@ extension HomeViewController {
         }
         
         let deleteItem = MenuItem(icon: UIImage.deleteIcon, title: "Delete", description: Constants.Lorem) {
-            let controller = MoveViewController()
+            let controller = DeleteViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
@@ -47,7 +35,7 @@ extension HomeViewController {
         }
         
         let pluginItem = MenuItem(icon: UIImage.pluginIcon, title: "Plugins", description: Constants.Lorem) {
-            let controller = MoveViewController()
+            let controller = PluginsViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
@@ -56,8 +44,8 @@ extension HomeViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
-        let sizesItem = MenuItem(icon: UIImage.sizesIcon, title: "Sizes", description: Constants.Lorem) {
-            let controller = MoveViewController()
+        let sizesItem = MenuItem(icon: UIImage.sizesIcon, title: "Layouts", description: Constants.Lorem) {
+            let controller = LayoutsViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }
         

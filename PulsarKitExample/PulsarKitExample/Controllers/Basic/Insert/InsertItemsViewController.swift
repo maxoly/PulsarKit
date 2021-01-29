@@ -6,14 +6,13 @@
 //  Copyright © 2019 Nacoon. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import PulsarKit
 
-class InsertItemsViewController: PulsarKit.CollectionSourceViewController {
+final class InsertItemsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add/insert items"
-        prepareSource()
         populateSource()
         addButton()
     }
@@ -28,11 +27,6 @@ class InsertItemsViewController: PulsarKit.CollectionSourceViewController {
 }
 
 extension InsertItemsViewController {
-    func prepareSource() {
-        collectionView.backgroundColor = .tableGray
-        source.when(User.self).use(UserCollectionViewCell.self).withModelBinder()
-    }
-    
     func populateSource() {
         UserProvider.getUsers { users in
             self.source.add(models: users)

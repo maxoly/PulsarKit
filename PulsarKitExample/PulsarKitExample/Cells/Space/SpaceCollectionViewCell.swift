@@ -14,8 +14,8 @@ class SpaceCollectionViewCell: UICollectionViewCell {
 }
 
 extension SpaceCollectionViewCell: Sizeable {
-    func size<View>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView) -> CGSize where View: UIView {
+    func size<View>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView, at indexPath: IndexPath) -> CGSize where View: UIView {
         guard let space = model as? Space else { return .zero }
-        return CompositeSize(heightSize: FixedSize(height: space.height)).size(for: view, descriptor: descriptor, model: model, in: container)
+        return CompositeSize(heightSize: FixedSize(height: space.height)).size(for: view, descriptor: descriptor, model: model, in: container, at: indexPath)
     }    
 }
