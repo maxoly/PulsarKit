@@ -266,11 +266,11 @@ public extension SourceDiff {
     func merge(elements: [Element]) {
         let ids = Set(elements.map(\.hashValue))
         
-        // to remove
+        // To remove
         let toDelete = current.filter { ids.contains($0.hashValue) == false }
         delete(allInstancesIn: toDelete)
         
-        // to add
+        // To add
         let stagedIds = Set(staged.map(\.hashValue))
         let toAdd = elements.filter { stagedIds.contains($0.hashValue) == false }
         for element in toAdd {
