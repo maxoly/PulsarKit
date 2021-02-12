@@ -38,6 +38,7 @@ extension CollectionSource {
         
         descriptor(for: model)?.handle.event(event, model: model, container: container, cell: cell, indexPath: indexPath)
         let context = CellContext(model: model, cell: cell, container: container, indexPath: indexPath)
+        (model as? Displayable)?.container(display: event, view: cell)
         on.dispatch(event: event, context: context)
         events.forEach { $0.dispatch(source: self, event: event, context: context) }
     }

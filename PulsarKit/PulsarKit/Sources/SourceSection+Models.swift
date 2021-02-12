@@ -90,3 +90,10 @@ public extension SourceSection {
         models.reload(elements: modelsToReload)
     }
 }
+
+// MARK: - Merge
+public extension SourceSection {
+    func merge<Model: Hashable>(models modelsToMerge: [Model]) {
+        models.merge(elements: modelsToMerge)
+    }
+}

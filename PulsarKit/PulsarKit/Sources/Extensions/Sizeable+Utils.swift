@@ -13,8 +13,6 @@ public enum SizeDimension {
     case height
 }
 
-private let sizeCache: NSCache<UIScrollView, NSValue> = NSCache<UIScrollView, NSValue>()
-
 public extension Sizeable {
     func scrollDirection(in container: UIScrollView) -> UICollectionView.ScrollDirection {
         guard let collectionView = container as? UICollectionView else { return .vertical }
@@ -23,22 +21,10 @@ public extension Sizeable {
     }
     
     func adjustedSize(for container: UIScrollView, at indexPath: IndexPath, offset: UIEdgeInsets = .zero) -> CGSize {
-        // Check cache
-        let value = sizeCache.object(forKey: container)
-        if let size = value?.cgSizeValue {
-            return size
-        }
-        
-        // Calculate size
         var bounds = container.safeAreaLayoutGuide.layoutFrame
         bounds = bounds.inset(by: container.contentInset)
         bounds = bounds.inset(by: getSectionInsets(for: container, at: indexPath.section))
         bounds = bounds.inset(by: offset)
-        
-        // Cache value
-        let cacheValue = NSValue(cgSize: bounds.size)
-        sizeCache.setObject(cacheValue, forKey: container)
-        
         return bounds.size
     }
     
@@ -63,7 +49,7 @@ public extension Sizeable {
             return getMinimumInteritemSpacing(in: collectionView, at: indexPath.section)
             
         case (.width, .horizontal), (.height, .vertical):
-            return getMinimumLineSpacing(in: collectionView, at: indexPath.section)            
+            return getMinimumLineSpacing(in: collectionView, at: indexPath.section)
             
         @unknown default:
             return 0

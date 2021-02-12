@@ -64,8 +64,16 @@ public extension CollectionSource {
         lastSection.models.deleteAll(before: endIndex)
     }
     
-    func deleteAll(atSection index: Int) {
+    func deleteAll(inSection index: Int) {
         sections[index].models.deleteAll()
+    }
+    
+    func deleteAllModelsInSections() {
+        sections.forEach { $0.deleteAll() }
+    }
+    
+    func delete(sections sectionsToDelete: [SourceSection]) {
+        sections.delete(allInstancesIn: sectionsToDelete)
     }
 }
 

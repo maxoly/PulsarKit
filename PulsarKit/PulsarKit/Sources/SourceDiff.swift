@@ -48,6 +48,12 @@ public extension SourceDiff {
     }
 }
 
+public extension SourceDiff {
+    func forEach(_ body: (Element) throws -> Void) rethrows {
+        try current.forEach(body)
+    }
+}
+
 private extension SourceDiff {
     func apply(to: [Element]) -> [Element] {
         var elements = to
@@ -253,5 +259,23 @@ public extension SourceDiff {
     
     func reload(elements: [Element]) {
         elements.forEach(reload)
+    }
+}
+
+public extension SourceDiff {
+    func merge(elements: [Element]) {
+        let ids = Set(elements.map(\.hashValue))
+        
+        // to remove
+        let toDelete = current.filter { ids.contains($0.hashValue) == false }
+        delete(allInstancesIn: toDelete)
+        
+        // to add
+        let stagedIds = Set(staged.map(\.hashValue))
+        let toAdd = elements.filter { stagedIds.contains($0.hashValue) == false }
+        for element in toAdd {
+            let newIndex = elements.indexes(of: element)
+            insert(element: element, at: newIndex.first ?? 0)
+        }
     }
 }
