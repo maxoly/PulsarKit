@@ -12,9 +12,3 @@ import PulsarKit
 class UserCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userLabel: UILabel!
 }
-
-extension UserCollectionViewCell: Sizeable {
-    func size<View>(for view: View, descriptor: Descriptor, model: AnyHashable, in container: UIScrollView, at indexPath: IndexPath) -> CGSize where View: UIView {
-        return CGSize(width: container.bounds.width, height: 50)
-    }
-}

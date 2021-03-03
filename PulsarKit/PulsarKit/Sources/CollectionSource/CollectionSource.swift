@@ -119,13 +119,10 @@ private extension CollectionSource {
         container.register(UICollectionViewCell.self, forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
     }
     
-    func batchUpdate() {
+    func performUpdate() {
         isFirstTime = false
         let changeSet = sections.commit()
-        
-        // Performs reload
-        container.reloadSections(changeSet.reloaded)
-        
+                
         // Performs delete
         container.deleteSections(changeSet.deleted)
         
@@ -142,11 +139,7 @@ private extension CollectionSource {
             
             let section = entry.element
             let sectionChangeSet = section.models.commit()
-            
-            // Reload
-            let reloadedIndexPaths = sectionChangeSet.reloaded.map { IndexPath(item: $0, section: previousSectionIndex) }
-            self.container.reloadItems(at: reloadedIndexPaths)
-            
+                        
             // Deleted
             let deletedIndexPaths = sectionChangeSet.deleted.map { IndexPath(item: $0, section: previousSectionIndex) }
             self.container.deleteItems(at: deletedIndexPaths)
@@ -164,14 +157,38 @@ private extension CollectionSource {
             }
         }
     }
+    
+    func performInvalidation(completion: ((Bool) -> Void)? = nil) {
+        self.container.performBatchUpdates({ [weak self] in
+            guard let self = self else { return }
+            self.sizeCache.removeAllObjects()
+            self.container.collectionViewLayout.invalidateLayout()
+        }, completion: completion)
+    }
+    
+    func performReload(completion: ((Bool) -> Void)? = nil) {
+        container.performBatchUpdates({ [weak self] in
+            guard let self = self else { return }
+            
+            let indexSet = self.sections.commitReloaded()
+            self.container.reloadSections(indexSet)
+            
+            self.sections.current.enumerated().forEach { entry in
+                let actualSectionIndex = entry.offset
+                let indexSet = entry.element.models.commitReloaded()
+                let reloadedIndexPaths = indexSet.map { IndexPath(item: $0, section: actualSectionIndex) }
+                self.container.reloadItems(at: reloadedIndexPaths)
+            }
+        }, completion: completion)
+    }
 }
 
 // MARK: - Updating
 public extension CollectionSource {
-    func update(forceReload: Bool = false, completion: ((Bool) -> Void)? = nil) {
+    func update(forceReload: Bool = false, invalidateLayout: Bool = false, completion: ((Bool) -> Void)? = nil) {
         guard Thread.isMainThread else {
             DispatchQueue.main.async {
-                self.update(forceReload: forceReload, completion: completion)
+                self.update(forceReload: forceReload, invalidateLayout: invalidateLayout, completion: completion)
             }
             
             return
@@ -186,9 +203,25 @@ public extension CollectionSource {
             return
         }
         
-        container.performBatchUpdates({
-            self.batchUpdate()
-        }, completion: completion)
+        container.performBatchUpdates({ [weak self] in
+            guard let self = self else { return }
+            self.performUpdate()
+        }, completion: { success in
+            if self.sections.hasReloadedRecursive {
+                return self.performReload { success in
+                    if invalidateLayout {
+                        return self.performInvalidation(completion: completion)
+                    }
+                    completion?(success)
+                }
+            }
+            
+            if invalidateLayout {
+                return self.performInvalidation(completion: completion)
+            }
+            
+            completion?(success)
+        })
     }
 }
 

@@ -16,6 +16,7 @@ public final class SourceDiff<Element: Hashable> {
     private lazy var reloaded: [Int: Element] = [:]
     private lazy var inserted: [Int: Element] = [:]
     private lazy var indexesToIgnore: [Int] = []
+    private lazy var finalReloaded: [Int: Element] = [:]
     
     // Internal
     internal var count: Int { current.count }
@@ -81,6 +82,14 @@ internal extension SourceDiff {
     func reset() {
         current = apply(to: current)
         cleanup()
+    }
+    
+    func commitReloaded() -> IndexSet {
+        // Reloaded
+        finalReloaded.sorted { $0.key < $1.key }.forEach { current[$0.key] = $0.value }
+        let reloadedIndexSet = IndexSet(finalReloaded.keys)
+        finalReloaded.removeAll()
+        return reloadedIndexSet
     }
     
     @discardableResult
@@ -243,6 +252,10 @@ public extension SourceDiff {
 
 // MARK: - Reload
 public extension SourceDiff {
+    var hasReloaded: Bool {
+        finalReloaded.isEmpty == false
+    }
+    
     func reload(at index: Int) {
         guard let element = current[safe: index] else { return }
         reloaded[index] = element
@@ -255,6 +268,9 @@ public extension SourceDiff {
     func reload(element: Element) {
         let indexes = current.indexes(of: element)
         indexes.forEach { reloaded[$0] = element }
+        
+        let findexes = staged.indexes(of: element)
+        findexes.forEach { finalReloaded[$0] = element }
     }
     
     func reload(elements: [Element]) {
@@ -262,20 +278,21 @@ public extension SourceDiff {
     }
 }
 
-public extension SourceDiff {
+public extension SourceDiff where Element: Equatable {
     func merge(elements: [Element]) {
-        let ids = Set(elements.map(\.hashValue))
-        
-        // To remove
-        let toDelete = current.filter { ids.contains($0.hashValue) == false }
+        // Elements to remove
+        let toDelete = staged.filter { elements.contains($0) == false }
         delete(allInstancesIn: toDelete)
         
-        // To add
-        let stagedIds = Set(staged.map(\.hashValue))
-        let toAdd = elements.filter { stagedIds.contains($0.hashValue) == false }
+        // Elements to add
+        let toAdd = elements.filter { staged.contains($0) == false }
         for element in toAdd {
             let newIndex = elements.indexes(of: element)
             insert(element: element, at: newIndex.first ?? 0)
         }
+        
+        // Elements to reload
+        let toReload = elements.filter { staged.contains($0) }
+        reload(elements: toReload)
     }
 }

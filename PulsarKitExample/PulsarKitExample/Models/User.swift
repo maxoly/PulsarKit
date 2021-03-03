@@ -21,6 +21,10 @@ struct User: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+    
+    static func == (lhs: User, rhs: User) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 extension User: Bindable {

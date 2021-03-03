@@ -67,8 +67,9 @@ extension CollectionSource {
         }
         
         // New size
+        let section = sections[indexPath.section]
         guard let cell: UICollectionReusableView = cell(for: descriptor) else { return CGSize.zero }
-        let sizeable = descriptor.size(for: model, cell: cell)
+        let sizeable = section.itemsSize ?? descriptor.size(for: model, cell: cell)
         let size = sizeable.size(for: cell, descriptor: descriptor, model: model, in: collectionView, at: indexPath)
         
         // Caches new size

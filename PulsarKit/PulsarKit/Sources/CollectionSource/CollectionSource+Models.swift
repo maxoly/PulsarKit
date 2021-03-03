@@ -119,3 +119,10 @@ public extension CollectionSource {
         sections.current.forEach { $0.models.reload(elements: models) }
     }
 }
+
+// MARK: - Merge
+public extension CollectionSource {
+    func merge<Model: Hashable>(models: [Model]) {
+        lastSection.merge(models: models)
+    }
+}

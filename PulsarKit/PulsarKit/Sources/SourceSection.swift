@@ -12,11 +12,13 @@ public final class SourceSection {
     public var headerModel: AnyHashable?
     public var footerModel: AnyHashable?
     public var layout: Layout?
+    public var itemsSize: Sizeable?
     
     public lazy var models = SourceDiff<AnyHashable>()
     
-    public init(headerModel: AnyHashable? = nil, footerModel: AnyHashable? = nil, layout: Layout? = nil) {
+    public init(headerModel: AnyHashable? = nil, footerModel: AnyHashable? = nil, layout: Layout? = nil, itemsSize: Sizeable? = nil) {
         self.layout = layout
+        self.itemsSize = itemsSize
         self.headerModel = headerModel
         self.footerModel = footerModel
     }

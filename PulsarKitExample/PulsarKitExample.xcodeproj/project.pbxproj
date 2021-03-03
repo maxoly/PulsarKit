@@ -42,6 +42,7 @@
 		569EB43825C40CDF00DEF945 /* BlockCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569EB43625C40CDF00DEF945 /* BlockCollectionViewCell.xib */; };
 		569EB43A25C40D7900DEF945 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EB43925C40D7900DEF945 /* Block.swift */; };
 		569EB44025C41A2700DEF945 /* HorizontalBlocksLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EB43F25C41A2700DEF945 /* HorizontalBlocksLayoutViewController.swift */; };
+		56BE917625ECFE9D00B6E4B3 /* MergeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BE917525ECFE9D00B6E4B3 /* MergeViewController.swift */; };
 		56D54261218248DB00A70C20 /* MoveItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D54260218248DB00A70C20 /* MoveItemsViewController.swift */; };
 		56EE074B2130B2C30000B7D1 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE07492130B2C30000B7D1 /* UserCollectionViewCell.swift */; };
 		56EE074C2130B2C30000B7D1 /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56EE074A2130B2C30000B7D1 /* UserCollectionViewCell.xib */; };
@@ -99,6 +100,7 @@
 		569EB43625C40CDF00DEF945 /* BlockCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockCollectionViewCell.xib; sourceTree = "<group>"; };
 		569EB43925C40D7900DEF945 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		569EB43F25C41A2700DEF945 /* HorizontalBlocksLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBlocksLayoutViewController.swift; sourceTree = "<group>"; };
+		56BE917525ECFE9D00B6E4B3 /* MergeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeViewController.swift; sourceTree = "<group>"; };
 		56D54260218248DB00A70C20 /* MoveItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveItemsViewController.swift; sourceTree = "<group>"; };
 		56EE07492130B2C30000B7D1 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		56EE074A2130B2C30000B7D1 /* UserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -226,8 +228,9 @@
 			isa = PBXGroup;
 			children = (
 				569EB42C25C4093A00DEF945 /* Delete */,
-				560081E822299E4D00EEC6C2 /* Move */,
 				560081F32229E02800EEC6C2 /* Insert */,
+				56BE917425ECFE8C00B6E4B3 /* Merge */,
+				560081E822299E4D00EEC6C2 /* Move */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -325,6 +328,14 @@
 				567533E42227E0DC003C5BD8 /* User */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		56BE917425ECFE8C00B6E4B3 /* Merge */ = {
+			isa = PBXGroup;
+			children = (
+				56BE917525ECFE9D00B6E4B3 /* MergeViewController.swift */,
+			);
+			path = Merge;
 			sourceTree = "<group>";
 		};
 		56EE074D2130B2F50000B7D1 /* Models */ = {
@@ -431,6 +442,7 @@
 				56D54261218248DB00A70C20 /* MoveItemsViewController.swift in Sources */,
 				56EE074F2130B2FE0000B7D1 /* User.swift in Sources */,
 				5645EF8D211E227C00B66E3B /* AppDelegate.swift in Sources */,
+				56BE917625ECFE9D00B6E4B3 /* MergeViewController.swift in Sources */,
 				560081EE2229A19E00EEC6C2 /* MoveViewController.swift in Sources */,
 				560081FE222D133300EEC6C2 /* InsertItemsViewController.swift in Sources */,
 				569EB42225C406C900DEF945 /* LayoutsViewController.swift in Sources */,

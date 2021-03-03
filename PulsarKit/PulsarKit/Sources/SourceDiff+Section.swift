@@ -10,6 +10,10 @@ import Foundation
 
 // MARK: - Internal
 internal extension SourceDiff where Element == SourceSection {
+    var hasReloadedRecursive: Bool {
+        hasReloaded || current.contains { $0.models.hasReloaded }
+    }
+    
     func recursiveReset() {
         reset()
         current.forEach { $0.models.reset() }

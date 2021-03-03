@@ -15,7 +15,7 @@ public protocol Source: AnyObject {
     var lastSection: SourceSection { get }
     
     func add(plugin: SourcePlugin)
-    func update(forceReload: Bool, completion: ((Bool) -> Void)?)
+    func update(forceReload: Bool, invalidateLayout: Bool, completion: ((Bool) -> Void)?)
 }
 
 // MARK: - Section
@@ -40,11 +40,15 @@ public extension Source {
 // MARK: - Update
 public extension Source {
     func update() {
-        update(forceReload: false, completion: nil)
+        update(forceReload: false, invalidateLayout: false, completion: nil)
     }
     
     func update(forceReload: Bool) {
-        update(forceReload: forceReload, completion: nil)
+        update(forceReload: forceReload, invalidateLayout: false, completion: nil)
+    }
+    
+    func update(forceReload: Bool, invalidateLayout: Bool) {
+        update(forceReload: forceReload, invalidateLayout: invalidateLayout, completion: nil)
     }
 }
 
