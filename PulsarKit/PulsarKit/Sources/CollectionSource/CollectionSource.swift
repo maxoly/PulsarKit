@@ -122,7 +122,10 @@ private extension CollectionSource {
     func performUpdate() {
         isFirstTime = false
         let changeSet = sections.commit()
-                
+        
+        // Performs reload
+        self.container.reloadSections(changeSet.reloaded)
+        
         // Performs delete
         container.deleteSections(changeSet.deleted)
         
@@ -139,6 +142,10 @@ private extension CollectionSource {
             
             let section = entry.element
             let sectionChangeSet = section.models.commit()
+            
+            // Reload
+            let reloadedIndexPaths = sectionChangeSet.reloaded.map { IndexPath(item: $0, section: actualSectionIndex) }
+            self.container.reloadItems(at: reloadedIndexPaths)
                         
             // Deleted
             let deletedIndexPaths = sectionChangeSet.deleted.map { IndexPath(item: $0, section: previousSectionIndex) }
@@ -207,14 +214,14 @@ public extension CollectionSource {
             guard let self = self else { return }
             self.performUpdate()
         }, completion: { success in
-            if self.sections.hasReloadedRecursive {
-                return self.performReload { success in
-                    if invalidateLayout {
-                        return self.performInvalidation(completion: completion)
-                    }
-                    completion?(success)
-                }
-            }
+//            if self.sections.hasReloadedRecursive {
+//                return self.performReload { success in
+//                    if invalidateLayout {
+//                        return self.performInvalidation(completion: completion)
+//                    }
+//                    completion?(success)
+//                }
+//            }
             
             if invalidateLayout {
                 return self.performInvalidation(completion: completion)
