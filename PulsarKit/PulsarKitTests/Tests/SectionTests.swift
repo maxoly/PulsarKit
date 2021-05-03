@@ -37,7 +37,7 @@ class SectionTests: XCTestCase {
         XCTAssertEqual(source.sections.count, random)
     }
     
-    func testtestAddSectionsBatchUpdate() {
+    func testAddSectionsBatchUpdate() {
         // Arrange
         let source = CollectionSource()
         let random = Int.random(in: 1...100)

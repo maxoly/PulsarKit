@@ -256,7 +256,11 @@ public extension CollectionSource {
                 self.performInvalidation { _ in
                     completion?(success)
                 }
+                
+                return
             }
+            
+            completion?(success)
         }
     }
 }
