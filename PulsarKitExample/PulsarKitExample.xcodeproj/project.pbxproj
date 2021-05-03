@@ -30,6 +30,8 @@
 		567533DC22274C77003C5BD8 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533DA22274C77003C5BD8 /* MenuItemCollectionViewCell.swift */; };
 		567533DD22274C77003C5BD8 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 567533DB22274C77003C5BD8 /* MenuItemCollectionViewCell.xib */; };
 		567533E1222759F8003C5BD8 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567533E0222759F8003C5BD8 /* Header.swift */; };
+		567D4CA5263FEFB30051B942 /* SimpleMergeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567D4CA4263FEFB30051B942 /* SimpleMergeViewController.swift */; };
+		567D4CA7263FEFF90051B942 /* SearchMergeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567D4CA6263FEFF90051B942 /* SearchMergeViewController.swift */; };
 		569EB42225C406C900DEF945 /* LayoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EB42125C406C900DEF945 /* LayoutsViewController.swift */; };
 		569EB42425C4072F00DEF945 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EB42325C4072F00DEF945 /* BaseViewController.swift */; };
 		569EB42625C4078700DEF945 /* TableLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EB42525C4078700DEF945 /* TableLayoutViewController.swift */; };
@@ -88,6 +90,8 @@
 		567533DA22274C77003C5BD8 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		567533DB22274C77003C5BD8 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		567533E0222759F8003C5BD8 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		567D4CA4263FEFB30051B942 /* SimpleMergeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMergeViewController.swift; sourceTree = "<group>"; };
+		567D4CA6263FEFF90051B942 /* SearchMergeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMergeViewController.swift; sourceTree = "<group>"; };
 		569EB42125C406C900DEF945 /* LayoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutsViewController.swift; sourceTree = "<group>"; };
 		569EB42325C4072F00DEF945 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		569EB42525C4078700DEF945 /* TableLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableLayoutViewController.swift; sourceTree = "<group>"; };
@@ -334,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				56BE917525ECFE9D00B6E4B3 /* MergeViewController.swift */,
+				567D4CA4263FEFB30051B942 /* SimpleMergeViewController.swift */,
+				567D4CA6263FEFF90051B942 /* SearchMergeViewController.swift */,
 			);
 			path = Merge;
 			sourceTree = "<group>";
@@ -446,6 +452,8 @@
 				560081EE2229A19E00EEC6C2 /* MoveViewController.swift in Sources */,
 				560081FE222D133300EEC6C2 /* InsertItemsViewController.swift in Sources */,
 				569EB42225C406C900DEF945 /* LayoutsViewController.swift in Sources */,
+				567D4CA5263FEFB30051B942 /* SimpleMergeViewController.swift in Sources */,
+				567D4CA7263FEFF90051B942 /* SearchMergeViewController.swift in Sources */,
 				569EB43125C4097500DEF945 /* BindersViewController.swift in Sources */,
 				569EB43A25C40D7900DEF945 /* Block.swift in Sources */,
 				567533DC22274C77003C5BD8 /* MenuItemCollectionViewCell.swift in Sources */,

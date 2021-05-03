@@ -75,6 +75,10 @@ public extension CollectionSource {
     func delete(sections sectionsToDelete: [SourceSection]) {
         sections.delete(allInstancesIn: sectionsToDelete)
     }
+    
+    func deleteAllSections() {
+        sections.deleteAll()
+    }
 }
 
 // MARK: - Move

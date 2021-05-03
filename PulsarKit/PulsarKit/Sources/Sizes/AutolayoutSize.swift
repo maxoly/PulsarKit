@@ -28,6 +28,7 @@ public struct AutolayoutSize: Sizeable {
         // Frame
         view.frame = bounds
         view.bounds = bounds
+        view.tag = .max
         
         // Bind model
         descriptor.bind(cell: view, with: model)

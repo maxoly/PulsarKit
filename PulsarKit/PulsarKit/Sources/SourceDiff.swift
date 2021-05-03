@@ -16,7 +16,7 @@ public final class SourceDiff<Element: Hashable> {
     private lazy var reloaded: [Int: Element] = [:]
     private lazy var inserted: [Int: Element] = [:]
     private lazy var indexesToIgnore: [Int] = []
-    private lazy var finalReloaded: [Int: Element] = [:]
+    private lazy var elementsToReload: Set<Element> = []
     
     // Internal
     internal var count: Int { current.count }
@@ -86,9 +86,9 @@ internal extension SourceDiff {
     
     func commitReloaded() -> IndexSet {
         // Reloaded
-        finalReloaded.sorted { $0.key < $1.key }.forEach { current[$0.key] = $0.value }
-        let reloadedIndexSet = IndexSet(finalReloaded.keys)
-        finalReloaded.removeAll()
+        let findexes = elementsToReload.map { current.indexes(of: $0) }.flatMap { $0 }
+        let reloadedIndexSet = IndexSet(findexes)
+        elementsToReload.removeAll()
         return reloadedIndexSet
     }
     
@@ -253,7 +253,7 @@ public extension SourceDiff {
 // MARK: - Reload
 public extension SourceDiff {
     var hasReloaded: Bool {
-        finalReloaded.isEmpty == false
+        elementsToReload.isEmpty == false
     }
     
     func reload(at index: Int) {
@@ -269,8 +269,8 @@ public extension SourceDiff {
         let indexes = current.indexes(of: element)
         indexes.forEach { reloaded[$0] = element }
         
-        let findexes = staged.indexes(of: element)
-        findexes.forEach { finalReloaded[$0] = element }
+        // Merge Reload
+        elementsToReload.insert(element)
     }
     
     func reload(elements: [Element]) {
@@ -292,7 +292,7 @@ public extension SourceDiff where Element: Equatable {
         }
         
         // Elements to reload
-        let toReload = elements.filter { staged.contains($0) }
+        let toReload = elements.filter { current.contains($0) }
         reload(elements: toReload)
     }
 }

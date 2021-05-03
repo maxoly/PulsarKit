@@ -9,18 +9,23 @@
 import UIKit
 
 public final class CollectionSource: NSObject, Source {
-    public private(set) var container: UICollectionView
-    public private(set) lazy var plugins = [SourcePlugin]()
-    public private(set) lazy var sections = SourceDiff<SourceSection>()
-    public private(set) lazy var on = CollectionEvents<AnyHashable, UICollectionViewCell>()
+    public typealias UpdateCompletion = (Bool) -> Void
     
     internal var isFirstTime: Bool = true
     internal lazy var filters = [SourcePluginFilter]()
     internal lazy var events = [SourcePluginEvents]()
     internal lazy var descriptors = [String: Descriptor]()
     internal lazy var registeredIdentifiers = Set<String>()
-    internal lazy var cellCache: NSCache<NSString, UIView> = NSCache<NSString, UIView>()
-    internal lazy var sizeCache: NSCache<NSString, NSValue> = NSCache<NSString, NSValue>()
+    internal let cellCache: NSCache<NSString, UIView> = NSCache<NSString, UIView>()
+    internal let sizeCache: NSCache<NSString, NSValue> = NSCache<NSString, NSValue>()
+    
+    public private(set) lazy var plugins = [SourcePlugin]()
+    public private(set) lazy var sections = SourceDiff<SourceSection>()
+    public private(set) lazy var on = CollectionEvents<AnyHashable, UICollectionViewCell>()
+    
+    public var container: UICollectionView {
+        didSet { setup() }
+    }
     
     public init(container: UICollectionView = .standard) {
         self.container = container
@@ -33,6 +38,7 @@ public final class CollectionSource: NSObject, Source {
     }
 }
 
+// MARK: - Internal
 internal extension CollectionSource {
     func modelType<Model>(of model: Model) -> Any.Type {
         if (model is AnyHashable) == false {
@@ -112,11 +118,16 @@ internal extension CollectionSource {
 // MARK: - Private
 private extension CollectionSource {
     func setup() {
+        cellCache.removeAllObjects()
+        sizeCache.removeAllObjects()
+        registeredIdentifiers.removeAll()
+        
         container.dataSource = self
         container.delegate = self
         container.keyboardDismissMode = .onDrag
         container.alwaysBounceVertical = true
         container.register(UICollectionViewCell.self, forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
+        descriptors.values.forEach(registerCell)
     }
     
     func performUpdate() {
@@ -124,7 +135,7 @@ private extension CollectionSource {
         let changeSet = sections.commit()
         
         // Performs reload
-        self.container.reloadSections(changeSet.reloaded)
+//        self.container.reloadSections(changeSet.reloaded)
         
         // Performs delete
         container.deleteSections(changeSet.deleted)
@@ -144,8 +155,8 @@ private extension CollectionSource {
             let sectionChangeSet = section.models.commit()
             
             // Reload
-            let reloadedIndexPaths = sectionChangeSet.reloaded.map { IndexPath(item: $0, section: actualSectionIndex) }
-            self.container.reloadItems(at: reloadedIndexPaths)
+//            let reloadedIndexPaths = sectionChangeSet.reloaded.map { IndexPath(item: $0, section: actualSectionIndex) }
+//            self.container.reloadItems(at: reloadedIndexPaths)
                         
             // Deleted
             let deletedIndexPaths = sectionChangeSet.deleted.map { IndexPath(item: $0, section: previousSectionIndex) }
@@ -165,7 +176,7 @@ private extension CollectionSource {
         }
     }
     
-    func performInvalidation(completion: ((Bool) -> Void)? = nil) {
+    func performInvalidation(completion: UpdateCompletion? = nil) {
         self.container.performBatchUpdates({ [weak self] in
             guard let self = self else { return }
             self.sizeCache.removeAllObjects()
@@ -173,7 +184,7 @@ private extension CollectionSource {
         }, completion: completion)
     }
     
-    func performReload(completion: ((Bool) -> Void)? = nil) {
+    func performReload(completion: UpdateCompletion? = nil) {
         container.performBatchUpdates({ [weak self] in
             guard let self = self else { return }
             
@@ -188,10 +199,24 @@ private extension CollectionSource {
             }
         }, completion: completion)
     }
+    
+    func performUpdate(completion: UpdateCompletion? = nil) {
+        container.performBatchUpdates({ [weak self] in
+            guard let self = self else { return }
+            self.performUpdate()
+        }, completion: { success in
+            completion?(success)
+        })
+    }
 }
 
 // MARK: - Updating
 public extension CollectionSource {
+    func update(layout: UICollectionViewLayout, animated: Bool = true) {
+        sizeCache.removeAllObjects()
+        container.setCollectionViewLayout(layout, animated: animated)
+    }
+    
     func update(forceReload: Bool = false, invalidateLayout: Bool = false, completion: ((Bool) -> Void)? = nil) {
         guard Thread.isMainThread else {
             DispatchQueue.main.async {
@@ -210,25 +235,29 @@ public extension CollectionSource {
             return
         }
         
-        container.performBatchUpdates({ [weak self] in
-            guard let self = self else { return }
-            self.performUpdate()
-        }, completion: { success in
-//            if self.sections.hasReloadedRecursive {
-//                return self.performReload { success in
-//                    if invalidateLayout {
-//                        return self.performInvalidation(completion: completion)
-//                    }
-//                    completion?(success)
-//                }
-//            }
-            
-            if invalidateLayout {
-                return self.performInvalidation(completion: completion)
+        performUpdate { success in
+            if self.sections.hasReloadedRecursive {
+                self.performReload { _ in
+                    if invalidateLayout {
+                        self.performInvalidation { _ in
+                            completion?(success)
+                        }
+                        
+                        return
+                    }
+                    
+                    completion?(success)
+                }
+                
+                return
             }
             
-            completion?(success)
-        })
+            if invalidateLayout {
+                self.performInvalidation { _ in
+                    completion?(success)
+                }
+            }
+        }
     }
 }
 
