@@ -75,6 +75,7 @@
 		56EE07422130A8150000B7D1 /* ModelBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE07412130A8150000B7D1 /* ModelBinder.swift */; };
 		56EE07462130A8C90000B7D1 /* AnyBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE07452130A8C90000B7D1 /* AnyBinder.swift */; };
 		56FB0049230419D5004BDA58 /* SourceSection+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FB0048230419D5004BDA58 /* SourceSection+Models.swift */; };
+		56FE168B26CF96F600381F98 /* TargetMoveContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FE168A26CF96F600381F98 /* TargetMoveContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 		56EE07412130A8150000B7D1 /* ModelBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBinder.swift; sourceTree = "<group>"; };
 		56EE07452130A8C90000B7D1 /* AnyBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBinder.swift; sourceTree = "<group>"; };
 		56FB0048230419D5004BDA58 /* SourceSection+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SourceSection+Models.swift"; sourceTree = "<group>"; };
+		56FE168A26CF96F600381F98 /* TargetMoveContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetMoveContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,8 +373,9 @@
 			children = (
 				564658BC216912F100B5EBAD /* ActionContext.swift */,
 				564658BE2169130300B5EBAD /* CellContext.swift */,
-				56E87273214C7A300011E625 /* StandardContext.swift */,
 				567533D32226F770003C5BD8 /* ScrollContext.swift */,
+				56E87273214C7A300011E625 /* StandardContext.swift */,
+				56FE168A26CF96F600381F98 /* TargetMoveContext.swift */,
 			);
 			path = Contexts;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				56B7F8A52131A8F000C9D0F6 /* SourcePlugin.swift in Sources */,
 				5673B434212222C5008741A6 /* ChangeSet.swift in Sources */,
 				5605D0C925A478D600BA4169 /* DescriptorDispatcher.swift in Sources */,
+				56FE168B26CF96F600381F98 /* TargetMoveContext.swift in Sources */,
 				5615AB16212377D10047664F /* SourceDiff+Section.swift in Sources */,
 				56EE073621309D5D0000B7D1 /* DescriptorBuilder.swift in Sources */,
 				56289DEE211E33AB0041AC8A /* SourceDiff.swift in Sources */,

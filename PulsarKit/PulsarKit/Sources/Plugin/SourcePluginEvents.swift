@@ -14,6 +14,7 @@ public protocol SourcePluginEvents {
     func dispatch(source: CollectionSource, event: Event.Should, context: StandardContext<AnyHashable>) -> Bool?
     func dispatch(source: CollectionSource, event: Event.Display, context: CellContext<AnyHashable, UICollectionViewCell>)
     func dispatch(source: CollectionSource, event: Event.Menu, context: ActionContext<AnyHashable>) -> Bool?
+    func dispatch(source: CollectionSource, event: Event.Move, context: StandardContext<AnyHashable>) -> Bool?
     func dispatch(source: CollectionSource, from fromLayout: UICollectionViewLayout, to toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout?
 }
 
@@ -23,5 +24,6 @@ public extension SourcePluginEvents {
     func dispatch(source: CollectionSource, event: Event.Should, context: StandardContext<AnyHashable>) -> Bool? { nil }
     func dispatch(source: CollectionSource, event: Event.Display, context: CellContext<AnyHashable, UICollectionViewCell>) {}
     func dispatch(source: CollectionSource, event: Event.Menu, context: ActionContext<AnyHashable>) -> Bool? { nil }
+    func dispatch(source: CollectionSource, event: Event.Move, context: StandardContext<AnyHashable>) -> Bool? { nil }
     func dispatch(source: CollectionSource, from fromLayout: UICollectionViewLayout, to toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout? { nil }
 }

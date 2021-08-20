@@ -91,9 +91,13 @@ public extension CollectionSource {
         precondition(sections.count > toIndexPath.section, "Invalid destination section index")
         precondition(sections.count > fromIndexPath.section, "Invalid origin section index")
         
-        let element = sections[fromIndexPath.section].models[fromIndexPath.item]
-        sections[fromIndexPath.section].models.move(from: fromIndexPath.item, to: toIndexPath)
-        sections[toIndexPath.section].models.insert(element: element, at: toIndexPath.item, ignore: true)
+        if fromIndexPath.section == toIndexPath.section {
+            move(from: fromIndexPath.item, to: toIndexPath.item)
+        } else {
+            let element = sections[fromIndexPath.section].models[fromIndexPath.item]
+            sections[fromIndexPath.section].models.move(from: fromIndexPath.item, to: toIndexPath)
+            sections[toIndexPath.section].models.insert(element: element, at: toIndexPath.item, ignore: true)
+        }
     }
 }
 

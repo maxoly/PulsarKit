@@ -68,4 +68,38 @@ extension CollectionSource {
         
         return specific && general && plugin
     }
+    
+    func dispatch(event: Event.Move, container: UICollectionView, indexPath: IndexPath) -> Bool {
+        let standard = false
+        guard indexPath.isEmpty == false else { return standard }
+        guard let model = self.model(safeAt: indexPath) else { return standard }
+
+        let context = StandardContext(model: model, container: container, indexPath: indexPath)
+        let specific = descriptor(for: model)?.handle.event(event, model: model, container: container, indexPath: indexPath) ?? standard
+        let general = on.dispatch(event: event, context: context) ?? standard
+        let plugin = events.reduce(standard) { $0 && ($1.dispatch(source: self, event: event, context: context) ?? standard) }
+        
+        return specific || general || plugin
+    }
+    
+    func dispatch(event: Event.TargetMove, container: UICollectionView, originalIndexPath: IndexPath, proposedIndexPath: IndexPath) -> IndexPath {
+        let defaultValue = proposedIndexPath
+        
+        guard originalIndexPath.isEmpty == false else { return defaultValue }
+        guard let originalModel = self.model(safeAt: originalIndexPath) else { return defaultValue }
+
+        let context = TargetMoveContext(originalModel: originalModel,
+                                        container: container,
+                                        originalIndexPath: originalIndexPath,
+                                        proposedIndexPath: proposedIndexPath)
+        
+        let specific = descriptor(for: originalModel)?.handle.event(event,
+                                                                    originalModel: originalModel,
+                                                                    container: container,
+                                                                    originalIndexPath: originalIndexPath,
+                                                                    proposedIndexPath: proposedIndexPath)
+        
+        let general = on.dispatch(event: event, context: context)
+        return specific ?? general ?? defaultValue
+    }
 }

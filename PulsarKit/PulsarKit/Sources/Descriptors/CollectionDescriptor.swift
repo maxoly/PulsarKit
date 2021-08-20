@@ -67,7 +67,7 @@ open class CollectionDescriptor<Model, Cell, B: Binder>: Descriptor where B.Mode
     }
 }
 
-extension CollectionDescriptor: DescriptorDispatcher {    
+extension CollectionDescriptor: DescriptorDispatcher {
     public func event<M: Hashable>(_ event: Event.Selection, model: M, container: UICollectionView, indexPath: IndexPath) {
         guard let model = model as? Model else { return }
         
@@ -97,6 +97,22 @@ extension CollectionDescriptor: DescriptorDispatcher {
         guard let model = model as? Model else { return nil }
         
         let context = ActionContext(model: model, container: container, indexPath: indexPath, action: nil, sender: nil)
+        let modelResult = configuration.handlers[model]?.dispatch(event: event, context: context)
+        return modelResult ?? configuration.on.dispatch(event: event, context: context)
+    }
+    
+    public func event<M: Hashable>(_ event: Event.Move, model: M, container: UICollectionView, indexPath: IndexPath) -> Bool? {
+        guard let model = model as? Model else { return true }
+        
+        let context = StandardContext(model: model, container: container, indexPath: indexPath)
+        let modelResult = configuration.handlers[model]?.dispatch(event: event, context: context)
+        return modelResult ?? configuration.on.dispatch(event: event, context: context)
+    }
+    
+    public func event<M: Hashable>(_ event: Event.TargetMove, originalModel: M, container: UICollectionView, originalIndexPath: IndexPath, proposedIndexPath: IndexPath) -> IndexPath? {
+        guard let model = originalModel as? Model else { return nil }
+        
+        let context = TargetMoveContext(originalModel: model, container: container, originalIndexPath: originalIndexPath, proposedIndexPath: proposedIndexPath)
         let modelResult = configuration.handlers[model]?.dispatch(event: event, context: context)
         return modelResult ?? configuration.on.dispatch(event: event, context: context)
     }

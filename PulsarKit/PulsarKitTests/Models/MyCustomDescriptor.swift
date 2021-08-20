@@ -39,6 +39,14 @@ struct MyCustomDescriptor: Descriptor {
 }
 
 extension MyCustomDescriptor: DescriptorDispatcher {
+    func event<M>(_ event: Event.TargetMove, originalModel: M, container: UICollectionView, originalIndexPath: IndexPath, proposedIndexPath: IndexPath) -> IndexPath? where M: Hashable {
+        nil
+    }
+    
+    func event<M>(_ event: Event.Move, model: M, container: UICollectionView, indexPath: IndexPath) -> Bool? where M: Hashable {
+        nil
+    }
+    
     func event<M>(_ event: Event.Menu, model: M, container: UICollectionView, indexPath: IndexPath, selector: Selector?, sender: Any?) -> Bool? where M: Hashable {
         nil
     }

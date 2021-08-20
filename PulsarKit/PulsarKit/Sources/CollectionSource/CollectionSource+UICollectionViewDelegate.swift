@@ -61,6 +61,10 @@ extension CollectionSource: UICollectionViewDelegate {
         _ = dispatch(event: .onPerformAction, container: collectionView, indexPath: indexPath, action: action, sender: sender)
     }
     
+    public func collectionView(_ collectionView: UICollectionView, targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath, toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
+        dispatch(event: .onTargetMove, container: collectionView, originalIndexPath: originalIndexPath, proposedIndexPath: proposedIndexPath)
+    }
+    
     // MARK: layout
     public func collectionView(_ collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout {
         on.dispatch(from: fromLayout, to: toLayout) ?? UICollectionViewTransitionLayout(currentLayout: fromLayout, nextLayout: toLayout)

@@ -13,6 +13,8 @@ public protocol DescriptorDispatcher {
     func event<M: Hashable, C>(_ event: Event.Display, model: M, container: UICollectionView, cell: C, indexPath: IndexPath)
     func event<M: Hashable>(_ event: Event.Should, model: M, container: UICollectionView, indexPath: IndexPath) -> Bool?
     func event<M: Hashable>(_ event: Event.Menu, model: M, container: UICollectionView, indexPath: IndexPath, selector: Selector?, sender: Any?) -> Bool?
+    func event<M: Hashable>(_ event: Event.Move, model: M, container: UICollectionView, indexPath: IndexPath) -> Bool?
+    func event<M: Hashable>(_ event: Event.TargetMove, originalModel: M, container: UICollectionView, originalIndexPath: IndexPath, proposedIndexPath: IndexPath) -> IndexPath?
 }
 
 public extension DescriptorDispatcher {

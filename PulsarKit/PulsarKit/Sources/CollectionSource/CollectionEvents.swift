@@ -13,6 +13,8 @@ public typealias SourceEventResult<M: Hashable> = (StandardContext<M>) -> Bool
 public typealias SourceEventCell<M: Hashable, C: UICollectionReusableView> = (CellContext<M, C>) -> Void
 public typealias SourceEventPerformAction<M: Hashable> = (ActionContext<M>) -> Void
 public typealias SourceEventCanPerformAction<M: Hashable> = (ActionContext<M>) -> Bool
+public typealias SourceEventCanMove<M: Hashable> = (StandardContext<M>) -> Bool
+public typealias SourceEventTargetMove<M: Hashable> = (TargetMoveContext<M>) -> IndexPath
 public typealias SourceEventTransitionLayout = (UICollectionViewLayout, UICollectionViewLayout) -> UICollectionViewTransitionLayout?
 
 public enum Event {
@@ -43,6 +45,14 @@ public enum Event {
     public enum Scroll {
         case onDidScroll
     }
+    
+    public enum Move {
+        case onCanMove
+    }
+    
+    public enum TargetMove {
+        case onTargetMove
+    }
 }
 
 public class CollectionEvents<Model: Hashable, Cell: UICollectionReusableView> {
@@ -59,7 +69,9 @@ public class CollectionEvents<Model: Hashable, Cell: UICollectionReusableView> {
     private var canPerformAction: SourceEventCanPerformAction<Model>?
     private var performAction: SourceEventPerformAction<Model>?
     private var transitionLayout: SourceEventTransitionLayout?
-
+    private var canMove: SourceEventCanMove<Model>?
+    private var targetMove: SourceEventTargetMove<Model>?
+    
     public func didSelect(_ callback: @escaping SourceEventHandler<Model>) { didSelect = callback }
     public func didDeselect(_ callback: @escaping SourceEventHandler<Model>) { didDeselect = callback }
     public func didHighlight(_ callback: @escaping SourceEventHandler<Model>) { didHighlight = callback }
@@ -73,6 +85,8 @@ public class CollectionEvents<Model: Hashable, Cell: UICollectionReusableView> {
     public func canPerformAction(_ callback: @escaping SourceEventCanPerformAction<Model>) { canPerformAction = callback }
     public func performAction(_ callback: @escaping SourceEventPerformAction<Model>) { performAction = callback }
     public func transitionLayout(_ callback: @escaping SourceEventTransitionLayout) { transitionLayout = callback }
+    public func canMove(_ callback: @escaping SourceEventCanMove<Model>) { canMove = callback }
+    public func targetMove(_ callback: @escaping SourceEventTargetMove<Model>) { targetMove = callback }
     
     internal func dispatch(event: Event.Selection, context: StandardContext<Model>) {
         switch event {
@@ -124,6 +138,20 @@ public class CollectionEvents<Model: Hashable, Cell: UICollectionReusableView> {
             
         case .onShouldShowMenu:
             return shouldShowMenu?(context.standard)
+        }
+    }
+    
+    internal func dispatch(event: Event.Move, context: StandardContext<Model>) -> Bool? {
+        switch event {
+        case .onCanMove:
+            return canMove?(context)
+        }
+    }
+    
+    internal func dispatch(event: Event.TargetMove, context: TargetMoveContext<Model>) -> IndexPath? {
+        switch event {
+        case .onTargetMove:
+            return targetMove?(context)
         }
     }
     

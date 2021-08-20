@@ -60,6 +60,7 @@ private extension SourceDiff {
         var elements = to
         
         // Commit
+        reloaded.sorted { $0.key < $1.key }.forEach { elements[$0.key] = $0.value }
         deleted.sorted(by: >).forEach { elements.remove(at: $0) }
         inserted.sorted { $0.key < $1.key }.forEach { elements.insert($0.value, at: $0.key) }
         elements.append(contentsOf: added)

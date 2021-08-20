@@ -55,4 +55,12 @@ extension CollectionSource: UICollectionViewDataSource {
         
         return UICollectionReusableView()
     }
+    
+    public func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        dispatch(event: .onCanMove, container: collectionView, indexPath: indexPath)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        move(from: sourceIndexPath, to: destinationIndexPath)
+    }
 }
