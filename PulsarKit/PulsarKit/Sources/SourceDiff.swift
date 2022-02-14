@@ -28,6 +28,14 @@ public extension SourceDiff {
     var staged: [Element] {
         apply(to: current)
     }
+    
+    func currentOf<T>(type: T.Type) -> [T] {
+        current.map { $0 as? T }.compactMap { $0 }
+    }
+    
+    func stagedOf<T>(type: T.Type) -> [T] {
+        staged.map { $0 as? T }.compactMap { $0 }
+    }
 }
 
 // MARK: - subscript

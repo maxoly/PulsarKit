@@ -24,6 +24,21 @@ public final class SourceSection {
     }
 }
 
+// MARK: - Public methods
+public extension SourceSection {
+    var modelsCount: Int {
+        models.staged.count
+    }
+    
+    func currentOf<T>(type: T.Type) -> [T] {
+        models.currentOf(type: type)
+    }
+    
+    func stagedOf<T>(type: T.Type) -> [T] {
+        models.stagedOf(type: type)
+    }
+}
+
 // MARK: - Nested types
 public extension SourceSection {
     struct Layout {

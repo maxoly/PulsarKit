@@ -12,10 +12,10 @@ open class InfiniteScrollingPlugin: SourcePlugin {
     public typealias Callback = (CollectionSource) -> Void
     
     public var onReachedTheEnd: Callback
-    public var offset: Int
+    public var threshold: Int
     
-    public init(offset: Int = 1, onReachedTheEnd: @escaping Callback) {
-        self.offset = offset
+    public init(threshold: Int = 1, onReachedTheEnd: @escaping Callback) {
+        self.threshold = threshold
         self.onReachedTheEnd = onReachedTheEnd
     }
 }
@@ -36,8 +36,8 @@ extension InfiniteScrollingPlugin: SourcePluginEvents {
         
         // Row check
         let section = sections[indexPath.section]
-        let finalOffset = min(offset, section.models.count)
-        guard indexPath.row == section.models.count - finalOffset else { return }
+        let finalThreshold = min(threshold, section.models.count)
+        guard indexPath.row == section.models.count - finalThreshold else { return }
         
         onReachedTheEnd(source)
     }
